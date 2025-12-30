@@ -1,45 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Balisan | Curated Spirits, Delivered
+
+Balisan is a premium e-commerce platform dedicated to delivering curated spirits with an emphasis on local delivery speed, authenticity, and a high-end user experience. This project leverages the latest in web technology to provide a seamless, app-like feeling on the web.
+
+![Balisan Banner](public/bottle.jpg)
+
+## Features
+
+-   **Ultrafast Delivery**: 90-minute delivery promise for local orders.
+-   **Premium Aesthetics**: Glassmorphism, smooth animations (Aceternity UI, Magic UI), and dark mode optimization.
+-   **Personalized Experience**: Smart recommendations based on user history and preferences.
+-   **Secure Authentication**: Powered by Supabase Auth with robust user sessions.
+-   **Cart & Checkout**: Boutique cart drawer with progress indicators and optimized checkout flow.
+-   **Admin Dashboard**: comprehensive tools for inventory and user management.
+
+## Tech Stack
+
+-   **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+-   **Language**: [TypeScript](https://www.typescriptlang.org/)
+-   **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+-   **UI Libraries**:
+    -   [Aceternity UI](https://ui.aceternity.com/)
+    -   [Magic UI](https://magicui.design/)
+    -   [Shadcn/ui](https://ui.shadcn.com/)
+-   **Backend / Database**: [Supabase](https://supabase.com/)
+-   **State Management**: Zustand
 
 ## Getting Started
 
-First, run the development server:
+1.  **Clone the repository**:
+    ```bash
+    git clone https://github.com/Aziz-Hubs/Balisan.git
+    cd Balisan
+    ```
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3.  **Run the development server**:
+    ```bash
+    npm run dev
+    ```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Documentation
-
-- [Admin User Management & Operations Guide](docs/admin/USER_MANAGEMENT.md) - Learn how to manage admin users and operations.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+4.  **Open the app**:
+    Navigate to [http://localhost:3000](http://localhost:3000).
 
 ## Documentation
 
-- [Administrator's Guide: User Management](./docs/admin/USER_MANAGEMENT.md)
+For administrative tasks and user management guides, please refer to our internal documentation:
 
+-   [**Admin User Management Guide**](./docs/admin/USER_MANAGEMENT.md): Instructions for creating admin users, managing permissions, and accessing the admin dashboard.
+
+## Deployment
+
+The application is optimized for deployment on [Vercel](https://vercel.com/docs).
+
+---
+
+© 2025 Balisan. All rights reserved.
