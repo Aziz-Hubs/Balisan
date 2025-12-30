@@ -1,0 +1,3257 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - generic [ref=e6]:
+      - 'link "Join our masterclass: The Art of Whisky - Sign Up Now Go to message 1 Go to message 2" [ref=e7] [cursor=pointer]':
+        - /url: /events
+        - generic [ref=e8]:
+          - generic [ref=e9]: "Join our masterclass: The Art of Whisky - Sign Up Now"
+          - generic [ref=e10]:
+            - button "Go to message 1" [ref=e11]
+            - button "Go to message 2" [ref=e12]
+      - button "Dismiss banner" [ref=e14]:
+        - img
+    - banner [ref=e15]:
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - link "Balisan Home" [ref=e18] [cursor=pointer]:
+            - /url: /
+            - img "Balisan Logo" [ref=e20]
+          - navigation "Main" [ref=e22]:
+            - list [ref=e24]:
+              - listitem [ref=e25]:
+                - link "Home" [ref=e26] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e27]:
+                - button "Shop All" [ref=e28]:
+                  - text: Shop All
+                  - img [ref=e29]
+              - listitem [ref=e31]:
+                - button "Whisk(e)y" [ref=e32]:
+                  - text: Whisk(e)y
+                  - img [ref=e33]
+              - listitem [ref=e35]:
+                - link "Journal" [ref=e36] [cursor=pointer]:
+                  - /url: /journal
+        - button "Search" [ref=e38]:
+          - img
+          - generic [ref=e39]: Search rare whiskies, craft gins and more...
+          - generic:
+            - generic: ⌘
+            - text: K
+        - generic [ref=e40]:
+          - link "The Journal" [ref=e42] [cursor=pointer]:
+            - /url: /journal
+            - generic [ref=e43]: The Journal
+          - button "Open Cart" [ref=e44]:
+            - img
+          - generic [ref=e45]:
+            - link "Login" [ref=e46] [cursor=pointer]:
+              - /url: /login
+              - button "Login" [ref=e47]
+            - link "Sign Up" [ref=e48] [cursor=pointer]:
+              - /url: /signup
+              - button "Sign Up" [ref=e49]
+    - main [ref=e50]:
+      - generic [ref=e52]:
+        - navigation [ref=e53]:
+          - link [ref=e54] [cursor=pointer]:
+            - /url: /
+            - img [ref=e55]
+          - img [ref=e58]
+          - link "Shop" [ref=e60] [cursor=pointer]:
+            - /url: /shop
+          - img [ref=e61]
+          - button "All Categories" [ref=e63]:
+            - text: All Categories
+            - img [ref=e64]
+        - generic [ref=e66]:
+          - complementary [ref=e67]:
+            - generic [ref=e68]:
+              - heading "Discovery" [level=3] [ref=e70]
+              - generic [ref=e71]:
+                - generic [ref=e72]:
+                  - text: "Price: $0 - $1000+"
+                  - button [ref=e73]:
+                    - img [ref=e74]
+                - button "Reset all" [ref=e77]
+              - generic [ref=e78]:
+                - generic [ref=e79]:
+                  - heading "Category" [level=3] [ref=e80]:
+                    - button "Category" [expanded] [ref=e81]:
+                      - text: Category
+                      - img [ref=e82]
+                  - region "Category" [ref=e84]:
+                    - generic [ref=e86]:
+                      - generic [ref=e87]:
+                        - checkbox "Beer" [ref=e88]
+                        - generic [ref=e89] [cursor=pointer]: Beer
+                      - generic [ref=e90]:
+                        - checkbox "Gin" [ref=e91]
+                        - generic [ref=e92] [cursor=pointer]: Gin
+                      - generic [ref=e93]:
+                        - checkbox "Liqueur" [ref=e94]
+                        - generic [ref=e95] [cursor=pointer]: Liqueur
+                      - generic [ref=e96]:
+                        - checkbox "Rum" [ref=e97]
+                        - generic [ref=e98] [cursor=pointer]: Rum
+                      - generic [ref=e99]:
+                        - checkbox "Tequila" [ref=e100]
+                        - generic [ref=e101] [cursor=pointer]: Tequila
+                      - generic [ref=e102]:
+                        - checkbox "Vodka" [ref=e103]
+                        - generic [ref=e104] [cursor=pointer]: Vodka
+                      - generic [ref=e105]:
+                        - checkbox "Whiskey" [ref=e106]
+                        - generic [ref=e107] [cursor=pointer]: Whiskey
+                      - generic [ref=e108]:
+                        - checkbox "Wine" [ref=e109]
+                        - generic [ref=e110] [cursor=pointer]: Wine
+                - generic [ref=e111]:
+                  - heading "Price Range" [level=3] [ref=e112]:
+                    - button "Price Range" [expanded] [ref=e113]:
+                      - text: Price Range
+                      - img [ref=e114]
+                  - region "Price Range" [ref=e116]:
+                    - generic [ref=e118]:
+                      - slider "Minimum" [ref=e123]
+                      - generic [ref=e124]:
+                        - generic [ref=e125]: $0
+                        - generic [ref=e126]: $1000+
+                - generic [ref=e127]:
+                  - heading "Brand" [level=3] [ref=e128]:
+                    - button "Brand" [expanded] [ref=e129]:
+                      - text: Brand
+                      - img [ref=e130]
+                  - region "Brand" [ref=e132]:
+                    - generic [ref=e134]:
+                      - generic [ref=e135]:
+                        - checkbox "1800" [ref=e136]
+                        - generic [ref=e137] [cursor=pointer]: "1800"
+                      - generic [ref=e138]:
+                        - checkbox "19 Crimes" [ref=e139]
+                        - generic [ref=e140] [cursor=pointer]: 19 Crimes
+                      - generic [ref=e141]:
+                        - checkbox "Absolut" [ref=e142]
+                        - generic [ref=e143] [cursor=pointer]: Absolut
+                      - generic [ref=e144]:
+                        - checkbox "Apothic" [ref=e145]
+                        - generic [ref=e146] [cursor=pointer]: Apothic
+                      - generic [ref=e147]:
+                        - checkbox "Appleton Estate" [ref=e148]
+                        - generic [ref=e149] [cursor=pointer]: Appleton Estate
+                      - generic [ref=e150]:
+                        - checkbox "Aviation" [ref=e151]
+                        - generic [ref=e152] [cursor=pointer]: Aviation
+                      - generic [ref=e153]:
+                        - checkbox "Bacardi" [ref=e154]
+                        - generic [ref=e155] [cursor=pointer]: Bacardi
+                      - generic [ref=e156]:
+                        - checkbox "Baileys" [ref=e157]
+                        - generic [ref=e158] [cursor=pointer]: Baileys
+                      - generic [ref=e159]:
+                        - checkbox "Barefoot" [ref=e160]
+                        - generic [ref=e161] [cursor=pointer]: Barefoot
+                      - generic [ref=e162]:
+                        - checkbox "Beefeater" [ref=e163]
+                        - generic [ref=e164] [cursor=pointer]: Beefeater
+                      - generic [ref=e165]:
+                        - checkbox "Belvedere" [ref=e166]
+                        - generic [ref=e167] [cursor=pointer]: Belvedere
+                      - generic [ref=e168]:
+                        - checkbox "Bombay Sapphire" [ref=e169]
+                        - generic [ref=e170] [cursor=pointer]: Bombay Sapphire
+                      - generic [ref=e171]:
+                        - checkbox "Bota Box" [ref=e172]
+                        - generic [ref=e173] [cursor=pointer]: Bota Box
+                      - generic [ref=e174]:
+                        - checkbox "Buffalo Trace" [ref=e175]
+                        - generic [ref=e176] [cursor=pointer]: Buffalo Trace
+                      - generic [ref=e177]:
+                        - checkbox "Bulleit" [ref=e178]
+                        - generic [ref=e179] [cursor=pointer]: Bulleit
+                      - generic [ref=e180]:
+                        - checkbox "Campari" [ref=e181]
+                        - generic [ref=e182] [cursor=pointer]: Campari
+                      - generic [ref=e183]:
+                        - checkbox "Captain Morgan" [ref=e184]
+                        - generic [ref=e185] [cursor=pointer]: Captain Morgan
+                      - generic [ref=e186]:
+                        - checkbox "Casamigos" [ref=e187]
+                        - generic [ref=e188] [cursor=pointer]: Casamigos
+                      - generic [ref=e189]:
+                        - checkbox "Caymus" [ref=e190]
+                        - generic [ref=e191] [cursor=pointer]: Caymus
+                      - generic [ref=e192]:
+                        - checkbox "Chopin" [ref=e193]
+                        - generic [ref=e194] [cursor=pointer]: Chopin
+                      - generic [ref=e195]:
+                        - checkbox "Château Margaux" [ref=e196]
+                        - generic [ref=e197] [cursor=pointer]: Château Margaux
+                      - generic [ref=e198]:
+                        - checkbox "Château Minuty" [ref=e199]
+                        - generic [ref=e200] [cursor=pointer]: Château Minuty
+                      - generic [ref=e201]:
+                        - checkbox "Château d'Esclans" [ref=e202]
+                        - generic [ref=e203] [cursor=pointer]: Château d'Esclans
+                      - generic [ref=e204]:
+                        - checkbox "Château d'Yquem" [ref=e205]
+                        - generic [ref=e206] [cursor=pointer]: Château d'Yquem
+                      - generic [ref=e207]:
+                        - checkbox "Clase Azul" [ref=e208]
+                        - generic [ref=e209] [cursor=pointer]: Clase Azul
+                      - generic [ref=e210]:
+                        - checkbox "Cloudy Bay" [ref=e211]
+                        - generic [ref=e212] [cursor=pointer]: Cloudy Bay
+                      - generic [ref=e213]:
+                        - checkbox "Corona" [ref=e214]
+                        - generic [ref=e215] [cursor=pointer]: Corona
+                      - generic [ref=e216]:
+                        - checkbox "Crown Royal" [ref=e217]
+                        - generic [ref=e218] [cursor=pointer]: Crown Royal
+                      - generic [ref=e219]:
+                        - checkbox "Crystal Head" [ref=e220]
+                        - generic [ref=e221] [cursor=pointer]: Crystal Head
+                      - generic [ref=e222]:
+                        - checkbox "Cîroc" [ref=e223]
+                        - generic [ref=e224] [cursor=pointer]: Cîroc
+                      - generic [ref=e225]:
+                        - checkbox "Dark Horse" [ref=e226]
+                        - generic [ref=e227] [cursor=pointer]: Dark Horse
+                      - generic [ref=e228]:
+                        - checkbox "Decoy" [ref=e229]
+                        - generic [ref=e230] [cursor=pointer]: Decoy
+                      - generic [ref=e231]:
+                        - checkbox "Deep Eddy" [ref=e232]
+                        - generic [ref=e233] [cursor=pointer]: Deep Eddy
+                      - generic [ref=e234]:
+                        - checkbox "Diplomático" [ref=e235]
+                        - generic [ref=e236] [cursor=pointer]: Diplomático
+                      - generic [ref=e237]:
+                        - checkbox "Dom Pérignon" [ref=e238]
+                        - generic [ref=e239] [cursor=pointer]: Dom Pérignon
+                      - generic [ref=e240]:
+                        - checkbox "Domaine Leflaive" [ref=e241]
+                        - generic [ref=e242] [cursor=pointer]: Domaine Leflaive
+                      - generic [ref=e243]:
+                        - checkbox "Don Julio" [ref=e244]
+                        - generic [ref=e245] [cursor=pointer]: Don Julio
+                      - generic [ref=e246]:
+                        - checkbox "Espolòn" [ref=e247]
+                        - generic [ref=e248] [cursor=pointer]: Espolòn
+                      - generic [ref=e249]:
+                        - checkbox "Four Roses" [ref=e250]
+                        - generic [ref=e251] [cursor=pointer]: Four Roses
+                      - generic [ref=e252]:
+                        - checkbox "Gerard Bertrand" [ref=e253]
+                        - generic [ref=e254] [cursor=pointer]: Gerard Bertrand
+                      - generic [ref=e255]:
+                        - checkbox "Glenfiddich" [ref=e256]
+                        - generic [ref=e257] [cursor=pointer]: Glenfiddich
+                      - generic [ref=e258]:
+                        - checkbox "Goslings" [ref=e259]
+                        - generic [ref=e260] [cursor=pointer]: Goslings
+                      - generic [ref=e261]:
+                        - checkbox "Grand Marnier" [ref=e262]
+                        - generic [ref=e263] [cursor=pointer]: Grand Marnier
+                      - generic [ref=e264]:
+                        - checkbox "Grey Goose" [ref=e265]
+                        - generic [ref=e266] [cursor=pointer]: Grey Goose
+                      - generic [ref=e267]:
+                        - checkbox "Guinness" [ref=e268]
+                        - generic [ref=e269] [cursor=pointer]: Guinness
+                      - generic [ref=e270]:
+                        - checkbox "Hangar 1" [ref=e271]
+                        - generic [ref=e272] [cursor=pointer]: Hangar 1
+                      - generic [ref=e273]:
+                        - checkbox "Havana Club" [ref=e274]
+                        - generic [ref=e275] [cursor=pointer]: Havana Club
+                      - generic [ref=e276]:
+                        - checkbox "Heineken" [ref=e277]
+                        - generic [ref=e278] [cursor=pointer]: Heineken
+                      - generic [ref=e279]:
+                        - checkbox "Hendrick's" [ref=e280]
+                        - generic [ref=e281] [cursor=pointer]: Hendrick's
+                      - generic [ref=e282]:
+                        - checkbox "Herradura" [ref=e283]
+                        - generic [ref=e284] [cursor=pointer]: Herradura
+                      - generic [ref=e285]:
+                        - checkbox "Hibiki" [ref=e286]
+                        - generic [ref=e287] [cursor=pointer]: Hibiki
+                      - generic [ref=e288]:
+                        - checkbox "Jameson" [ref=e289]
+                        - generic [ref=e290] [cursor=pointer]: Jameson
+                      - generic [ref=e291]:
+                        - checkbox "Johnnie Walker" [ref=e292]
+                        - generic [ref=e293] [cursor=pointer]: Johnnie Walker
+                      - generic [ref=e294]:
+                        - checkbox "Jose Cuervo" [ref=e295]
+                        - generic [ref=e296] [cursor=pointer]: Jose Cuervo
+                      - generic [ref=e297]:
+                        - checkbox "Josh Cellars" [ref=e298]
+                        - generic [ref=e299] [cursor=pointer]: Josh Cellars
+                      - generic [ref=e300]:
+                        - checkbox "Jägermeister" [ref=e301]
+                        - generic [ref=e302] [cursor=pointer]: Jägermeister
+                      - generic [ref=e303]:
+                        - checkbox "Kahlúa" [ref=e304]
+                        - generic [ref=e305] [cursor=pointer]: Kahlúa
+                      - generic [ref=e306]:
+                        - checkbox "Kendall-Jackson" [ref=e307]
+                        - generic [ref=e308] [cursor=pointer]: Kendall-Jackson
+                      - generic [ref=e309]:
+                        - checkbox "Ketel One" [ref=e310]
+                        - generic [ref=e311] [cursor=pointer]: Ketel One
+                      - generic [ref=e312]:
+                        - checkbox "Kim Crawford" [ref=e313]
+                        - generic [ref=e314] [cursor=pointer]: Kim Crawford
+                      - generic [ref=e315]:
+                        - checkbox "La Marca" [ref=e316]
+                        - generic [ref=e317] [cursor=pointer]: La Marca
+                      - generic [ref=e318]:
+                        - checkbox "Lagavulin" [ref=e319]
+                        - generic [ref=e320] [cursor=pointer]: Lagavulin
+                      - generic [ref=e321]:
+                        - checkbox "Lagunitas" [ref=e322]
+                        - generic [ref=e323] [cursor=pointer]: Lagunitas
+                      - generic [ref=e324]:
+                        - checkbox "Maker's Mark" [ref=e325]
+                        - generic [ref=e326] [cursor=pointer]: Maker's Mark
+                      - generic [ref=e327]:
+                        - checkbox "Malibu" [ref=e328]
+                        - generic [ref=e329] [cursor=pointer]: Malibu
+                      - generic [ref=e330]:
+                        - checkbox "Marchesi Antinori" [ref=e331]
+                        - generic [ref=e332] [cursor=pointer]: Marchesi Antinori
+                      - generic [ref=e333]:
+                        - checkbox "Meiomi" [ref=e334]
+                        - generic [ref=e335] [cursor=pointer]: Meiomi
+                      - generic [ref=e336]:
+                        - checkbox "Miraval" [ref=e337]
+                        - generic [ref=e338] [cursor=pointer]: Miraval
+                      - generic [ref=e339]:
+                        - checkbox "Monkey 47" [ref=e340]
+                        - generic [ref=e341] [cursor=pointer]: Monkey 47
+                      - generic [ref=e342]:
+                        - checkbox "Mount Gay" [ref=e343]
+                        - generic [ref=e344] [cursor=pointer]: Mount Gay
+                      - generic [ref=e345]:
+                        - checkbox "Moët & Chandon" [ref=e346]
+                        - generic [ref=e347] [cursor=pointer]: Moët & Chandon
+                      - generic [ref=e348]:
+                        - checkbox "Olmeca Altos" [ref=e349]
+                        - generic [ref=e350] [cursor=pointer]: Olmeca Altos
+                      - generic [ref=e351]:
+                        - checkbox "Opus One" [ref=e352]
+                        - generic [ref=e353] [cursor=pointer]: Opus One
+                      - generic [ref=e354]:
+                        - checkbox "Patrón" [ref=e355]
+                        - generic [ref=e356] [cursor=pointer]: Patrón
+                      - generic [ref=e357]:
+                        - checkbox "Penfolds" [ref=e358]
+                        - generic [ref=e359] [cursor=pointer]: Penfolds
+                      - generic [ref=e360]:
+                        - checkbox "Plymouth" [ref=e361]
+                        - generic [ref=e362] [cursor=pointer]: Plymouth
+                      - generic [ref=e363]:
+                        - checkbox "Reyka" [ref=e364]
+                        - generic [ref=e365] [cursor=pointer]: Reyka
+                      - generic [ref=e366]:
+                        - checkbox "Ridge" [ref=e367]
+                        - generic [ref=e368] [cursor=pointer]: Ridge
+                      - generic [ref=e369]:
+                        - checkbox "Rombauer" [ref=e370]
+                        - generic [ref=e371] [cursor=pointer]: Rombauer
+                      - generic [ref=e372]:
+                        - checkbox "Ron Zacapa" [ref=e373]
+                        - generic [ref=e374] [cursor=pointer]: Ron Zacapa
+                      - generic [ref=e375]:
+                        - checkbox "Santa Margherita" [ref=e376]
+                        - generic [ref=e377] [cursor=pointer]: Santa Margherita
+                      - generic [ref=e378]:
+                        - checkbox "Silver Oak" [ref=e379]
+                        - generic [ref=e380] [cursor=pointer]: Silver Oak
+                      - generic [ref=e381]:
+                        - checkbox "Sipsmith" [ref=e382]
+                        - generic [ref=e383] [cursor=pointer]: Sipsmith
+                      - generic [ref=e384]:
+                        - checkbox "Smirnoff" [ref=e385]
+                        - generic [ref=e386] [cursor=pointer]: Smirnoff
+                      - generic [ref=e387]:
+                        - checkbox "Stella Artois" [ref=e388]
+                        - generic [ref=e389] [cursor=pointer]: Stella Artois
+                      - generic [ref=e390]:
+                        - checkbox "Stoli" [ref=e391]
+                        - generic [ref=e392] [cursor=pointer]: Stoli
+                      - generic [ref=e393]:
+                        - checkbox "Suntory" [ref=e394]
+                        - generic [ref=e395] [cursor=pointer]: Suntory
+                      - generic [ref=e396]:
+                        - checkbox "Talisker" [ref=e397]
+                        - generic [ref=e398] [cursor=pointer]: Talisker
+                      - generic [ref=e399]:
+                        - checkbox "Tanqueray" [ref=e400]
+                        - generic [ref=e401] [cursor=pointer]: Tanqueray
+                      - generic [ref=e402]:
+                        - checkbox "The Botanist" [ref=e403]
+                        - generic [ref=e404] [cursor=pointer]: The Botanist
+                      - generic [ref=e405]:
+                        - checkbox "The Kraken" [ref=e406]
+                        - generic [ref=e407] [cursor=pointer]: The Kraken
+                      - generic [ref=e408]:
+                        - checkbox "The Macallan" [ref=e409]
+                        - generic [ref=e410] [cursor=pointer]: The Macallan
+                      - generic [ref=e411]:
+                        - checkbox "Tito's" [ref=e412]
+                        - generic [ref=e413] [cursor=pointer]: Tito's
+                      - generic [ref=e414]:
+                        - checkbox "Veuve Clicquot" [ref=e415]
+                        - generic [ref=e416] [cursor=pointer]: Veuve Clicquot
+                      - generic [ref=e417]:
+                        - checkbox "Wild Turkey" [ref=e418]
+                        - generic [ref=e419] [cursor=pointer]: Wild Turkey
+                      - generic [ref=e420]:
+                        - checkbox "Woodford Reserve" [ref=e421]
+                        - generic [ref=e422] [cursor=pointer]: Woodford Reserve
+                      - generic [ref=e423]:
+                        - checkbox "Yamazaki" [ref=e424]
+                        - generic [ref=e425] [cursor=pointer]: Yamazaki
+                      - generic [ref=e426]:
+                        - checkbox "Zubrowka" [ref=e427]
+                        - generic [ref=e428] [cursor=pointer]: Zubrowka
+          - generic [ref=e430]:
+            - generic [ref=e431]:
+              - generic [ref=e432]:
+                - heading "Shop All" [level=1] [ref=e433]
+                - paragraph [ref=e434]: Showing 97 products
+              - combobox [ref=e436]:
+                - generic: Relevance
+                - img [ref=e437]
+            - generic [ref=e439]:
+              - generic [ref=e440]:
+                - text: "Price: $0 - $1000+"
+                - button [ref=e441]:
+                  - img [ref=e442]
+              - button "Reset all" [ref=e445]
+            - generic [ref=e446]:
+              - generic [ref=e447]:
+                - generic [ref=e448]:
+                  - img "Casamigos Reposado" [ref=e449]
+                  - button "Compare Product" [ref=e451]:
+                    - img
+                  - button "Add to cart" [ref=e453]:
+                    - img
+                    - generic [ref=e454]: Add to cart
+                  - generic [ref=e456]:
+                    - generic [ref=e460]: Peat
+                    - generic [ref=e464]: Sweet
+                    - generic [ref=e468]: Oak
+                - generic [ref=e469]:
+                  - generic [ref=e470]:
+                    - generic [ref=e471]:
+                      - heading "Casamigos" [level=3] [ref=e472]
+                      - img [ref=e474]
+                    - generic [ref=e477]:
+                      - img [ref=e479]
+                      - img [ref=e482]
+                      - img [ref=e485]
+                      - img [ref=e488]
+                      - generic [ref=e490]:
+                        - img [ref=e491]
+                        - img [ref=e494]
+                  - link "Casamigos Reposado" [ref=e496] [cursor=pointer]:
+                    - /url: /products/casamigos-reposado
+                  - paragraph [ref=e497]: $59.99
+              - generic [ref=e498]:
+                - generic [ref=e499]:
+                  - img "Diplomático Reserva Exclusiva" [ref=e500]
+                  - button "Compare Product" [ref=e502]:
+                    - img
+                  - button "Add to cart" [ref=e504]:
+                    - img
+                    - generic [ref=e505]: Add to cart
+                  - generic [ref=e507]:
+                    - generic [ref=e511]: Peat
+                    - generic [ref=e515]: Sweet
+                    - generic [ref=e519]: Oak
+                - generic [ref=e520]:
+                  - generic [ref=e521]:
+                    - generic [ref=e522]:
+                      - heading "Diplomático" [level=3] [ref=e523]
+                      - img [ref=e525]
+                    - generic [ref=e528]:
+                      - img [ref=e530]
+                      - img [ref=e533]
+                      - img [ref=e536]
+                      - img [ref=e539]
+                      - generic [ref=e541]:
+                        - img [ref=e542]
+                        - img [ref=e545]
+                  - link "Diplomático Reserva Exclusiva" [ref=e547] [cursor=pointer]:
+                    - /url: /products/diplomatico-reserva-exclusiva
+                  - paragraph [ref=e548]: $42.99
+              - generic [ref=e549]:
+                - generic [ref=e550]:
+                  - img "The Botanist Islay Dry Gin" [ref=e551]
+                  - button "Compare Product" [ref=e553]:
+                    - img
+                  - button "Add to cart" [ref=e555]:
+                    - img
+                    - generic [ref=e556]: Add to cart
+                  - generic [ref=e558]:
+                    - generic [ref=e562]: Peat
+                    - generic [ref=e566]: Sweet
+                    - generic [ref=e570]: Oak
+                - generic [ref=e571]:
+                  - generic [ref=e572]:
+                    - generic [ref=e573]:
+                      - heading "The Botanist" [level=3] [ref=e574]
+                      - img [ref=e576]
+                    - generic [ref=e579]:
+                      - img [ref=e581]
+                      - img [ref=e584]
+                      - img [ref=e587]
+                      - img [ref=e590]
+                      - generic [ref=e592]:
+                        - img [ref=e593]
+                        - img [ref=e596]
+                  - link "The Botanist Islay Dry Gin" [ref=e598] [cursor=pointer]:
+                    - /url: /products/the-botanist-gin
+                  - paragraph [ref=e599]: $42.99
+              - generic [ref=e600]:
+                - generic [ref=e601]:
+                  - img "Clase Azul Reposado" [ref=e602]
+                  - button "Compare Product" [ref=e604]:
+                    - img
+                  - button "Add to cart" [ref=e606]:
+                    - img
+                    - generic [ref=e607]: Add to cart
+                  - generic [ref=e609]:
+                    - generic [ref=e613]: Peat
+                    - generic [ref=e617]: Sweet
+                    - generic [ref=e621]: Oak
+                - generic [ref=e622]:
+                  - generic [ref=e623]:
+                    - generic [ref=e624]:
+                      - heading "Clase Azul" [level=3] [ref=e625]
+                      - img [ref=e627]
+                    - generic [ref=e630]:
+                      - img [ref=e632]
+                      - img [ref=e635]
+                      - img [ref=e638]
+                      - img [ref=e641]
+                      - generic [ref=e643]:
+                        - img [ref=e644]
+                        - img [ref=e647]
+                  - link "Clase Azul Reposado" [ref=e649] [cursor=pointer]:
+                    - /url: /products/clase-azul-reposado
+                  - paragraph [ref=e650]: $159.99
+              - generic [ref=e651]:
+                - generic [ref=e652]:
+                  - img "Lagavulin 16 Year Old" [ref=e653]
+                  - button "Compare Product" [ref=e655]:
+                    - img
+                  - button "Add to cart" [ref=e657]:
+                    - img
+                    - generic [ref=e658]: Add to cart
+                  - generic [ref=e660]:
+                    - generic [ref=e664]: Peat
+                    - generic [ref=e668]: Sweet
+                    - generic [ref=e672]: Oak
+                - generic [ref=e673]:
+                  - generic [ref=e674]:
+                    - generic [ref=e675]:
+                      - heading "Lagavulin" [level=3] [ref=e676]
+                      - img [ref=e678]
+                    - generic [ref=e681]:
+                      - img [ref=e683]
+                      - img [ref=e686]
+                      - img [ref=e689]
+                      - img [ref=e692]
+                      - generic [ref=e694]:
+                        - img [ref=e695]
+                        - img [ref=e698]
+                  - link "Lagavulin 16 Year Old" [ref=e700] [cursor=pointer]:
+                    - /url: /products/lagavulin-16-year-old
+                  - paragraph [ref=e701]: $119.99
+              - generic [ref=e702]:
+                - generic [ref=e703]:
+                  - img "Monkey 47 Schwarzwald Dry Gin" [ref=e704]
+                  - button "Compare Product" [ref=e706]:
+                    - img
+                  - button "Add to cart" [ref=e708]:
+                    - img
+                    - generic [ref=e709]: Add to cart
+                  - generic [ref=e711]:
+                    - generic [ref=e715]: Peat
+                    - generic [ref=e719]: Sweet
+                    - generic [ref=e723]: Oak
+                - generic [ref=e724]:
+                  - generic [ref=e725]:
+                    - generic [ref=e726]:
+                      - heading "Monkey 47" [level=3] [ref=e727]
+                      - img [ref=e729]
+                    - generic [ref=e732]:
+                      - img [ref=e734]
+                      - img [ref=e737]
+                      - img [ref=e740]
+                      - img [ref=e743]
+                      - generic [ref=e745]:
+                        - img [ref=e746]
+                        - img [ref=e749]
+                  - link "Monkey 47 Schwarzwald Dry Gin" [ref=e751] [cursor=pointer]:
+                    - /url: /products/monkey-47-gin
+                  - paragraph [ref=e752]: $69.99
+              - generic [ref=e753]:
+                - generic [ref=e754]:
+                  - img "Macallan 18 Year Sherry Oak" [ref=e755]
+                  - button "Compare Product" [ref=e757]:
+                    - img
+                  - button "Add to cart" [ref=e759]:
+                    - img
+                    - generic [ref=e760]: Add to cart
+                  - generic [ref=e762]:
+                    - generic [ref=e766]: Peat
+                    - generic [ref=e770]: Sweet
+                    - generic [ref=e774]: Oak
+                - generic [ref=e775]:
+                  - generic [ref=e776]:
+                    - generic [ref=e777]:
+                      - heading "The Macallan" [level=3] [ref=e778]
+                      - img [ref=e780]
+                    - generic [ref=e783]:
+                      - img [ref=e785]
+                      - img [ref=e788]
+                      - img [ref=e791]
+                      - img [ref=e794]
+                      - generic [ref=e796]:
+                        - img [ref=e797]
+                        - img [ref=e800]
+                  - link "Macallan 18 Year Sherry Oak" [ref=e802] [cursor=pointer]:
+                    - /url: /products/macallan-18-sherry-oak
+                  - paragraph [ref=e803]: $449.99
+              - generic [ref=e804]:
+                - generic [ref=e805]:
+                  - img "Opus One 2017" [ref=e806]
+                  - button "Compare Product" [ref=e808]:
+                    - img
+                  - button "Add to cart" [ref=e810]:
+                    - img
+                    - generic [ref=e811]: Add to cart
+                  - generic [ref=e813]:
+                    - generic [ref=e817]: Peat
+                    - generic [ref=e821]: Sweet
+                    - generic [ref=e825]: Oak
+                - generic [ref=e826]:
+                  - generic [ref=e827]:
+                    - generic [ref=e828]:
+                      - heading "Opus One" [level=3] [ref=e829]
+                      - img [ref=e831]
+                    - generic [ref=e834]:
+                      - img [ref=e836]
+                      - img [ref=e839]
+                      - img [ref=e842]
+                      - img [ref=e845]
+                      - generic [ref=e847]:
+                        - img [ref=e848]
+                        - img [ref=e851]
+                  - link "Opus One 2017" [ref=e853] [cursor=pointer]:
+                    - /url: /products/opus-one-2017
+                  - paragraph [ref=e854]: $365.00
+              - generic [ref=e855]:
+                - generic [ref=e856]:
+                  - img "Château d'Yquem 2016" [ref=e857]
+                  - button "Compare Product" [ref=e859]:
+                    - img
+                  - button "Add to cart" [ref=e861]:
+                    - img
+                    - generic [ref=e862]: Add to cart
+                  - generic [ref=e864]:
+                    - generic [ref=e868]: Peat
+                    - generic [ref=e872]: Sweet
+                    - generic [ref=e876]: Oak
+                - generic [ref=e877]:
+                  - generic [ref=e878]:
+                    - generic [ref=e879]:
+                      - heading "Château d'Yquem" [level=3] [ref=e880]
+                      - img [ref=e882]
+                    - generic [ref=e885]:
+                      - img [ref=e887]
+                      - img [ref=e890]
+                      - img [ref=e893]
+                      - img [ref=e896]
+                      - generic [ref=e898]:
+                        - img [ref=e899]
+                        - img [ref=e902]
+                  - link "Château d'Yquem 2016" [ref=e904] [cursor=pointer]:
+                    - /url: /products/chateau-dyquem-2016
+                  - paragraph [ref=e905]: $450.00
+              - generic [ref=e906]:
+                - generic [ref=e907]:
+                  - img "Penfolds Grange 2018" [ref=e908]
+                  - button "Compare Product" [ref=e910]:
+                    - img
+                  - button "Add to cart" [ref=e912]:
+                    - img
+                    - generic [ref=e913]: Add to cart
+                  - generic [ref=e915]:
+                    - generic [ref=e919]: Peat
+                    - generic [ref=e923]: Sweet
+                    - generic [ref=e927]: Oak
+                - generic [ref=e928]:
+                  - generic [ref=e929]:
+                    - generic [ref=e930]:
+                      - heading "Penfolds" [level=3] [ref=e931]
+                      - img [ref=e933]
+                    - generic [ref=e936]:
+                      - img [ref=e938]
+                      - img [ref=e941]
+                      - img [ref=e944]
+                      - img [ref=e947]
+                      - generic [ref=e949]:
+                        - img [ref=e950]
+                        - img [ref=e953]
+                  - link "Penfolds Grange 2018" [ref=e955] [cursor=pointer]:
+                    - /url: /products/penfolds-grange-2018
+                  - paragraph [ref=e956]: $850.00
+              - generic [ref=e957]:
+                - generic [ref=e958]:
+                  - img "Château Margaux 2015" [ref=e959]
+                  - button "Compare Product" [ref=e961]:
+                    - img
+                  - button "Add to cart" [ref=e963]:
+                    - img
+                    - generic [ref=e964]: Add to cart
+                  - generic [ref=e966]:
+                    - generic [ref=e970]: Peat
+                    - generic [ref=e974]: Sweet
+                    - generic [ref=e978]: Oak
+                - generic [ref=e979]:
+                  - generic [ref=e980]:
+                    - generic [ref=e981]:
+                      - heading "Château Margaux" [level=3] [ref=e982]
+                      - img [ref=e984]
+                    - generic [ref=e987]:
+                      - img [ref=e989]
+                      - img [ref=e992]
+                      - img [ref=e995]
+                      - img [ref=e998]
+                      - generic [ref=e1000]:
+                        - img [ref=e1001]
+                        - img [ref=e1004]
+                  - link "Château Margaux 2015" [ref=e1006] [cursor=pointer]:
+                    - /url: /products/chateau-margaux-2015
+                  - paragraph [ref=e1007]: $899.99
+              - generic [ref=e1008]:
+                - generic [ref=e1009]:
+                  - img "Baileys Original Irish Cream" [ref=e1010]
+                  - button "Compare Product" [ref=e1012]:
+                    - img
+                  - button "Add to cart" [ref=e1014]:
+                    - img
+                    - generic [ref=e1015]: Add to cart
+                  - generic [ref=e1017]:
+                    - generic [ref=e1021]: Peat
+                    - generic [ref=e1025]: Sweet
+                    - generic [ref=e1029]: Oak
+                - generic [ref=e1030]:
+                  - generic [ref=e1031]:
+                    - generic [ref=e1032]:
+                      - heading "Baileys" [level=3] [ref=e1033]
+                      - img [ref=e1035]
+                    - generic [ref=e1038]:
+                      - img [ref=e1040]
+                      - img [ref=e1043]
+                      - img [ref=e1046]
+                      - img [ref=e1049]
+                      - generic [ref=e1051]:
+                        - img [ref=e1052]
+                        - img [ref=e1055]
+                  - link "Baileys Original Irish Cream" [ref=e1057] [cursor=pointer]:
+                    - /url: /products/baileys-irish-cream
+                  - paragraph [ref=e1058]: $24.99
+              - generic [ref=e1059]:
+                - generic [ref=e1060]:
+                  - img "Grey Goose Vodka" [ref=e1061]
+                  - button "Compare Product" [ref=e1063]:
+                    - img
+                  - button "Add to cart" [ref=e1065]:
+                    - img
+                    - generic [ref=e1066]: Add to cart
+                  - generic [ref=e1068]:
+                    - generic [ref=e1072]: Peat
+                    - generic [ref=e1076]: Sweet
+                    - generic [ref=e1080]: Oak
+                - generic [ref=e1081]:
+                  - generic [ref=e1082]:
+                    - generic [ref=e1083]:
+                      - heading "Grey Goose" [level=3] [ref=e1084]
+                      - img [ref=e1086]
+                    - generic [ref=e1089]:
+                      - img [ref=e1091]
+                      - img [ref=e1094]
+                      - img [ref=e1097]
+                      - img [ref=e1100]
+                      - generic [ref=e1102]:
+                        - img [ref=e1103]
+                        - img [ref=e1106]
+                  - link "Grey Goose Vodka" [ref=e1108] [cursor=pointer]:
+                    - /url: /products/grey-goose-vodka
+                  - paragraph [ref=e1109]: $34.99
+              - generic [ref=e1110]:
+                - generic [ref=e1111]:
+                  - img "Hendrick's Gin" [ref=e1112]
+                  - button "Compare Product" [ref=e1114]:
+                    - img
+                  - button "Add to cart" [ref=e1116]:
+                    - img
+                    - generic [ref=e1117]: Add to cart
+                  - generic [ref=e1119]:
+                    - generic [ref=e1123]: Peat
+                    - generic [ref=e1127]: Sweet
+                    - generic [ref=e1131]: Oak
+                - generic [ref=e1132]:
+                  - generic [ref=e1133]:
+                    - generic [ref=e1134]:
+                      - heading "Hendrick's" [level=3] [ref=e1135]
+                      - img [ref=e1137]
+                    - generic [ref=e1140]:
+                      - img [ref=e1142]
+                      - img [ref=e1145]
+                      - img [ref=e1148]
+                      - img [ref=e1151]
+                      - generic [ref=e1153]:
+                        - img [ref=e1154]
+                        - img [ref=e1157]
+                  - link "Hendrick's Gin" [ref=e1159] [cursor=pointer]:
+                    - /url: /products/hendricks-gin
+                  - paragraph [ref=e1160]: $36.99
+              - generic [ref=e1161]:
+                - generic [ref=e1162]:
+                  - img "Buffalo Trace Kentucky Straight Bourbon" [ref=e1163]
+                  - button "Compare Product" [ref=e1165]:
+                    - img
+                  - button "Add to cart" [ref=e1167]:
+                    - img
+                    - generic [ref=e1168]: Add to cart
+                  - generic [ref=e1170]:
+                    - generic [ref=e1174]: Peat
+                    - generic [ref=e1178]: Sweet
+                    - generic [ref=e1182]: Oak
+                - generic [ref=e1183]:
+                  - generic [ref=e1184]:
+                    - generic [ref=e1185]:
+                      - heading "Buffalo Trace" [level=3] [ref=e1186]
+                      - img [ref=e1188]
+                    - generic [ref=e1191]:
+                      - img [ref=e1193]
+                      - img [ref=e1196]
+                      - img [ref=e1199]
+                      - img [ref=e1202]
+                      - generic [ref=e1204]:
+                        - img [ref=e1205]
+                        - img [ref=e1208]
+                  - link "Buffalo Trace Kentucky Straight Bourbon" [ref=e1210] [cursor=pointer]:
+                    - /url: /products/buffalo-trace-bourbon
+                  - paragraph [ref=e1211]: $29.99
+              - generic [ref=e1212]:
+                - generic [ref=e1213]:
+                  - img "Don Julio Blanco" [ref=e1214]
+                  - button "Compare Product" [ref=e1216]:
+                    - img
+                  - button "Add to cart" [ref=e1218]:
+                    - img
+                    - generic [ref=e1219]: Add to cart
+                  - generic [ref=e1221]:
+                    - generic [ref=e1225]: Peat
+                    - generic [ref=e1229]: Sweet
+                    - generic [ref=e1233]: Oak
+                - generic [ref=e1234]:
+                  - generic [ref=e1235]:
+                    - generic [ref=e1236]:
+                      - heading "Don Julio" [level=3] [ref=e1237]
+                      - img [ref=e1239]
+                    - generic [ref=e1242]:
+                      - img [ref=e1244]
+                      - img [ref=e1247]
+                      - img [ref=e1250]
+                      - img [ref=e1253]
+                      - generic [ref=e1255]:
+                        - img [ref=e1256]
+                        - img [ref=e1259]
+                  - link "Don Julio Blanco" [ref=e1261] [cursor=pointer]:
+                    - /url: /products/don-julio-blanco
+                  - paragraph [ref=e1262]: $54.99
+              - generic [ref=e1263]:
+                - generic [ref=e1264]:
+                  - img "Ron Zacapa 23" [ref=e1265]
+                  - button "Compare Product" [ref=e1267]:
+                    - img
+                  - button "Add to cart" [ref=e1269]:
+                    - img
+                    - generic [ref=e1270]: Add to cart
+                  - generic [ref=e1272]:
+                    - generic [ref=e1276]: Peat
+                    - generic [ref=e1280]: Sweet
+                    - generic [ref=e1284]: Oak
+                - generic [ref=e1285]:
+                  - generic [ref=e1286]:
+                    - generic [ref=e1287]:
+                      - heading "Ron Zacapa" [level=3] [ref=e1288]
+                      - img [ref=e1290]
+                    - generic [ref=e1293]:
+                      - img [ref=e1295]
+                      - img [ref=e1298]
+                      - img [ref=e1301]
+                      - img [ref=e1304]
+                      - generic [ref=e1306]:
+                        - img [ref=e1307]
+                        - img [ref=e1310]
+                  - link "Ron Zacapa 23" [ref=e1312] [cursor=pointer]:
+                    - /url: /products/ron-zacapa-23
+                  - paragraph [ref=e1313]: $54.99
+              - generic [ref=e1314]:
+                - generic [ref=e1315]:
+                  - img "Caymus Napa Valley Cabernet Sauvignon" [ref=e1316]
+                  - button "Compare Product" [ref=e1318]:
+                    - img
+                  - button "Add to cart" [ref=e1320]:
+                    - img
+                    - generic [ref=e1321]: Add to cart
+                  - generic [ref=e1323]:
+                    - generic [ref=e1327]: Peat
+                    - generic [ref=e1331]: Sweet
+                    - generic [ref=e1335]: Oak
+                - generic [ref=e1336]:
+                  - generic [ref=e1337]:
+                    - generic [ref=e1338]:
+                      - heading "Caymus" [level=3] [ref=e1339]
+                      - img [ref=e1341]
+                    - generic [ref=e1344]:
+                      - img [ref=e1346]
+                      - img [ref=e1349]
+                      - img [ref=e1352]
+                      - img [ref=e1355]
+                      - generic [ref=e1357]:
+                        - img [ref=e1358]
+                        - img [ref=e1361]
+                  - link "Caymus Napa Valley Cabernet Sauvignon" [ref=e1363] [cursor=pointer]:
+                    - /url: /products/caymus-cabernet
+                  - paragraph [ref=e1364]: $89.99
+              - generic [ref=e1365]:
+                - generic [ref=e1366]:
+                  - img "Dom Pérignon Vintage 2012" [ref=e1367]
+                  - button "Compare Product" [ref=e1369]:
+                    - img
+                  - button "Add to cart" [ref=e1371]:
+                    - img
+                    - generic [ref=e1372]: Add to cart
+                  - generic [ref=e1374]:
+                    - generic [ref=e1378]: Peat
+                    - generic [ref=e1382]: Sweet
+                    - generic [ref=e1386]: Oak
+                - generic [ref=e1387]:
+                  - generic [ref=e1388]:
+                    - generic [ref=e1389]:
+                      - heading "Dom Pérignon" [level=3] [ref=e1390]
+                      - img [ref=e1392]
+                    - generic [ref=e1395]:
+                      - img [ref=e1397]
+                      - img [ref=e1400]
+                      - img [ref=e1403]
+                      - img [ref=e1406]
+                      - generic [ref=e1408]:
+                        - img [ref=e1409]
+                        - img [ref=e1412]
+                  - link "Dom Pérignon Vintage 2012" [ref=e1414] [cursor=pointer]:
+                    - /url: /products/dom-perignon-2012
+                  - paragraph [ref=e1415]: $229.00
+              - generic [ref=e1416]:
+                - generic [ref=e1417]:
+                  - img "Silver Oak Alexander Valley Cabernet" [ref=e1418]
+                  - button "Compare Product" [ref=e1420]:
+                    - img
+                  - button "Add to cart" [ref=e1422]:
+                    - img
+                    - generic [ref=e1423]: Add to cart
+                  - generic [ref=e1425]:
+                    - generic [ref=e1429]: Peat
+                    - generic [ref=e1433]: Sweet
+                    - generic [ref=e1437]: Oak
+                - generic [ref=e1438]:
+                  - generic [ref=e1439]:
+                    - generic [ref=e1440]:
+                      - heading "Silver Oak" [level=3] [ref=e1441]
+                      - img [ref=e1443]
+                    - generic [ref=e1446]:
+                      - img [ref=e1448]
+                      - img [ref=e1451]
+                      - img [ref=e1454]
+                      - img [ref=e1457]
+                      - generic [ref=e1459]:
+                        - img [ref=e1460]
+                        - img [ref=e1463]
+                  - link "Silver Oak Alexander Valley Cabernet" [ref=e1465] [cursor=pointer]:
+                    - /url: /products/silver-oak-alexander-valley
+                  - paragraph [ref=e1466]: $95.99
+              - generic [ref=e1467]:
+                - generic [ref=e1468]:
+                  - img "Sipsmith London Dry Gin" [ref=e1469]
+                  - button "Compare Product" [ref=e1471]:
+                    - img
+                  - button "Add to cart" [ref=e1473]:
+                    - img
+                    - generic [ref=e1474]: Add to cart
+                  - generic [ref=e1476]:
+                    - generic [ref=e1480]: Peat
+                    - generic [ref=e1484]: Sweet
+                    - generic [ref=e1488]: Oak
+                - generic [ref=e1489]:
+                  - generic [ref=e1490]:
+                    - generic [ref=e1491]:
+                      - heading "Sipsmith" [level=3] [ref=e1492]
+                      - img [ref=e1494]
+                    - generic [ref=e1497]:
+                      - img [ref=e1499]
+                      - img [ref=e1502]
+                      - img [ref=e1505]
+                      - img [ref=e1508]
+                      - generic [ref=e1510]:
+                        - img [ref=e1511]
+                        - img [ref=e1514]
+                  - link "Sipsmith London Dry Gin" [ref=e1516] [cursor=pointer]:
+                    - /url: /products/sipsmith-london-dry
+                  - paragraph [ref=e1517]: $38.99
+              - generic [ref=e1518]:
+                - generic [ref=e1519]:
+                  - img "Hangar 1 Buddha's Hand Citron" [ref=e1520]
+                  - button "Compare Product" [ref=e1522]:
+                    - img
+                  - button "Add to cart" [ref=e1524]:
+                    - img
+                    - generic [ref=e1525]: Add to cart
+                  - generic [ref=e1527]:
+                    - generic [ref=e1531]: Peat
+                    - generic [ref=e1535]: Sweet
+                    - generic [ref=e1539]: Oak
+                - generic [ref=e1540]:
+                  - generic [ref=e1541]:
+                    - generic [ref=e1542]:
+                      - heading "Hangar 1" [level=3] [ref=e1543]
+                      - img [ref=e1545]
+                    - generic [ref=e1548]:
+                      - img [ref=e1550]
+                      - img [ref=e1553]
+                      - img [ref=e1556]
+                      - img [ref=e1559]
+                      - generic [ref=e1561]:
+                        - img [ref=e1562]
+                        - img [ref=e1565]
+                  - link "Hangar 1 Buddha's Hand Citron" [ref=e1567] [cursor=pointer]:
+                    - /url: /products/hangar-1-citron
+                  - paragraph [ref=e1568]: $32.99
+              - generic [ref=e1569]:
+                - generic [ref=e1570]:
+                  - img "Antinori Tignanello" [ref=e1571]
+                  - button "Compare Product" [ref=e1573]:
+                    - img
+                  - button "Add to cart" [ref=e1575]:
+                    - img
+                    - generic [ref=e1576]: Add to cart
+                  - generic [ref=e1578]:
+                    - generic [ref=e1582]: Peat
+                    - generic [ref=e1586]: Sweet
+                    - generic [ref=e1590]: Oak
+                - generic [ref=e1591]:
+                  - generic [ref=e1592]:
+                    - generic [ref=e1593]:
+                      - heading "Marchesi Antinori" [level=3] [ref=e1594]
+                      - img [ref=e1596]
+                    - generic [ref=e1599]:
+                      - img [ref=e1601]
+                      - img [ref=e1604]
+                      - img [ref=e1607]
+                      - img [ref=e1610]
+                      - generic [ref=e1612]:
+                        - img [ref=e1613]
+                        - img [ref=e1616]
+                  - link "Antinori Tignanello" [ref=e1618] [cursor=pointer]:
+                    - /url: /products/antinori-tignanello
+                  - paragraph [ref=e1619]: $145.00
+              - generic [ref=e1620]:
+                - generic [ref=e1621]:
+                  - img "Hibiki Japanese Harmony" [ref=e1622]
+                  - button "Compare Product" [ref=e1624]:
+                    - img
+                  - button "Add to cart" [ref=e1626]:
+                    - img
+                    - generic [ref=e1627]: Add to cart
+                  - generic [ref=e1629]:
+                    - generic [ref=e1633]: Peat
+                    - generic [ref=e1637]: Sweet
+                    - generic [ref=e1641]: Oak
+                - generic [ref=e1642]:
+                  - generic [ref=e1643]:
+                    - generic [ref=e1644]:
+                      - heading "Hibiki" [level=3] [ref=e1645]
+                      - img [ref=e1647]
+                    - generic [ref=e1650]:
+                      - img [ref=e1652]
+                      - img [ref=e1655]
+                      - img [ref=e1658]
+                      - img [ref=e1661]
+                      - generic [ref=e1663]:
+                        - img [ref=e1664]
+                        - img [ref=e1667]
+                  - link "Hibiki Japanese Harmony" [ref=e1669] [cursor=pointer]:
+                    - /url: /products/hibiki-japanese-harmony
+                  - paragraph [ref=e1670]: $124.99
+              - generic [ref=e1671]:
+                - generic [ref=e1672]:
+                  - img "Ridge Monte Bello" [ref=e1673]
+                  - button "Compare Product" [ref=e1675]:
+                    - img
+                  - button "Add to cart" [ref=e1677]:
+                    - img
+                    - generic [ref=e1678]: Add to cart
+                  - generic [ref=e1680]:
+                    - generic [ref=e1684]: Peat
+                    - generic [ref=e1688]: Sweet
+                    - generic [ref=e1692]: Oak
+                - generic [ref=e1693]:
+                  - generic [ref=e1694]:
+                    - generic [ref=e1695]:
+                      - heading "Ridge" [level=3] [ref=e1696]
+                      - img [ref=e1698]
+                    - generic [ref=e1701]:
+                      - img [ref=e1703]
+                      - img [ref=e1706]
+                      - img [ref=e1709]
+                      - img [ref=e1712]
+                      - generic [ref=e1714]:
+                        - img [ref=e1715]
+                        - img [ref=e1718]
+                  - link "Ridge Monte Bello" [ref=e1720] [cursor=pointer]:
+                    - /url: /products/ridge-monte-bello
+                  - paragraph [ref=e1721]: $245.00
+              - generic [ref=e1722]:
+                - generic [ref=e1723]:
+                  - img "Domaine Leflaive Puligny-Montrachet" [ref=e1724]
+                  - button "Compare Product" [ref=e1726]:
+                    - img
+                  - button "Add to cart" [ref=e1728]:
+                    - img
+                    - generic [ref=e1729]: Add to cart
+                  - generic [ref=e1731]:
+                    - generic [ref=e1735]: Peat
+                    - generic [ref=e1739]: Sweet
+                    - generic [ref=e1743]: Oak
+                - generic [ref=e1744]:
+                  - generic [ref=e1745]:
+                    - generic [ref=e1746]:
+                      - heading "Domaine Leflaive" [level=3] [ref=e1747]
+                      - img [ref=e1749]
+                    - generic [ref=e1752]:
+                      - img [ref=e1754]
+                      - img [ref=e1757]
+                      - img [ref=e1760]
+                      - img [ref=e1763]
+                      - generic [ref=e1765]:
+                        - img [ref=e1766]
+                        - img [ref=e1769]
+                  - link "Domaine Leflaive Puligny-Montrachet" [ref=e1771] [cursor=pointer]:
+                    - /url: /products/leflaive-puligny-montrachet
+                  - paragraph [ref=e1772]: $185.00
+              - generic [ref=e1773]:
+                - generic [ref=e1774]:
+                  - img "Guinness Draught" [ref=e1775]
+                  - button "Compare Product" [ref=e1777]:
+                    - img
+                  - button "Add to cart" [ref=e1779]:
+                    - img
+                    - generic [ref=e1780]: Add to cart
+                  - generic [ref=e1782]:
+                    - generic [ref=e1786]: Peat
+                    - generic [ref=e1790]: Sweet
+                    - generic [ref=e1794]: Oak
+                - generic [ref=e1795]:
+                  - generic [ref=e1796]:
+                    - generic [ref=e1797]:
+                      - heading "Guinness" [level=3] [ref=e1798]
+                      - img [ref=e1800]
+                    - generic [ref=e1803]:
+                      - img [ref=e1805]
+                      - img [ref=e1808]
+                      - img [ref=e1811]
+                      - img [ref=e1814]
+                      - generic [ref=e1816]:
+                        - img [ref=e1817]
+                        - img [ref=e1820]
+                  - link "Guinness Draught" [ref=e1822] [cursor=pointer]:
+                    - /url: /products/guinness-draught
+                  - paragraph [ref=e1823]: $11.99
+              - generic [ref=e1824]:
+                - generic [ref=e1825]:
+                  - img "Patrón Silver" [ref=e1826]
+                  - button "Compare Product" [ref=e1828]:
+                    - img
+                  - button "Add to cart" [ref=e1830]:
+                    - img
+                    - generic [ref=e1831]: Add to cart
+                  - generic [ref=e1833]:
+                    - generic [ref=e1837]: Peat
+                    - generic [ref=e1841]: Sweet
+                    - generic [ref=e1845]: Oak
+                - generic [ref=e1846]:
+                  - generic [ref=e1847]:
+                    - generic [ref=e1848]:
+                      - heading "Patrón" [level=3] [ref=e1849]
+                      - img [ref=e1851]
+                    - generic [ref=e1854]:
+                      - img [ref=e1856]
+                      - img [ref=e1859]
+                      - img [ref=e1862]
+                      - img [ref=e1865]
+                      - generic [ref=e1867]:
+                        - img [ref=e1868]
+                        - img [ref=e1871]
+                  - link "Patrón Silver" [ref=e1873] [cursor=pointer]:
+                    - /url: /products/patron-silver
+                  - paragraph [ref=e1874]: $49.99
+              - generic [ref=e1875]:
+                - generic [ref=e1876]:
+                  - img "Whispering Angel Rosé" [ref=e1877]
+                  - button "Compare Product" [ref=e1879]:
+                    - img
+                  - button "Add to cart" [ref=e1881]:
+                    - img
+                    - generic [ref=e1882]: Add to cart
+                  - generic [ref=e1884]:
+                    - generic [ref=e1888]: Peat
+                    - generic [ref=e1892]: Sweet
+                    - generic [ref=e1896]: Oak
+                - generic [ref=e1897]:
+                  - generic [ref=e1898]:
+                    - generic [ref=e1899]:
+                      - heading "Château d'Esclans" [level=3] [ref=e1900]
+                      - img [ref=e1902]
+                    - generic [ref=e1905]:
+                      - img [ref=e1907]
+                      - img [ref=e1910]
+                      - img [ref=e1913]
+                      - img [ref=e1916]
+                      - generic [ref=e1918]:
+                        - img [ref=e1919]
+                        - img [ref=e1922]
+                  - link "Whispering Angel Rosé" [ref=e1924] [cursor=pointer]:
+                    - /url: /products/whispering-angel-rose
+                  - paragraph [ref=e1925]: $24.99
+              - generic [ref=e1926]:
+                - generic [ref=e1927]:
+                  - img "Veuve Clicquot Yellow Label" [ref=e1928]
+                  - button "Compare Product" [ref=e1930]:
+                    - img
+                  - button "Add to cart" [ref=e1932]:
+                    - img
+                    - generic [ref=e1933]: Add to cart
+                  - generic [ref=e1935]:
+                    - generic [ref=e1939]: Peat
+                    - generic [ref=e1943]: Sweet
+                    - generic [ref=e1947]: Oak
+                - generic [ref=e1948]:
+                  - generic [ref=e1949]:
+                    - generic [ref=e1950]:
+                      - heading "Veuve Clicquot" [level=3] [ref=e1951]
+                      - img [ref=e1953]
+                    - generic [ref=e1956]:
+                      - img [ref=e1958]
+                      - img [ref=e1961]
+                      - img [ref=e1964]
+                      - img [ref=e1967]
+                      - generic [ref=e1969]:
+                        - img [ref=e1970]
+                        - img [ref=e1973]
+                  - link "Veuve Clicquot Yellow Label" [ref=e1975] [cursor=pointer]:
+                    - /url: /products/veuve-clicquot-yellow-label
+                  - paragraph [ref=e1976]: $64.99
+              - generic [ref=e1977]:
+                - generic [ref=e1978]:
+                  - img "Ketel One Vodka" [ref=e1979]
+                  - button "Compare Product" [ref=e1981]:
+                    - img
+                  - button "Add to cart" [ref=e1983]:
+                    - img
+                    - generic [ref=e1984]: Add to cart
+                  - generic [ref=e1986]:
+                    - generic [ref=e1990]: Peat
+                    - generic [ref=e1994]: Sweet
+                    - generic [ref=e1998]: Oak
+                - generic [ref=e1999]:
+                  - generic [ref=e2000]:
+                    - generic [ref=e2001]:
+                      - heading "Ketel One" [level=3] [ref=e2002]
+                      - img [ref=e2004]
+                    - generic [ref=e2007]:
+                      - img [ref=e2009]
+                      - img [ref=e2012]
+                      - img [ref=e2015]
+                      - img [ref=e2018]
+                      - generic [ref=e2020]:
+                        - img [ref=e2021]
+                        - img [ref=e2024]
+                  - link "Ketel One Vodka" [ref=e2026] [cursor=pointer]:
+                    - /url: /products/ketel-one-vodka
+                  - paragraph [ref=e2027]: $28.99
+              - generic [ref=e2028]:
+                - generic [ref=e2029]:
+                  - img "Belvedere Vodka" [ref=e2030]
+                  - button "Compare Product" [ref=e2032]:
+                    - img
+                  - button "Add to cart" [ref=e2034]:
+                    - img
+                    - generic [ref=e2035]: Add to cart
+                  - generic [ref=e2037]:
+                    - generic [ref=e2041]: Peat
+                    - generic [ref=e2045]: Sweet
+                    - generic [ref=e2049]: Oak
+                - generic [ref=e2050]:
+                  - generic [ref=e2051]:
+                    - generic [ref=e2052]:
+                      - heading "Belvedere" [level=3] [ref=e2053]
+                      - img [ref=e2055]
+                    - generic [ref=e2058]:
+                      - img [ref=e2060]
+                      - img [ref=e2063]
+                      - img [ref=e2066]
+                      - img [ref=e2069]
+                      - generic [ref=e2071]:
+                        - img [ref=e2072]
+                        - img [ref=e2075]
+                  - link "Belvedere Vodka" [ref=e2077] [cursor=pointer]:
+                    - /url: /products/belvedere-vodka
+                  - paragraph [ref=e2078]: $32.99
+              - generic [ref=e2079]:
+                - generic [ref=e2080]:
+                  - img "Glenfiddich 12 Year Old" [ref=e2081]
+                  - button "Compare Product" [ref=e2083]:
+                    - img
+                  - button "Add to cart" [ref=e2085]:
+                    - img
+                    - generic [ref=e2086]: Add to cart
+                  - generic [ref=e2088]:
+                    - generic [ref=e2092]: Peat
+                    - generic [ref=e2096]: Sweet
+                    - generic [ref=e2100]: Oak
+                - generic [ref=e2101]:
+                  - generic [ref=e2102]:
+                    - generic [ref=e2103]:
+                      - heading "Glenfiddich" [level=3] [ref=e2104]
+                      - img [ref=e2106]
+                    - generic [ref=e2109]:
+                      - img [ref=e2111]
+                      - img [ref=e2114]
+                      - img [ref=e2117]
+                      - img [ref=e2120]
+                      - generic [ref=e2122]:
+                        - img [ref=e2123]
+                        - img [ref=e2126]
+                  - link "Glenfiddich 12 Year Old" [ref=e2128] [cursor=pointer]:
+                    - /url: /products/glenfiddich-12-year-old
+                  - paragraph [ref=e2129]: $54.99
+              - generic [ref=e2130]:
+                - generic [ref=e2131]:
+                  - img "Cloudy Bay Sauvignon Blanc" [ref=e2132]
+                  - button "Compare Product" [ref=e2134]:
+                    - img
+                  - button "Add to cart" [ref=e2136]:
+                    - img
+                    - generic [ref=e2137]: Add to cart
+                  - generic [ref=e2139]:
+                    - generic [ref=e2143]: Peat
+                    - generic [ref=e2147]: Sweet
+                    - generic [ref=e2151]: Oak
+                - generic [ref=e2152]:
+                  - generic [ref=e2153]:
+                    - generic [ref=e2154]:
+                      - heading "Cloudy Bay" [level=3] [ref=e2155]
+                      - img [ref=e2157]
+                    - generic [ref=e2160]:
+                      - img [ref=e2162]
+                      - img [ref=e2165]
+                      - img [ref=e2168]
+                      - img [ref=e2171]
+                      - generic [ref=e2173]:
+                        - img [ref=e2174]
+                        - img [ref=e2177]
+                  - link "Cloudy Bay Sauvignon Blanc" [ref=e2179] [cursor=pointer]:
+                    - /url: /products/cloudy-bay-sauvignon-blanc
+                  - paragraph [ref=e2180]: $34.99
+              - generic [ref=e2181]:
+                - generic [ref=e2182]:
+                  - img "Grand Marnier Cordon Rouge" [ref=e2183]
+                  - button "Compare Product" [ref=e2185]:
+                    - img
+                  - button "Add to cart" [ref=e2187]:
+                    - img
+                    - generic [ref=e2188]: Add to cart
+                  - generic [ref=e2190]:
+                    - generic [ref=e2194]: Peat
+                    - generic [ref=e2198]: Sweet
+                    - generic [ref=e2202]: Oak
+                - generic [ref=e2203]:
+                  - generic [ref=e2204]:
+                    - generic [ref=e2205]:
+                      - heading "Grand Marnier" [level=3] [ref=e2206]
+                      - img [ref=e2208]
+                    - generic [ref=e2211]:
+                      - img [ref=e2213]
+                      - img [ref=e2216]
+                      - img [ref=e2219]
+                      - img [ref=e2222]
+                      - generic [ref=e2224]:
+                        - img [ref=e2225]
+                        - img [ref=e2228]
+                  - link "Grand Marnier Cordon Rouge" [ref=e2230] [cursor=pointer]:
+                    - /url: /products/grand-marnier
+                  - paragraph [ref=e2231]: $36.99
+              - generic [ref=e2232]:
+                - generic [ref=e2233]:
+                  - img "Roku Gin" [ref=e2234]
+                  - button "Compare Product" [ref=e2236]:
+                    - img
+                  - button "Add to cart" [ref=e2238]:
+                    - img
+                    - generic [ref=e2239]: Add to cart
+                  - generic [ref=e2241]:
+                    - generic [ref=e2245]: Peat
+                    - generic [ref=e2249]: Sweet
+                    - generic [ref=e2253]: Oak
+                - generic [ref=e2254]:
+                  - generic [ref=e2255]:
+                    - generic [ref=e2256]:
+                      - heading "Suntory" [level=3] [ref=e2257]
+                      - img [ref=e2259]
+                    - generic [ref=e2262]:
+                      - img [ref=e2264]
+                      - img [ref=e2267]
+                      - img [ref=e2270]
+                      - img [ref=e2273]
+                      - generic [ref=e2275]:
+                        - img [ref=e2276]
+                        - img [ref=e2279]
+                  - link "Roku Gin" [ref=e2281] [cursor=pointer]:
+                    - /url: /products/roku-gin
+                  - paragraph [ref=e2282]: $34.99
+              - generic [ref=e2283]:
+                - generic [ref=e2284]:
+                  - img "Rombauer Chardonnay" [ref=e2285]
+                  - button "Compare Product" [ref=e2287]:
+                    - img
+                  - button "Add to cart" [ref=e2289]:
+                    - img
+                    - generic [ref=e2290]: Add to cart
+                  - generic [ref=e2292]:
+                    - generic [ref=e2296]: Peat
+                    - generic [ref=e2300]: Sweet
+                    - generic [ref=e2304]: Oak
+                - generic [ref=e2305]:
+                  - generic [ref=e2306]:
+                    - generic [ref=e2307]:
+                      - heading "Rombauer" [level=3] [ref=e2308]
+                      - img [ref=e2310]
+                    - generic [ref=e2313]:
+                      - img [ref=e2315]
+                      - img [ref=e2318]
+                      - img [ref=e2321]
+                      - img [ref=e2324]
+                      - generic [ref=e2326]:
+                        - img [ref=e2327]
+                        - img [ref=e2330]
+                  - link "Rombauer Chardonnay" [ref=e2332] [cursor=pointer]:
+                    - /url: /products/rombauer-chardonnay
+                  - paragraph [ref=e2333]: $42.99
+              - generic [ref=e2334]:
+                - generic [ref=e2335]:
+                  - img "Havana Club 7 Year Old" [ref=e2336]
+                  - button "Compare Product" [ref=e2338]:
+                    - img
+                  - button "Add to cart" [ref=e2340]:
+                    - img
+                    - generic [ref=e2341]: Add to cart
+                  - generic [ref=e2343]:
+                    - generic [ref=e2347]: Peat
+                    - generic [ref=e2351]: Sweet
+                    - generic [ref=e2355]: Oak
+                - generic [ref=e2356]:
+                  - generic [ref=e2357]:
+                    - generic [ref=e2358]:
+                      - heading "Havana Club" [level=3] [ref=e2359]
+                      - img [ref=e2361]
+                    - generic [ref=e2364]:
+                      - img [ref=e2366]
+                      - img [ref=e2369]
+                      - img [ref=e2372]
+                      - img [ref=e2375]
+                      - generic [ref=e2377]:
+                        - img [ref=e2378]
+                        - img [ref=e2381]
+                  - link "Havana Club 7 Year Old" [ref=e2383] [cursor=pointer]:
+                    - /url: /products/havana-club-7
+                  - paragraph [ref=e2384]: $29.99
+              - generic [ref=e2385]:
+                - generic [ref=e2386]:
+                  - img "Woodford Reserve Bourbon" [ref=e2387]
+                  - button "Compare Product" [ref=e2389]:
+                    - img
+                  - button "Add to cart" [ref=e2391]:
+                    - img
+                    - generic [ref=e2392]: Add to cart
+                  - generic [ref=e2394]:
+                    - generic [ref=e2398]: Peat
+                    - generic [ref=e2402]: Sweet
+                    - generic [ref=e2406]: Oak
+                - generic [ref=e2407]:
+                  - generic [ref=e2408]:
+                    - generic [ref=e2409]:
+                      - heading "Woodford Reserve" [level=3] [ref=e2410]
+                      - img [ref=e2412]
+                    - generic [ref=e2415]:
+                      - img [ref=e2417]
+                      - img [ref=e2420]
+                      - img [ref=e2423]
+                      - img [ref=e2426]
+                      - generic [ref=e2428]:
+                        - img [ref=e2429]
+                        - img [ref=e2432]
+                  - link "Woodford Reserve Bourbon" [ref=e2434] [cursor=pointer]:
+                    - /url: /products/woodford-reserve-bourbon
+                  - paragraph [ref=e2435]: $44.99
+              - generic [ref=e2436]:
+                - generic [ref=e2437]:
+                  - img "Chopin Potato Vodka" [ref=e2438]
+                  - button "Compare Product" [ref=e2440]:
+                    - img
+                  - button "Add to cart" [ref=e2442]:
+                    - img
+                    - generic [ref=e2443]: Add to cart
+                  - generic [ref=e2445]:
+                    - generic [ref=e2449]: Peat
+                    - generic [ref=e2453]: Sweet
+                    - generic [ref=e2457]: Oak
+                - generic [ref=e2458]:
+                  - generic [ref=e2459]:
+                    - generic [ref=e2460]:
+                      - heading "Chopin" [level=3] [ref=e2461]
+                      - img [ref=e2463]
+                    - generic [ref=e2466]:
+                      - img [ref=e2468]
+                      - img [ref=e2471]
+                      - img [ref=e2474]
+                      - img [ref=e2477]
+                      - generic [ref=e2479]:
+                        - img [ref=e2480]
+                        - img [ref=e2483]
+                  - link "Chopin Potato Vodka" [ref=e2485] [cursor=pointer]:
+                    - /url: /products/chopin-potato-vodka
+                  - paragraph [ref=e2486]: $36.99
+              - generic [ref=e2487]:
+                - generic [ref=e2488]:
+                  - img "Reyka Vodka" [ref=e2489]
+                  - button "Compare Product" [ref=e2491]:
+                    - img
+                  - button "Add to cart" [ref=e2493]:
+                    - img
+                    - generic [ref=e2494]: Add to cart
+                  - generic [ref=e2496]:
+                    - generic [ref=e2500]: Peat
+                    - generic [ref=e2504]: Sweet
+                    - generic [ref=e2508]: Oak
+                - generic [ref=e2509]:
+                  - generic [ref=e2510]:
+                    - generic [ref=e2511]:
+                      - heading "Reyka" [level=3] [ref=e2512]
+                      - img [ref=e2514]
+                    - generic [ref=e2517]:
+                      - img [ref=e2519]
+                      - img [ref=e2522]
+                      - img [ref=e2525]
+                      - img [ref=e2528]
+                      - generic [ref=e2530]:
+                        - img [ref=e2531]
+                        - img [ref=e2534]
+                  - link "Reyka Vodka" [ref=e2536] [cursor=pointer]:
+                    - /url: /products/reyka-vodka
+                  - paragraph [ref=e2537]: $26.99
+              - generic [ref=e2538]:
+                - generic [ref=e2539]:
+                  - img "Talisker 10 Year Old" [ref=e2540]
+                  - button "Compare Product" [ref=e2542]:
+                    - img
+                  - button "Add to cart" [ref=e2544]:
+                    - img
+                    - generic [ref=e2545]: Add to cart
+                  - generic [ref=e2547]:
+                    - generic [ref=e2551]: Peat
+                    - generic [ref=e2555]: Sweet
+                    - generic [ref=e2559]: Oak
+                - generic [ref=e2560]:
+                  - generic [ref=e2561]:
+                    - generic [ref=e2562]:
+                      - heading "Talisker" [level=3] [ref=e2563]
+                      - img [ref=e2565]
+                    - generic [ref=e2568]:
+                      - img [ref=e2570]
+                      - img [ref=e2573]
+                      - img [ref=e2576]
+                      - img [ref=e2579]
+                      - generic [ref=e2581]:
+                        - img [ref=e2582]
+                        - img [ref=e2585]
+                  - link "Talisker 10 Year Old" [ref=e2587] [cursor=pointer]:
+                    - /url: /products/talisker-10-year-old
+                  - paragraph [ref=e2588]: $74.99
+              - generic [ref=e2589]:
+                - generic [ref=e2590]:
+                  - img "Tito's Handmade Vodka" [ref=e2591]
+                  - button "Compare Product" [ref=e2593]:
+                    - img
+                  - button "Add to cart" [ref=e2595]:
+                    - img
+                    - generic [ref=e2596]: Add to cart
+                  - generic [ref=e2598]:
+                    - generic [ref=e2602]: Peat
+                    - generic [ref=e2606]: Sweet
+                    - generic [ref=e2610]: Oak
+                - generic [ref=e2611]:
+                  - generic [ref=e2612]:
+                    - generic [ref=e2613]:
+                      - heading "Tito's" [level=3] [ref=e2614]
+                      - img [ref=e2616]
+                    - generic [ref=e2619]:
+                      - img [ref=e2621]
+                      - img [ref=e2624]
+                      - img [ref=e2627]
+                      - img [ref=e2630]
+                      - generic [ref=e2632]:
+                        - img [ref=e2633]
+                        - img [ref=e2636]
+                  - link "Tito's Handmade Vodka" [ref=e2638] [cursor=pointer]:
+                    - /url: /products/titos-handmade-vodka
+                  - paragraph [ref=e2639]: $24.99
+              - generic [ref=e2640]:
+                - generic [ref=e2641]:
+                  - img "Kahlúa Coffee Liqueur" [ref=e2642]
+                  - button "Compare Product" [ref=e2644]:
+                    - img
+                  - button "Add to cart" [ref=e2646]:
+                    - img
+                    - generic [ref=e2647]: Add to cart
+                  - generic [ref=e2649]:
+                    - generic [ref=e2653]: Peat
+                    - generic [ref=e2657]: Sweet
+                    - generic [ref=e2661]: Oak
+                - generic [ref=e2662]:
+                  - generic [ref=e2663]:
+                    - generic [ref=e2664]:
+                      - heading "Kahlúa" [level=3] [ref=e2665]
+                      - img [ref=e2667]
+                    - generic [ref=e2670]:
+                      - img [ref=e2672]
+                      - img [ref=e2675]
+                      - img [ref=e2678]
+                      - img [ref=e2681]
+                      - generic [ref=e2683]:
+                        - img [ref=e2684]
+                        - img [ref=e2687]
+                  - link "Kahlúa Coffee Liqueur" [ref=e2689] [cursor=pointer]:
+                    - /url: /products/kahlua
+                  - paragraph [ref=e2690]: $21.99
+              - generic [ref=e2691]:
+                - generic [ref=e2692]:
+                  - img "Kim Crawford Sauvignon Blanc" [ref=e2693]
+                  - button "Compare Product" [ref=e2695]:
+                    - img
+                  - button "Add to cart" [ref=e2697]:
+                    - img
+                    - generic [ref=e2698]: Add to cart
+                  - generic [ref=e2700]:
+                    - generic [ref=e2704]: Peat
+                    - generic [ref=e2708]: Sweet
+                    - generic [ref=e2712]: Oak
+                - generic [ref=e2713]:
+                  - generic [ref=e2714]:
+                    - generic [ref=e2715]:
+                      - heading "Kim Crawford" [level=3] [ref=e2716]
+                      - img [ref=e2718]
+                    - generic [ref=e2721]:
+                      - img [ref=e2723]
+                      - img [ref=e2726]
+                      - img [ref=e2729]
+                      - img [ref=e2732]
+                      - generic [ref=e2734]:
+                        - img [ref=e2735]
+                        - img [ref=e2738]
+                  - link "Kim Crawford Sauvignon Blanc" [ref=e2740] [cursor=pointer]:
+                    - /url: /products/kim-crawford-sauvignon-blanc
+                  - paragraph [ref=e2741]: $17.99
+              - generic [ref=e2742]:
+                - generic [ref=e2743]:
+                  - img "Moët & Chandon Impérial" [ref=e2744]
+                  - button "Compare Product" [ref=e2746]:
+                    - img
+                  - button "Add to cart" [ref=e2748]:
+                    - img
+                    - generic [ref=e2749]: Add to cart
+                  - generic [ref=e2751]:
+                    - generic [ref=e2755]: Peat
+                    - generic [ref=e2759]: Sweet
+                    - generic [ref=e2763]: Oak
+                - generic [ref=e2764]:
+                  - generic [ref=e2765]:
+                    - generic [ref=e2766]:
+                      - heading "Moët & Chandon" [level=3] [ref=e2767]
+                      - img [ref=e2769]
+                    - generic [ref=e2772]:
+                      - img [ref=e2774]
+                      - img [ref=e2777]
+                      - img [ref=e2780]
+                      - img [ref=e2783]
+                      - generic [ref=e2785]:
+                        - img [ref=e2786]
+                        - img [ref=e2789]
+                  - link "Moët & Chandon Impérial" [ref=e2791] [cursor=pointer]:
+                    - /url: /products/moet-chandon-imperial
+                  - paragraph [ref=e2792]: $54.99
+              - generic [ref=e2793]:
+                - generic [ref=e2794]:
+                  - img "La Marca Prosecco" [ref=e2795]
+                  - button "Compare Product" [ref=e2797]:
+                    - img
+                  - button "Add to cart" [ref=e2799]:
+                    - img
+                    - generic [ref=e2800]: Add to cart
+                  - generic [ref=e2802]:
+                    - generic [ref=e2806]: Peat
+                    - generic [ref=e2810]: Sweet
+                    - generic [ref=e2814]: Oak
+                - generic [ref=e2815]:
+                  - generic [ref=e2816]:
+                    - generic [ref=e2817]:
+                      - heading "La Marca" [level=3] [ref=e2818]
+                      - img [ref=e2820]
+                    - generic [ref=e2823]:
+                      - img [ref=e2825]
+                      - img [ref=e2828]
+                      - img [ref=e2831]
+                      - img [ref=e2834]
+                      - generic [ref=e2836]:
+                        - img [ref=e2837]
+                        - img [ref=e2840]
+                  - link "La Marca Prosecco" [ref=e2842] [cursor=pointer]:
+                    - /url: /products/la-marca-prosecco
+                  - paragraph [ref=e2843]: $16.99
+              - generic [ref=e2844]:
+                - generic [ref=e2845]:
+                  - img "Deep Eddy Ruby Red" [ref=e2846]
+                  - button "Compare Product" [ref=e2848]:
+                    - img
+                  - button "Add to cart" [ref=e2850]:
+                    - img
+                    - generic [ref=e2851]: Add to cart
+                  - generic [ref=e2853]:
+                    - generic [ref=e2857]: Peat
+                    - generic [ref=e2861]: Sweet
+                    - generic [ref=e2865]: Oak
+                - generic [ref=e2866]:
+                  - generic [ref=e2867]:
+                    - generic [ref=e2868]:
+                      - heading "Deep Eddy" [level=3] [ref=e2869]
+                      - img [ref=e2871]
+                    - generic [ref=e2874]:
+                      - img [ref=e2876]
+                      - img [ref=e2879]
+                      - img [ref=e2882]
+                      - img [ref=e2885]
+                      - generic [ref=e2887]:
+                        - img [ref=e2888]
+                        - img [ref=e2891]
+                  - link "Deep Eddy Ruby Red" [ref=e2893] [cursor=pointer]:
+                    - /url: /products/deep-eddy-ruby-red
+                  - paragraph [ref=e2894]: $19.99
+              - generic [ref=e2895]:
+                - generic [ref=e2896]:
+                  - img "Tanqueray London Dry" [ref=e2897]
+                  - button "Compare Product" [ref=e2899]:
+                    - img
+                  - button "Add to cart" [ref=e2901]:
+                    - img
+                    - generic [ref=e2902]: Add to cart
+                  - generic [ref=e2904]:
+                    - generic [ref=e2908]: Peat
+                    - generic [ref=e2912]: Sweet
+                    - generic [ref=e2916]: Oak
+                - generic [ref=e2917]:
+                  - generic [ref=e2918]:
+                    - generic [ref=e2919]:
+                      - heading "Tanqueray" [level=3] [ref=e2920]
+                      - img [ref=e2922]
+                    - generic [ref=e2925]:
+                      - img [ref=e2927]
+                      - img [ref=e2930]
+                      - img [ref=e2933]
+                      - img [ref=e2936]
+                      - generic [ref=e2938]:
+                        - img [ref=e2939]
+                        - img [ref=e2942]
+                  - link "Tanqueray London Dry" [ref=e2944] [cursor=pointer]:
+                    - /url: /products/tanqueray-london-dry
+                  - paragraph [ref=e2945]: $26.99
+              - generic [ref=e2946]:
+                - generic [ref=e2947]:
+                  - img "Lagunitas IPA" [ref=e2948]
+                  - button "Compare Product" [ref=e2950]:
+                    - img
+                  - button "Add to cart" [ref=e2952]:
+                    - img
+                    - generic [ref=e2953]: Add to cart
+                  - generic [ref=e2955]:
+                    - generic [ref=e2959]: Peat
+                    - generic [ref=e2963]: Sweet
+                    - generic [ref=e2967]: Oak
+                - generic [ref=e2968]:
+                  - generic [ref=e2969]:
+                    - generic [ref=e2970]:
+                      - heading "Lagunitas" [level=3] [ref=e2971]
+                      - img [ref=e2973]
+                    - generic [ref=e2976]:
+                      - img [ref=e2978]
+                      - img [ref=e2981]
+                      - img [ref=e2984]
+                      - img [ref=e2987]
+                      - generic [ref=e2989]:
+                        - img [ref=e2990]
+                        - img [ref=e2993]
+                  - link "Lagunitas IPA" [ref=e2995] [cursor=pointer]:
+                    - /url: /products/lagunitas-ipa
+                  - paragraph [ref=e2996]: $11.49
+              - generic [ref=e2997]:
+                - generic [ref=e2998]:
+                  - img "Santa Margherita Pinot Grigio" [ref=e2999]
+                  - button "Compare Product" [ref=e3001]:
+                    - img
+                  - button "Add to cart" [ref=e3003]:
+                    - img
+                    - generic [ref=e3004]: Add to cart
+                  - generic [ref=e3006]:
+                    - generic [ref=e3010]: Peat
+                    - generic [ref=e3014]: Sweet
+                    - generic [ref=e3018]: Oak
+                - generic [ref=e3019]:
+                  - generic [ref=e3020]:
+                    - generic [ref=e3021]:
+                      - heading "Santa Margherita" [level=3] [ref=e3022]
+                      - img [ref=e3024]
+                    - generic [ref=e3027]:
+                      - img [ref=e3029]
+                      - img [ref=e3032]
+                      - img [ref=e3035]
+                      - img [ref=e3038]
+                      - generic [ref=e3040]:
+                        - img [ref=e3041]
+                        - img [ref=e3044]
+                  - link "Santa Margherita Pinot Grigio" [ref=e3046] [cursor=pointer]:
+                    - /url: /products/santa-margherita-pinot-grigio
+                  - paragraph [ref=e3047]: $24.99
+              - generic [ref=e3048]:
+                - generic [ref=e3049]:
+                  - img "Decoy Cabernet Sauvignon" [ref=e3050]
+                  - button "Compare Product" [ref=e3052]:
+                    - img
+                  - button "Add to cart" [ref=e3054]:
+                    - img
+                    - generic [ref=e3055]: Add to cart
+                  - generic [ref=e3057]:
+                    - generic [ref=e3061]: Peat
+                    - generic [ref=e3065]: Sweet
+                    - generic [ref=e3069]: Oak
+                - generic [ref=e3070]:
+                  - generic [ref=e3071]:
+                    - generic [ref=e3072]:
+                      - heading "Decoy" [level=3] [ref=e3073]
+                      - img [ref=e3075]
+                    - generic [ref=e3078]:
+                      - img [ref=e3080]
+                      - img [ref=e3083]
+                      - img [ref=e3086]
+                      - img [ref=e3089]
+                      - generic [ref=e3091]:
+                        - img [ref=e3092]
+                        - img [ref=e3095]
+                  - link "Decoy Cabernet Sauvignon" [ref=e3097] [cursor=pointer]:
+                    - /url: /products/decoy-cabernet
+                  - paragraph [ref=e3098]: $24.99
+              - generic [ref=e3099]:
+                - generic [ref=e3100]:
+                  - img "Absolut Citron" [ref=e3101]
+                  - button "Compare Product" [ref=e3103]:
+                    - img
+                  - button "Add to cart" [ref=e3105]:
+                    - img
+                    - generic [ref=e3106]: Add to cart
+                  - generic [ref=e3108]:
+                    - generic [ref=e3112]: Peat
+                    - generic [ref=e3116]: Sweet
+                    - generic [ref=e3120]: Oak
+                - generic [ref=e3121]:
+                  - generic [ref=e3122]:
+                    - generic [ref=e3123]:
+                      - heading "Absolut" [level=3] [ref=e3124]
+                      - img [ref=e3126]
+                    - generic [ref=e3129]:
+                      - img [ref=e3131]
+                      - img [ref=e3134]
+                      - img [ref=e3137]
+                      - img [ref=e3140]
+                      - generic [ref=e3142]:
+                        - img [ref=e3143]
+                        - img [ref=e3146]
+                  - link "Absolut Citron" [ref=e3148] [cursor=pointer]:
+                    - /url: /products/absolut-citron
+                  - paragraph [ref=e3149]: $21.99
+              - generic [ref=e3150]:
+                - generic [ref=e3151]:
+                  - img "Espolòn Blanco" [ref=e3152]
+                  - button "Compare Product" [ref=e3154]:
+                    - img
+                  - button "Add to cart" [ref=e3156]:
+                    - img
+                    - generic [ref=e3157]: Add to cart
+                  - generic [ref=e3159]:
+                    - generic [ref=e3163]: Peat
+                    - generic [ref=e3167]: Sweet
+                    - generic [ref=e3171]: Oak
+                - generic [ref=e3172]:
+                  - generic [ref=e3173]:
+                    - generic [ref=e3174]:
+                      - heading "Espolòn" [level=3] [ref=e3175]
+                      - img [ref=e3177]
+                    - generic [ref=e3180]:
+                      - img [ref=e3182]
+                      - img [ref=e3185]
+                      - img [ref=e3188]
+                      - img [ref=e3191]
+                      - generic [ref=e3193]:
+                        - img [ref=e3194]
+                        - img [ref=e3197]
+                  - link "Espolòn Blanco" [ref=e3199] [cursor=pointer]:
+                    - /url: /products/espolon-blanco
+                  - paragraph [ref=e3200]: $28.99
+              - generic [ref=e3201]:
+                - generic [ref=e3202]:
+                  - img "Aviation American Gin" [ref=e3203]
+                  - button "Compare Product" [ref=e3205]:
+                    - img
+                  - button "Add to cart" [ref=e3207]:
+                    - img
+                    - generic [ref=e3208]: Add to cart
+                  - generic [ref=e3210]:
+                    - generic [ref=e3214]: Peat
+                    - generic [ref=e3218]: Sweet
+                    - generic [ref=e3222]: Oak
+                - generic [ref=e3223]:
+                  - generic [ref=e3224]:
+                    - generic [ref=e3225]:
+                      - heading "Aviation" [level=3] [ref=e3226]
+                      - img [ref=e3228]
+                    - generic [ref=e3231]:
+                      - img [ref=e3233]
+                      - img [ref=e3236]
+                      - img [ref=e3239]
+                      - img [ref=e3242]
+                      - generic [ref=e3244]:
+                        - img [ref=e3245]
+                        - img [ref=e3248]
+                  - link "Aviation American Gin" [ref=e3250] [cursor=pointer]:
+                    - /url: /products/aviation-gin
+                  - paragraph [ref=e3251]: $29.99
+              - generic [ref=e3252]:
+                - generic [ref=e3253]:
+                  - img "Miraval Rosé" [ref=e3254]
+                  - button "Compare Product" [ref=e3256]:
+                    - img
+                  - button "Add to cart" [ref=e3258]:
+                    - img
+                    - generic [ref=e3259]: Add to cart
+                  - generic [ref=e3261]:
+                    - generic [ref=e3265]: Peat
+                    - generic [ref=e3269]: Sweet
+                    - generic [ref=e3273]: Oak
+                - generic [ref=e3274]:
+                  - generic [ref=e3275]:
+                    - generic [ref=e3276]:
+                      - heading "Miraval" [level=3] [ref=e3277]
+                      - img [ref=e3279]
+                    - generic [ref=e3282]:
+                      - img [ref=e3284]
+                      - img [ref=e3287]
+                      - img [ref=e3290]
+                      - img [ref=e3293]
+                      - generic [ref=e3295]:
+                        - img [ref=e3296]
+                        - img [ref=e3299]
+                  - link "Miraval Rosé" [ref=e3301] [cursor=pointer]:
+                    - /url: /products/miraval-rose
+                  - paragraph [ref=e3302]: $26.99
+              - generic [ref=e3303]:
+                - generic [ref=e3304]:
+                  - img "Wild Turkey 101 Bourbon" [ref=e3305]
+                  - button "Compare Product" [ref=e3307]:
+                    - img
+                  - button "Add to cart" [ref=e3309]:
+                    - img
+                    - generic [ref=e3310]: Add to cart
+                  - generic [ref=e3312]:
+                    - generic [ref=e3316]: Peat
+                    - generic [ref=e3320]: Sweet
+                    - generic [ref=e3324]: Oak
+                - generic [ref=e3325]:
+                  - generic [ref=e3326]:
+                    - generic [ref=e3327]:
+                      - heading "Wild Turkey" [level=3] [ref=e3328]
+                      - img [ref=e3330]
+                    - generic [ref=e3333]:
+                      - img [ref=e3335]
+                      - img [ref=e3338]
+                      - img [ref=e3341]
+                      - img [ref=e3344]
+                      - generic [ref=e3346]:
+                        - img [ref=e3347]
+                        - img [ref=e3350]
+                  - link "Wild Turkey 101 Bourbon" [ref=e3352] [cursor=pointer]:
+                    - /url: /products/wild-turkey-101
+                  - paragraph [ref=e3353]: $27.99
+              - generic [ref=e3354]:
+                - generic [ref=e3355]:
+                  - img "Crystal Head Vodka" [ref=e3356]
+                  - button "Compare Product" [ref=e3358]:
+                    - img
+                  - button "Add to cart" [ref=e3360]:
+                    - img
+                    - generic [ref=e3361]: Add to cart
+                  - generic [ref=e3363]:
+                    - generic [ref=e3367]: Peat
+                    - generic [ref=e3371]: Sweet
+                    - generic [ref=e3375]: Oak
+                - generic [ref=e3376]:
+                  - generic [ref=e3377]:
+                    - generic [ref=e3378]:
+                      - heading "Crystal Head" [level=3] [ref=e3379]
+                      - img [ref=e3381]
+                    - generic [ref=e3384]:
+                      - img [ref=e3386]
+                      - img [ref=e3389]
+                      - img [ref=e3392]
+                      - img [ref=e3395]
+                      - generic [ref=e3397]:
+                        - img [ref=e3398]
+                        - img [ref=e3401]
+                  - link "Crystal Head Vodka" [ref=e3403] [cursor=pointer]:
+                    - /url: /products/crystal-head-vodka
+                  - paragraph [ref=e3404]: $49.99
+              - generic [ref=e3405]:
+                - generic [ref=e3406]:
+                  - img "Goslings Black Seal" [ref=e3407]
+                  - button "Compare Product" [ref=e3409]:
+                    - img
+                  - button "Add to cart" [ref=e3411]:
+                    - img
+                    - generic [ref=e3412]: Add to cart
+                  - generic [ref=e3414]:
+                    - generic [ref=e3418]: Peat
+                    - generic [ref=e3422]: Sweet
+                    - generic [ref=e3426]: Oak
+                - generic [ref=e3427]:
+                  - generic [ref=e3428]:
+                    - generic [ref=e3429]:
+                      - heading "Goslings" [level=3] [ref=e3430]
+                      - img [ref=e3432]
+                    - generic [ref=e3435]:
+                      - img [ref=e3437]
+                      - img [ref=e3440]
+                      - img [ref=e3443]
+                      - img [ref=e3446]
+                      - generic [ref=e3448]:
+                        - img [ref=e3449]
+                        - img [ref=e3452]
+                  - link "Goslings Black Seal" [ref=e3454] [cursor=pointer]:
+                    - /url: /products/goslings-black-seal
+                  - paragraph [ref=e3455]: $23.99
+              - generic [ref=e3456]:
+                - generic [ref=e3457]:
+                  - img "Maker's Mark Bourbon" [ref=e3458]
+                  - button "Compare Product" [ref=e3460]:
+                    - img
+                  - button "Add to cart" [ref=e3462]:
+                    - img
+                    - generic [ref=e3463]: Add to cart
+                  - generic [ref=e3465]:
+                    - generic [ref=e3469]: Peat
+                    - generic [ref=e3473]: Sweet
+                    - generic [ref=e3477]: Oak
+                - generic [ref=e3478]:
+                  - generic [ref=e3479]:
+                    - generic [ref=e3480]:
+                      - heading "Maker's Mark" [level=3] [ref=e3481]
+                      - img [ref=e3483]
+                    - generic [ref=e3486]:
+                      - img [ref=e3488]
+                      - img [ref=e3491]
+                      - img [ref=e3494]
+                      - img [ref=e3497]
+                      - generic [ref=e3499]:
+                        - img [ref=e3500]
+                        - img [ref=e3503]
+                  - link "Maker's Mark Bourbon" [ref=e3505] [cursor=pointer]:
+                    - /url: /products/makers-mark-bourbon
+                  - paragraph [ref=e3506]: $38.99
+              - generic [ref=e3507]:
+                - generic [ref=e3508]:
+                  - img "Appleton Estate Signature" [ref=e3509]
+                  - button "Compare Product" [ref=e3511]:
+                    - img
+                  - button "Add to cart" [ref=e3513]:
+                    - img
+                    - generic [ref=e3514]: Add to cart
+                  - generic [ref=e3516]:
+                    - generic [ref=e3520]: Peat
+                    - generic [ref=e3524]: Sweet
+                    - generic [ref=e3528]: Oak
+                - generic [ref=e3529]:
+                  - generic [ref=e3530]:
+                    - generic [ref=e3531]:
+                      - heading "Appleton Estate" [level=3] [ref=e3532]
+                      - img [ref=e3534]
+                    - generic [ref=e3537]:
+                      - img [ref=e3539]
+                      - img [ref=e3542]
+                      - img [ref=e3545]
+                      - img [ref=e3548]
+                      - generic [ref=e3550]:
+                        - img [ref=e3551]
+                        - img [ref=e3554]
+                  - link "Appleton Estate Signature" [ref=e3556] [cursor=pointer]:
+                    - /url: /products/appleton-estate-signature
+                  - paragraph [ref=e3557]: $26.99
+              - generic [ref=e3558]:
+                - generic [ref=e3559]:
+                  - img "Minuty M Rosé" [ref=e3560]
+                  - button "Compare Product" [ref=e3562]:
+                    - img
+                  - button "Add to cart" [ref=e3564]:
+                    - img
+                    - generic [ref=e3565]: Add to cart
+                  - generic [ref=e3567]:
+                    - generic [ref=e3571]: Peat
+                    - generic [ref=e3575]: Sweet
+                    - generic [ref=e3579]: Oak
+                - generic [ref=e3580]:
+                  - generic [ref=e3581]:
+                    - generic [ref=e3582]:
+                      - heading "Château Minuty" [level=3] [ref=e3583]
+                      - img [ref=e3585]
+                    - generic [ref=e3588]:
+                      - img [ref=e3590]
+                      - img [ref=e3593]
+                      - img [ref=e3596]
+                      - img [ref=e3599]
+                      - generic [ref=e3601]:
+                        - img [ref=e3602]
+                        - img [ref=e3605]
+                  - link "Minuty M Rosé" [ref=e3607] [cursor=pointer]:
+                    - /url: /products/minuty-m-rose
+                  - paragraph [ref=e3608]: $22.99
+              - generic [ref=e3609]:
+                - generic [ref=e3610]:
+                  - img "Herradura Silver" [ref=e3611]
+                  - button "Compare Product" [ref=e3613]:
+                    - img
+                  - button "Add to cart" [ref=e3615]:
+                    - img
+                    - generic [ref=e3616]: Add to cart
+                  - generic [ref=e3618]:
+                    - generic [ref=e3622]: Peat
+                    - generic [ref=e3626]: Sweet
+                    - generic [ref=e3630]: Oak
+                - generic [ref=e3631]:
+                  - generic [ref=e3632]:
+                    - generic [ref=e3633]:
+                      - heading "Herradura" [level=3] [ref=e3634]
+                      - img [ref=e3636]
+                    - generic [ref=e3639]:
+                      - img [ref=e3641]
+                      - img [ref=e3644]
+                      - img [ref=e3647]
+                      - img [ref=e3650]
+                      - generic [ref=e3652]:
+                        - img [ref=e3653]
+                        - img [ref=e3656]
+                  - link "Herradura Silver" [ref=e3658] [cursor=pointer]:
+                    - /url: /products/herradura-silver
+                  - paragraph [ref=e3659]: $44.99
+              - generic [ref=e3660]:
+                - generic [ref=e3661]:
+                  - img "Plymouth Gin" [ref=e3662]
+                  - button "Compare Product" [ref=e3664]:
+                    - img
+                  - button "Add to cart" [ref=e3666]:
+                    - img
+                    - generic [ref=e3667]: Add to cart
+                  - generic [ref=e3669]:
+                    - generic [ref=e3673]: Peat
+                    - generic [ref=e3677]: Sweet
+                    - generic [ref=e3681]: Oak
+                - generic [ref=e3682]:
+                  - generic [ref=e3683]:
+                    - generic [ref=e3684]:
+                      - heading "Plymouth" [level=3] [ref=e3685]
+                      - img [ref=e3687]
+                    - generic [ref=e3690]:
+                      - img [ref=e3692]
+                      - img [ref=e3695]
+                      - img [ref=e3698]
+                      - img [ref=e3701]
+                      - generic [ref=e3703]:
+                        - img [ref=e3704]
+                        - img [ref=e3707]
+                  - link "Plymouth Gin" [ref=e3709] [cursor=pointer]:
+                    - /url: /products/plymouth-gin
+                  - paragraph [ref=e3710]: $32.99
+              - generic [ref=e3711]:
+                - generic [ref=e3712]:
+                  - img "Absolut Vodka" [ref=e3713]
+                  - button "Compare Product" [ref=e3715]:
+                    - img
+                  - button "Add to cart" [ref=e3717]:
+                    - img
+                    - generic [ref=e3718]: Add to cart
+                  - generic [ref=e3720]:
+                    - generic [ref=e3724]: Peat
+                    - generic [ref=e3728]: Sweet
+                    - generic [ref=e3732]: Oak
+                - generic [ref=e3733]:
+                  - generic [ref=e3734]:
+                    - generic [ref=e3735]:
+                      - heading "Absolut" [level=3] [ref=e3736]
+                      - img [ref=e3738]
+                    - generic [ref=e3741]:
+                      - img [ref=e3743]
+                      - img [ref=e3746]
+                      - img [ref=e3749]
+                      - img [ref=e3752]
+                      - generic [ref=e3754]:
+                        - img [ref=e3755]
+                        - img [ref=e3758]
+                  - link "Absolut Vodka" [ref=e3760] [cursor=pointer]:
+                    - /url: /products/absolut-vodka
+                  - paragraph [ref=e3761]: $21.99
+              - generic [ref=e3762]:
+                - generic [ref=e3763]:
+                  - img "Kendall-Jackson Vintner's Reserve Chardonnay" [ref=e3764]
+                  - button "Compare Product" [ref=e3766]:
+                    - img
+                  - button "Add to cart" [ref=e3768]:
+                    - img
+                    - generic [ref=e3769]: Add to cart
+                  - generic [ref=e3771]:
+                    - generic [ref=e3775]: Peat
+                    - generic [ref=e3779]: Sweet
+                    - generic [ref=e3783]: Oak
+                - generic [ref=e3784]:
+                  - generic [ref=e3785]:
+                    - generic [ref=e3786]:
+                      - heading "Kendall-Jackson" [level=3] [ref=e3787]
+                      - img [ref=e3789]
+                    - generic [ref=e3792]:
+                      - img [ref=e3794]
+                      - img [ref=e3797]
+                      - img [ref=e3800]
+                      - img [ref=e3803]
+                      - generic [ref=e3805]:
+                        - img [ref=e3806]
+                        - img [ref=e3809]
+                  - link "Kendall-Jackson Vintner's Reserve Chardonnay" [ref=e3811] [cursor=pointer]:
+                    - /url: /products/kendall-jackson-chardonnay
+                  - paragraph [ref=e3812]: $15.99
+              - generic [ref=e3813]:
+                - generic [ref=e3814]:
+                  - img "Bombay Sapphire" [ref=e3815]
+                  - button "Compare Product" [ref=e3817]:
+                    - img
+                  - button "Add to cart" [ref=e3819]:
+                    - img
+                    - generic [ref=e3820]: Add to cart
+                  - generic [ref=e3822]:
+                    - generic [ref=e3826]: Peat
+                    - generic [ref=e3830]: Sweet
+                    - generic [ref=e3834]: Oak
+                - generic [ref=e3835]:
+                  - generic [ref=e3836]:
+                    - generic [ref=e3837]:
+                      - heading "Bombay Sapphire" [level=3] [ref=e3838]
+                      - img [ref=e3840]
+                    - generic [ref=e3843]:
+                      - img [ref=e3845]
+                      - img [ref=e3848]
+                      - img [ref=e3851]
+                      - img [ref=e3854]
+                      - generic [ref=e3856]:
+                        - img [ref=e3857]
+                        - img [ref=e3860]
+                  - link "Bombay Sapphire" [ref=e3862] [cursor=pointer]:
+                    - /url: /products/bombay-sapphire
+                  - paragraph [ref=e3863]: $24.99
+              - generic [ref=e3864]:
+                - generic [ref=e3865]:
+                  - img "Meiomi Pinot Noir" [ref=e3866]
+                  - button "Compare Product" [ref=e3868]:
+                    - img
+                  - button "Add to cart" [ref=e3870]:
+                    - img
+                    - generic [ref=e3871]: Add to cart
+                  - generic [ref=e3873]:
+                    - generic [ref=e3877]: Peat
+                    - generic [ref=e3881]: Sweet
+                    - generic [ref=e3885]: Oak
+                - generic [ref=e3886]:
+                  - generic [ref=e3887]:
+                    - generic [ref=e3888]:
+                      - heading "Meiomi" [level=3] [ref=e3889]
+                      - img [ref=e3891]
+                    - generic [ref=e3894]:
+                      - img [ref=e3896]
+                      - img [ref=e3899]
+                      - img [ref=e3902]
+                      - img [ref=e3905]
+                      - generic [ref=e3907]:
+                        - img [ref=e3908]
+                        - img [ref=e3911]
+                  - link "Meiomi Pinot Noir" [ref=e3913] [cursor=pointer]:
+                    - /url: /products/meiomi-pinot-noir
+                  - paragraph [ref=e3914]: $21.99
+              - generic [ref=e3915]:
+                - generic [ref=e3916]:
+                  - img "Cîroc Snap Frost Vodka" [ref=e3917]
+                  - button "Compare Product" [ref=e3919]:
+                    - img
+                  - button "Add to cart" [ref=e3921]:
+                    - img
+                    - generic [ref=e3922]: Add to cart
+                  - generic [ref=e3924]:
+                    - generic [ref=e3928]: Peat
+                    - generic [ref=e3932]: Sweet
+                    - generic [ref=e3936]: Oak
+                - generic [ref=e3937]:
+                  - generic [ref=e3938]:
+                    - generic [ref=e3939]:
+                      - heading "Cîroc" [level=3] [ref=e3940]
+                      - img [ref=e3942]
+                    - generic [ref=e3945]:
+                      - img [ref=e3947]
+                      - img [ref=e3950]
+                      - img [ref=e3953]
+                      - img [ref=e3956]
+                      - generic [ref=e3958]:
+                        - img [ref=e3959]
+                        - img [ref=e3962]
+                  - link "Cîroc Snap Frost Vodka" [ref=e3964] [cursor=pointer]:
+                    - /url: /products/ciroc-vodka
+                  - paragraph [ref=e3965]: $35.99
+              - generic [ref=e3966]:
+                - generic [ref=e3967]:
+                  - img "Kraken Black Spiced Rum" [ref=e3968]
+                  - button "Compare Product" [ref=e3970]:
+                    - img
+                  - button "Add to cart" [ref=e3972]:
+                    - img
+                    - generic [ref=e3973]: Add to cart
+                  - generic [ref=e3975]:
+                    - generic [ref=e3979]: Peat
+                    - generic [ref=e3983]: Sweet
+                    - generic [ref=e3987]: Oak
+                - generic [ref=e3988]:
+                  - generic [ref=e3989]:
+                    - generic [ref=e3990]:
+                      - heading "The Kraken" [level=3] [ref=e3991]
+                      - img [ref=e3993]
+                    - generic [ref=e3996]:
+                      - img [ref=e3998]
+                      - img [ref=e4001]
+                      - img [ref=e4004]
+                      - img [ref=e4007]
+                      - generic [ref=e4009]:
+                        - img [ref=e4010]
+                        - img [ref=e4013]
+                  - link "Kraken Black Spiced Rum" [ref=e4015] [cursor=pointer]:
+                    - /url: /products/kraken-black-spiced
+                  - paragraph [ref=e4016]: $22.99
+              - generic [ref=e4017]:
+                - generic [ref=e4018]:
+                  - img "Campari" [ref=e4019]
+                  - button "Compare Product" [ref=e4021]:
+                    - img
+                  - button "Add to cart" [ref=e4023]:
+                    - img
+                    - generic [ref=e4024]: Add to cart
+                  - generic [ref=e4026]:
+                    - generic [ref=e4030]: Peat
+                    - generic [ref=e4034]: Sweet
+                    - generic [ref=e4038]: Oak
+                - generic [ref=e4039]:
+                  - generic [ref=e4040]:
+                    - generic [ref=e4041]:
+                      - heading "Campari" [level=3] [ref=e4042]
+                      - img [ref=e4044]
+                    - generic [ref=e4047]:
+                      - img [ref=e4049]
+                      - img [ref=e4052]
+                      - img [ref=e4055]
+                      - img [ref=e4058]
+                      - generic [ref=e4060]:
+                        - img [ref=e4061]
+                        - img [ref=e4064]
+                  - link "Campari" [ref=e4066] [cursor=pointer]:
+                    - /url: /products/campari
+                  - paragraph [ref=e4067]: $28.99
+              - generic [ref=e4068]:
+                - generic [ref=e4069]:
+                  - img "Gerard Bertrand Côte des Roses" [ref=e4070]
+                  - button "Compare Product" [ref=e4072]:
+                    - img
+                  - button "Add to cart" [ref=e4074]:
+                    - img
+                    - generic [ref=e4075]: Add to cart
+                  - generic [ref=e4077]:
+                    - generic [ref=e4081]: Peat
+                    - generic [ref=e4085]: Sweet
+                    - generic [ref=e4089]: Oak
+                - generic [ref=e4090]:
+                  - generic [ref=e4091]:
+                    - generic [ref=e4092]:
+                      - heading "Gerard Bertrand" [level=3] [ref=e4093]
+                      - img [ref=e4095]
+                    - generic [ref=e4098]:
+                      - img [ref=e4100]
+                      - img [ref=e4103]
+                      - img [ref=e4106]
+                      - img [ref=e4109]
+                      - generic [ref=e4111]:
+                        - img [ref=e4112]
+                        - img [ref=e4115]
+                  - link "Gerard Bertrand Côte des Roses" [ref=e4117] [cursor=pointer]:
+                    - /url: /products/cote-des-roses
+                  - paragraph [ref=e4118]: $18.99
+              - generic [ref=e4119]:
+                - generic [ref=e4120]:
+                  - img "Jameson Irish Whiskey" [ref=e4121]
+                  - button "Compare Product" [ref=e4123]:
+                    - img
+                  - button "Add to cart" [ref=e4125]:
+                    - img
+                    - generic [ref=e4126]: Add to cart
+                  - generic [ref=e4128]:
+                    - generic [ref=e4132]: Peat
+                    - generic [ref=e4136]: Sweet
+                    - generic [ref=e4140]: Oak
+                - generic [ref=e4141]:
+                  - generic [ref=e4142]:
+                    - generic [ref=e4143]:
+                      - heading "Jameson" [level=3] [ref=e4144]
+                      - img [ref=e4146]
+                    - generic [ref=e4149]:
+                      - img [ref=e4151]
+                      - img [ref=e4154]
+                      - img [ref=e4157]
+                      - img [ref=e4160]
+                      - generic [ref=e4162]:
+                        - img [ref=e4163]
+                        - img [ref=e4166]
+                  - link "Jameson Irish Whiskey" [ref=e4168] [cursor=pointer]:
+                    - /url: /products/jameson-irish-whiskey
+                  - paragraph [ref=e4169]: $32.99
+              - generic [ref=e4170]:
+                - generic [ref=e4171]:
+                  - img "1800 Añejo" [ref=e4172]
+                  - button "Compare Product" [ref=e4174]:
+                    - img
+                  - button "Add to cart" [ref=e4176]:
+                    - img
+                    - generic [ref=e4177]: Add to cart
+                  - generic [ref=e4179]:
+                    - generic [ref=e4183]: Peat
+                    - generic [ref=e4187]: Sweet
+                    - generic [ref=e4191]: Oak
+                - generic [ref=e4192]:
+                  - generic [ref=e4193]:
+                    - generic [ref=e4194]:
+                      - heading "1800" [level=3] [ref=e4195]
+                      - img [ref=e4197]
+                    - generic [ref=e4200]:
+                      - img [ref=e4202]
+                      - img [ref=e4205]
+                      - img [ref=e4208]
+                      - img [ref=e4211]
+                      - generic [ref=e4213]:
+                        - img [ref=e4214]
+                        - img [ref=e4217]
+                  - link "1800 Añejo" [ref=e4219] [cursor=pointer]:
+                    - /url: /products/1800-anejo
+                  - paragraph [ref=e4220]: $39.99
+              - generic [ref=e4221]:
+                - generic [ref=e4222]:
+                  - img "Mount Gay Eclipse" [ref=e4223]
+                  - button "Compare Product" [ref=e4225]:
+                    - img
+                  - button "Add to cart" [ref=e4227]:
+                    - img
+                    - generic [ref=e4228]: Add to cart
+                  - generic [ref=e4230]:
+                    - generic [ref=e4234]: Peat
+                    - generic [ref=e4238]: Sweet
+                    - generic [ref=e4242]: Oak
+                - generic [ref=e4243]:
+                  - generic [ref=e4244]:
+                    - generic [ref=e4245]:
+                      - heading "Mount Gay" [level=3] [ref=e4246]
+                      - img [ref=e4248]
+                    - generic [ref=e4251]:
+                      - img [ref=e4253]
+                      - img [ref=e4256]
+                      - img [ref=e4259]
+                      - img [ref=e4262]
+                      - generic [ref=e4264]:
+                        - img [ref=e4265]
+                        - img [ref=e4268]
+                  - link "Mount Gay Eclipse" [ref=e4270] [cursor=pointer]:
+                    - /url: /products/mount-gay-eclipse
+                  - paragraph [ref=e4271]: $24.99
+              - generic [ref=e4272]:
+                - generic [ref=e4273]:
+                  - img "Four Roses Small Batch" [ref=e4274]
+                  - button "Compare Product" [ref=e4276]:
+                    - img
+                  - button "Add to cart" [ref=e4278]:
+                    - img
+                    - generic [ref=e4279]: Add to cart
+                  - generic [ref=e4281]:
+                    - generic [ref=e4285]: Peat
+                    - generic [ref=e4289]: Sweet
+                    - generic [ref=e4293]: Oak
+                - generic [ref=e4294]:
+                  - generic [ref=e4295]:
+                    - generic [ref=e4296]:
+                      - heading "Four Roses" [level=3] [ref=e4297]
+                      - img [ref=e4299]
+                    - generic [ref=e4302]:
+                      - img [ref=e4304]
+                      - img [ref=e4307]
+                      - img [ref=e4310]
+                      - img [ref=e4313]
+                      - generic [ref=e4315]:
+                        - img [ref=e4316]
+                        - img [ref=e4319]
+                  - link "Four Roses Small Batch" [ref=e4321] [cursor=pointer]:
+                    - /url: /products/four-roses-small-batch
+                  - paragraph [ref=e4322]: $36.99
+              - generic [ref=e4323]:
+                - generic [ref=e4324]:
+                  - img "Olmeca Altos Plata" [ref=e4325]
+                  - button "Compare Product" [ref=e4327]:
+                    - img
+                  - button "Add to cart" [ref=e4329]:
+                    - img
+                    - generic [ref=e4330]: Add to cart
+                  - generic [ref=e4332]:
+                    - generic [ref=e4336]: Peat
+                    - generic [ref=e4340]: Sweet
+                    - generic [ref=e4344]: Oak
+                - generic [ref=e4345]:
+                  - generic [ref=e4346]:
+                    - generic [ref=e4347]:
+                      - heading "Olmeca Altos" [level=3] [ref=e4348]
+                      - img [ref=e4350]
+                    - generic [ref=e4353]:
+                      - img [ref=e4355]
+                      - img [ref=e4358]
+                      - img [ref=e4361]
+                      - img [ref=e4364]
+                      - generic [ref=e4366]:
+                        - img [ref=e4367]
+                        - img [ref=e4370]
+                  - link "Olmeca Altos Plata" [ref=e4372] [cursor=pointer]:
+                    - /url: /products/olmeca-altos-plata
+                  - paragraph [ref=e4373]: $26.99
+              - generic [ref=e4374]:
+                - generic [ref=e4375]:
+                  - img "19 Crimes Snoop Dogg Cali Red" [ref=e4376]
+                  - button "Compare Product" [ref=e4378]:
+                    - img
+                  - button "Add to cart" [ref=e4380]:
+                    - img
+                    - generic [ref=e4381]: Add to cart
+                  - generic [ref=e4383]:
+                    - generic [ref=e4387]: Peat
+                    - generic [ref=e4391]: Sweet
+                    - generic [ref=e4395]: Oak
+                - generic [ref=e4396]:
+                  - generic [ref=e4397]:
+                    - generic [ref=e4398]:
+                      - heading "19 Crimes" [level=3] [ref=e4399]
+                      - img [ref=e4401]
+                    - generic [ref=e4404]:
+                      - img [ref=e4406]
+                      - img [ref=e4409]
+                      - img [ref=e4412]
+                      - img [ref=e4415]
+                      - generic [ref=e4417]:
+                        - img [ref=e4418]
+                        - img [ref=e4421]
+                  - link "19 Crimes Snoop Dogg Cali Red" [ref=e4423] [cursor=pointer]:
+                    - /url: /products/19-crimes-snoop-dogg
+                  - paragraph [ref=e4424]: $14.99
+              - generic [ref=e4425]:
+                - generic [ref=e4426]:
+                  - img "Captain Morgan Original Spiced" [ref=e4427]
+                  - button "Compare Product" [ref=e4429]:
+                    - img
+                  - button "Add to cart" [ref=e4431]:
+                    - img
+                    - generic [ref=e4432]: Add to cart
+                  - generic [ref=e4434]:
+                    - generic [ref=e4438]: Peat
+                    - generic [ref=e4442]: Sweet
+                    - generic [ref=e4446]: Oak
+                - generic [ref=e4447]:
+                  - generic [ref=e4448]:
+                    - generic [ref=e4449]:
+                      - heading "Captain Morgan" [level=3] [ref=e4450]
+                      - img [ref=e4452]
+                    - generic [ref=e4455]:
+                      - img [ref=e4457]
+                      - img [ref=e4460]
+                      - img [ref=e4463]
+                      - img [ref=e4466]
+                      - generic [ref=e4468]:
+                        - img [ref=e4469]
+                        - img [ref=e4472]
+                  - link "Captain Morgan Original Spiced" [ref=e4474] [cursor=pointer]:
+                    - /url: /products/captain-morgan-spiced
+                  - paragraph [ref=e4475]: $19.99
+              - generic [ref=e4476]:
+                - generic [ref=e4477]:
+                  - img "Jägermeister" [ref=e4478]
+                  - button "Compare Product" [ref=e4480]:
+                    - img
+                  - button "Add to cart" [ref=e4482]:
+                    - img
+                    - generic [ref=e4483]: Add to cart
+                  - generic [ref=e4485]:
+                    - generic [ref=e4489]: Peat
+                    - generic [ref=e4493]: Sweet
+                    - generic [ref=e4497]: Oak
+                - generic [ref=e4498]:
+                  - generic [ref=e4499]:
+                    - generic [ref=e4500]:
+                      - heading "Jägermeister" [level=3] [ref=e4501]
+                      - img [ref=e4503]
+                    - generic [ref=e4506]:
+                      - img [ref=e4508]
+                      - img [ref=e4511]
+                      - img [ref=e4514]
+                      - img [ref=e4517]
+                      - generic [ref=e4519]:
+                        - img [ref=e4520]
+                        - img [ref=e4523]
+                  - link "Jägermeister" [ref=e4525] [cursor=pointer]:
+                    - /url: /products/jagermeister
+                  - paragraph [ref=e4526]: $23.99
+              - generic [ref=e4527]:
+                - generic [ref=e4528]:
+                  - img "Josh Cellars Cabernet Sauvignon" [ref=e4529]
+                  - button "Compare Product" [ref=e4531]:
+                    - img
+                  - button "Add to cart" [ref=e4533]:
+                    - img
+                    - generic [ref=e4534]: Add to cart
+                  - generic [ref=e4536]:
+                    - generic [ref=e4540]: Peat
+                    - generic [ref=e4544]: Sweet
+                    - generic [ref=e4548]: Oak
+                - generic [ref=e4549]:
+                  - generic [ref=e4550]:
+                    - generic [ref=e4551]:
+                      - heading "Josh Cellars" [level=3] [ref=e4552]
+                      - img [ref=e4554]
+                    - generic [ref=e4557]:
+                      - img [ref=e4559]
+                      - img [ref=e4562]
+                      - img [ref=e4565]
+                      - img [ref=e4568]
+                      - generic [ref=e4570]:
+                        - img [ref=e4571]
+                        - img [ref=e4574]
+                  - link "Josh Cellars Cabernet Sauvignon" [ref=e4576] [cursor=pointer]:
+                    - /url: /products/josh-cellars-cabernet
+                  - paragraph [ref=e4577]: $14.99
+              - generic [ref=e4578]:
+                - generic [ref=e4579]:
+                  - img "Stella Artois" [ref=e4580]
+                  - button "Compare Product" [ref=e4582]:
+                    - img
+                  - button "Add to cart" [ref=e4584]:
+                    - img
+                    - generic [ref=e4585]: Add to cart
+                  - generic [ref=e4587]:
+                    - generic [ref=e4591]: Peat
+                    - generic [ref=e4595]: Sweet
+                    - generic [ref=e4599]: Oak
+                - generic [ref=e4600]:
+                  - generic [ref=e4601]:
+                    - generic [ref=e4602]:
+                      - heading "Stella Artois" [level=3] [ref=e4603]
+                      - img [ref=e4605]
+                    - generic [ref=e4608]:
+                      - img [ref=e4610]
+                      - img [ref=e4613]
+                      - img [ref=e4616]
+                      - img [ref=e4619]
+                      - generic [ref=e4621]:
+                        - img [ref=e4622]
+                        - img [ref=e4625]
+                  - link "Stella Artois" [ref=e4627] [cursor=pointer]:
+                    - /url: /products/stella-artois
+                  - paragraph [ref=e4628]: $10.99
+              - generic [ref=e4629]:
+                - generic [ref=e4630]:
+                  - img "Johnnie Walker Black Label" [ref=e4631]
+                  - button "Compare Product" [ref=e4633]:
+                    - img
+                  - button "Add to cart" [ref=e4635]:
+                    - img
+                    - generic [ref=e4636]: Add to cart
+                  - generic [ref=e4638]:
+                    - generic [ref=e4642]: Peat
+                    - generic [ref=e4646]: Sweet
+                    - generic [ref=e4650]: Oak
+                - generic [ref=e4651]:
+                  - generic [ref=e4652]:
+                    - generic [ref=e4653]:
+                      - heading "Johnnie Walker" [level=3] [ref=e4654]
+                      - img [ref=e4656]
+                    - generic [ref=e4659]:
+                      - img [ref=e4661]
+                      - img [ref=e4664]
+                      - img [ref=e4667]
+                      - img [ref=e4670]
+                      - generic [ref=e4672]:
+                        - img [ref=e4673]
+                        - img [ref=e4676]
+                  - link "Johnnie Walker Black Label" [ref=e4678] [cursor=pointer]:
+                    - /url: /products/johnnie-walker-black-label
+                  - paragraph [ref=e4679]: $42.99
+              - generic [ref=e4680]:
+                - generic [ref=e4681]:
+                  - img "Beefeater London Dry" [ref=e4682]
+                  - button "Compare Product" [ref=e4684]:
+                    - img
+                  - button "Add to cart" [ref=e4686]:
+                    - img
+                    - generic [ref=e4687]: Add to cart
+                  - generic [ref=e4689]:
+                    - generic [ref=e4693]: Peat
+                    - generic [ref=e4697]: Sweet
+                    - generic [ref=e4701]: Oak
+                - generic [ref=e4702]:
+                  - generic [ref=e4703]:
+                    - generic [ref=e4704]:
+                      - heading "Beefeater" [level=3] [ref=e4705]
+                      - img [ref=e4707]
+                    - generic [ref=e4710]:
+                      - img [ref=e4712]
+                      - img [ref=e4715]
+                      - img [ref=e4718]
+                      - img [ref=e4721]
+                      - generic [ref=e4723]:
+                        - img [ref=e4724]
+                        - img [ref=e4727]
+                  - link "Beefeater London Dry" [ref=e4729] [cursor=pointer]:
+                    - /url: /products/beefeater-london-dry
+                  - paragraph [ref=e4730]: $21.99
+              - generic [ref=e4731]:
+                - generic [ref=e4732]:
+                  - img "Stolichnaya Premium Vodka" [ref=e4733]
+                  - button "Compare Product" [ref=e4735]:
+                    - img
+                  - button "Add to cart" [ref=e4737]:
+                    - img
+                    - generic [ref=e4738]: Add to cart
+                  - generic [ref=e4740]:
+                    - generic [ref=e4744]: Peat
+                    - generic [ref=e4748]: Sweet
+                    - generic [ref=e4752]: Oak
+                - generic [ref=e4753]:
+                  - generic [ref=e4754]:
+                    - generic [ref=e4755]:
+                      - heading "Stoli" [level=3] [ref=e4756]
+                      - img [ref=e4758]
+                    - generic [ref=e4761]:
+                      - img [ref=e4763]
+                      - img [ref=e4766]
+                      - img [ref=e4769]
+                      - img [ref=e4772]
+                      - generic [ref=e4774]:
+                        - img [ref=e4775]
+                        - img [ref=e4778]
+                  - link "Stolichnaya Premium Vodka" [ref=e4780] [cursor=pointer]:
+                    - /url: /products/stolichnaya-premium
+                  - paragraph [ref=e4781]: $22.99
+              - generic [ref=e4782]:
+                - generic [ref=e4783]:
+                  - img "Bulleit Bourbon" [ref=e4784]
+                  - button "Compare Product" [ref=e4786]:
+                    - img
+                  - button "Add to cart" [ref=e4788]:
+                    - img
+                    - generic [ref=e4789]: Add to cart
+                  - generic [ref=e4791]:
+                    - generic [ref=e4795]: Peat
+                    - generic [ref=e4799]: Sweet
+                    - generic [ref=e4803]: Oak
+                - generic [ref=e4804]:
+                  - generic [ref=e4805]:
+                    - generic [ref=e4806]:
+                      - heading "Bulleit" [level=3] [ref=e4807]
+                      - img [ref=e4809]
+                    - generic [ref=e4812]:
+                      - img [ref=e4814]
+                      - img [ref=e4817]
+                      - img [ref=e4820]
+                      - img [ref=e4823]
+                      - generic [ref=e4825]:
+                        - img [ref=e4826]
+                        - img [ref=e4829]
+                  - link "Bulleit Bourbon" [ref=e4831] [cursor=pointer]:
+                    - /url: /products/bulleit-bourbon
+                  - paragraph [ref=e4832]: $31.99
+              - generic [ref=e4833]:
+                - generic [ref=e4834]:
+                  - img "Corona Extra" [ref=e4835]
+                  - button "Compare Product" [ref=e4837]:
+                    - img
+                  - button "Add to cart" [ref=e4839]:
+                    - img
+                    - generic [ref=e4840]: Add to cart
+                  - generic [ref=e4842]:
+                    - generic [ref=e4846]: Peat
+                    - generic [ref=e4850]: Sweet
+                    - generic [ref=e4854]: Oak
+                - generic [ref=e4855]:
+                  - generic [ref=e4856]:
+                    - generic [ref=e4857]:
+                      - heading "Corona" [level=3] [ref=e4858]
+                      - img [ref=e4860]
+                    - generic [ref=e4863]:
+                      - img [ref=e4865]
+                      - img [ref=e4868]
+                      - img [ref=e4871]
+                      - img [ref=e4874]
+                      - generic [ref=e4876]:
+                        - img [ref=e4877]
+                        - img [ref=e4880]
+                  - link "Corona Extra" [ref=e4882] [cursor=pointer]:
+                    - /url: /products/corona-extra
+                  - paragraph [ref=e4883]: $10.49
+              - generic [ref=e4884]:
+                - generic [ref=e4885]:
+                  - img "Heineken" [ref=e4886]
+                  - button "Compare Product" [ref=e4888]:
+                    - img
+                  - button "Add to cart" [ref=e4890]:
+                    - img
+                    - generic [ref=e4891]: Add to cart
+                  - generic [ref=e4893]:
+                    - generic [ref=e4897]: Peat
+                    - generic [ref=e4901]: Sweet
+                    - generic [ref=e4905]: Oak
+                - generic [ref=e4906]:
+                  - generic [ref=e4907]:
+                    - generic [ref=e4908]:
+                      - heading "Heineken" [level=3] [ref=e4909]
+                      - img [ref=e4911]
+                    - generic [ref=e4914]:
+                      - img [ref=e4916]
+                      - img [ref=e4919]
+                      - img [ref=e4922]
+                      - img [ref=e4925]
+                      - generic [ref=e4927]:
+                        - img [ref=e4928]
+                        - img [ref=e4931]
+                  - link "Heineken" [ref=e4933] [cursor=pointer]:
+                    - /url: /products/heineken
+                  - paragraph [ref=e4934]: $10.99
+              - generic [ref=e4935]:
+                - generic [ref=e4936]:
+                  - img "Bacardi Superior" [ref=e4937]
+                  - button "Compare Product" [ref=e4939]:
+                    - img
+                  - button "Add to cart" [ref=e4941]:
+                    - img
+                    - generic [ref=e4942]: Add to cart
+                  - generic [ref=e4944]:
+                    - generic [ref=e4948]: Peat
+                    - generic [ref=e4952]: Sweet
+                    - generic [ref=e4956]: Oak
+                - generic [ref=e4957]:
+                  - generic [ref=e4958]:
+                    - generic [ref=e4959]:
+                      - heading "Bacardi" [level=3] [ref=e4960]
+                      - img [ref=e4962]
+                    - generic [ref=e4965]:
+                      - img [ref=e4967]
+                      - img [ref=e4970]
+                      - img [ref=e4973]
+                      - img [ref=e4976]
+                      - generic [ref=e4978]:
+                        - img [ref=e4979]
+                        - img [ref=e4982]
+                  - link "Bacardi Superior" [ref=e4984] [cursor=pointer]:
+                    - /url: /products/bacardi-superior
+                  - paragraph [ref=e4985]: $18.99
+              - generic [ref=e4986]:
+                - generic [ref=e4987]:
+                  - img "Apothic Red" [ref=e4988]
+                  - button "Compare Product" [ref=e4990]:
+                    - img
+                  - button "Add to cart" [ref=e4992]:
+                    - img
+                    - generic [ref=e4993]: Add to cart
+                  - generic [ref=e4995]:
+                    - generic [ref=e4999]: Peat
+                    - generic [ref=e5003]: Sweet
+                    - generic [ref=e5007]: Oak
+                - generic [ref=e5008]:
+                  - generic [ref=e5009]:
+                    - generic [ref=e5010]:
+                      - heading "Apothic" [level=3] [ref=e5011]
+                      - img [ref=e5013]
+                    - generic [ref=e5016]:
+                      - img [ref=e5018]
+                      - img [ref=e5021]
+                      - img [ref=e5024]
+                      - img [ref=e5027]
+                      - generic [ref=e5029]:
+                        - img [ref=e5030]
+                        - img [ref=e5033]
+                  - link "Apothic Red" [ref=e5035] [cursor=pointer]:
+                    - /url: /products/apothic-red
+                  - paragraph [ref=e5036]: $12.99
+              - generic [ref=e5037]:
+                - generic [ref=e5038]:
+                  - img "Crown Royal Deluxe Canadian Whisky" [ref=e5039]
+                  - button "Compare Product" [ref=e5041]:
+                    - img
+                  - button "Add to cart" [ref=e5043]:
+                    - img
+                    - generic [ref=e5044]: Add to cart
+                  - generic [ref=e5046]:
+                    - generic [ref=e5050]: Peat
+                    - generic [ref=e5054]: Sweet
+                    - generic [ref=e5058]: Oak
+                - generic [ref=e5059]:
+                  - generic [ref=e5060]:
+                    - generic [ref=e5061]:
+                      - heading "Crown Royal" [level=3] [ref=e5062]
+                      - img [ref=e5064]
+                    - generic [ref=e5067]:
+                      - img [ref=e5069]
+                      - img [ref=e5072]
+                      - img [ref=e5075]
+                      - img [ref=e5078]
+                      - generic [ref=e5080]:
+                        - img [ref=e5081]
+                        - img [ref=e5084]
+                  - link "Crown Royal Deluxe Canadian Whisky" [ref=e5086] [cursor=pointer]:
+                    - /url: /products/crown-royal-deluxe
+                  - paragraph [ref=e5087]: $34.99
+              - generic [ref=e5088]:
+                - generic [ref=e5089]:
+                  - img "Bota Box Cabernet Sauvignon" [ref=e5090]
+                  - button "Compare Product" [ref=e5092]:
+                    - img
+                  - button "Add to cart" [ref=e5094]:
+                    - img
+                    - generic [ref=e5095]: Add to cart
+                  - generic [ref=e5097]:
+                    - generic [ref=e5101]: Peat
+                    - generic [ref=e5105]: Sweet
+                    - generic [ref=e5109]: Oak
+                - generic [ref=e5110]:
+                  - generic [ref=e5111]:
+                    - generic [ref=e5112]:
+                      - heading "Bota Box" [level=3] [ref=e5113]
+                      - img [ref=e5115]
+                    - generic [ref=e5118]:
+                      - img [ref=e5120]
+                      - img [ref=e5123]
+                      - img [ref=e5126]
+                      - img [ref=e5129]
+                      - generic [ref=e5131]:
+                        - img [ref=e5132]
+                        - img [ref=e5135]
+                  - link "Bota Box Cabernet Sauvignon" [ref=e5137] [cursor=pointer]:
+                    - /url: /products/bota-box-cabernet
+                  - paragraph [ref=e5138]: $19.99
+              - generic [ref=e5139]:
+                - generic [ref=e5140]:
+                  - img "Smirnoff No. 21" [ref=e5141]
+                  - button "Compare Product" [ref=e5143]:
+                    - img
+                  - button "Add to cart" [ref=e5145]:
+                    - img
+                    - generic [ref=e5146]: Add to cart
+                  - generic [ref=e5148]:
+                    - generic [ref=e5152]: Peat
+                    - generic [ref=e5156]: Sweet
+                    - generic [ref=e5160]: Oak
+                - generic [ref=e5161]:
+                  - generic [ref=e5162]:
+                    - generic [ref=e5163]:
+                      - heading "Smirnoff" [level=3] [ref=e5164]
+                      - img [ref=e5166]
+                    - generic [ref=e5169]:
+                      - img [ref=e5171]
+                      - img [ref=e5174]
+                      - img [ref=e5177]
+                      - img [ref=e5180]
+                      - generic [ref=e5182]:
+                        - img [ref=e5183]
+                        - img [ref=e5186]
+                  - link "Smirnoff No. 21" [ref=e5188] [cursor=pointer]:
+                    - /url: /products/smirnoff-no-21
+                  - paragraph [ref=e5189]: $16.99
+              - generic [ref=e5190]:
+                - generic [ref=e5191]:
+                  - img "Barefoot Moscato" [ref=e5192]
+                  - button "Compare Product" [ref=e5194]:
+                    - img
+                  - button "Add to cart" [ref=e5196]:
+                    - img
+                    - generic [ref=e5197]: Add to cart
+                  - generic [ref=e5199]:
+                    - generic [ref=e5203]: Peat
+                    - generic [ref=e5207]: Sweet
+                    - generic [ref=e5211]: Oak
+                - generic [ref=e5212]:
+                  - generic [ref=e5213]:
+                    - generic [ref=e5214]:
+                      - heading "Barefoot" [level=3] [ref=e5215]
+                      - img [ref=e5217]
+                    - generic [ref=e5220]:
+                      - img [ref=e5222]
+                      - img [ref=e5225]
+                      - img [ref=e5228]
+                      - img [ref=e5231]
+                      - generic [ref=e5233]:
+                        - img [ref=e5234]
+                        - img [ref=e5237]
+                  - link "Barefoot Moscato" [ref=e5239] [cursor=pointer]:
+                    - /url: /products/barefoot-moscato
+                  - paragraph [ref=e5240]: $8.99
+              - generic [ref=e5241]:
+                - generic [ref=e5242]:
+                  - img "Malibu Coconut Rum" [ref=e5243]
+                  - button "Compare Product" [ref=e5245]:
+                    - img
+                  - button "Add to cart" [ref=e5247]:
+                    - img
+                    - generic [ref=e5248]: Add to cart
+                  - generic [ref=e5250]:
+                    - generic [ref=e5254]: Peat
+                    - generic [ref=e5258]: Sweet
+                    - generic [ref=e5262]: Oak
+                - generic [ref=e5263]:
+                  - generic [ref=e5264]:
+                    - generic [ref=e5265]:
+                      - heading "Malibu" [level=3] [ref=e5266]
+                      - img [ref=e5268]
+                    - generic [ref=e5271]:
+                      - img [ref=e5273]
+                      - img [ref=e5276]
+                      - img [ref=e5279]
+                      - img [ref=e5282]
+                      - generic [ref=e5284]:
+                        - img [ref=e5285]
+                        - img [ref=e5288]
+                  - link "Malibu Coconut Rum" [ref=e5290] [cursor=pointer]:
+                    - /url: /products/malibu-coconut
+                  - paragraph [ref=e5291]: $17.99
+              - generic [ref=e5292]:
+                - generic [ref=e5293]:
+                  - img "Jose Cuervo Especial Gold" [ref=e5294]
+                  - button "Compare Product" [ref=e5296]:
+                    - img
+                  - button "Add to cart" [ref=e5298]:
+                    - img
+                    - generic [ref=e5299]: Add to cart
+                  - generic [ref=e5301]:
+                    - generic [ref=e5305]: Peat
+                    - generic [ref=e5309]: Sweet
+                    - generic [ref=e5313]: Oak
+                - generic [ref=e5314]:
+                  - generic [ref=e5315]:
+                    - generic [ref=e5316]:
+                      - heading "Jose Cuervo" [level=3] [ref=e5317]
+                      - img [ref=e5319]
+                    - generic [ref=e5322]:
+                      - img [ref=e5324]
+                      - img [ref=e5327]
+                      - img [ref=e5330]
+                      - img [ref=e5333]
+                      - generic [ref=e5335]:
+                        - img [ref=e5336]
+                        - img [ref=e5339]
+                  - link "Jose Cuervo Especial Gold" [ref=e5341] [cursor=pointer]:
+                    - /url: /products/jose-cuervo-gold
+                  - paragraph [ref=e5342]: $21.99
+              - generic [ref=e5343]:
+                - generic [ref=e5344]:
+                  - img "Dark Horse Rosé" [ref=e5345]
+                  - button "Compare Product" [ref=e5347]:
+                    - img
+                  - button "Add to cart" [ref=e5349]:
+                    - img
+                    - generic [ref=e5350]: Add to cart
+                  - generic [ref=e5352]:
+                    - generic [ref=e5356]: Peat
+                    - generic [ref=e5360]: Sweet
+                    - generic [ref=e5364]: Oak
+                - generic [ref=e5365]:
+                  - generic [ref=e5366]:
+                    - generic [ref=e5367]:
+                      - heading "Dark Horse" [level=3] [ref=e5368]
+                      - img [ref=e5370]
+                    - generic [ref=e5373]:
+                      - img [ref=e5375]
+                      - img [ref=e5378]
+                      - img [ref=e5381]
+                      - img [ref=e5384]
+                      - generic [ref=e5386]:
+                        - img [ref=e5387]
+                        - img [ref=e5390]
+                  - link "Dark Horse Rosé" [ref=e5392] [cursor=pointer]:
+                    - /url: /products/dark-horse-rose
+                  - paragraph [ref=e5393]: $9.99
+    - contentinfo [ref=e5394]:
+      - generic [ref=e5395]:
+        - generic [ref=e5396]:
+          - generic [ref=e5397]:
+            - heading "Balisan" [level=3] [ref=e5398]
+            - paragraph [ref=e5399]: Premium liquor store offering a curated selection of fine spirits, wines, and beers. Experience the taste of luxury, delivered to your door.
+            - generic [ref=e5400]:
+              - link "Facebook" [ref=e5401] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e5402]
+                - generic [ref=e5404]: Facebook
+              - link "Instagram" [ref=e5405] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e5406]
+                - generic [ref=e5409]: Instagram
+              - link "Twitter" [ref=e5410] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e5411]
+                - generic [ref=e5413]: Twitter
+          - generic [ref=e5414]:
+            - heading "Shop" [level=4] [ref=e5415]
+            - list [ref=e5416]:
+              - listitem [ref=e5417]:
+                - link "Whiskey" [ref=e5418] [cursor=pointer]:
+                  - /url: /shop/whiskey
+              - listitem [ref=e5419]:
+                - link "Vodka" [ref=e5420] [cursor=pointer]:
+                  - /url: /shop/vodka
+              - listitem [ref=e5421]:
+                - link "Wine" [ref=e5422] [cursor=pointer]:
+                  - /url: /shop/wine
+              - listitem [ref=e5423]:
+                - link "Gin" [ref=e5424] [cursor=pointer]:
+                  - /url: /shop/gin
+              - listitem [ref=e5425]:
+                - link "All Products" [ref=e5426] [cursor=pointer]:
+                  - /url: /shop
+          - generic [ref=e5427]:
+            - heading "Customer Care" [level=4] [ref=e5428]
+            - list [ref=e5429]:
+              - listitem [ref=e5430]:
+                - link "Contact Us" [ref=e5431] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e5432]:
+                - link "FAQs" [ref=e5433] [cursor=pointer]:
+                  - /url: /faq
+              - listitem [ref=e5434]:
+                - link "Shipping Policy" [ref=e5435] [cursor=pointer]:
+                  - /url: /shipping
+              - listitem [ref=e5436]:
+                - link "Delivery Info" [ref=e5437] [cursor=pointer]:
+                  - /url: /delivery
+              - listitem [ref=e5438]:
+                - link "Returns & Refunds" [ref=e5439] [cursor=pointer]:
+                  - /url: /refund
+          - generic [ref=e5440]:
+            - heading "Company" [level=4] [ref=e5441]
+            - list [ref=e5442]:
+              - listitem [ref=e5443]:
+                - link "About Us" [ref=e5444] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e5445]:
+                - link "Careers" [ref=e5446] [cursor=pointer]:
+                  - /url: /careers
+              - listitem [ref=e5447]:
+                - link "Journal" [ref=e5448] [cursor=pointer]:
+                  - /url: /journal
+              - listitem [ref=e5449]:
+                - link "Recipes" [ref=e5450] [cursor=pointer]:
+                  - /url: /recipes
+        - generic [ref=e5452]:
+          - generic [ref=e5453]:
+            - heading "Stay Updated" [level=4] [ref=e5454]
+            - paragraph [ref=e5455]: Subscribe to our newsletter for exclusive offers, new arrivals, and curated recommendations.
+          - generic [ref=e5456]:
+            - textbox "Enter your email" [ref=e5457]
+            - button "Subscribe" [ref=e5458]
+        - generic [ref=e5459]:
+          - paragraph [ref=e5460]: © 2025 Balisan Liquor Store. All rights reserved.
+          - generic [ref=e5461]:
+            - link "Privacy Policy" [ref=e5462] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Service" [ref=e5463] [cursor=pointer]:
+              - /url: /terms
+            - link "Refund Policy" [ref=e5464] [cursor=pointer]:
+              - /url: /refund
+        - paragraph [ref=e5466]: You must be 21 years or older to purchase. Please drink responsibly.
+  - region "Notifications alt+T"
+  - generic [ref=e5471] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e5472]:
+      - img [ref=e5473]
+    - generic [ref=e5476]:
+      - button "Open issues overlay" [ref=e5477]:
+        - generic [ref=e5478]:
+          - generic [ref=e5479]: "0"
+          - generic [ref=e5480]: "1"
+        - generic [ref=e5481]: Issue
+      - button "Collapse issues badge" [ref=e5482]:
+        - img [ref=e5483]
+  - alert [ref=e5485]
+```

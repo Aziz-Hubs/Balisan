@@ -1,0 +1,539 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e3]:
+    - generic [ref=e6]:
+      - link "Free shipping on orders over $150 Go to message 1 Go to message 2" [ref=e7] [cursor=pointer]:
+        - /url: /shipping
+        - generic [ref=e8]:
+          - generic [ref=e9]: Free shipping on orders over $150
+          - generic [ref=e10]:
+            - button "Go to message 1" [ref=e11]
+            - button "Go to message 2" [ref=e12]
+      - button "Dismiss banner" [ref=e14]:
+        - img
+    - banner [ref=e15]:
+      - generic [ref=e16]:
+        - generic [ref=e17]:
+          - link "Balisan Home":
+            - /url: /
+            - generic:
+              - img "Balisan Logo"
+          - navigation "Main" [ref=e19]:
+            - list [ref=e21]:
+              - listitem [ref=e22]:
+                - link "Home" [ref=e23] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e24]:
+                - button "Shop All" [ref=e25]:
+                  - text: Shop All
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Whisk(e)y" [ref=e29]:
+                  - text: Whisk(e)y
+                  - img [ref=e30]
+              - listitem [ref=e32]:
+                - link "Journal" [ref=e33] [cursor=pointer]:
+                  - /url: /journal
+        - button "Search" [active] [ref=e35]:
+          - img
+          - generic [ref=e36]: Search rare whiskies, craft gins and more...
+          - generic:
+            - generic: ⌘
+            - text: K
+        - generic [ref=e37]:
+          - link "The Journal" [ref=e39] [cursor=pointer]:
+            - /url: /journal
+            - generic [ref=e40]: The Journal
+          - button "Open Cart" [ref=e41]:
+            - img
+          - generic [ref=e42]:
+            - link "Login" [ref=e43] [cursor=pointer]:
+              - /url: /login
+              - button "Login" [ref=e44]
+            - link "Sign Up" [ref=e45] [cursor=pointer]:
+              - /url: /signup
+              - button "Sign Up" [ref=e46]
+    - main [ref=e47]:
+      - generic [ref=e49]:
+        - generic [ref=e50]:
+          - generic [ref=e54]:
+            - generic [ref=e57]: Est. 2024
+            - heading "Balisan" [level=1] [ref=e59]
+            - paragraph [ref=e60]: Curated spirits for the distinguished palate. Experience the art of fine drinking delivered to your door.
+            - generic [ref=e61]:
+              - link "Explore Collection" [ref=e62] [cursor=pointer]:
+                - /url: /shop
+              - link "Our Story" [ref=e63] [cursor=pointer]:
+                - /url: /about
+          - generic [ref=e65]: Scroll
+        - generic [ref=e68]:
+          - generic [ref=e69]:
+            - generic [ref=e70]:
+              - heading "Curated Categories" [level=2] [ref=e71]
+              - paragraph [ref=e72]: Explore our carefully selected collections, from rare finds to everyday favorites.
+            - link "View All Categories" [ref=e73] [cursor=pointer]:
+              - /url: /shop
+              - text: View All Categories
+              - img [ref=e74]
+          - generic [ref=e77]:
+            - generic [ref=e78]:
+              - link "View Premium Whiskey" [ref=e79] [cursor=pointer]:
+                - /url: /shop?category=whiskey
+                - generic [ref=e80]: View Premium Whiskey
+              - img "Premium Whiskey" [ref=e82]
+              - generic [ref=e84]:
+                - generic [ref=e85]:
+                  - heading "Premium Whiskey" [level=3] [ref=e86]
+                  - paragraph [ref=e87]: Aged to perfection.
+                - img [ref=e90]
+            - generic [ref=e93]:
+              - link "View Fine Wine" [ref=e94] [cursor=pointer]:
+                - /url: /shop?category=wine
+                - generic [ref=e95]: View Fine Wine
+              - img "Fine Wine" [ref=e97]
+              - generic [ref=e99]:
+                - generic [ref=e100]:
+                  - heading "Fine Wine" [level=3] [ref=e101]
+                  - paragraph [ref=e102]: Vineyards from around the world.
+                - img [ref=e105]
+            - generic [ref=e108]:
+              - link "View Craft Beer" [ref=e109] [cursor=pointer]:
+                - /url: /shop?category=beer
+                - generic [ref=e110]: View Craft Beer
+              - img "Craft Beer" [ref=e112]
+              - generic [ref=e114]:
+                - generic [ref=e115]:
+                  - heading "Craft Beer" [level=3] [ref=e116]
+                  - paragraph [ref=e117]: Hops and barley.
+                - img [ref=e120]
+            - generic [ref=e123]:
+              - link "View Artisanal Gin" [ref=e124] [cursor=pointer]:
+                - /url: /shop?category=gin
+                - generic [ref=e125]: View Artisanal Gin
+              - img "Artisanal Gin" [ref=e127]
+              - generic [ref=e129]:
+                - generic [ref=e130]:
+                  - heading "Artisanal Gin" [level=3] [ref=e131]
+                  - paragraph [ref=e132]: Botanical bliss.
+                - img [ref=e135]
+            - generic [ref=e138]:
+              - link "View Mezcal & Tequila" [ref=e139] [cursor=pointer]:
+                - /url: /shop?category=mezcal
+                - generic [ref=e140]: View Mezcal & Tequila
+              - img "Mezcal & Tequila" [ref=e142]
+              - generic [ref=e144]:
+                - generic [ref=e145]:
+                  - heading "Mezcal & Tequila" [level=3] [ref=e146]
+                  - paragraph [ref=e147]: Spirit of Mexico.
+                - img [ref=e150]
+        - generic [ref=e153]:
+          - generic [ref=e154]:
+            - generic [ref=e155]:
+              - heading "New Arrivals" [level=2] [ref=e156]
+              - paragraph [ref=e157]: Fresh from the distillery.
+            - link "View All New Arrivals" [ref=e158] [cursor=pointer]:
+              - /url: /shop?sort=newest
+          - generic [ref=e160]:
+            - link "Maker's Mark Bourbon Maker's Mark Maker's Mark Bourbon $38.99 4.6" [ref=e161] [cursor=pointer]:
+              - /url: /shop/whiskey/makers-mark-bourbon
+              - generic [ref=e162]:
+                - img "Maker's Mark Bourbon" [ref=e163]
+                - generic [ref=e165]:
+                  - paragraph [ref=e166]: Maker's Mark
+                  - heading "Maker's Mark Bourbon" [level=3] [ref=e167]
+                  - generic [ref=e168]:
+                    - generic [ref=e169]: $38.99
+                    - generic [ref=e170]:
+                      - img [ref=e171]
+                      - generic [ref=e173]: "4.6"
+            - link "Macallan 18 Year Sherry Oak The Macallan Macallan 18 Year Sherry Oak $449.99 4.9" [ref=e174] [cursor=pointer]:
+              - /url: /shop/whiskey/macallan-18-sherry-oak
+              - generic [ref=e175]:
+                - img "Macallan 18 Year Sherry Oak" [ref=e176]
+                - generic [ref=e178]:
+                  - paragraph [ref=e179]: The Macallan
+                  - heading "Macallan 18 Year Sherry Oak" [level=3] [ref=e180]
+                  - generic [ref=e181]:
+                    - generic [ref=e182]: $449.99
+                    - generic [ref=e183]:
+                      - img [ref=e184]
+                      - generic [ref=e186]: "4.9"
+            - link "Buffalo Trace Kentucky Straight Bourbon Buffalo Trace Buffalo Trace Kentucky Straight Bourbon $29.99 4.8" [ref=e187] [cursor=pointer]:
+              - /url: /shop/whiskey/buffalo-trace-bourbon
+              - generic [ref=e188]:
+                - img "Buffalo Trace Kentucky Straight Bourbon" [ref=e189]
+                - generic [ref=e191]:
+                  - paragraph [ref=e192]: Buffalo Trace
+                  - heading "Buffalo Trace Kentucky Straight Bourbon" [level=3] [ref=e193]
+                  - generic [ref=e194]:
+                    - generic [ref=e195]: $29.99
+                    - generic [ref=e196]:
+                      - img [ref=e197]
+                      - generic [ref=e199]: "4.8"
+            - link "Wild Turkey 101 Bourbon Wild Turkey Wild Turkey 101 Bourbon $27.99 4.6" [ref=e200] [cursor=pointer]:
+              - /url: /shop/whiskey/wild-turkey-101
+              - generic [ref=e201]:
+                - img "Wild Turkey 101 Bourbon" [ref=e202]
+                - generic [ref=e204]:
+                  - paragraph [ref=e205]: Wild Turkey
+                  - heading "Wild Turkey 101 Bourbon" [level=3] [ref=e206]
+                  - generic [ref=e207]:
+                    - generic [ref=e208]: $27.99
+                    - generic [ref=e209]:
+                      - img [ref=e210]
+                      - generic [ref=e212]: "4.6"
+            - link "Cîroc Snap Frost Vodka Cîroc Cîroc Snap Frost Vodka $35.99 4.5" [ref=e213] [cursor=pointer]:
+              - /url: /shop/vodka/ciroc-vodka
+              - generic [ref=e214]:
+                - img "Cîroc Snap Frost Vodka" [ref=e215]
+                - generic [ref=e217]:
+                  - paragraph [ref=e218]: Cîroc
+                  - heading "Cîroc Snap Frost Vodka" [level=3] [ref=e219]
+                  - generic [ref=e220]:
+                    - generic [ref=e221]: $35.99
+                    - generic [ref=e222]:
+                      - img [ref=e223]
+                      - generic [ref=e225]: "4.5"
+            - link "Captain Morgan Original Spiced Captain Morgan Captain Morgan Original Spiced $19.99 4.4" [ref=e226] [cursor=pointer]:
+              - /url: /shop/rum/captain-morgan-spiced
+              - generic [ref=e227]:
+                - img "Captain Morgan Original Spiced" [ref=e228]
+                - generic [ref=e230]:
+                  - paragraph [ref=e231]: Captain Morgan
+                  - heading "Captain Morgan Original Spiced" [level=3] [ref=e232]
+                  - generic [ref=e233]:
+                    - generic [ref=e234]: $19.99
+                    - generic [ref=e235]:
+                      - img [ref=e236]
+                      - generic [ref=e238]: "4.4"
+            - link "Goslings Black Seal Goslings Goslings Black Seal $23.99 4.6" [ref=e239] [cursor=pointer]:
+              - /url: /shop/rum/goslings-black-seal
+              - generic [ref=e240]:
+                - img "Goslings Black Seal" [ref=e241]
+                - generic [ref=e243]:
+                  - paragraph [ref=e244]: Goslings
+                  - heading "Goslings Black Seal" [level=3] [ref=e245]
+                  - generic [ref=e246]:
+                    - generic [ref=e247]: $23.99
+                    - generic [ref=e248]:
+                      - img [ref=e249]
+                      - generic [ref=e251]: "4.6"
+            - link "Aviation American Gin Aviation Aviation American Gin $29.99 4.6" [ref=e252] [cursor=pointer]:
+              - /url: /shop/gin/aviation-gin
+              - generic [ref=e253]:
+                - img "Aviation American Gin" [ref=e254]
+                - generic [ref=e256]:
+                  - paragraph [ref=e257]: Aviation
+                  - heading "Aviation American Gin" [level=3] [ref=e258]
+                  - generic [ref=e259]:
+                    - generic [ref=e260]: $29.99
+                    - generic [ref=e261]:
+                      - img [ref=e262]
+                      - generic [ref=e264]: "4.6"
+            - link "Silver Oak Alexander Valley Cabernet Silver Oak Silver Oak Alexander Valley Cabernet $95.99 4.8" [ref=e265] [cursor=pointer]:
+              - /url: /shop/wine/silver-oak-alexander-valley
+              - generic [ref=e266]:
+                - img "Silver Oak Alexander Valley Cabernet" [ref=e267]
+                - generic [ref=e269]:
+                  - paragraph [ref=e270]: Silver Oak
+                  - heading "Silver Oak Alexander Valley Cabernet" [level=3] [ref=e271]
+                  - generic [ref=e272]:
+                    - generic [ref=e273]: $95.99
+                    - generic [ref=e274]:
+                      - img [ref=e275]
+                      - generic [ref=e277]: "4.8"
+            - link "Ridge Monte Bello Ridge Ridge Monte Bello $245.00 4.8" [ref=e278] [cursor=pointer]:
+              - /url: /shop/wine/ridge-monte-bello
+              - generic [ref=e279]:
+                - img "Ridge Monte Bello" [ref=e280]
+                - generic [ref=e282]:
+                  - paragraph [ref=e283]: Ridge
+                  - heading "Ridge Monte Bello" [level=3] [ref=e284]
+                  - generic [ref=e285]:
+                    - generic [ref=e286]: $245.00
+                    - generic [ref=e287]:
+                      - img [ref=e288]
+                      - generic [ref=e290]: "4.8"
+            - link "Maker's Mark Bourbon Maker's Mark Maker's Mark Bourbon $38.99 4.6" [ref=e291] [cursor=pointer]:
+              - /url: /shop/whiskey/makers-mark-bourbon
+              - generic [ref=e292]:
+                - img "Maker's Mark Bourbon" [ref=e293]
+                - generic [ref=e295]:
+                  - paragraph [ref=e296]: Maker's Mark
+                  - heading "Maker's Mark Bourbon" [level=3] [ref=e297]
+                  - generic [ref=e298]:
+                    - generic [ref=e299]: $38.99
+                    - generic [ref=e300]:
+                      - img [ref=e301]
+                      - generic [ref=e303]: "4.6"
+            - link "Macallan 18 Year Sherry Oak The Macallan Macallan 18 Year Sherry Oak $449.99 4.9" [ref=e304] [cursor=pointer]:
+              - /url: /shop/whiskey/macallan-18-sherry-oak
+              - generic [ref=e305]:
+                - img "Macallan 18 Year Sherry Oak" [ref=e306]
+                - generic [ref=e308]:
+                  - paragraph [ref=e309]: The Macallan
+                  - heading "Macallan 18 Year Sherry Oak" [level=3] [ref=e310]
+                  - generic [ref=e311]:
+                    - generic [ref=e312]: $449.99
+                    - generic [ref=e313]:
+                      - img [ref=e314]
+                      - generic [ref=e316]: "4.9"
+            - link "Buffalo Trace Kentucky Straight Bourbon Buffalo Trace Buffalo Trace Kentucky Straight Bourbon $29.99 4.8" [ref=e317] [cursor=pointer]:
+              - /url: /shop/whiskey/buffalo-trace-bourbon
+              - generic [ref=e318]:
+                - img "Buffalo Trace Kentucky Straight Bourbon" [ref=e319]
+                - generic [ref=e321]:
+                  - paragraph [ref=e322]: Buffalo Trace
+                  - heading "Buffalo Trace Kentucky Straight Bourbon" [level=3] [ref=e323]
+                  - generic [ref=e324]:
+                    - generic [ref=e325]: $29.99
+                    - generic [ref=e326]:
+                      - img [ref=e327]
+                      - generic [ref=e329]: "4.8"
+            - link "Wild Turkey 101 Bourbon Wild Turkey Wild Turkey 101 Bourbon $27.99 4.6" [ref=e330] [cursor=pointer]:
+              - /url: /shop/whiskey/wild-turkey-101
+              - generic [ref=e331]:
+                - img "Wild Turkey 101 Bourbon" [ref=e332]
+                - generic [ref=e334]:
+                  - paragraph [ref=e335]: Wild Turkey
+                  - heading "Wild Turkey 101 Bourbon" [level=3] [ref=e336]
+                  - generic [ref=e337]:
+                    - generic [ref=e338]: $27.99
+                    - generic [ref=e339]:
+                      - img [ref=e340]
+                      - generic [ref=e342]: "4.6"
+            - link "Cîroc Snap Frost Vodka Cîroc Cîroc Snap Frost Vodka $35.99 4.5" [ref=e343] [cursor=pointer]:
+              - /url: /shop/vodka/ciroc-vodka
+              - generic [ref=e344]:
+                - img "Cîroc Snap Frost Vodka" [ref=e345]
+                - generic [ref=e347]:
+                  - paragraph [ref=e348]: Cîroc
+                  - heading "Cîroc Snap Frost Vodka" [level=3] [ref=e349]
+                  - generic [ref=e350]:
+                    - generic [ref=e351]: $35.99
+                    - generic [ref=e352]:
+                      - img [ref=e353]
+                      - generic [ref=e355]: "4.5"
+            - link "Captain Morgan Original Spiced Captain Morgan Captain Morgan Original Spiced $19.99 4.4" [ref=e356] [cursor=pointer]:
+              - /url: /shop/rum/captain-morgan-spiced
+              - generic [ref=e357]:
+                - img "Captain Morgan Original Spiced" [ref=e358]
+                - generic [ref=e360]:
+                  - paragraph [ref=e361]: Captain Morgan
+                  - heading "Captain Morgan Original Spiced" [level=3] [ref=e362]
+                  - generic [ref=e363]:
+                    - generic [ref=e364]: $19.99
+                    - generic [ref=e365]:
+                      - img [ref=e366]
+                      - generic [ref=e368]: "4.4"
+            - link "Goslings Black Seal Goslings Goslings Black Seal $23.99 4.6" [ref=e369] [cursor=pointer]:
+              - /url: /shop/rum/goslings-black-seal
+              - generic [ref=e370]:
+                - img "Goslings Black Seal" [ref=e371]
+                - generic [ref=e373]:
+                  - paragraph [ref=e374]: Goslings
+                  - heading "Goslings Black Seal" [level=3] [ref=e375]
+                  - generic [ref=e376]:
+                    - generic [ref=e377]: $23.99
+                    - generic [ref=e378]:
+                      - img [ref=e379]
+                      - generic [ref=e381]: "4.6"
+            - link "Aviation American Gin Aviation Aviation American Gin $29.99 4.6" [ref=e382] [cursor=pointer]:
+              - /url: /shop/gin/aviation-gin
+              - generic [ref=e383]:
+                - img "Aviation American Gin" [ref=e384]
+                - generic [ref=e386]:
+                  - paragraph [ref=e387]: Aviation
+                  - heading "Aviation American Gin" [level=3] [ref=e388]
+                  - generic [ref=e389]:
+                    - generic [ref=e390]: $29.99
+                    - generic [ref=e391]:
+                      - img [ref=e392]
+                      - generic [ref=e394]: "4.6"
+            - link "Silver Oak Alexander Valley Cabernet Silver Oak Silver Oak Alexander Valley Cabernet $95.99 4.8" [ref=e395] [cursor=pointer]:
+              - /url: /shop/wine/silver-oak-alexander-valley
+              - generic [ref=e396]:
+                - img "Silver Oak Alexander Valley Cabernet" [ref=e397]
+                - generic [ref=e399]:
+                  - paragraph [ref=e400]: Silver Oak
+                  - heading "Silver Oak Alexander Valley Cabernet" [level=3] [ref=e401]
+                  - generic [ref=e402]:
+                    - generic [ref=e403]: $95.99
+                    - generic [ref=e404]:
+                      - img [ref=e405]
+                      - generic [ref=e407]: "4.8"
+            - link "Ridge Monte Bello Ridge Ridge Monte Bello $245.00 4.8" [ref=e408] [cursor=pointer]:
+              - /url: /shop/wine/ridge-monte-bello
+              - generic [ref=e409]:
+                - img "Ridge Monte Bello" [ref=e410]
+                - generic [ref=e412]:
+                  - paragraph [ref=e413]: Ridge
+                  - heading "Ridge Monte Bello" [level=3] [ref=e414]
+                  - generic [ref=e415]:
+                    - generic [ref=e416]: $245.00
+                    - generic [ref=e417]:
+                      - img [ref=e418]
+                      - generic [ref=e420]: "4.8"
+        - generic [ref=e422]:
+          - heading "What Our Members Say" [level=2] [ref=e423]
+          - generic [ref=e424]:
+            - generic [ref=e425]:
+              - generic [ref=e426]: "\""
+              - generic [ref=e427]:
+                - img [ref=e428]
+                - img [ref=e430]
+                - img [ref=e432]
+                - img [ref=e434]
+                - img [ref=e436]
+              - paragraph [ref=e438]: “The selection at Balisan is unmatched. I found a rare Japanese whisky I've been hunting for years. The delivery was impeccable.”
+              - generic [ref=e439]:
+                - generic [ref=e440]: J
+                - generic [ref=e441]:
+                  - heading "James T." [level=4] [ref=e442]
+                  - paragraph [ref=e443]: Verified Collector
+            - generic [ref=e444]:
+              - generic [ref=e445]: "\""
+              - generic [ref=e446]:
+                - img [ref=e447]
+                - img [ref=e449]
+                - img [ref=e451]
+                - img [ref=e453]
+                - img [ref=e455]
+              - paragraph [ref=e457]: “Finally, a spirits curator that understands quality. The interface is beautiful, but the bottle selection is even better.”
+              - generic [ref=e458]:
+                - generic [ref=e459]: S
+                - generic [ref=e460]:
+                  - heading "Sarah M." [level=4] [ref=e461]
+                  - paragraph [ref=e462]: Sommelier
+            - generic [ref=e463]:
+              - generic [ref=e464]: "\""
+              - generic [ref=e465]:
+                - img [ref=e466]
+                - img [ref=e468]
+                - img [ref=e470]
+                - img [ref=e472]
+                - img [ref=e474]
+              - paragraph [ref=e476]: “Joined the inner circle last month. The exclusive releases are worth every penny. Highly recommended for serious aficionados.”
+              - generic [ref=e477]:
+                - generic [ref=e478]: D
+                - generic [ref=e479]:
+                  - heading "David K." [level=4] [ref=e480]
+                  - paragraph [ref=e481]: Whiskey Enthusiast
+        - generic [ref=e483]:
+          - heading "Join the Inner Circle" [level=2] [ref=e484]
+          - paragraph [ref=e485]: Unlock exclusive access to limited releases, member-only tastings, and expert curation. Elevate your collection today.
+          - link "Become a Member" [ref=e487] [cursor=pointer]:
+            - /url: /signup
+            - generic [ref=e489]: Become a Member
+        - generic [ref=e492]:
+          - heading "Stay in the Loop" [level=2] [ref=e493]
+          - paragraph [ref=e494]: Join our newsletter for exclusive releases, cocktail recipes, and 10% off your first order.
+          - generic [ref=e495]:
+            - textbox "Enter your email" [ref=e496]
+            - button "Subscribe" [ref=e497]
+          - paragraph [ref=e498]: By subscribing, you agree to our Terms of Service and Privacy Policy. Must be 21+ to join.
+    - contentinfo [ref=e499]:
+      - generic [ref=e500]:
+        - generic [ref=e501]:
+          - generic [ref=e502]:
+            - heading "Balisan" [level=3] [ref=e503]
+            - paragraph [ref=e504]: Premium liquor store offering a curated selection of fine spirits, wines, and beers. Experience the taste of luxury, delivered to your door.
+            - generic [ref=e505]:
+              - link "Facebook" [ref=e506] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e507]
+                - generic [ref=e509]: Facebook
+              - link "Instagram" [ref=e510] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e511]
+                - generic [ref=e514]: Instagram
+              - link "Twitter" [ref=e515] [cursor=pointer]:
+                - /url: "#"
+                - img [ref=e516]
+                - generic [ref=e518]: Twitter
+          - generic [ref=e519]:
+            - heading "Shop" [level=4] [ref=e520]
+            - list [ref=e521]:
+              - listitem [ref=e522]:
+                - link "Whiskey" [ref=e523] [cursor=pointer]:
+                  - /url: /shop/whiskey
+              - listitem [ref=e524]:
+                - link "Vodka" [ref=e525] [cursor=pointer]:
+                  - /url: /shop/vodka
+              - listitem [ref=e526]:
+                - link "Wine" [ref=e527] [cursor=pointer]:
+                  - /url: /shop/wine
+              - listitem [ref=e528]:
+                - link "Gin" [ref=e529] [cursor=pointer]:
+                  - /url: /shop/gin
+              - listitem [ref=e530]:
+                - link "All Products" [ref=e531] [cursor=pointer]:
+                  - /url: /shop
+          - generic [ref=e532]:
+            - heading "Customer Care" [level=4] [ref=e533]
+            - list [ref=e534]:
+              - listitem [ref=e535]:
+                - link "Contact Us" [ref=e536] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e537]:
+                - link "FAQs" [ref=e538] [cursor=pointer]:
+                  - /url: /faq
+              - listitem [ref=e539]:
+                - link "Shipping Policy" [ref=e540] [cursor=pointer]:
+                  - /url: /shipping
+              - listitem [ref=e541]:
+                - link "Delivery Info" [ref=e542] [cursor=pointer]:
+                  - /url: /delivery
+              - listitem [ref=e543]:
+                - link "Returns & Refunds" [ref=e544] [cursor=pointer]:
+                  - /url: /refund
+          - generic [ref=e545]:
+            - heading "Company" [level=4] [ref=e546]
+            - list [ref=e547]:
+              - listitem [ref=e548]:
+                - link "About Us" [ref=e549] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e550]:
+                - link "Careers" [ref=e551] [cursor=pointer]:
+                  - /url: /careers
+              - listitem [ref=e552]:
+                - link "Journal" [ref=e553] [cursor=pointer]:
+                  - /url: /journal
+              - listitem [ref=e554]:
+                - link "Recipes" [ref=e555] [cursor=pointer]:
+                  - /url: /recipes
+        - generic [ref=e557]:
+          - generic [ref=e558]:
+            - heading "Stay Updated" [level=4] [ref=e559]
+            - paragraph [ref=e560]: Subscribe to our newsletter for exclusive offers, new arrivals, and curated recommendations.
+          - generic [ref=e561]:
+            - textbox "Enter your email" [ref=e562]
+            - button "Subscribe" [ref=e563]
+        - generic [ref=e564]:
+          - paragraph [ref=e565]: © 2025 Balisan Liquor Store. All rights reserved.
+          - generic [ref=e566]:
+            - link "Privacy Policy" [ref=e567] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Service" [ref=e568] [cursor=pointer]:
+              - /url: /terms
+            - link "Refund Policy" [ref=e569] [cursor=pointer]:
+              - /url: /refund
+        - paragraph [ref=e571]: You must be 21 years or older to purchase. Please drink responsibly.
+  - region "Notifications alt+T"
+  - generic [ref=e576] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e577]:
+      - img [ref=e578]
+    - generic [ref=e581]:
+      - button "Open issues overlay" [ref=e582]:
+        - generic [ref=e583]:
+          - generic [ref=e584]: "0"
+          - generic [ref=e585]: "1"
+        - generic [ref=e586]: Issue
+      - button "Collapse issues badge" [ref=e587]:
+        - img [ref=e588]
+  - alert [ref=e590]
+```
