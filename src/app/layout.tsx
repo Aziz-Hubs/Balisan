@@ -36,6 +36,9 @@ export const metadata: Metadata = {
   },
   description: "Discover exceptional craft spirits, fine wines, and artisanal beverages. Premium selection, expert curation, delivered to your door.",
   keywords: ["liquor store", "craft spirits", "wine delivery", "whiskey", "gin"],
+  icons: {
+    icon: "/balisan.svg",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
