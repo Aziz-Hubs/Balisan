@@ -32,11 +32,11 @@ export function Header() {
 
     useEffect(() => {
         if (scrollDirection === "down" && isScrolled) {
-            setHidden(true)
+            if (!hidden) setHidden(true)
         } else {
-            setHidden(false)
+            if (hidden) setHidden(false)
         }
-    }, [scrollDirection, isScrolled])
+    }, [scrollDirection, isScrolled, hidden])
 
     if (pathname?.startsWith("/checkout") || pathname?.startsWith("/admin")) {
         return null

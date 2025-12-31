@@ -18,8 +18,8 @@ export function Logo({ className, height = 40 }: LogoProps) {
 
     // Avoid hydration mismatch
     useEffect(() => {
-        setMounted(true)
-    }, [])
+        if (!mounted) setMounted(true)
+    }, [mounted])
 
     if (!mounted) {
         return <div style={{ height, width }} className={cn("bg-transparent", className)} />

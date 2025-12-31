@@ -10,8 +10,8 @@ export function ThemeSwitch() {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true);
-    }, []);
+        if (!mounted) setMounted(true);
+    }, [mounted]);
 
     if (!mounted) return null;
 

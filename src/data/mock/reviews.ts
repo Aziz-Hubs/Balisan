@@ -48,7 +48,7 @@ const generateReviewsForProduct = (
     ratingDistribution: number[] // [5-star, 4-star, 3-star, 2-star, 1-star]
 ) => {
     const reviews: Review[] = []
-    let reviewIndex = REVIEWS.length
+    const reviewIndex = REVIEWS.length
 
     const distribution = ratingDistribution
     const totalWeights = distribution.reduce((a, b) => a + b, 0)

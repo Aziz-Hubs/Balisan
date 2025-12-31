@@ -106,11 +106,14 @@ export const WavyBackground = ({
 
     const [isSafari, setIsSafari] = useState(false);
     useEffect(() => {
-        setIsSafari(
-            typeof window !== "undefined" &&
+        // Avoid setting state if the value hasn't changed
+        const isSafariUserAgent = typeof window !== "undefined" &&
             navigator.userAgent.includes("Safari") &&
-            !navigator.userAgent.includes("Chrome")
-        );
+            !navigator.userAgent.includes("Chrome");
+        
+        if (isSafariUserAgent !== isSafari) {
+             setIsSafari(isSafariUserAgent);
+        }
     }, []);
 
     return (

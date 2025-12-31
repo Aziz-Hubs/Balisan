@@ -33,13 +33,15 @@ export function PromotionalBanner({
     const [mounted, setMounted] = useState(false)
 
     useEffect(() => {
-        setMounted(true)
-    }, [])
+        if (!mounted) setMounted(true)
+    }, [mounted])
 
     // Check for reduced motion preference
     useEffect(() => {
         const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
-        setPrefersReducedMotion(mediaQuery.matches)
+        if (prefersReducedMotion !== mediaQuery.matches) {
+            setPrefersReducedMotion(mediaQuery.matches)
+        }
 
         const handleChange = (e: MediaQueryListEvent) => {
             setPrefersReducedMotion(e.matches)

@@ -22,8 +22,8 @@ export default function AccountLayout({
             router.push(`/login?redirect=${window.location.pathname}`)
             return
         }
-        setIsLoading(false)
-    }, [isAuthenticated, router])
+        if (isLoading) setIsLoading(false)
+    }, [isAuthenticated, router, isLoading])
 
     if (isLoading) {
         return null // Or a loading spinner

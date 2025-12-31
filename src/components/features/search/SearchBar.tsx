@@ -100,7 +100,7 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
         item.title && item.title.toLowerCase().includes(query.toLowerCase())
     ).slice(0, 3)
 
-    const SearchResults = () => (
+    const searchResults = (
         <>
             <CommandEmpty>No results found.</CommandEmpty>
 
@@ -218,7 +218,7 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
                         />
                     </div>
                     <CommandList>
-                        <SearchResults />
+                        {searchResults}
                     </CommandList>
                 </CommandDialog>
             </>
@@ -297,7 +297,7 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
                     )}>
                         <div className="h-px bg-gradient-to-r from-transparent via-amber-500/15 to-transparent mx-4" />
                         <CommandList className="max-h-[60vh] overflow-y-auto p-2">
-                            <SearchResults />
+                            {searchResults}
                         </CommandList>
                     </div>
                 )}

@@ -157,7 +157,7 @@ async function seed() {
             email_confirm: true
         })
 
-        let realUserId = authUser.user?.id
+        const realUserId = authUser.user?.id
 
         if (authError) {
             // Use existing if duplicate

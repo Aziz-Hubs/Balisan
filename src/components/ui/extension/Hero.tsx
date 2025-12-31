@@ -18,8 +18,8 @@ export function Hero({ className }: HeroProps) {
     const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
-        setMounted(true);
-    }, []);
+        if (!mounted) setMounted(true);
+    }, [mounted]);
 
     // Prevent hydration mismatch
     if (!mounted) return <div className="h-screen w-full bg-background" />;

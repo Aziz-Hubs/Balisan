@@ -50,10 +50,10 @@ export function AgeGateModal() {
         checkAgeVerification()
 
         // Check if verification is expired or missing
-        if (!isAgeVerified) {
+        if (!isAgeVerified && !isOpen) {
             setIsOpen(true)
         }
-    }, [isAgeVerified, checkAgeVerification])
+    }, [isAgeVerified, checkAgeVerification, isOpen])
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
