@@ -157,7 +157,9 @@ const CarouselContent = React.forwardRef<
   const { carouselRef, orientation } = useCarousel()
 
   return (
-    <div ref={carouselRef} className="overflow-hidden">
+    // Outer wrapper adds vertical padding so 3D card hover effects aren't clipped
+    // Uses overflow-x-clip to allow vertical overflow while clipping horizontal scroll
+    <div ref={carouselRef} className="overflow-x-clip overflow-y-visible py-8 -my-8">
       <div
         ref={ref}
         className={cn(

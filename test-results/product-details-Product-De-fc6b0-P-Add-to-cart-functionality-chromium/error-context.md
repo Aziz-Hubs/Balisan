@@ -1,0 +1,569 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e6] [cursor=pointer]:
+    - button "Open Next.js Dev Tools" [ref=e7]:
+      - img [ref=e8]
+    - generic [ref=e11]:
+      - button "Open issues overlay" [ref=e12]:
+        - generic [ref=e13]:
+          - generic [ref=e14]: "0"
+          - generic [ref=e15]: "1"
+        - generic [ref=e16]: Issue
+      - button "Collapse issues badge" [ref=e17]:
+        - img [ref=e18]
+  - link "Skip to content" [ref=e20] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e21]:
+    - generic [ref=e24]:
+      - link "Free shipping on orders over $150 Go to message 1 Go to message 2" [ref=e25] [cursor=pointer]:
+        - /url: /shipping
+        - generic [ref=e26]:
+          - generic [ref=e27]: Free shipping on orders over $150
+          - generic [ref=e28]:
+            - button "Go to message 1" [ref=e29]
+            - button "Go to message 2" [ref=e30]
+      - button "Dismiss banner" [ref=e32] [cursor=pointer]:
+        - img
+    - banner [ref=e33]:
+      - generic [ref=e34]:
+        - generic [ref=e35]:
+          - link "Balisan Home" [ref=e36] [cursor=pointer]:
+            - /url: /
+            - img "Balisan Logo" [ref=e38]
+          - navigation "Main" [ref=e40]:
+            - list [ref=e42]:
+              - listitem [ref=e43]:
+                - button "Shop" [ref=e44]:
+                  - generic [ref=e45]:
+                    - generic [ref=e46]: Shop
+                    - img [ref=e47]
+              - listitem [ref=e49]:
+                - button "Collections" [ref=e50]:
+                  - generic [ref=e51]:
+                    - generic [ref=e52]: Collections
+                    - img [ref=e53]
+              - listitem [ref=e55]:
+                - button "Concierge" [ref=e56]:
+                  - generic [ref=e57]:
+                    - generic [ref=e58]: Concierge
+                    - img [ref=e59]
+        - generic [ref=e65]:
+          - img [ref=e66]
+          - combobox [expanded] [ref=e69]
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - paragraph: Search rare whiskies...
+                - generic:
+                  - generic:
+                    - generic: ⌘
+                    - text: K
+          - generic:
+            - generic:
+              - generic: ⌘
+              - text: K
+        - generic [ref=e70]:
+          - link "The Journal" [ref=e72] [cursor=pointer]:
+            - /url: /journal
+            - generic [ref=e73]: The Journal
+          - switch "Toggle theme" [checked] [ref=e74] [cursor=pointer]:
+            - generic [ref=e75]: Toggle theme
+            - generic:
+              - img
+            - generic:
+              - img
+              - img
+            - img [ref=e77]
+            - img [ref=e84]
+          - link "Open Cart" [ref=e86] [cursor=pointer]:
+            - /url: /cart
+            - img
+          - generic [ref=e87]:
+            - link "Login" [ref=e88] [cursor=pointer]:
+              - /url: /login
+              - button "Login" [ref=e89]:
+                - generic [ref=e91]: Login
+            - link "Sign Up" [ref=e92] [cursor=pointer]:
+              - /url: /signup
+              - button "Sign Up" [ref=e93]
+    - main [ref=e94]:
+      - generic [ref=e96]:
+        - generic [ref=e97]:
+          - generic [ref=e98]:
+            - generic [ref=e101]:
+              - generic [ref=e103]:
+                - img "Product image" [ref=e104]
+                - link [ref=e105] [cursor=pointer]:
+                  - /url: /bottle.png
+                  - img [ref=e106]
+              - generic:
+                - 'button "Expand image: Product image"'
+            - button "View 0" [ref=e112]:
+              - img "View 0" [ref=e113]
+          - generic [ref=e114]:
+            - generic [ref=e115]:
+              - heading "Casamigos" [level=2] [ref=e116]
+              - generic [ref=e117]:
+                - heading "Casamigos Reposado" [level=1] [ref=e118]
+                - generic [ref=e119]:
+                  - img [ref=e120]
+                  - generic [ref=e123]: Master
+                  - generic [ref=e124]: "94"
+                  - generic [ref=e125]: PTS
+              - generic [ref=e126]:
+                - generic [ref=e127]:
+                  - img [ref=e129]
+                  - img [ref=e132]
+                  - img [ref=e135]
+                  - img [ref=e138]
+                  - generic [ref=e140]:
+                    - img [ref=e141]
+                    - img [ref=e144]
+                - generic [ref=e146]: (4.9 stars)
+              - generic [ref=e147]:
+                - generic [ref=e148]: New
+                - generic [ref=e149]: Imported
+            - generic [ref=e151]: $59.99
+            - paragraph [ref=e153]: Aged for 7 months in American white oak barrels. Authentic and smooth.
+            - generic [ref=e154]:
+              - heading "Tasting Profile" [level=3] [ref=e155]:
+                - img [ref=e156]
+                - text: Tasting Profile
+              - generic [ref=e158]:
+                - generic [ref=e160]:
+                  - generic [ref=e161]: Smokey
+                  - generic [ref=e162]: Sweet
+                - generic [ref=e167]:
+                  - generic [ref=e168]: Light
+                  - generic [ref=e169]: Full Body
+                - generic [ref=e174]:
+                  - generic [ref=e175]: Fruit
+                  - generic [ref=e176]: Oak
+                - generic [ref=e181]:
+                  - generic [ref=e182]: Alcohol Strength
+                  - generic [ref=e183]: 40%
+              - generic [ref=e186]:
+                - generic [ref=e187]: Honey
+                - generic [ref=e188]: Oak
+                - generic [ref=e189]: Vanilla
+            - generic [ref=e190]:
+              - button "Add to Cart" [ref=e191] [cursor=pointer]:
+                - generic [ref=e192]:
+                  - img
+                  - text: Add to Cart
+              - button "Add to Wishlist" [ref=e193] [cursor=pointer]
+            - generic [ref=e194]:
+              - heading "Product Details" [level=3] [ref=e195]
+              - generic [ref=e196]:
+                - generic [ref=e197]:
+                  - term [ref=e198]: Brand
+                  - definition [ref=e199]: Casamigos
+                - generic [ref=e200]:
+                  - term [ref=e201]: Category
+                  - definition [ref=e202]: Tequila
+            - generic [ref=e203]:
+              - generic [ref=e204]:
+                - heading "Frequently Asked Questions" [level=2] [ref=e205]:
+                  - img [ref=e206]
+                  - text: Frequently Asked Questions
+                - generic [ref=e209]:
+                  - heading "Is this product authentic?" [level=3] [ref=e211]:
+                    - button "Is this product authentic?" [ref=e212]:
+                      - text: Is this product authentic?
+                      - img [ref=e213]
+                  - heading "How should I store this after opening?" [level=3] [ref=e216]:
+                    - button "How should I store this after opening?" [ref=e217]:
+                      - text: How should I store this after opening?
+                      - img [ref=e218]
+                  - heading "What is the alcohol content?" [level=3] [ref=e221]:
+                    - button "What is the alcohol content?" [ref=e222]:
+                      - text: What is the alcohol content?
+                      - img [ref=e223]
+                  - heading "Can I return this product?" [level=3] [ref=e226]:
+                    - button "Can I return this product?" [ref=e227]:
+                      - text: Can I return this product?
+                      - img [ref=e228]
+                  - heading "Do you offer gift wrapping?" [level=3] [ref=e231]:
+                    - button "Do you offer gift wrapping?" [ref=e232]:
+                      - text: Do you offer gift wrapping?
+                      - img [ref=e233]
+                  - heading "What's the delivery timeframe?" [level=3] [ref=e236]:
+                    - button "What's the delivery timeframe?" [ref=e237]:
+                      - text: What's the delivery timeframe?
+                      - img [ref=e238]
+              - generic [ref=e240]:
+                - heading "Customer Reviews" [level=2] [ref=e241]
+                - generic [ref=e242]:
+                  - generic [ref=e243]:
+                    - generic [ref=e244]:
+                      - generic [ref=e245]: "4.9"
+                      - generic [ref=e246]:
+                        - generic [ref=e247]:
+                          - img [ref=e249]
+                          - img [ref=e252]
+                          - img [ref=e255]
+                          - img [ref=e258]
+                          - generic [ref=e260]:
+                            - img [ref=e261]
+                            - img [ref=e264]
+                        - paragraph [ref=e266]: 188 verified reviews
+                    - generic [ref=e267]:
+                      - generic [ref=e268]:
+                        - generic [ref=e269]: "5"
+                        - img [ref=e270]
+                        - progressbar [ref=e272]
+                        - generic [ref=e274]: 70%
+                      - generic [ref=e275]:
+                        - generic [ref=e276]: "4"
+                        - img [ref=e277]
+                        - progressbar [ref=e279]
+                        - generic [ref=e281]: 20%
+                      - generic [ref=e282]:
+                        - generic [ref=e283]: "3"
+                        - img [ref=e284]
+                        - progressbar [ref=e286]
+                        - generic [ref=e288]: 5%
+                      - generic [ref=e289]:
+                        - generic [ref=e290]: "2"
+                        - img [ref=e291]
+                        - progressbar [ref=e293]
+                        - generic [ref=e295]: 5%
+                      - generic [ref=e296]:
+                        - generic [ref=e297]: "1"
+                        - img [ref=e298]
+                        - progressbar [ref=e300]
+                        - generic [ref=e302]: 5%
+                    - button "Write a Review" [ref=e304] [cursor=pointer]
+                  - generic [ref=e305]:
+                    - generic [ref=e306]:
+                      - generic [ref=e307]:
+                        - generic [ref=e308]:
+                          - generic [ref=e310]: R
+                          - generic [ref=e311]:
+                            - heading "Reviewer 1" [level=4] [ref=e312]
+                            - generic [ref=e313]:
+                              - generic [ref=e314]: 12/19/2025
+                              - generic [ref=e315]:
+                                - img [ref=e316]
+                                - text: Verified Purchase
+                        - generic [ref=e319]:
+                          - img [ref=e321]
+                          - img [ref=e324]
+                          - img [ref=e327]
+                          - img [ref=e330]
+                          - img [ref=e333]
+                      - heading "Exceptional Quality" [level=5] [ref=e335]
+                      - paragraph [ref=e336]: This is a fantastic spirit. The flavor profile is exactly as described. I would definitely buy this again.
+                      - button "Helpful (19)" [ref=e337]:
+                        - img [ref=e338]
+                        - generic [ref=e340]: Helpful (19)
+                    - generic [ref=e341]:
+                      - generic [ref=e342]:
+                        - generic [ref=e343]:
+                          - generic [ref=e345]: R
+                          - generic [ref=e346]:
+                            - heading "Reviewer 2" [level=4] [ref=e347]
+                            - generic [ref=e348]:
+                              - generic [ref=e349]: 12/14/2025
+                              - generic [ref=e350]:
+                                - img [ref=e351]
+                                - text: Verified Purchase
+                        - generic [ref=e354]:
+                          - img [ref=e356]
+                          - img [ref=e359]
+                          - img [ref=e362]
+                          - img [ref=e365]
+                          - img [ref=e368]
+                      - heading "Great Taste" [level=5] [ref=e370]
+                      - paragraph [ref=e371]: This is a fantastic spirit. The flavor profile is exactly as described. I would definitely buy this again.
+                      - button "Helpful (13)" [ref=e372]:
+                        - img [ref=e373]
+                        - generic [ref=e375]: Helpful (13)
+                    - generic [ref=e376]:
+                      - generic [ref=e377]:
+                        - generic [ref=e378]:
+                          - generic [ref=e380]: R
+                          - generic [ref=e381]:
+                            - heading "Reviewer 3" [level=4] [ref=e382]
+                            - generic [ref=e383]:
+                              - generic [ref=e384]: 11/6/2025
+                              - generic [ref=e385]:
+                                - img [ref=e386]
+                                - text: Verified Purchase
+                        - generic [ref=e389]:
+                          - img [ref=e391]
+                          - img [ref=e394]
+                          - img [ref=e397]
+                          - img [ref=e400]
+                          - img [ref=e403]
+                      - heading "Smooth Finish" [level=5] [ref=e405]
+                      - paragraph [ref=e406]: This is a fantastic spirit. The flavor profile is exactly as described. I would definitely buy this again.
+                      - button "Helpful (15)" [ref=e407]:
+                        - img [ref=e408]
+                        - generic [ref=e410]: Helpful (15)
+        - generic [ref=e411]:
+          - heading "Related Products" [level=2] [ref=e412]
+          - generic [ref=e413]:
+            - generic [ref=e417]:
+              - generic [ref=e419] [cursor=pointer]:
+                - img "Olmeca Altos Plata" [ref=e421]
+                - generic [ref=e422]:
+                  - button "VS" [ref=e424]:
+                    - generic [ref=e425]:
+                      - img [ref=e426]
+                      - generic [ref=e430]: VS
+                  - button "Add to Collection" [ref=e432]:
+                    - img [ref=e433]
+                - generic [ref=e437]: New
+              - generic [ref=e438]:
+                - generic [ref=e439]:
+                  - generic [ref=e440]:
+                    - generic [ref=e441]: Olmeca Altos
+                    - img [ref=e443]
+                  - generic [ref=e447]:
+                    - img [ref=e449]
+                    - img [ref=e452]
+                    - img [ref=e455]
+                    - img [ref=e458]
+                    - generic [ref=e460]:
+                      - img [ref=e461]
+                      - img [ref=e464]
+                - link "Olmeca Altos Plata" [ref=e467] [cursor=pointer]:
+                  - /url: /products/olmeca-altos-plata
+                - generic [ref=e468]:
+                  - generic [ref=e469]:
+                    - generic [ref=e470]: Price
+                    - generic [ref=e471]: $26.99
+                  - button "Add to cart" [ref=e473] [cursor=pointer]:
+                    - generic [ref=e479]:
+                      - img [ref=e480]
+                      - generic [ref=e481]: Add
+                - generic [ref=e483]:
+                  - generic [ref=e484]:
+                    - generic [ref=e485]: Alcohol Strength
+                    - generic [ref=e486]: 40% ABV
+                  - generic [ref=e488]: IMPORTED
+            - generic [ref=e492]:
+              - generic [ref=e494] [cursor=pointer]:
+                - img "1800 Añejo" [ref=e496]
+                - generic [ref=e497]:
+                  - button "VS" [ref=e499]:
+                    - generic [ref=e500]:
+                      - img [ref=e501]
+                      - generic [ref=e505]: VS
+                  - button "Add to Collection" [ref=e507]:
+                    - img [ref=e508]
+                - generic [ref=e512]: New
+              - generic [ref=e513]:
+                - generic [ref=e514]:
+                  - generic [ref=e515]:
+                    - generic [ref=e516]: "1800"
+                    - img [ref=e518]
+                  - generic [ref=e522]:
+                    - img [ref=e524]
+                    - img [ref=e527]
+                    - img [ref=e530]
+                    - img [ref=e533]
+                    - generic [ref=e535]:
+                      - img [ref=e536]
+                      - img [ref=e539]
+                - link "1800 Añejo" [ref=e542] [cursor=pointer]:
+                  - /url: /products/1800-anejo
+                - generic [ref=e543]:
+                  - generic [ref=e544]:
+                    - generic [ref=e545]: Price
+                    - generic [ref=e546]: $39.99
+                  - button "Add to cart" [ref=e548] [cursor=pointer]:
+                    - generic [ref=e554]:
+                      - img [ref=e555]
+                      - generic [ref=e556]: Add
+                - generic [ref=e558]:
+                  - generic [ref=e559]:
+                    - generic [ref=e560]: Alcohol Strength
+                    - generic [ref=e561]: 40% ABV
+                  - generic [ref=e563]: IMPORTED
+            - generic [ref=e567]:
+              - generic [ref=e569] [cursor=pointer]:
+                - img "Herradura Silver" [ref=e571]
+                - generic [ref=e572]:
+                  - button "VS" [ref=e574]:
+                    - generic [ref=e575]:
+                      - img [ref=e576]
+                      - generic [ref=e580]: VS
+                  - button "Add to Collection" [ref=e582]:
+                    - img [ref=e583]
+                - generic [ref=e587]: New
+              - generic [ref=e588]:
+                - generic [ref=e589]:
+                  - generic [ref=e590]:
+                    - generic [ref=e591]: Herradura
+                    - img [ref=e593]
+                  - generic [ref=e597]:
+                    - img [ref=e599]
+                    - img [ref=e602]
+                    - img [ref=e605]
+                    - img [ref=e608]
+                    - generic [ref=e610]:
+                      - img [ref=e611]
+                      - img [ref=e614]
+                - link "Herradura Silver" [ref=e617] [cursor=pointer]:
+                  - /url: /products/herradura-silver
+                - generic [ref=e618]:
+                  - generic [ref=e619]:
+                    - generic [ref=e620]: Price
+                    - generic [ref=e621]: $44.99
+                  - button "Add to cart" [ref=e623] [cursor=pointer]:
+                    - generic [ref=e629]:
+                      - img [ref=e630]
+                      - generic [ref=e631]: Add
+                - generic [ref=e633]:
+                  - generic [ref=e634]:
+                    - generic [ref=e635]: Alcohol Strength
+                    - generic [ref=e636]: 40% ABV
+                  - generic [ref=e638]: IMPORTED
+            - generic [ref=e642]:
+              - generic [ref=e644] [cursor=pointer]:
+                - img "Clase Azul Reposado" [ref=e646]
+                - generic [ref=e647]:
+                  - button "VS" [ref=e649]:
+                    - generic [ref=e650]:
+                      - img [ref=e651]
+                      - generic [ref=e655]: VS
+                  - button "Add to Collection" [ref=e657]:
+                    - img [ref=e658]
+                - generic [ref=e662]: New
+              - generic [ref=e663]:
+                - generic [ref=e664]:
+                  - generic [ref=e665]:
+                    - generic [ref=e666]: Clase Azul
+                    - img [ref=e668]
+                  - generic [ref=e672]:
+                    - img [ref=e674]
+                    - img [ref=e677]
+                    - img [ref=e680]
+                    - img [ref=e683]
+                    - generic [ref=e685]:
+                      - img [ref=e686]
+                      - img [ref=e689]
+                - link "Clase Azul Reposado" [ref=e692] [cursor=pointer]:
+                  - /url: /products/clase-azul-reposado
+                - generic [ref=e693]:
+                  - generic [ref=e694]:
+                    - generic [ref=e695]: Price
+                    - generic [ref=e696]: $159.99
+                  - button "Add to cart" [ref=e698] [cursor=pointer]:
+                    - generic [ref=e704]:
+                      - img [ref=e705]
+                      - generic [ref=e706]: Add
+                - generic [ref=e708]:
+                  - generic [ref=e709]:
+                    - generic [ref=e710]: Alcohol Strength
+                    - generic [ref=e711]: 40% ABV
+                  - generic [ref=e713]: IMPORTED
+    - contentinfo [ref=e714]:
+      - generic [ref=e715]:
+        - generic [ref=e716]:
+          - generic [ref=e717]:
+            - generic [ref=e719]:
+              - generic [ref=e720]: B
+              - generic [ref=e721]: a
+              - generic [ref=e722]: l
+              - generic [ref=e723]: i
+              - generic [ref=e724]: s
+              - generic [ref=e725]: a
+              - generic [ref=e726]: "n"
+              - generic [ref=e728]: S
+              - generic [ref=e729]: p
+              - generic [ref=e730]: i
+              - generic [ref=e731]: r
+              - generic [ref=e732]: i
+              - generic [ref=e733]: t
+              - generic [ref=e734]: s
+            - paragraph [ref=e735]: Premium liquor store offering a curated selection of fine spirits, wines, and beers. Experience the taste of luxury, delivered to your door.
+            - generic [ref=e736]:
+              - link "Facebook" [ref=e738] [cursor=pointer]:
+                - /url: https://facebook.com/balisanspirits
+                - img [ref=e739]
+                - generic [ref=e741]: Facebook
+              - link "Instagram" [ref=e743] [cursor=pointer]:
+                - /url: https://instagram.com/balisanspirits
+                - img [ref=e744]
+                - generic [ref=e747]: Instagram
+              - link "Twitter" [ref=e749] [cursor=pointer]:
+                - /url: https://twitter.com/balisanspirits
+                - img [ref=e750]
+                - generic [ref=e752]: Twitter
+          - generic [ref=e753]:
+            - heading "Shop" [level=4] [ref=e754]
+            - list [ref=e755]:
+              - listitem [ref=e756]:
+                - link "Whiskey" [ref=e757] [cursor=pointer]:
+                  - /url: /shop/whiskey
+              - listitem [ref=e758]:
+                - link "Vodka" [ref=e759] [cursor=pointer]:
+                  - /url: /shop/vodka
+              - listitem [ref=e760]:
+                - link "Wine" [ref=e761] [cursor=pointer]:
+                  - /url: /shop/wine
+              - listitem [ref=e762]:
+                - link "Gin" [ref=e763] [cursor=pointer]:
+                  - /url: /shop/gin
+              - listitem [ref=e764]:
+                - link "All Products" [ref=e765] [cursor=pointer]:
+                  - /url: /shop
+          - generic [ref=e766]:
+            - heading "Customer Care" [level=4] [ref=e767]
+            - list [ref=e768]:
+              - listitem [ref=e769]:
+                - link "Contact Us" [ref=e770] [cursor=pointer]:
+                  - /url: /contact
+              - listitem [ref=e771]:
+                - link "FAQs" [ref=e772] [cursor=pointer]:
+                  - /url: /faq
+              - listitem [ref=e773]:
+                - link "Shipping Policy" [ref=e774] [cursor=pointer]:
+                  - /url: /shipping
+              - listitem [ref=e775]:
+                - link "Delivery Info" [ref=e776] [cursor=pointer]:
+                  - /url: /delivery
+              - listitem [ref=e777]:
+                - link "Returns & Refunds" [ref=e778] [cursor=pointer]:
+                  - /url: /refund
+          - generic [ref=e779]:
+            - heading "Company" [level=4] [ref=e780]
+            - list [ref=e781]:
+              - listitem [ref=e782]:
+                - link "About Us" [ref=e783] [cursor=pointer]:
+                  - /url: /about
+              - listitem [ref=e784]:
+                - link "Careers" [ref=e785] [cursor=pointer]:
+                  - /url: /careers
+              - listitem [ref=e786]:
+                - link "Journal" [ref=e787] [cursor=pointer]:
+                  - /url: /journal
+              - listitem [ref=e788]:
+                - link "Recipes" [ref=e789] [cursor=pointer]:
+                  - /url: /recipes
+        - generic [ref=e791]:
+          - generic [ref=e792]:
+            - heading "Stay Updated" [level=4] [ref=e793]
+            - paragraph [ref=e794]: Subscribe to our newsletter for exclusive offers, new arrivals, and curated recommendations.
+          - generic [ref=e795]:
+            - textbox "Enter your email" [ref=e796]
+            - button "Subscribe" [ref=e798] [cursor=pointer]
+        - generic [ref=e799]:
+          - paragraph [ref=e800]: © 2025 Balisan Liquor Store. All rights reserved.
+          - generic [ref=e801]:
+            - link "Privacy Policy" [ref=e802] [cursor=pointer]:
+              - /url: /privacy
+            - link "Terms of Service" [ref=e803] [cursor=pointer]:
+              - /url: /terms
+            - link "Refund Policy" [ref=e804] [cursor=pointer]:
+              - /url: /refund
+        - paragraph [ref=e806]: You must be 21 years or older to purchase. Please drink responsibly.
+  - region "Notifications alt+T"
+  - alert [ref=e807]
+```

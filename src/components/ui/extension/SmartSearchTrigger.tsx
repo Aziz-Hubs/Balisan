@@ -49,13 +49,13 @@ export function SmartSearchTrigger({
     return (
         <div
             className={cn(
-                "w-full relative max-w-xl mx-auto bg-muted/50 border border-border hover:border-amber-500/50 transition-colors rounded-full h-12 shadow-sm overflow-hidden group cursor-text",
+                "w-full relative mx-auto transition-colors rounded-full h-12 overflow-hidden group cursor-text",
                 className
             )}
             onClick={onClick}
         >
             {/* Animated Border/Glow Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/10 to-transparent group-hover:via-amber-500/20 translate-x-[-100%] group-hover:animate-shimmer z-0" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/10 to-transparent group-hover:via-amber-500/20 group-hover:animate-shimmer z-0" />
 
             <div className="absolute inset-0 flex items-center px-4 z-10">
                 <Sparkles className="h-4 w-4 text-amber-500 mr-2" />
@@ -93,6 +93,6 @@ export function SmartSearchTrigger({
                     </kbd>
                 </div>
             </div>
-        </div>
+        </div >
     );
 }

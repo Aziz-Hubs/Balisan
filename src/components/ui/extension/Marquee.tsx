@@ -28,11 +28,12 @@ export function Marquee({ items, speed = 40, className }: MarqueeProps) {
     const duplicatedItems = [...items, ...items];
 
     return (
-        <section className={cn("py-20 bg-black overflow-hidden relative", className)}>
+
+        <section className={cn("py-20 bg-background overflow-hidden relative", className)}>
             <div className="container mx-auto px-4 md:px-6 mb-10 flex items-center justify-between">
                 <div>
-                    <h2 className="text-3xl font-serif text-white">New Arrivals</h2>
-                    <p className="text-white/50 text-sm mt-1">Fresh from the distillery.</p>
+                    <h2 className="text-3xl font-serif text-foreground">New Arrivals</h2>
+                    <p className="text-muted-foreground text-sm mt-1">Fresh from the distillery.</p>
                 </div>
                 <Link href="/shop?sort=newest" className="hidden md:block text-amber-500 hover:text-amber-400 text-sm font-medium tracking-wider uppercase transition-colors">
                     View All New Arrivals
@@ -40,8 +41,8 @@ export function Marquee({ items, speed = 40, className }: MarqueeProps) {
             </div>
 
             <div className="relative w-full overflow-hidden">
-                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
                 <motion.div
                     className="flex gap-6 w-max"
@@ -74,7 +75,7 @@ export function Marquee({ items, speed = 40, className }: MarqueeProps) {
 function MarqueeCard({ item }: { item: MarqueeItem }) {
     return (
         <Link href={item.href} className="group relative block w-[280px] flex-shrink-0">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-zinc-900 border border-zinc-800">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-card border border-border shadow-sm">
                 <Image
                     src={item.image}
                     alt={item.name}

@@ -45,7 +45,14 @@ export function ShoppableIngredients({ ingredients }: ShoppableIngredientsProps)
                     <li key={ing.id} className="py-3 flex items-center justify-between gap-4">
                         <div className="flex items-center gap-3">
                             <div className="h-10 w-10 relative rounded-md overflow-hidden border">
-                                <img src={ing.image} alt={ing.name} className="object-cover h-full w-full" />
+                                <img
+                                    src={ing.image}
+                                    alt={ing.name}
+                                    className="object-cover h-full w-full"
+                                    onError={(e) => {
+                                        e.currentTarget.src = "/bottle.png"
+                                    }}
+                                />
                             </div>
                             <span className="text-sm font-medium">{ing.name}</span>
                         </div>

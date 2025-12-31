@@ -1,9 +1,9 @@
-
 "use client"
 
 import { useRef, useState, useEffect } from "react"
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion"
 import { cn } from "@/lib/utils"
+import { useTheme } from "next-themes"
 
 interface SpotlightProps extends React.HTMLAttributes<HTMLDivElement> {
     className?: string
@@ -12,6 +12,9 @@ interface SpotlightProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export function Spotlight({ className, children, active, ...props }: SpotlightProps) {
+    const { resolvedTheme } = useTheme();
+    const isLight = resolvedTheme === 'light';
+
     const radius = 120 // Radius of the spotlight
     const mouseX = useMotionValue(0)
     const mouseY = useMotionValue(0)
@@ -25,8 +28,8 @@ export function Spotlight({ className, children, active, ...props }: SpotlightPr
     return (
         <div
             className={cn(
-                "group relative border border-white/10 overflow-hidden rounded-xl bg-gradient-to-br from-white/5 to-white/0 transition-colors duration-500 hover:border-white/20",
-                active && "border-amber-500/50 bg-amber-500/10",
+                "group relative overflow-hidden rounded-xl transition-colors duration-500",
+                active && (isLight ? "bg-amber-500/20" : "bg-amber-500/10"),
                 className
             )}
             onMouseMove={handleMouseMove}
@@ -38,7 +41,7 @@ export function Spotlight({ className, children, active, ...props }: SpotlightPr
                     background: useMotionTemplate`
                         radial-gradient(
                           ${radius}px circle at ${mouseX}px ${mouseY}px,
-                          rgba(245, 158, 11, 0.15),
+                          ${isLight ? 'rgba(245, 158, 11, 0.25)' : 'rgba(245, 158, 11, 0.15)'},
                           transparent 80%
                         )
                       `,

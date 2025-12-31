@@ -14,9 +14,9 @@ const categories = [
 
 export function FeaturedCategories() {
     return (
-        <section className="py-20 bg-secondary/30">
+        <section className="py-20 bg-background">
             <div className="container mx-auto px-4 md:px-6">
-                <h2 className="mb-12 text-3xl font-bold tracking-tight text-center">Shop by Category</h2>
+                <h2 className="mb-12 text-3xl font-bold tracking-tight text-center text-foreground">Shop by Category</h2>
                 <BentoGrid className="max-w-4xl mx-auto">
                     {categories.map((category, i) => (
                         <BentoGridItem

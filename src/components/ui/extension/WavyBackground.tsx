@@ -27,14 +27,9 @@ export const WavyBackground = ({
     [key: string]: any;
 }) => {
     const noise = createNoise3D();
-    let w: number,
-        h: number,
-        nt: number,
-        i: number,
-        x: number,
-        ctx: any,
-        canvas: any;
     const canvasRef = useRef<HTMLCanvasElement>(null);
+    const ntRef = useRef(0);
+
     const getSpeed = () => {
         switch (speed) {
             case "slow":
@@ -46,62 +41,71 @@ export const WavyBackground = ({
         }
     };
 
-    const init = () => {
-        canvas = canvasRef.current;
-        ctx = canvas.getContext("2d");
-        w = ctx.canvas.width = window.innerWidth;
-        h = ctx.canvas.height = window.innerHeight;
+    useEffect(() => {
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return;
+
+        let animationId: number;
+        let w = (ctx.canvas.width = window.innerWidth);
+        let h = (ctx.canvas.height = window.innerHeight);
         ctx.filter = `blur(${blur}px)`;
-        nt = 0;
-        window.onresize = function () {
-            w = ctx.canvas.width = window.innerWidth;
-            h = ctx.canvas.height = window.innerHeight;
+
+        const handleResize = () => {
+            w = (ctx.canvas.width = window.innerWidth);
+            h = (ctx.canvas.height = window.innerHeight);
             ctx.filter = `blur(${blur}px)`;
         };
-        render();
-    };
 
-    const waveColors = colors ?? [
-        "#F5A623", // Amber
-        "#B45309", // Dark Amber
-        "#ffffff", // White
-        "#1A1A1A", // Black
-        "#333333", // Dark Gray
-    ];
-    const drawWave = (n: number) => {
-        nt += getSpeed();
-        for (i = 0; i < n; i++) {
-            ctx.beginPath();
-            ctx.lineWidth = waveWidth || 50;
-            ctx.strokeStyle = waveColors[i % waveColors.length];
-            for (x = 0; x < w; x += 5) {
-                var y = noise(x / 800, 0.3 * i, nt) * 100;
-                ctx.lineTo(x, y + h * 0.5); // Adjust for height, centered by default
+        window.addEventListener("resize", handleResize);
+
+        const waveColors = colors ?? [
+            "#F5A623", // Amber
+            "#B45309", // Dark Amber
+            "#ffffff", // White
+            "#1A1A1A", // Black
+            "#333333", // Dark Gray
+        ];
+
+        const render = () => {
+            ntRef.current += getSpeed();
+            ctx.fillStyle = backgroundFill || "black";
+            ctx.globalAlpha = waveOpacity || 0.5;
+            ctx.fillRect(0, 0, w, h);
+
+            for (let i = 0; i < 5; i++) {
+                ctx.beginPath();
+                ctx.lineWidth = waveWidth || 50;
+                ctx.strokeStyle = waveColors[i % waveColors.length];
+                for (let x = 0; x < w; x += 5) {
+                    const y = noise(x / 800, 0.3 * i, ntRef.current) * 100;
+                    ctx.lineTo(x, y + h * 0.5);
+                }
+                ctx.stroke();
+                ctx.closePath();
             }
-            ctx.stroke();
-            ctx.closePath();
-        }
-    };
+            animationId = requestAnimationFrame(render);
+        };
 
-    let animationId: number;
-    const render = () => {
-        ctx.fillStyle = backgroundFill || "black";
-        ctx.globalAlpha = waveOpacity || 0.5;
-        ctx.fillRect(0, 0, w, h);
-        drawWave(5);
-        animationId = requestAnimationFrame(render);
-    };
+        render();
 
-    useEffect(() => {
-        init();
         return () => {
+            window.removeEventListener("resize", handleResize);
             cancelAnimationFrame(animationId);
         };
-    }, []);
+    }, [
+        backgroundFill,
+        colors,
+        waveOpacity,
+        blur,
+        speed,
+        waveWidth,
+        noise // Although noise is created on every render, it's fine as long as we use ntRef
+    ]);
 
     const [isSafari, setIsSafari] = useState(false);
     useEffect(() => {
-        // I'm sorry for this, but this is what it takes.
         setIsSafari(
             typeof window !== "undefined" &&
             navigator.userAgent.includes("Safari") &&

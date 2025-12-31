@@ -52,7 +52,7 @@ export function AmbientBackground({
 
             {/* Overlay Layer for Text Readability */}
             <div
-                className="absolute inset-0 -z-10 bg-black transition-opacity duration-500"
+                className="absolute inset-0 -z-10 bg-[#0c0a09] transition-opacity duration-500"
                 style={{ opacity: overlayOpacity }}
             />
 

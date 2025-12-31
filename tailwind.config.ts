@@ -21,8 +21,19 @@ const config: Config = {
                 third: "moveInCircle 40s linear infinite",
                 fourth: "moveHorizontal 40s ease infinite",
                 fifth: "moveInCircle 20s ease infinite",
+                rainbow: "rainbow var(--speed, 2s) infinite linear",
+                shine: "shine var(--duration) infinite linear",
             },
             keyframes: {
+                shine: {
+                    "0%": { "background-position": "0% 0%" },
+                    "50%": { "background-position": "100% 100%" },
+                    "to": { "background-position": "0% 0%" },
+                },
+                rainbow: {
+                    "0%": { "background-position": "0%" },
+                    "100%": { "background-position": "200%" },
+                },
                 aurora: {
                     from: {
                         backgroundPosition: "50% 50%, 50% 50%",

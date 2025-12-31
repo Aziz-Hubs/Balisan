@@ -8,7 +8,7 @@ import ShimmerButton from '@/components/ui/extension/ShimmerButton';
 
 export function CTA() {
     return (
-        <section className="py-32 relative overflow-hidden bg-zinc-950 flex flex-col items-center justify-center text-center">
+        <section className="py-32 relative overflow-hidden bg-[#0c0a09] flex flex-col items-center justify-center text-center">
             {/* Background Gradients */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-600/20 blur-[120px] rounded-full pointer-events-none" />
 

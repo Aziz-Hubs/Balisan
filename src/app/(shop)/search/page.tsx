@@ -25,7 +25,7 @@ async function SearchResults({ query }: { query: string }) {
                     <FilterSidebar />
                 </aside>
 
-                <div className="flex-1 space-y-6">
+                <div className="flex-1 space-y-6 overflow-visible">
                     <div className="flex items-center justify-between md:hidden">
                         <FilterSheet />
                     </div>

@@ -10,6 +10,7 @@ export interface ShimmerButtonProps
     borderRadius?: string;
     shimmerDuration?: string;
     background?: string;
+    playSpeed?: number;
     className?: string;
     children?: React.ReactNode;
 }
@@ -21,13 +22,29 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
             shimmerSize = "0.05em",
             shimmerDuration = "3s",
             borderRadius = "100px",
-            background = "rgba(0, 0, 0, 1)",
+            background = "#0c0a09",
+            playSpeed = 1,
             className,
             children,
             ...props
         },
         ref,
     ) => {
+
+        const containerRef = React.useRef<HTMLDivElement>(null);
+        const sparkRef = React.useRef<HTMLDivElement>(null);
+
+        React.useEffect(() => {
+            const animations = [
+                ...(containerRef.current?.getAnimations() || []),
+                ...(sparkRef.current?.getAnimations() || [])
+            ];
+
+            animations.forEach((anim) => {
+                anim.playbackRate = playSpeed;
+            });
+        }, [playSpeed]);
+
         return (
             <button
                 ref={ref}
@@ -55,9 +72,15 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
                     )}
                 >
                     {/* spark container */}
-                    <div className="absolute inset-0 h-[100cqh] animate-slide [aspect-ratio:1] [border-radius:0] [mask:none]">
+                    <div
+                        ref={containerRef}
+                        className="absolute inset-0 h-[100cqh] animate-slide [aspect-ratio:1] [border-radius:0] [mask:none]"
+                    >
                         {/* spark */}
-                        <div className="absolute inset-[-100%] w-auto rotate-0 animate-spin-around [background:conic-gradient(from_calc(270deg-(var(--spread)*0.5)),transparent_0,var(--shimmer-color)_var(--spread),transparent_var(--spread))] [translate:0_0]" />
+                        <div
+                            ref={sparkRef}
+                            className="absolute inset-[-100%] w-auto rotate-0 animate-spin-around [background:conic-gradient(from_calc(270deg-(var(--spread)*0.5)),transparent_0,var(--shimmer-color)_var(--spread),transparent_var(--spread))] [translate:0_0]"
+                        />
                     </div>
                 </div>
 

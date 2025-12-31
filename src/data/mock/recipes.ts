@@ -7,7 +7,7 @@ export const RECIPES: Recipe[] = [
         slug: "classic-old-fashioned",
         description: "The quintessential whiskey cocktail - simple, sophisticated, and timeless.",
         ingredients: [
-            { name: "Bourbon or Rye Whiskey", amount: "2 oz", productId: "wh-003", productName: "Maker's Mark Bourbon" },
+            { name: "Bourbon or Rye Whiskey", amount: "2 oz", productId: "wh-001", productName: "Glenfiddich 12 Year Old" },
             { name: "Sugar cube", amount: "1" },
             { name: "Angostura bitters", amount: "2-3 dashes" },
             { name: "Orange peel", amount: "1" },
@@ -36,9 +36,9 @@ export const RECIPES: Recipe[] = [
         slug: "perfect-margarita",
         description: "The ideal balance of tequila, lime, and orange liqueur - refreshing and perfectly tangy.",
         ingredients: [
-            { name: "Tequila Blanco", amount: "2 oz", productId: "teq-001", productName: "Don Julio Blanco" },
+            { name: "Tequila Blanco", amount: "2 oz", productId: "teq-001", productName: "Don Julio 1942" },
             { name: "Fresh lime juice", amount: "1 oz" },
-            { name: "Orange liqueur", amount: "1 oz", productId: "liq-001", productName: "Grand Marnier" },
+            { name: "Orange liqueur", amount: "1 oz", productId: "liq-001", productName: "Grand Marnier Cordon Rouge" },
             { name: "Agave syrup", amount: "0.5 oz" },
             { name: "Salt for rim", amount: "optional" },
             { name: "Lime wheel", amount: "1" }
@@ -92,7 +92,7 @@ export const RECIPES: Recipe[] = [
         description: "Modern classic combining vodka, coffee liqueur, and fresh espresso for the perfect pick-me-up.",
         ingredients: [
             { name: "Vodka", amount: "2 oz", productId: "vo-001", productName: "Grey Goose Vodka" },
-            { name: "Coffee liqueur", amount: "0.5 oz", productId: "liq-002", productName: "Kahlúa" },
+            { name: "Coffee liqueur", amount: "0.5 oz", productName: "Kahlúa" },
             { name: "Fresh espresso", amount: "1 oz" },
             { name: "Simple syrup", amount: "0.25 oz" },
             { name: "Coffee beans", amount: "3" }
@@ -119,7 +119,7 @@ export const RECIPES: Recipe[] = [
         slug: "mojito",
         description: "Refreshing Cuban cocktail with rum, mint, lime, and a splash of soda.",
         ingredients: [
-            { name: "White rum", amount: "2 oz", productId: "rum-001", productName: "Bacardi Superior" },
+            { name: "White rum", amount: "2 oz", productId: "rum-001", productName: "Ron Zacapa 23" },
             { name: "Fresh lime juice", amount: "0.75 oz" },
             { name: "Simple syrup", amount: "0.5 oz" },
             { name: "Fresh mint leaves", amount: "8-10" },
@@ -150,7 +150,7 @@ export const RECIPES: Recipe[] = [
         slug: "manhattan",
         description: "Classic whiskey cocktail with sweet vermouth and bitters - sophisticated and stirred.",
         ingredients: [
-            { name: "Rye whiskey", amount: "2 oz", productId: "wh-015", productName: "Bulleit Bourbon" },
+            { name: "Rye whiskey", amount: "2 oz", productId: "wh-001", productName: "Glenfiddich 12 Year Old" },
             { name: "Sweet vermouth", amount: "1 oz" },
             { name: "Angostura bitters", amount: "2 dashes" },
             { name: "Maraschino cherry", amount: "1" }
@@ -177,7 +177,7 @@ export const RECIPES: Recipe[] = [
         slug: "gin-and-tonic",
         description: "The perfect G&T with the right ratios, premium ingredients, and proper garnish.",
         ingredients: [
-            { name: "Gin", amount: "2 oz", productId: "gin-003", productName: "Bombay Sapphire" },
+            { name: "Gin", amount: "2 oz", productId: "gin-001", productName: "Hendrick's Gin" },
             { name: "Premium tonic water", amount: "4 oz" },
             { name: "Lime wedge", amount: "1" },
             { name: "Juniper berries", amount: "3 (optional)" }
@@ -205,7 +205,7 @@ export const RECIPES: Recipe[] = [
         slug: "whiskey-sour",
         description: "Perfect balance of bourbon, lemon, and sweetness with a frothy egg white foam.",
         ingredients: [
-            { name: "Bourbon", amount: "2 oz", productId: "wh-005", productName: "Buffalo Trace" },
+            { name: "Bourbon", amount: "2 oz", productId: "wh-001", productName: "Glenfiddich 12 Year Old" },
             { name: "Fresh lemon juice", amount: "0.75 oz" },
             { name: "Simple syrup", amount: "0.75 oz" },
             { name: "Egg white", amount: "1" },
@@ -234,7 +234,7 @@ export const RECIPES: Recipe[] = [
         slug: "paloma",
         description: "Mexico's most popular tequila cocktail - refreshing grapefruit and tequila combination.",
         ingredients: [
-            { name: "Tequila Blanco", amount: "2 oz", productId: "teq-005", productName: "Espolòn Blanco" },
+            { name: "Tequila Blanco", amount: "2 oz", productId: "teq-001", productName: "Don Julio 1942" },
             { name: "Fresh grapefruit juice", amount: "3 oz" },
             { name: "Fresh lime juice", amount: "0.5 oz" },
             { name: "Agave syrup", amount: "0.5 oz" },
@@ -265,7 +265,7 @@ export const RECIPES: Recipe[] = [
         slug: "moscow-mule",
         description: "Vodka, ginger beer, and lime served in the iconic copper mug.",
         ingredients: [
-            { name: "Vodka", amount: "2 oz", productId: "vo-003", productName: "Tito's Vodka" },
+            { name: "Vodka", amount: "2 oz", productId: "vo-001", productName: "Grey Goose Vodka" },
             { name: "Fresh lime juice", amount: "0.5 oz" },
             { name: "Ginger beer", amount: "4 oz" },
             { name: "Lime wedge", amount: "1" },
@@ -293,7 +293,7 @@ export const RECIPES: Recipe[] = [
         slug: "dark-and-stormy",
         description: "Bermuda's national drink - dark rum and ginger beer with lime.",
         ingredients: [
-            { name: "Dark rum", amount: "2 oz", productId: "rum-010", productName: "Goslings Black Seal" },
+            { name: "Dark rum", amount: "2 oz", productId: "rum-001", productName: "Ron Zacapa 23" },
             { name: "Ginger beer", amount: "4 oz" },
             { name: "Fresh lime juice", amount: "0.5 oz" },
             { name: "Lime wedge", amount: "1" }
@@ -348,7 +348,7 @@ export const RECIPES: Recipe[] = [
         slug: "sazerac",
         description: "New Orleans classic - cognac or rye, Peychaud's bitters, and  absinthe rinse.",
         ingredients: [
-            { name: "Rye whiskey or Cognac", amount: "2 oz", productId: "wh-013", productName: "Four Roses Small Batch" },
+            { name: "Rye whiskey or Cognac", amount: "2 oz", productId: "wh-001", productName: "Glenfiddich 12 Year Old" },
             { name: "Simple syrup", amount: "0.25 oz" },
             { name: "Peychaud's bitters", amount: "3 dashes" },
             { name: "Absinthe", amount: "rinse" },
@@ -376,7 +376,7 @@ export const RECIPES: Recipe[] = [
         slug: "french-75",
         description: "Elegant champagne cocktail with gin, lemon, and bubbles.",
         ingredients: [
-            { name: "Gin", amount: "1 oz", productId: "gin-008", productName: "Sipsmith London Dry Gin" },
+            { name: "Gin", amount: "2 oz", productId: "gin-001", productName: "Hendrick's Gin" },
             { name: "Fresh lemon juice", amount: "0.5 oz" },
             { name: "Simple syrup", amount: "0.5 oz" },
             { name: "Champagne or prosecco", amount: "top" },
@@ -404,9 +404,9 @@ export const RECIPES: Recipe[] = [
         slug: "mai-tai",
         description: "Tropical tiki classic with rum, orange liqueur, and almond syrup.",
         ingredients: [
-            { name: "Light rum", amount: "1.5 oz", productId: "rum-001", productName: "Bacardi Superior" },
-            { name: "Dark rum", amount: "0.5 oz", productId: "rum-010", productName: "Goslings Black Seal" },
-            { name: "Orange liqueur", amount: "0.5 oz", productId: "liq-001", productName: "Grand Marnier" },
+            { name: "Light rum", amount: "1.5 oz", productId: "rum-001", productName: "Ron Zacapa 23" },
+            { name: "Dark rum", amount: "0.5 oz" },
+            { name: "Orange liqueur", amount: "0.5 oz", productId: "liq-001", productName: "Grand Marnier Cordon Rouge" },
             { name: "Orgeat syrup", amount: "0.5 oz" },
             { name: "Fresh lime juice", amount: "1 oz" },
             { name: "Mint sprig", amount: "1" },
@@ -434,7 +434,7 @@ export const RECIPES: Recipe[] = [
         slug: "bloody-mary",
         description: "Savory brunch cocktail with vodka, tomato juice, and spices.",
         ingredients: [
-            { name: "Vodka", amount: "2 oz", productId: "vo-004", productName: "Absolut Vodka" },
+            { name: "Vodka", amount: "2 oz", productId: "vo-001", productName: "Grey Goose Vodka" },
             { name: "Tomato juice", amount: "4 oz" },
             { name: "Fresh lemon juice", amount: "0.5 oz" },
             { name: "Worcestershire sauce", amount: "3 dashes" },
@@ -467,7 +467,7 @@ export const RECIPES: Recipe[] = [
         slug: "boulevardier",
         description: "Whiskey-based Negroni variation - bourbon, Campari, and sweet vermouth.",
         ingredients: [
-            { name: "Bourbon", amount: "1.5 oz", productId: "wh-009", productName: "Woodford Reserve" },
+            { name: "Bourbon", amount: "1.5 oz", productId: "wh-001", productName: "Glenfiddich 12 Year Old" },
             { name: "Campari", amount: "1 oz" },
             { name: "Sweet vermouth", amount: "1 oz" },
             { name: "Orange peel", amount: "1" }
@@ -493,7 +493,7 @@ export const RECIPES: Recipe[] = [
         slug: "aviation",
         description: "Beautiful purple cocktail with gin, maraschino, crème de violette, and lemon.",
         ingredients: [
-            { name: "Gin", amount: "2 oz", productId: "gin-006", productName: "Aviation American Gin" },
+            { name: "Gin", amount: "2 oz", productId: "gin-001", productName: "Hendrick's Gin" },
             { name: "Maraschino liqueur", amount: "0.5 oz" },
             { name: "Crème de violette", amount: "0.25 oz" },
             { name: "Fresh lemon juice", amount: "0.75 oz" },
@@ -520,8 +520,8 @@ export const RECIPES: Recipe[] = [
         slug: "cosmopolitan",
         description: "Iconic pink cocktail with vodka, cranberry, lime, and orange liqueur.",
         ingredients: [
-            { name: "Vodka", amount: "1.5 oz", productId: "vo-007", productName: "Ciroc Vodka" },
-            { name: "Orange liqueur", amount: "0.5 oz" },
+            { name: "Vodka", amount: "1.5 oz", productId: "vo-001", productName: "Grey Goose Vodka" },
+            { name: "Orange liqueur", amount: "0.5 oz", productId: "liq-001", productName: "Grand Marnier Cordon Rouge" },
             { name: "Cranberry juice", amount: "1 oz" },
             { name: "Fresh lime juice", amount: "0.5 oz" },
             { name: "Orange peel", amount: "1" }
@@ -547,7 +547,7 @@ export const RECIPES: Recipe[] = [
         slug: "mint-julep",
         description: "Kentucky Derby classic with bourbon, mint, and crushed ice.",
         ingredients: [
-            { name: "Bourbon", amount: "2.5 oz", productId: "wh-011", productName: "Wild Turkey 101" },
+            { name: "Bourbon", amount: "2.5 oz", productId: "wh-001", productName: "Glenfiddich 12 Year Old" },
             { name: "Fresh mint leaves", amount: "8-10" },
             { name: "Simple syrup", amount: "0.5 oz" },
             { name: "Mint sprig", amount: "1 large" },

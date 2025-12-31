@@ -17,7 +17,7 @@ export default async function HomePage() {
     image: product.image,
     price: product.price,
     rating: product.rating || 5,
-    href: `/shop/${product.category?.toLowerCase() || 'spirits'}/${product.slug}`
+    href: `/products/${product.slug}`
   }));
 
   return (

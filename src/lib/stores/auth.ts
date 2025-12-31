@@ -10,11 +10,13 @@ interface User {
     id: string
     email: string
     name: string
+    isAdmin?: boolean
 }
 
 interface AuthState {
     user: User | null
     isAuthenticated: boolean
+    isAdmin: boolean
     isAgeVerified: boolean
     login: (userData: User) => void
     logout: () => void
@@ -27,9 +29,10 @@ export const useAuthStore = create<AuthState>()(
         (set) => ({
             user: null,
             isAuthenticated: false,
+            isAdmin: false,
             isAgeVerified: checkAgeVerification(), // Initialize from localStorage
-            login: (userData) => set({ user: userData, isAuthenticated: true }),
-            logout: () => set({ user: null, isAuthenticated: false }),
+            login: (userData) => set({ user: userData, isAuthenticated: true, isAdmin: userData.isAdmin || false }),
+            logout: () => set({ user: null, isAuthenticated: false, isAdmin: false }),
             setAgeVerified: (verified) => {
                 setAgeVerificationStorage(verified)
                 set({ isAgeVerified: verified })

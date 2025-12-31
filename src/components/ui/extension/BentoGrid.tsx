@@ -19,49 +19,49 @@ const items: BentoItem[] = [
         title: "Premium Whiskey",
         description: "Aged to perfection.",
         href: "/shop?category=whiskey",
-        image: "/bottle.png",
+        image: "https://www.thecocktaildb.com/images/ingredients/Whiskey.png",
         className: "md:col-span-2 md:row-span-2",
     },
     {
         title: "Fine Wine",
         description: "Vineyards from around the world.",
         href: "/shop?category=wine",
-        image: "/bottle.png",
+        image: "https://www.thecocktaildb.com/images/ingredients/Wine.png",
         className: "md:col-span-1 md:row-span-1",
     },
     {
         title: "Craft Beer",
         description: "Hops and barley.",
         href: "/shop?category=beer",
-        image: "/bottle.png",
+        image: "https://www.thecocktaildb.com/images/ingredients/Lager.png",
         className: "md:col-span-1 md:row-span-1",
     },
     {
         title: "Artisanal Gin",
         description: "Botanical bliss.",
         href: "/shop?category=gin",
-        image: "/bottle.png",
+        image: "https://www.thecocktaildb.com/images/ingredients/Gin.png",
         className: "md:col-span-1 md:row-span-1",
     },
     {
         title: "Mezcal & Tequila",
         description: "Spirit of Mexico.",
         href: "/shop?category=mezcal",
-        image: "/bottle.png",
+        image: "https://www.thecocktaildb.com/images/ingredients/Tequila.png",
         className: "md:col-span-1 md:row-span-1",
     },
 ];
 
 export function BentoGrid() {
     return (
-        <section className="py-24 bg-zinc-950 text-white">
+        <section className="py-24 bg-background text-foreground">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col md:flex-row items-end justify-between mb-12 gap-6">
                     <div>
                         <h2 className="text-3xl md:text-5xl font-serif font-medium mb-4">Curated Categories</h2>
-                        <p className="text-zinc-400 max-w-md">Explore our carefully selected collections, from rare finds to everyday favorites.</p>
+                        <p className="text-muted-foreground max-w-md">Explore our carefully selected collections, from rare finds to everyday favorites.</p>
                     </div>
-                    <Link href="/shop" className="text-amber-400 hover:text-amber-300 transition-colors flex items-center gap-2 group text-sm font-medium tracking-widest uppercase">
+                    <Link href="/shop" className="text-amber-500 hover:text-amber-600 transition-colors flex items-center gap-2 group text-sm font-medium tracking-widest uppercase">
                         View All Categories <ArrowUpRight className="w-4 h-4 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
                     </Link>
                 </div>
@@ -84,7 +84,7 @@ function BentoCard({ item, index }: { item: BentoItem; index: number }) {
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
             className={cn(
-                "group relative overflow-hidden rounded-3xl bg-zinc-900 border border-white/5",
+                "group relative overflow-hidden rounded-3xl bg-card border border-border",
                 item.className,
                 // Fallback size for items without explicit span if needed, but grid handles it
                 "min-h-[250px]"
@@ -102,7 +102,7 @@ function BentoCard({ item, index }: { item: BentoItem; index: number }) {
                     fill
                     className="object-cover opacity-60 group-hover:opacity-50 transition-opacity"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0c0a09]/90 via-black/20 to-transparent" />
             </div>
 
             {/* Content */}

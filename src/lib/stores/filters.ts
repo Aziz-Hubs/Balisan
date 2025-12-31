@@ -17,7 +17,7 @@ interface FilterStore {
 export const useFilterStore = create<FilterStore>((set) => ({
     category: null,
     subcategory: null,
-    priceRange: [0, 1000],
+    priceRange: [0, 2000],
     brands: [],
     abvRange: [0, 100],
     minRating: 0,
@@ -28,7 +28,7 @@ export const useFilterStore = create<FilterStore>((set) => ({
     resetFilters: () => set({
         category: null,
         subcategory: null,
-        priceRange: [0, 1000],
+        priceRange: [0, 2000],
         brands: [],
         abvRange: [0, 100],
         minRating: 0,

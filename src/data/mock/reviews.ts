@@ -91,28 +91,13 @@ const generateReviewsForProduct = (
 // Popular products get more reviews with positive bias
 const popularProducts = [
     { id: 'wh-001', count: 15, dist: [10, 4, 1, 0, 0] }, // Glenfiddich 12
-    { id: 'wh-005', count: 18, dist: [13, 4, 1, 0, 0] }, // Buffalo Trace
-    { id: 'wh-007', count: 20, dist: [14, 5, 1, 0, 0] }, // Johnnie Walker Black
-    { id: 'wh-015', count: 14, dist: [9, 4, 1, 0, 0] }, // Bulleit
-    { id: 'vo-003', count: 16, dist: [12, 3, 1, 0, 0] }, // Tito's
-    { id: 'vo-004', count: 18, dist: [12, 5, 1, 0, 0] }, // Absolut
-    { id: 'vo-008', count: 20, dist: [14, 5, 1, 0, 0] }, // Smirnoff
-    { id: 'wine-005', count: 23, dist: [17, 5, 1, 0, 0] }, // Meiomi Pinot
-    { id: 'wine-010', count: 31, dist: [22, 8, 1, 0, 0] }, // Apothic Red
-    { id: 'wine-014', count: 42, dist: [30, 10, 2, 0, 0] }, // 19 Crimes
-    { id: 'wine-017', count: 29, dist: [20, 8, 1, 0, 0] }, // Kendall-Jackson Chard
-    { id: 'wine-020', count: 26, dist: [18, 7, 1, 0, 0] }, // Kim Crawford SB
-    { id: 'wine-026', count: 20, dist: [14, 5, 1, 0, 0] }, // Whispering Angel
+    { id: 'vo-001', count: 16, dist: [12, 3, 1, 0, 0] }, // Grey Goose
+    { id: 'rum-001', count: 15, dist: [10, 4, 1, 0, 0] }, // Ron Zacapa 23
     { id: 'gin-001', count: 13, dist: [9, 3, 1, 0, 0] }, // Hendrick's
-    { id: 'gin-002', count: 16, dist: [11, 4, 1, 0, 0] }, // Tanqueray
-    { id: 'gin-003', count: 17, dist: [12, 4, 1, 0, 0] }, // Bombay Sapphire
-    { id: 'teq-003', count: 16, dist: [12, 3, 1, 0, 0] }, // Casamigos Reposado
-    { id: 'rum-001', count: 15, dist: [10, 4, 1, 0, 0] }, // Bacardi
-    { id: 'rum-002', count: 17, dist: [11, 5, 1, 0, 0] }, // Captain Morgan
-    { id: 'beer-002', count: 29, dist: [20, 8, 1, 0, 0] }, // Guinness
-    { id: 'beer-005', count: 23, dist: [16, 6, 1, 0, 0] }, // Stella
-    { id: 'liq-002', count: 20, dist: [14, 5, 1, 0, 0] }, // Kahlúa
-    { id: 'liq-005', count: 18, dist: [12, 5, 1, 0, 0] }, // Jägermeister
+    { id: 'teq-001', count: 12, dist: [8, 3, 1, 0, 0] }, // Don Julio 1942
+    { id: 'wine-001', count: 23, dist: [17, 5, 1, 0, 0] }, // Château Margaux
+    { id: 'beer-001', count: 29, dist: [20, 8, 1, 0, 0] }, // Heineken
+    { id: 'liq-001', count: 20, dist: [14, 5, 1, 0, 0] }, // Grand Marnier
 ]
 
 // Generate reviews for popular products
@@ -120,50 +105,6 @@ popularProducts.forEach(({ id, count, dist }) => {
     REVIEWS.push(...generateReviewsForProduct(id, count, dist))
 })
 
-// Premium products with fewer but highly positive reviews
-const premiumProducts = [
-    { id: 'wh-004', count: 6, dist: [5, 1, 0, 0, 0] }, // Macallan 18
-    { id: 'wh-006', count: 4, dist: [4, 0, 0, 0, 0] }, // Yamazaki 12
-    { id: 'wh-008', count: 8, dist: [7, 1, 0, 0, 0] }, // Lagavulin 16
-    { id: 'wh-014', count: 5, dist: [4, 1, 0, 0, 0] }, // Hibiki Harmony
-    { id: 'wine-001', count: 3, dist: [3, 0, 0, 0, 0] }, // Château Margaux
-    { id: 'wine-006', count: 5, dist: [5, 0, 0, 0, 0] }, // Penfolds Grange
-    { id: 'wine-009', count: 7, dist: [6, 1, 0, 0, 0] }, // Antinori Tignanello
-    { id: 'wine-013', count: 7, dist: [6, 1, 0, 0, 0] }, // Opus One
-    { id: 'wine-015', count: 5, dist: [5, 0, 0, 0, 0] }, // Ridge Monte Bello
-    { id: 'wine-016', count: 2, dist: [2, 0, 0, 0, 0] }, // Domaine Leflaive
-    { id: 'wine-023', count: 4, dist: [4, 0, 0, 0, 0] }, // Château d'Yquem
-    { id: 'teq-006', count: 10, dist: [9, 1, 0, 0, 0] }, // Don Julio 1942
-    { id: 'teq-007', count: 8, dist: [7, 1, 0, 0, 0] }, // Clase Azul
-    { id: 'liq-001', count: 4, dist: [4, 0, 0, 0, 0] }, // Grand Marnier Cuvée
-]
-
-premiumProducts.forEach(({ id, count, dist }) => {
-    REVIEWS.push(...generateReviewsForProduct(id, count, dist))
-})
-
-// Moderate products with mixed reviews
-const moderateProducts = [
-    { id: 'wh-002', count: 10, dist: [6, 3, 1, 0, 0] }, // Jameson
-    { id: 'wh-003', count: 9, dist: [6, 2, 1, 0, 0] }, // Maker's Mark
-    { id: 'wh-009', count: 9, dist: [6, 2, 1, 0, 0] }, // Woodford Reserve
-    { id: 'wh-010', count: 13, dist: [8, 4, 1, 0, 0] }, // Crown Royal
-    { id: 'vo-001', count: 10, dist: [6, 3, 1, 0, 0] }, // Grey Goose
-    { id: 'vo-002', count: 9, dist: [6, 2, 1, 0, 0] }, // Belvedere
-    { id: 'gin-004', count: 9, dist: [7, 2, 0, 0, 0] }, // The Botanist
-    { id: 'gin-008', count: 10, dist: [7, 2, 1, 0, 0] }, // Sipsmith
-    { id: 'teq-001', count: 12, dist: [8, 3, 1, 0, 0] }, // Don Julio Blanco
-    { id: 'teq-002', count: 14, dist: [10, 3, 1, 0, 0] }, // Patrón Silver
-    { id: 'rum-003', count: 8, dist: [6, 2, 0, 0, 0] }, // Havana Club 7
-    { id: 'rum-004', count: 9, dist: [7, 2, 0, 0, 0] }, // Diplomatico
-    { id: 'wine-002', count: 14, dist: [10, 3, 1, 0, 0] }, // Caymus Cabernet
-    { id: 'wine-004', count: 10, dist: [7, 2, 1, 0, 0] }, // Silver Oak
-    { id: 'wine-019', count: 13, dist: [9, 3, 1, 0, 0] }, // Cloudy Bay SB
-]
-
-moderateProducts.forEach(({ id, count, dist }) => {
-    REVIEWS.push(...generateReviewsForProduct(id, count, dist))
-})
 
 // Helper functions
 export const getReviewsByProductId = (productId: string): Review[] => {

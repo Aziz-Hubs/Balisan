@@ -6,7 +6,8 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
 import { Slider } from "@/components/ui/slider"
-import { Button } from "@/components/ui/button"
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 import { AppliedFilters } from "./AppliedFilters"
 
@@ -16,7 +17,6 @@ export function FilterSidebar() {
         setFilter,
         brands,
         category,
-        resetFilters
     } = useFilterStore()
 
     const [allBrands, setAllBrands] = React.useState<string[]>([])
@@ -46,18 +46,34 @@ export function FilterSidebar() {
                 <AccordionItem value="category">
                     <AccordionTrigger>Category</AccordionTrigger>
                     <AccordionContent>
-                        <div className="space-y-2">
+                        <RadioGroup
+                            value={category?.toLowerCase() || ""}
+                            onValueChange={(value) => setFilter("category", value || null)}
+                            className="space-y-3"
+                        >
                             {categories.map((cat) => (
-                                <div key={cat} className="flex items-center space-x-2">
-                                    <Checkbox
+                                <div key={cat} className="flex items-center space-x-3">
+                                    <RadioGroupItem
+                                        value={cat.toLowerCase()}
                                         id={`cat-${cat}`}
-                                        checked={category?.toLowerCase() === cat.toLowerCase()}
-                                        onCheckedChange={(checked) => setFilter("category", checked ? cat : null)}
                                     />
-                                    <Label htmlFor={`cat-${cat}`} className="text-sm font-normal cursor-pointer">{cat}</Label>
+                                    <Label
+                                        htmlFor={`cat-${cat}`}
+                                        className="text-sm font-normal cursor-pointer flex-1"
+                                    >
+                                        {cat}
+                                    </Label>
                                 </div>
                             ))}
-                        </div>
+                        </RadioGroup>
+                        {category && (
+                            <button
+                                onClick={() => setFilter("category", null)}
+                                className="text-xs text-muted-foreground hover:text-primary mt-3 underline underline-offset-2"
+                            >
+                                Clear category
+                            </button>
+                        )}
                     </AccordionContent>
                 </AccordionItem>
 
@@ -86,27 +102,30 @@ export function FilterSidebar() {
                 <AccordionItem value="brand">
                     <AccordionTrigger>Brand</AccordionTrigger>
                     <AccordionContent>
-                        <div className="space-y-2 max-h-[200px] overflow-y-auto pr-2">
-                            {allBrands.map((brand) => (
-                                <div key={brand} className="flex items-center space-x-2">
-                                    <Checkbox
-                                        id={`brand-${brand}`}
-                                        checked={brands.includes(brand)}
-                                        onCheckedChange={(checked) => {
-                                            if (checked) {
-                                                setFilter("brands", [...brands, brand])
-                                            } else {
-                                                setFilter("brands", brands.filter(b => b !== brand))
-                                            }
-                                        }}
-                                    />
-                                    <Label htmlFor={`brand-${brand}`} className="text-sm font-normal cursor-pointer">{brand}</Label>
-                                </div>
-                            ))}
-                        </div>
+                        <ScrollArea className="h-[200px] pr-3">
+                            <div className="space-y-3">
+                                {allBrands.map((brand) => (
+                                    <div key={brand} className="flex items-center space-x-3">
+                                        <Checkbox
+                                            id={`brand-${brand}`}
+                                            checked={brands.includes(brand)}
+                                            onCheckedChange={(checked) => {
+                                                if (checked) {
+                                                    setFilter("brands", [...brands, brand])
+                                                } else {
+                                                    setFilter("brands", brands.filter(b => b !== brand))
+                                                }
+                                            }}
+                                        />
+                                        <Label htmlFor={`brand-${brand}`} className="text-sm font-normal cursor-pointer flex-1">{brand}</Label>
+                                    </div>
+                                ))}
+                            </div>
+                        </ScrollArea>
                     </AccordionContent>
                 </AccordionItem>
             </Accordion>
         </div>
     )
 }
+

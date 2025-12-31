@@ -31,6 +31,8 @@ export interface Product {
         complexity: number // 0-100
         peatiness: number // 0-100
     }
+    isAwardWinner?: boolean
+    isNew?: boolean
     createdAt: string
 }
 

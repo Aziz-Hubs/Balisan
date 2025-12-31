@@ -24,7 +24,7 @@ const staffPicks = [
 
 export function StaffPicks() {
     return (
-        <section className="py-24 bg-background">
+        <section className="py-24 bg-background overflow-visible">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="text-center mb-16">
                     <div className="text-center mb-16">
@@ -35,7 +35,7 @@ export function StaffPicks() {
                     <div className="flex flex-wrap items-center justify-center gap-10">
                         {staffPicks.map((pick) => (
                             <CardContainer key={pick.id} className="inter-var">
-                                <CardBody className="bg-card relative group/card dark:hover:shadow-2xl dark:hover:shadow-amber-500/[0.1] dark:bg-black dark:border-white/[0.2] border-zinc-200 border w-auto sm:w-[30rem] h-auto rounded-xl p-6 transition-all duration-300">
+                                <CardBody className="bg-card relative group/card dark:hover:shadow-2xl dark:hover:shadow-amber-500/[0.1] dark:bg-[#0c0a09] dark:border-white/[0.2] border-zinc-200 border w-auto sm:w-[30rem] h-auto rounded-xl p-6 transition-all duration-300">
                                     <CardItem
                                         translateZ="50"
                                         className="text-xl font-bold text-card-foreground"
@@ -82,7 +82,7 @@ export function StaffPicks() {
                                         <CardItem
                                             translateZ={20}
                                             as="button"
-                                            className="px-4 py-2 rounded-xl bg-foreground text-background text-xs font-bold hover:bg-balisan-amber hover:text-balisan-black transition-colors"
+                                            className="px-4 py-2 rounded-xl bg-[#0c0a09] border border-white/10 text-white text-xs font-bold hover:bg-balisan-amber hover:text-balisan-black transition-colors"
                                         >
                                             Add to Cart
                                         </CardItem>

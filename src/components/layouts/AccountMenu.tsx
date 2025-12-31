@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { toast } from "sonner"
 import { LogOut, User, Settings, Package } from "lucide-react"
 import { useAuthStore } from "@/lib/stores/auth"
 import { Button } from "@/components/ui/button"
@@ -13,22 +14,30 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { Spotlight } from "@/components/ui/extension/Spotlight"
+import { MovingBorderButton } from "@/components/ui/extension/MovingBorder"
+import { LitUpButton } from "@/components/ui/extension/LitUpButton"
+import { RainbowButton } from "@/components/ui/extension/RainbowButton"
+
+import { useTheme } from "next-themes"
 
 export function AccountMenu() {
     const { user, isAuthenticated, logout } = useAuthStore()
+    const { resolvedTheme } = useTheme()
+    const isDark = resolvedTheme === "dark"
 
     if (!isAuthenticated) {
         return (
-            <div className="hidden md:flex gap-2">
-                <Link href="/login">
-                    <Button variant="ghost" size="sm" className="font-medium">
+            <div className="hidden md:flex items-center gap-3">
+                <Link href="/login" className="block">
+                    <LitUpButton className="h-10 w-28 text-sm font-medium">
                         Login
-                    </Button>
+                    </LitUpButton>
                 </Link>
-                <Link href="/signup">
-                    <Button size="sm" className="font-medium">
+                <Link href="/signup" className="block">
+                    <RainbowButton className="h-10 w-36 shadow-2xl">
                         Sign Up
-                    </Button>
+                    </RainbowButton>
                 </Link>
             </div>
         )
@@ -37,8 +46,8 @@ export function AccountMenu() {
     return (
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 ring-1 ring-border/50 hover:ring-primary/50 transition-all">
-                    <Avatar className="h-8 w-8">
+                <Button variant="ghost" size="icon" className="rounded-full h-8 w-8 ring-1 ring-border/50 hover:ring-primary/50 hover:bg-amber-500/10 transition-all group">
+                    <Avatar className="h-8 w-8 group-hover:scale-105 transition-transform">
                         <AvatarImage src="/placeholder-user.jpg" alt={user?.name || "User"} />
                         <AvatarFallback className="bg-primary/10 text-primary font-medium">
                             {user?.name?.[0]?.toUpperCase() || "U"}
@@ -76,7 +85,10 @@ export function AccountMenu() {
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem
-                    onClick={logout}
+                    onClick={() => {
+                        logout()
+                        toast.success("Signed out successfully")
+                    }}
                     className="cursor-pointer text-destructive focus:text-destructive focus:bg-destructive/10"
                 >
                     <LogOut className="mr-2 h-4 w-4" />

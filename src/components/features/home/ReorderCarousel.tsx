@@ -23,7 +23,7 @@ export function ReorderCarousel({ items }: ReorderCarouselProps) {
     if (items.length === 0) return null;
 
     return (
-        <section className="py-24 bg-zinc-950/30 border-y border-zinc-900/50">
+        <section className="py-24 bg-zinc-950/30 border-y border-zinc-900/50 overflow-visible">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
                     <div>
@@ -48,7 +48,7 @@ export function ReorderCarousel({ items }: ReorderCarouselProps) {
                         {items.map((item) => (
                             <CarouselItem key={item.id} className="pl-4 md:basis-1/3 lg:basis-1/5">
                                 <Card className="h-full flex flex-col overflow-hidden group border-zinc-900 bg-zinc-900/20 hover:border-amber-900/30 transition-colors">
-                                    <Link href={`/shop/${'spirits'}/${item.slug}`} className="flex-1">
+                                    <Link href={`/products/${item.slug}`} className="flex-1">
                                         <div className="relative aspect-square overflow-hidden bg-zinc-900/50 rounded-lg m-4 mb-0">
                                             <Image
                                                 src={item.image}
@@ -81,9 +81,9 @@ export function ReorderCarousel({ items }: ReorderCarouselProps) {
                             </CarouselItem>
                         ))}
                     </CarouselContent>
-                    <div className="hidden md:flex gap-2 absolute -top-16 right-0">
-                        <CarouselPrevious className="relative inset-auto static translate-x-0 bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700" />
-                        <CarouselNext className="relative inset-auto static translate-x-0 bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700" />
+                    <div className="flex gap-2 absolute -top-12 md:-top-16 right-0">
+                        <CarouselPrevious className="relative inset-auto static translate-x-0 h-8 w-8 md:h-10 md:w-10 bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700" />
+                        <CarouselNext className="relative inset-auto static translate-x-0 h-8 w-8 md:h-10 md:w-10 bg-zinc-900 border-zinc-800 text-zinc-400 hover:text-white hover:border-zinc-700" />
                     </div>
                 </Carousel>
             </div>

@@ -60,7 +60,10 @@ export function ProductGallery({ images, modelUrl }: ProductGalleryProps) {
             </div> */}
 
             <div className="relative aspect-square rounded-xl border bg-secondary/5 overflow-hidden group">
-                <div className="w-full h-full" id="product-gallery">
+                <div
+                    className="w-full h-full [&>div]:w-full [&>div]:h-full [&>div>div]:w-full [&>div>div]:h-full"
+                    id="product-gallery"
+                >
                     <Zoom>
                         <div className="relative w-full h-full cursor-zoom-in">
                             <Image
@@ -91,7 +94,7 @@ export function ProductGallery({ images, modelUrl }: ProductGalleryProps) {
                     <button
                         key={idx}
                         className={cn(
-                            "relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all p-2 bg-white",
+                            "relative w-24 h-24 flex-shrink-0 rounded-lg overflow-hidden border-2 transition-all",
                             mainImage === img && viewMode === 'gallery' ? "border-primary ring-2 ring-primary/20" : "border-transparent opacity-70 hover:opacity-100"
                         )}
                         onClick={() => {
@@ -99,7 +102,7 @@ export function ProductGallery({ images, modelUrl }: ProductGalleryProps) {
                             setViewMode('gallery');
                         }}
                     >
-                        <Image src={img} alt={`View ${idx}`} fill className="object-contain p-1" />
+                        <Image src={img} alt={`View ${idx}`} fill className="object-contain" />
                     </button>
                 ))}
             </div>

@@ -22,6 +22,10 @@ import { SearchBar } from "@/components/features/search/SearchBar"
 import { AgeVerificationBadge } from "@/components/layouts/AgeVerificationBadge"
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { LitUpButton } from "@/components/ui/extension/LitUpButton"
+import { RainbowButton } from "@/components/ui/extension/RainbowButton"
+import { Spotlight } from "@/components/ui/extension/Spotlight"
+import { Logo } from "@/components/ui/Logo"
 
 export function MobileNav() {
     const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } = useUIStore()
@@ -68,12 +72,15 @@ export function MobileNav() {
             </SheetTrigger>
             <SheetContent side="left" className="w-[320px] p-0 flex flex-col border-border bg-background backdrop-blur-xl">
                 <div className="p-4 border-b">
-                    <div className="flex items-center justify-between mb-4">
-                        <div className="text-xl font-display font-bold text-primary">Balisan</div>
+                    <div className="flex items-center justify-between mb-4 pr-10">
+                        <Link href="/" onClick={closeMobileMenu}>
+                            <Logo height={32} />
+                        </Link>
                         <AgeVerificationBadge />
                     </div>
                     <SearchBar />
                 </div>
+
 
                 <ScrollArea className="flex-1">
                     <div className="p-4">
@@ -166,26 +173,30 @@ export function MobileNav() {
                     </div>
                 </ScrollArea>
 
-                <div className="border-t p-4 bg-muted/20">
+                <div className="border-t p-6 bg-muted/20 backdrop-blur-sm">
                     {isAuthenticated ? (
-                        <div className="space-y-2">
-                            <Button variant="ghost" className="w-full justify-start gap-2" onClick={() => handleLinkClick("/account")}>
-                                <User className="h-4 w-4" />
+                        <div className="space-y-3">
+                            <Button variant="ghost" className="w-full justify-start gap-3 h-11 text-base" onClick={() => handleLinkClick("/account")}>
+                                <User className="h-5 w-5" />
                                 My Account
                             </Button>
-                            <Button variant="ghost" className="w-full justify-start gap-2 text-destructive hover:text-destructive hover:bg-destructive/10" onClick={() => logout()}>
-                                <LogIn className="h-4 w-4 rotate-180" />
+                            <Button variant="ghost" className="w-full justify-start gap-3 h-11 text-base text-destructive hover:text-destructive hover:bg-destructive/10" onClick={() => logout()}>
+                                <LogIn className="h-5 w-5 rotate-180" />
                                 Sign Out
                             </Button>
                         </div>
                     ) : (
-                        <div className="grid grid-cols-2 gap-2">
-                            <Button variant="outline" className="w-full" onClick={() => handleLinkClick("/login")}>
-                                Login
-                            </Button>
-                            <Button className="w-full" onClick={() => handleLinkClick("/signup")}>
-                                Sign Up
-                            </Button>
+                        <div className="flex flex-col gap-4">
+                            <Link href="/login" className="w-full" onClick={closeMobileMenu}>
+                                <LitUpButton className="w-full h-12 text-sm font-medium">
+                                    Login
+                                </LitUpButton>
+                            </Link>
+                            <Link href="/signup" className="w-full" onClick={closeMobileMenu}>
+                                <RainbowButton className="w-full h-12 shadow-2xl text-sm font-medium">
+                                    Sign Up
+                                </RainbowButton>
+                            </Link>
                         </div>
                     )}
                 </div>
