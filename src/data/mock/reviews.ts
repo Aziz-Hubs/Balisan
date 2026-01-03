@@ -73,15 +73,16 @@ const generateReviewsForProduct = (
 
         reviews.push({
             id: `rev-${String(reviewIndex + i + 1).padStart(4, '0')}`,
-            productId,
-            userId: `user-${String(userIndex).padStart(3, '0')}`,
-            userName: `Customer ${userIndex}`,
+            product_id: productId,
+            user_id: `user-${String(userIndex).padStart(3, '0')}`,
+            user: { full_name: `Customer ${userIndex}`, avatar_url: null },
             rating,
             title: template.title,
             comment: template.comment,
-            verifiedPurchase: Math.random() > 0.2, // 80% verified
-            helpfulCount: Math.floor(Math.random() * 50),
-            createdAt: randomPastDate(12)
+            is_verified_purchase: Math.random() > 0.2, // 80% verified
+            helpful_count: Math.floor(Math.random() * 50),
+            created_at: randomPastDate(12),
+
         })
     }
 
@@ -108,11 +109,11 @@ popularProducts.forEach(({ id, count, dist }) => {
 
 // Helper functions
 export const getReviewsByProductId = (productId: string): Review[] => {
-    return REVIEWS.filter(review => review.productId === productId)
+    return REVIEWS.filter(review => review.product_id === productId)
 }
 
 export const getReviewsByUserId = (userId: string): Review[] => {
-    return REVIEWS.filter(review => review.userId === userId)
+    return REVIEWS.filter(review => review.user_id === userId)
 }
 
 export const getAverageRating = (productId: string): number => {
@@ -126,7 +127,7 @@ export const getAverageRating = (productId: string): number => {
 // Statistics
 export const REVIEW_STATS = {
     total: REVIEWS.length,
-    verified: REVIEWS.filter(r => r.verifiedPurchase).length,
+    verified: REVIEWS.filter(r => r.is_verified_purchase).length,
     byRating: {
         5: REVIEWS.filter(r => r.rating === 5).length,
         4: REVIEWS.filter(r => r.rating === 4).length,

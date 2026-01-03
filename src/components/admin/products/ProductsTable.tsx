@@ -39,6 +39,8 @@ export function ProductsTable() {
     const [isLoading, setIsLoading] = React.useState(true)
     const [isDeleteDialogOpen, setIsDeleteDialogOpen] = React.useState(false)
     const [productToDelete, setProductToDelete] = React.useState<Product | null>(null)
+    const [isBulkDeleteDialogOpen, setIsBulkDeleteDialogOpen] = React.useState(false)
+    const [selectedRowsToDelete, setSelectedRowsToDelete] = React.useState<Product[]>([])
 
     // Fetch data
     const fetchData = React.useCallback(async () => {
@@ -82,6 +84,48 @@ export function ProductsTable() {
         } catch (error) {
             toast.error("Error deleting product")
             console.error(error)
+        }
+    }
+
+    // Bulk Delete Handler
+    const handleBulkDelete = async () => {
+        if (selectedRowsToDelete.length === 0) return
+
+        setIsLoading(true)
+        let successCount = 0
+        let failCount = 0
+
+        try {
+            // Concurrent execution for speed, but could be chunked if many items
+            await Promise.all(selectedRowsToDelete.map(async (product) => {
+                try {
+                    const response = await fetch(`/api/admin/products/${product.id}`, {
+                        method: 'DELETE',
+                    })
+                    const result = await response.json()
+                    if (result.success) successCount++
+                    else failCount++
+                } catch (e) {
+                    failCount++
+                }
+            }))
+
+            if (successCount > 0) {
+                toast.success(`Successfully deleted ${successCount} products`)
+                fetchData() // Refresh data
+            }
+
+            if (failCount > 0) {
+                toast.error(`Failed to delete ${failCount} products`)
+            }
+
+            setSelectedRowsToDelete([]) // Clear selection
+        } catch (error) {
+            toast.error("Error executing bulk delete")
+            console.error(error)
+        } finally {
+            setIsLoading(false)
+            setIsBulkDeleteDialogOpen(false)
         }
     }
 
@@ -153,7 +197,7 @@ export function ProductsTable() {
                 const amount = parseFloat(row.getValue("price"))
                 const formatted = new Intl.NumberFormat("en-US", {
                     style: "currency",
-                    currency: "USD",
+                    currency: "JOD",
                 }).format(amount)
                 return <div className="text-right font-medium">{formatted}</div>
             },
@@ -231,9 +275,8 @@ export function ProductsTable() {
                 searchPlaceholder="Filter products..."
                 isLoading={isLoading}
                 onDelete={(rows) => {
-                    // Bulk delete implementation would go here
-                    console.log("Delete rows:", rows)
-                    alert(`Bulk delete not implemented yet. Selected ${rows.length} items.`)
+                    setSelectedRowsToDelete(rows)
+                    setIsBulkDeleteDialogOpen(true)
                 }}
             />
 
@@ -245,6 +288,17 @@ export function ProductsTable() {
                 confirmText="Delete"
                 variant="destructive"
                 onConfirm={handleDelete}
+                requireConfirmation={true}
+            />
+
+            <ConfirmDialog
+                open={isBulkDeleteDialogOpen}
+                onOpenChange={setIsBulkDeleteDialogOpen}
+                title="Delete Multiple Products"
+                description={`Are you sure you want to delete ${selectedRowsToDelete.length} selected products? This action cannot be undone.`}
+                confirmText={`Delete ${selectedRowsToDelete.length} Items`}
+                variant="destructive"
+                onConfirm={handleBulkDelete}
                 requireConfirmation={true}
             />
         </>

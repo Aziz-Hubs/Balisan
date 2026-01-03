@@ -4,8 +4,7 @@ import * as React from "react"
 import Image from "next/image"
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import 'photoswipe/style.css';
-import Zoom from 'react-medium-image-zoom'
-import 'react-medium-image-zoom/dist/styles.css'
+import { Lens } from "@/components/ui/extension/Lens"
 import { cn } from "@/lib/utils"
 import { Maximize2 } from "lucide-react"
 
@@ -37,35 +36,13 @@ export function ProductGallery({ images, modelUrl }: ProductGalleryProps) {
 
     return (
         <div className="flex flex-col gap-6">
-            {/* View Mode Switcher - Disabled due to dependency issues */}
-            {/* <div className="flex gap-2 justify-center lg:justify-start">
-                <button
-                    onClick={() => setViewMode('gallery')}
-                    className={cn(
-                        "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all",
-                        viewMode === 'gallery' ? "bg-primary text-white shadow-md" : "bg-secondary/50 text-secondary-foreground hover:bg-secondary"
-                    )}
-                >
-                    <Maximize2 className="h-4 w-4" /> Gallery
-                </button>
-                <button
-                    onClick={() => setViewMode('3d')}
-                    className={cn(
-                        "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all",
-                        viewMode === '3d' ? "bg-primary text-white shadow-md" : "bg-secondary/50 text-secondary-foreground hover:bg-secondary"
-                    )}
-                >
-                    <Box className="h-4 w-4" /> 3D View
-                </button>
-            </div> */}
-
             <div className="relative aspect-square rounded-xl border bg-secondary/5 overflow-hidden group">
                 <div
                     className="w-full h-full [&>div]:w-full [&>div]:h-full [&>div>div]:w-full [&>div>div]:h-full"
                     id="product-gallery"
                 >
-                    <Zoom>
-                        <div className="relative w-full h-full cursor-zoom-in">
+                    <Lens className="w-full h-full cursor-crosshair" zoomFactor={2} lensSize={200}>
+                        <div className="relative w-full h-full">
                             <Image
                                 src={mainImage}
                                 alt="Product image"
@@ -79,12 +56,13 @@ export function ProductGallery({ images, modelUrl }: ProductGalleryProps) {
                                 data-pswp-height="1200"
                                 target="_blank"
                                 rel="noreferrer"
-                                className="absolute bottom-4 right-4 p-2 bg-white/80 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"
+                                className="absolute bottom-4 right-4 p-2 bg-white/80 rounded-full shadow-sm opacity-0 group-hover:opacity-100 transition-opacity z-20 hover:bg-white"
+                                title="Enlarge image"
                             >
                                 <Maximize2 className="h-5 w-5 text-gray-700" />
                             </a>
                         </div>
-                    </Zoom>
+                    </Lens>
                 </div>
             </div>
 

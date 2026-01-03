@@ -1,54 +1,98 @@
 "use client"
 
 import * as React from "react"
-import { useFilterStore } from "@/lib/stores/filters"
+import { useRouter, useSearchParams, usePathname } from "next/navigation"
 import { X } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 
 export function AppliedFilters() {
-    const {
-        category,
-        brands,
-        priceRange,
-        setFilter,
-        resetFilters
-    } = useFilterStore()
+    const router = useRouter()
+    const pathname = usePathname()
+    const searchParams = useSearchParams()
 
-    const hasFilters = category !== null || brands.length > 0 || (priceRange[0] > 0 || priceRange[1] < 2000)
+    const category = searchParams.get("category")
+    const brandParams = searchParams.getAll("brand")
+    const countryParams = searchParams.getAll("country")
+    const regionParams = searchParams.getAll("region")
+    const minPriceParam = searchParams.get("minPrice")
+    const maxPriceParam = searchParams.get("maxPrice")
+
+    const hasFilters = category !== null || brandParams.length > 0 || countryParams.length > 0 || regionParams.length > 0 || minPriceParam !== null || maxPriceParam !== null
 
     if (!hasFilters) return null
+
+    const updateUrl = (updates: Record<string, string | string[] | null>) => {
+        const params = new URLSearchParams(searchParams.toString())
+        Object.entries(updates).forEach(([key, value]) => {
+            if (value === null) {
+                params.delete(key)
+            } else if (Array.isArray(value)) {
+                params.delete(key)
+                value.forEach(v => params.append(key, v))
+            } else {
+                params.set(key, value)
+            }
+        })
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false })
+    }
+
+    const clearAll = () => {
+        router.replace(pathname, { scroll: false })
+    }
 
     return (
         <div className="flex flex-wrap gap-2 mb-6">
             {category && (
                 <Badge variant="secondary" className="flex items-center gap-1 pl-2 pr-1 py-1 rounded-md">
                     Category: {category}
-                    <button onClick={() => setFilter("category", null)} className="hover:text-destructive">
+                    <button onClick={() => updateUrl({ category: null })} className="hover:text-destructive">
                         <X className="h-3 w-3" />
                     </button>
                 </Badge>
             )}
-            {brands.map((brand) => (
+            {brandParams.map((brand) => (
                 <Badge key={brand} variant="secondary" className="flex items-center gap-1 pl-2 pr-1 py-1 rounded-md">
                     Brand: {brand}
                     <button
-                        onClick={() => setFilter("brands", brands.filter(b => b !== brand))}
+                        onClick={() => updateUrl({ brand: brandParams.filter(b => b !== brand) })}
                         className="hover:text-destructive"
                     >
                         <X className="h-3 w-3" />
                     </button>
                 </Badge>
             ))}
-            {(priceRange[0] > 0 || priceRange[1] < 2000) && (
+            {countryParams.map((country) => (
+                <Badge key={country} variant="secondary" className="flex items-center gap-1 pl-2 pr-1 py-1 rounded-md">
+                    Country: {country}
+                    <button
+                        onClick={() => updateUrl({ country: countryParams.filter(c => c !== country) })}
+                        className="hover:text-destructive"
+                    >
+                        <X className="h-3 w-3" />
+                    </button>
+                </Badge>
+            ))}
+            {regionParams.map((region) => (
+                <Badge key={region} variant="secondary" className="flex items-center gap-1 pl-2 pr-1 py-1 rounded-md">
+                    Region: {region}
+                    <button
+                        onClick={() => updateUrl({ region: regionParams.filter(r => r !== region) })}
+                        className="hover:text-destructive"
+                    >
+                        <X className="h-3 w-3" />
+                    </button>
+                </Badge>
+            ))}
+            {(minPriceParam || maxPriceParam) && (
                 <Badge variant="secondary" className="flex items-center gap-1 pl-2 pr-1 py-1 rounded-md">
-                    Price: ${priceRange[0]} - ${priceRange[1]}+
-                    <button onClick={() => setFilter("priceRange", [0, 2000])} className="hover:text-destructive">
+                    Price: ${minPriceParam || 0} - ${maxPriceParam || 2000}+
+                    <button onClick={() => updateUrl({ minPrice: null, maxPrice: null })} className="hover:text-destructive">
                         <X className="h-3 w-3" />
                     </button>
                 </Badge>
             )}
             <button
-                onClick={resetFilters}
+                onClick={clearAll}
                 className="text-xs text-muted-foreground hover:text-primary transition-colors underline underline-offset-2 ml-1"
             >
                 Reset all

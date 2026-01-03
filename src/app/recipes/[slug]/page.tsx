@@ -1,4 +1,5 @@
 import { getRecipe, getRecipes } from '@/services';
+import { RecipeIngredient } from '@/types';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import { Clock, ChefHat } from 'lucide-react';
@@ -15,14 +16,17 @@ export default async function RecipeDetailPage({ params }: PageProps) {
     if (!recipe) notFound();
 
     // Filter ingredients that are shoppable (have a productId and price)
-    const shoppableIngredients = recipe.ingredients
-        .filter(ing => ing.productId && ing.price)
-        .map(ing => ({
-            id: ing.productId!,
-            name: ing.productName || ing.name,
-            price: ing.price!,
-            image: ing.image || '/placeholder.png'
-        }));
+    const shoppableIngredients = (recipe.ingredients || [])
+        .filter((ing: any) => ing.product_id && (ing.product as any)?.price)
+        .map((ing: any) => {
+            const product = ing.product as any;
+            return {
+                id: ing.product_id!,
+                name: product?.name || ing.name,
+                price: product?.price || 0,
+                image: product?.image || '/placeholder.png'
+            };
+        });
 
     return (
         <div className="container mx-auto max-w-5xl px-4 py-16 md:py-24">
@@ -32,13 +36,13 @@ export default async function RecipeDetailPage({ params }: PageProps) {
                         <h1 className="text-4xl md:text-5xl font-bold tracking-tight">{recipe.title}</h1>
                         <div className="flex items-center gap-6 text-sm text-muted-foreground uppercase tracking-widest font-medium">
                             <span className="flex items-center gap-2">
-                                <Clock className="h-4 w-4" /> {recipe.prepTime} mins
+                                <Clock className="h-4 w-4" /> {recipe.prep_time} mins
                             </span>
                             <span className="flex items-center gap-2">
                                 <ChefHat className="h-4 w-4" /> {recipe.difficulty}
                             </span>
                             <span className="px-2 py-1 bg-muted rounded text-xs">
-                                {recipe.category}
+                                Cocktail
                             </span>
                         </div>
                         <p className="text-xl text-muted-foreground leading-relaxed">
@@ -48,7 +52,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
 
                     <div className="relative aspect-video overflow-hidden rounded-3xl shadow-xl">
                         <Image
-                            src={recipe.image}
+                            src={recipe.image_url || '/placeholder.png'}
                             alt={recipe.title}
                             fill
                             className="object-cover"
@@ -60,7 +64,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
                         <div>
                             <h2 className="text-2xl font-bold mb-4">Ingredients</h2>
                             <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 list-none p-0">
-                                {recipe.ingredients.map((ing, idx) => (
+                                {(recipe.ingredients || []).map((ing: any, idx: number) => (
                                     <li key={idx} className="flex gap-2">
                                         <span className="font-bold text-amber-600">•</span>
                                         <span><strong>{ing.amount}</strong> {ing.name}</span>
@@ -72,7 +76,7 @@ export default async function RecipeDetailPage({ params }: PageProps) {
                         <div>
                             <h2 className="text-2xl font-bold mb-4">Preparation</h2>
                             <ol className="space-y-6">
-                                {recipe.instructions.map((step, idx) => (
+                                {((recipe.instructions as unknown as string[]) || []).map((step, idx) => (
                                     <li key={idx} className="flex gap-4">
                                         <span className="flex items-center justify-center h-8 w-8 rounded-full bg-amber-100 text-amber-900 font-bold shrink-0">
                                             {idx + 1}

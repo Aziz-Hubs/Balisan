@@ -42,8 +42,8 @@ export function CartDrawer() {
         .map(p => ({
             id: p.id,
             name: p.name,
-            brand: p.brand,
-            image: p.image,
+            brand: p.brand?.name || '',
+            image: p.image!,
             price: p.price,
             href: `/shop/${p.slug}`
         }))

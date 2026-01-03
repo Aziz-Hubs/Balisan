@@ -1,0 +1,31 @@
+
+> balisan-web@0.1.0 build
+> next build
+
+⚠ Warning: Next.js inferred your workspace root, but it may not be correct.
+ We detected multiple lockfiles and selected the directory of /home/aziz/package-lock.json as the root directory.
+ To silence this warning, set `turbopack.root` in your Next.js config, or consider removing one of the lockfiles if it's not needed.
+   See https://nextjs.org/docs/app/api-reference/config/next-config-js/turbopack#root-directory for more information.
+ Detected additional lockfiles: 
+   * /home/aziz/projects/frontend/khmara/balisan-web/package-lock.json
+
+▲ Next.js 16.1.1 (Turbopack)
+- Environments: .env.local
+
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+  Creating an optimized production build ...
+✓ Compiled successfully in 9.9s
+  Running TypeScript ...
+Failed to compile.
+
+./src/data/mock/index.ts:196:34
+Type error: Property 'customerType' does not exist on type '{ avatar_url: string | null; created_at: string | null; email: string | null; full_name: string | null; id: string; is_age_verified: boolean | null; phone: string | null; preferences: Json; role: "admin" | ... 2 more ... | null; stripe_customer_id: string | null; updated_at: string | null; }'.
+
+[0m [90m 194 |[39m     users[33m:[39m {
+ [90m 195 |[39m         total[33m:[39m [33mUSERS[39m[33m.[39mlength[33m,[39m
+[31m[1m>[22m[39m[90m 196 |[39m         vip[33m:[39m [33mUSERS[39m[33m.[39mfilter(u [33m=>[39m u[33m.[39mcustomerType [33m===[39m [32m'vip'[39m)[33m.[39mlength[33m,[39m
+ [90m     |[39m                                  [31m[1m^[22m[39m
+ [90m 197 |[39m         regular[33m:[39m [33mUSERS[39m[33m.[39mfilter(u [33m=>[39m u[33m.[39mcustomerType [33m===[39m [32m'regular'[39m)[33m.[39mlength[33m,[39m
+ [90m 198 |[39m         [36mnew[39m[33m:[39m [33mUSERS[39m[33m.[39mfilter(u [33m=>[39m u[33m.[39mcustomerType [33m===[39m [32m'new'[39m)[33m.[39mlength
+ [90m 199 |[39m     }[33m,[39m[0m
+Next.js build worker exited with code: 1 and signal: null

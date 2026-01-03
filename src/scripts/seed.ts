@@ -1,279 +1,400 @@
-import { loadEnvConfig } from '@next/env'
-import path from 'path'
-import { createClient } from '@supabase/supabase-js'
-import { ALL_PRODUCTS, USERS, REVIEWS, ORDERS } from '../data/mock'
 
-// Load environment variables using Next.js loader
-loadEnvConfig(process.cwd())
+import { createClient } from '@supabase/supabase-js';
+import fs from 'fs';
+import path from 'path';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY
-
-if (!supabaseUrl || !supabaseServiceKey) {
-    console.error('Missing Supabase environment variables')
-    process.exit(1)
+// --- Environment Setup ---
+function loadEnv() {
+    try {
+        const envPath = path.resolve(process.cwd(), '.env.local');
+        if (!fs.existsSync(envPath)) {
+            console.warn('No .env.local file found at:', envPath);
+            return;
+        }
+        const envConfig = fs.readFileSync(envPath, 'utf8');
+        envConfig.split('\n').forEach((line) => {
+            const match = line.match(/^([^=]+)=(.*)$/);
+            if (match) {
+                const key = match[1].trim();
+                const value = match[2].trim().replace(/^['"]|['"]$/g, ''); // Remove quotes
+                if (!process.env[key]) {
+                    process.env[key] = value;
+                }
+            }
+        });
+    } catch (e) {
+        console.error('Error loading .env.local:', e);
+    }
 }
 
-const supabase = createClient(supabaseUrl, supabaseServiceKey)
+loadEnv();
+
+const SUPABASE_URL = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+    console.error('Missing Supabase credentials. Ensure NEXT_PUBLIC_SUPABASE_URL and SUPABASE_SERVICE_ROLE_KEY are set in .env.local');
+    process.exit(1);
+}
+
+const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
+
+// --- Data Definitions ---
+
+const CATEGORIES = [
+    {
+        name: 'Spirits', slug: 'spirits', children: [
+            { name: 'Whiskey', slug: 'whiskey' },
+            { name: 'Vodka', slug: 'vodka' },
+            { name: 'Gin', slug: 'gin' },
+            { name: 'Rum', slug: 'rum' },
+            { name: 'Tequila', slug: 'tequila' }
+        ]
+    },
+    {
+        name: 'Wine', slug: 'wine', children: [
+            { name: 'Red Wine', slug: 'red-wine' },
+            { name: 'White Wine', slug: 'white-wine' },
+            { name: 'Champagne', slug: 'champagne' }
+        ]
+    },
+    {
+        name: 'Mixers', slug: 'mixers', children: [
+            { name: 'Tonic', slug: 'tonic' },
+            { name: 'Soda', slug: 'soda' }
+        ]
+    }
+];
+
+const BRANDS = [
+    { name: 'Macallan', slug: 'macallan' },
+    { name: 'Grey Goose', slug: 'grey-goose' },
+    { name: 'Hendrick\'s', slug: 'hendricks' },
+    { name: 'Moët & Chandon', slug: 'moet-chandon' },
+    { name: 'Patron', slug: 'patron' },
+    { name: 'Penfolds', slug: 'penfolds' },
+    { name: 'Fever-Tree', slug: 'fever-tree' },
+    { name: 'Glenfiddich', slug: 'glenfiddich' },
+    { name: 'Dom Pérignon', slug: 'dom-perignon' },
+    { name: 'Lagavulin', slug: 'lagavulin' },
+    { name: 'Belvedere', slug: 'belvedere' },
+    { name: 'Don Julio', slug: 'don-julio' },
+    { name: 'Cloudy Bay', slug: 'cloudy-bay' },
+    { name: 'Château d\'Esclans', slug: 'chateau-desclans' },
+    { name: 'Suntory', slug: 'suntory' }
+];
+
+const PRODUCTS_DATA = [
+    {
+        name: 'Macallan 12 Year Double Cask',
+        slug: 'macallan-12-double-cask',
+        brand: 'Macallan',
+        category: 'Whiskey',
+        price: 85.00,
+        description: 'The Macallan Double Cask 12 Years Old forms part of our Double Cask range which marries the classic Macallan style and the unmistakable sweetness of American oak.',
+        images: ['/images/placeholder-bottle-1.png'],
+        is_featured: true,
+        is_new: false,
+        flavor_profile: { notes: ['Honey', 'Citrus', 'Ginger'] }
+    },
+    {
+        name: 'Macallan 18 Year Sherry Oak',
+        slug: 'macallan-18-sherry-oak',
+        brand: 'Macallan',
+        category: 'Whiskey',
+        price: 450.00,
+        description: 'Iconic Macallan with heavy sherry influence. Rich, dried fruits and ginger, with a hint of wood smoke.',
+        images: ['/images/placeholder-bottle-2.png'],
+        is_featured: true,
+        is_new: false,
+        flavor_profile: { notes: ['Dried Fruit', 'Spice', 'Orange'] }
+    },
+    {
+        name: 'Grey Goose Vodka',
+        slug: 'grey-goose-vodka',
+        brand: 'Grey Goose',
+        category: 'Vodka',
+        price: 45.00,
+        description: 'Made from the finest French ingredients, Grey Goose is known for its smooth and distinct character.',
+        images: ['/images/placeholder-bottle-3.png'],
+        is_featured: false,
+        is_new: false,
+        flavor_profile: { notes: ['Clean', 'Grain', 'Almond'] }
+    },
+    {
+        name: 'Hendrick\'s Gin',
+        slug: 'hendricks-gin',
+        brand: 'Hendrick\'s',
+        category: 'Gin',
+        price: 38.00,
+        description: 'A curious infusion of cucumber and rose, Hendrick\'s is a distinct and floral gin.',
+        images: ['/images/placeholder-bottle-4.png'],
+        is_featured: true,
+        is_new: false,
+        flavor_profile: { notes: ['Cucumber', 'Rose', 'Juniper'] }
+    },
+    {
+        name: 'Moët & Chandon Impérial',
+        slug: 'moet-chandon-imperial',
+        brand: 'Moët & Chandon',
+        category: 'Champagne',
+        price: 60.00,
+        description: 'The flagship of Moët & Chandon, Impérial is the most accomplished and universal expression of its style.',
+        images: ['/images/placeholder-bottle-5.png'],
+        is_featured: false,
+        is_new: true,
+        flavor_profile: { notes: ['Apple', 'Pear', 'Citrus'] }
+    },
+    {
+        name: 'Patron Silver',
+        slug: 'patron-silver',
+        brand: 'Patron',
+        category: 'Tequila',
+        price: 55.00,
+        description: 'The perfect white spirit made from the finest Weber Blue Agave.',
+        images: ['/images/placeholder-bottle-6.png'],
+        is_featured: false,
+        is_new: false,
+        flavor_profile: { notes: ['Agave', 'Citrus', 'Pepper'] }
+    },
+    {
+        name: 'Penfolds Bin 389 Cabernet Shiraz',
+        slug: 'penfolds-bin-389',
+        brand: 'Penfolds',
+        category: 'Red Wine',
+        price: 80.00,
+        description: 'Often referred to as "Baby Grange", Bin 389 is one of Australia\'s most collected wines.',
+        images: ['/images/placeholder-bottle-7.png'],
+        is_featured: true,
+        is_new: false,
+        flavor_profile: { notes: ['Dark Berries', 'Oak', 'Vanilla'] }
+    },
+    {
+        name: 'Fever-Tree Indian Tonic Water',
+        slug: 'fever-tree-tonic',
+        brand: 'Fever-Tree',
+        category: 'Tonic',
+        price: 6.00,
+        description: 'Premium tonic water made with fine quinine from the Congo and spring water.',
+        images: ['/images/placeholder-bottle-8.png'],
+        is_featured: false,
+        is_new: false,
+        flavor_profile: { notes: ['Bitter', 'Clean', 'Citrus'] }
+    },
+    {
+        name: 'Glenfiddich 12 Year',
+        slug: 'glenfiddich-12',
+        brand: 'Glenfiddich',
+        category: 'Whiskey',
+        price: 50.00,
+        description: 'The world\'s most awarded single malt Scotch whisky.',
+        images: ['/images/placeholder-bottle-9.png'],
+        is_featured: false,
+        is_new: true,
+        flavor_profile: { notes: ['Pear', 'Oak', 'Malt'] }
+    },
+    {
+        name: 'Lagavulin 16 Year',
+        slug: 'lagavulin-16',
+        brand: 'Lagavulin',
+        category: 'Whiskey',
+        price: 95.00,
+        description: 'A massive peat-smoke typical of southern Islay - but also offering richness and a dryness that turns it into a truly interesting dram.',
+        images: ['/images/placeholder-bottle-10.png'],
+        is_featured: true,
+        is_new: false,
+        flavor_profile: { notes: ['Smoke', 'Peat', 'Sea Salt'] }
+    },
+    {
+        name: 'Belvedere Vodka',
+        slug: 'belvedere-vodka',
+        brand: 'Belvedere',
+        category: 'Vodka',
+        price: 48.00,
+        description: 'Produced in a Polish distillery, Belvedere, which means "beautiful to see", is named after the Belweder Palace in Warsaw.',
+        images: ['/images/placeholder-bottle-11.png'],
+        is_featured: false,
+        is_new: false,
+        flavor_profile: { notes: ['Vanilla', 'Rye', 'White Pepper'] }
+    },
+    {
+        name: 'Don Julio 1942',
+        slug: 'don-julio-1942',
+        brand: 'Don Julio',
+        category: 'Tequila',
+        price: 160.00,
+        description: 'Celebrated in exclusive cocktail bars, restaurants and nightclubs, the iconic Don Julio 1942 Tequila is the choice of connoisseurs around the globe.',
+        images: ['/images/placeholder-bottle-12.png'],
+        is_featured: true,
+        is_new: false,
+        flavor_profile: { notes: ['Caramel', 'Chocolate', 'Oak'] }
+    },
+    {
+        name: 'Dom Pérignon Vintage',
+        slug: 'dom-perignon-vintage',
+        brand: 'Dom Pérignon',
+        category: 'Champagne',
+        price: 250.00,
+        description: 'Dom Pérignon is vintage champagne only. Each vintage is a creation, singular and unique.',
+        images: ['/images/placeholder-bottle-13.png'],
+        is_featured: true,
+        is_new: false,
+        flavor_profile: { notes: ['Floral', 'Fruity', 'Toasty'] }
+    },
+    {
+        name: 'Cloudy Bay Sauvignon Blanc',
+        slug: 'cloudy-bay-sb',
+        brand: 'Cloudy Bay',
+        category: 'White Wine',
+        price: 35.00,
+        description: 'Vibrant and expressive, Cloudy Bay Sauvignon Blanc is the wine that introduced New Zealand wine to the world.',
+        images: ['/images/placeholder-bottle-14.png'],
+        is_featured: false,
+        is_new: true,
+        flavor_profile: { notes: ['Lime', 'Grapefruit', 'Passionfruit'] }
+    },
+    {
+        name: 'Whispering Angel Rosé',
+        slug: 'whispering-angel',
+        brand: 'Château d\'Esclans',
+        category: 'Red Wine', // Using Red Wine as proxy for Rose if not exists, but I should add Rose.
+        price: 40.00,
+        description: 'The benchmark for Provence Rosé. Fresh, crisp, and elegant.',
+        images: ['/images/placeholder-bottle-15.png'],
+        is_featured: false,
+        is_new: false,
+        flavor_profile: { notes: ['Strawberry', 'Citrus', 'Mineral'] }
+    },
+    {
+        name: 'Hibiki Japanese Harmony',
+        slug: 'hibiki-harmony',
+        brand: 'Suntory',
+        category: 'Whiskey',
+        price: 90.00,
+        description: 'Hibiki Japanese Harmony is a blend of Japanese malt and grain whiskies from Yamazaki, Hakushu and Chita.',
+        images: ['/images/placeholder-bottle-16.png'],
+        is_featured: true,
+        is_new: true,
+        flavor_profile: { notes: ['Honey', 'Orange', 'Oak'] }
+    },
+    {
+        name: 'Penfolds Bin 28 Kalimna Shiraz',
+        slug: 'penfolds-bin-28',
+        brand: 'Penfolds',
+        category: 'Red Wine',
+        price: 45.00,
+        description: 'A showcase of warm-climate Australian Shiraz – ripe, robust and generously flavoured.',
+        images: ['/images/placeholder-bottle-17.png'],
+        is_featured: false,
+        is_new: false,
+        flavor_profile: { notes: ['Blackberry', 'Chocolate', 'Spice'] }
+    },
+    {
+        name: 'Casamigos Blanco',
+        slug: 'casamigos-blanco',
+        // We use Don Julio as proxy for this demo brand
+        brand: 'Don Julio',
+        category: 'Tequila',
+        price: 60.00,
+        description: 'Crisp and clean with hints of citrus, vanilla and sweet agave, with a long smooth finish.',
+        images: ['/images/placeholder-bottle-18.png'],
+        is_featured: false,
+        is_new: false,
+        flavor_profile: { notes: ['Agave', 'Citrus', 'Vanilla'] }
+    }
+];
 
 async function seed() {
-    console.log('🌱 Starting seed process...')
+    console.log('🌱 Starting database seed...');
 
-    // 1. Seed Categories
-    console.log('📦 Seeding categories...')
-    const uniqueCategories = Array.from(new Set(ALL_PRODUCTS.map(p => p.category)))
+    // 1. Clean existing data (optional, but good for repeatability if needed manually)
+    // For now, we assume empty or just append, but let's try not to duplicate if slugs exist.
+    // Actually, let's just use upsert for everything based on slug.
 
-    for (const catName of uniqueCategories) {
-        const slug = catName.toLowerCase().replace(/\s+/g, '-')
-        const { error } = await supabase
-            .from('categories')
-            .upsert({ name: catName, slug }, { onConflict: 'slug' })
-
-        if (error) console.error(`Error seeding category ${catName}:`, error)
-    }
-
-    // 2. Fetch all categories to create a mapping
-    console.log('📦 Fetching categories...')
-    const { data: categories, error: catError } = await supabase
-        .from('categories')
-        .select('id, name')
-
-    if (catError) {
-        console.error('Error fetching categories:', catError)
-        process.exit(1)
-    }
-
-    const categoryMap = new Map(
-        categories.map((c: any) => [c.name.toLowerCase(), c.id])
-    )
-
-    // 2. Insert Products
-    console.log('🍾 Seeding products...')
-
-    // Transform products to match DB schema
-    const dbProducts = ALL_PRODUCTS.map((p) => {
-        const categoryId = categoryMap.get(p.category.toLowerCase())
-        if (!categoryId) {
-            console.warn(`⚠️  Category not found for product: ${p.name} (${p.category})`)
-        }
-
-        return {
-            // id: p.id, // Let Supabase generate UUIDs or ensure mock IDs are UUIDs. 
-            // The schema says id is default uuid_generate_v4(). Mock IDs might be simple strings like '1', '2'.
-            // If we keep mock IDs, we must ensure they are UUIDs or update the schema to accept text/int.
-            // Schema defines ID as UUID. Mock IDs like "1" will FAIL. 
-            // Strategy: Omit ID and let Supabase generate new ones.
-            // BUT we need to preserve relationships for Reviews/Orders.
-            // SOLUTION: Create a mapping of Old Mock ID -> New UUID.
-
-            name: p.name,
-            slug: p.slug,
-            brand: p.brand,
-            sku: p.sku || `SKU-${Math.random().toString(36).substring(7)}`, // Fallback if missing
-            price: p.price,
-            discount_price: p.discountPrice,
-            in_stock: p.inStock,
-            stock_quantity: p.stockQuantity,
-            category_id: categoryId,
-            subcategory: p.subcategory,
-            tags: p.tags,
-            description: p.description,
-            tasting_notes: p.tastingNotes,
-            ingredients: p.ingredients,
-            abv: p.abv,
-            volume: p.volume,
-            region: p.region,
-            country: p.country,
-            image: p.image,
-            images: p.images,
-            rating: p.rating,
-            review_count: p.reviewCount,
-            // created_at: p.createdAt // Let DB set this
-        }
-    })
-
-    // We need to insert one by one or in batches and get the IDs back to map them.
-    // Or upsert using SLUG which is unique.
-    const productIdMap = new Map<string, string>() // MockID -> RealUUID
-
-    for (const p of ALL_PRODUCTS) {
-        const categoryId = categoryMap.get(p.category.toLowerCase())
-
-        // Construct payload matching actual schema
-        const payload = {
-            name: p.name,
-            slug: p.slug,
-            brand: p.brand,
-            price: p.price,
-            discount_price: p.discountPrice,
-            in_stock: p.inStock,
-            stock_quantity: p.stockQuantity,
-            category_id: categoryId,
-            description: p.description,
-            abv: p.abv,
-            images: p.images || (p.image ? [p.image] : []),
-            rating: p.rating,
-            review_count: p.reviewCount,
-            // Flexible fields stored in attributes JSONB
-            attributes: {
-                sku: p.sku,
-                subcategory: p.subcategory,
-                tags: p.tags,
-                volume: p.volume,
-                region: p.region,
-                country: p.country,
-                ingredients: p.ingredients
-            },
-            // Tasting notes as JSONB
-            tasting_notes: p.tastingNotes ? { notes: p.tastingNotes } : {}
-        }
-
+    // 2. Insert Brands
+    console.log('Creating Brands...');
+    const brandMap = new Map();
+    for (const brand of BRANDS) {
         const { data, error } = await supabase
-            .from('products')
-            .upsert(payload, { onConflict: 'slug' })
-            .select('id')
-            .single()
+            .from('brands')
+            .upsert(brand, { onConflict: 'slug' })
+            .select('id, name')
+            .single();
 
         if (error) {
-            console.error(`Error inserting product ${p.name}:`, error)
+            console.error(`Error inserting brand ${brand.name}:`, error);
         } else {
-            productIdMap.set(p.id, data.id)
+            brandMap.set(brand.name, data.id);
         }
     }
 
-    // 3. Insert Users
-    console.log('👥 Seeding users...')
-    const userIdMap = new Map<string, string>() // MockUserID -> RealUUID
+    // 3. Insert Categories
+    console.log('Creating Categories...');
+    const categoryMap = new Map();
 
-    // Note: Users in Supabase are usually in auth.users. 
-    // Inserting directly into public.users (which references auth.users) might fail due to FK constraint if auth user doesn't exist.
-    // For seeding, we might need to create auth users first using admin API.
+    for (const cat of CATEGORIES) {
+        // Insert Parent
+        const { data: parentData, error: parentError } = await supabase
+            .from('categories')
+            .upsert({ name: cat.name, slug: cat.slug, parent_id: null }, { onConflict: 'slug' })
+            .select('id, name')
+            .single();
 
-    for (const user of USERS) {
-        // Create Auth User
-        const { data: authUser, error: authError } = await supabase.auth.admin.createUser({
-            email: user.email,
-            password: 'password123', // Default password
-            email_confirm: true
-        })
+        if (parentError) {
+            console.error(`Error inserting category ${cat.name}:`, parentError);
+            continue;
+        }
 
-        const realUserId = authUser.user?.id
+        categoryMap.set(cat.name, parentData.id);
 
-        if (authError) {
-            // Use existing if duplicate
-            console.warn(`User creation warning for ${user.email}:`, authError.message)
-            // Try to fetch existing user if helpful, or skip
-            // If "User already registered", proceed to get their ID if possible?
-            // Admin API doesn't easily "get user by email" without listing.
-            // For now, assume fresh seed or handle gracefully.
-            if (authError.message.includes("already registered")) {
-                // Skip logic for finding ID for now to keep script simple, or implement listUsers
-                console.log('Skipping public.users insert for existing auth user (ID mapping might be broken for reviews)')
-                continue;
+        // Insert Children
+        if (cat.children) {
+            for (const child of cat.children) {
+                const { data: childData, error: childError } = await supabase
+                    .from('categories')
+                    .upsert({ name: child.name, slug: child.slug, parent_id: parentData.id }, { onConflict: 'slug' })
+                    .select('id, name')
+                    .single();
+
+                if (childError) {
+                    console.error(`Error inserting subcategory ${child.name}:`, childError);
+                } else {
+                    categoryMap.set(child.name, childData.id);
+                }
             }
-            continue
-        }
-
-        if (realUserId) {
-            userIdMap.set(user.id, realUserId)
-
-            // Insert into public.profiles (not 'users')
-            const { error: profileError } = await supabase
-                .from('profiles')
-                .upsert({
-                    id: realUserId, // Must match auth.uid
-                    full_name: user.name,
-                    role: 'customer'
-                })
-
-            if (profileError) console.error(`Error creating profile for ${user.email}:`, profileError)
         }
     }
 
-    // 4. Insert Reviews
-    console.log('⭐ Seeding reviews...')
-    for (const review of REVIEWS) {
-        const realProductId = productIdMap.get(review.productId)
-        const realUserId = userIdMap.get(review.userId)
+    // 4. Insert Products
+    console.log('Creating Products...');
+    for (const product of PRODUCTS_DATA) {
+        const brandId = brandMap.get(product.brand);
+        const categoryId = categoryMap.get(product.category);
 
-        if (realProductId && realUserId) {
-            const { error } = await supabase.from('reviews').insert({
-                product_id: realProductId,
-                user_id: realUserId,
-                rating: review.rating,
-                title: review.title,
-                comment: review.comment,
-                verified_purchase: review.verifiedPurchase,
-                helpful_count: review.helpfulCount,
-                created_at: review.createdAt
-            })
-            if (error) console.error(`Error inserting review ${review.id}:`, error)
+        if (!brandId || !categoryId) {
+            console.warn(`Skipping product ${product.name}: Missing brand (${product.brand}) or category (${product.category})`);
+            continue;
         }
-    }
 
-    // 5. Insert Journal Posts
-    console.log('📰 Seeding journal posts...')
-    const { BLOG_POSTS } = await import('../data/mock')
-    for (const post of BLOG_POSTS) {
-        const { error } = await supabase.from('journal_posts').upsert({
-            slug: post.slug,
-            title: post.title,
-            excerpt: post.excerpt,
-            content: post.content,
-            category: post.category,
-            tags: post.tags,
-            image: post.featuredImage,
-            published_at: post.publishedAt
-        }, { onConflict: 'slug' })
+        const { brand, category, ...productData } = product;
 
-        if (error) console.error(`Error inserting blog post ${post.title}:`, error)
-    }
-
-    // 6. Insert Recipes
-    console.log('🍸 Seeding recipes...')
-    const { RECIPES } = await import('../data/mock')
-    for (const recipe of RECIPES) {
-        const { data: dbRecipe, error: recipeError } = await supabase
-            .from('recipes')
+        const { error } = await supabase
+            .from('products')
             .upsert({
-                slug: recipe.slug,
-                title: recipe.title,
-                description: recipe.description,
-                instructions: recipe.instructions,
-                difficulty: recipe.difficulty,
-                prep_time_minutes: recipe.prepTime,
-                servings: recipe.servings,
-                image: recipe.image,
-                tags: recipe.tags,
-                category: recipe.category
-            }, { onConflict: 'slug' })
-            .select('id')
-            .single()
+                ...productData,
+                brand_id: brandId,
+                category_id: categoryId,
+            }, { onConflict: 'slug' });
 
-        if (recipeError) {
-            console.error(`Error inserting recipe ${recipe.title}:`, recipeError)
-            continue
-        }
-
-        // Insert ingredients
-        if (dbRecipe) {
-            for (const ing of recipe.ingredients) {
-                const realProductId = ing.productId ? productIdMap.get(ing.productId) : null
-
-                await supabase.from('recipe_ingredients').insert({
-                    recipe_id: dbRecipe.id,
-                    product_id: realProductId,
-                    name: ing.name,
-                    amount: ing.amount
-                })
-            }
+        if (error) {
+            console.error(`Error inserting product ${product.name}:`, error);
         }
     }
 
-    console.log('✅ Seed complete!')
+    console.log('✅ Seeding complete!');
 }
 
-seed().catch((err) => {
-    console.error('Seed failed:', err)
-    process.exit(1)
-})
+seed().catch(err => {
+    console.error('Unexpected error:', err);
+    process.exit(1);
+});

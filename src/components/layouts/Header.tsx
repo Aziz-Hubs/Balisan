@@ -18,7 +18,7 @@ import { Button } from "@/components/ui/button"
 import { Logo } from "@/components/ui/Logo"
 import { Spotlight } from "@/components/ui/extension/Spotlight"
 import { staticNavLinks } from "@/config/navigation"
-import { ThemeSwitch } from "@/components/ui/ThemeSwitch"
+import { AnimatedThemeToggle } from "@/components/ui/AnimatedThemeToggle"
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card"
 import { CartPreview } from "@/components/features/cart/CartPreview"
 
@@ -56,13 +56,13 @@ export function Header() {
             >
                 <div className="container mx-auto flex items-center justify-between px-4 md:px-6 h-full gap-8 relative">
                     {/* Left: Logo & Reduced Mega Menu */}
-                    <div className="flex items-center gap-6 shrink-0">
+                    <div className="flex items-center gap-8 shrink-0">
                         <Link href="/" className="flex items-center gap-2 group z-10" aria-label="Balisan Home">
-                            <Logo height={isScrolled ? 64 : 80} className="md:block hidden transition-all duration-300 scale-[1.4] origin-left md:mr-5" />
-                            <Logo height={48} className="md:hidden block scale-100 origin-left" />
+                            <Logo height={isScrolled ? 56 : 72} rainbow className="md:block hidden transition-all duration-300 scale-[1.6] origin-left md:mr-8" />
+                            <Logo height={44} rainbow className="md:hidden block scale-110 origin-left" />
                         </Link>
 
-                        <div className="hidden lg:block">
+                        <div className="hidden lg:block pt-1">
                             <MegaMenu />
                         </div>
                     </div>
@@ -112,7 +112,7 @@ export function Header() {
                         </div>
 
                         <div className="hidden md:block">
-                            <ThemeSwitch />
+                            <AnimatedThemeToggle aria-label="Toggle theme" />
                         </div>
 
                         {/* Admin Portal Button - Only visible to admins */}
@@ -157,7 +157,7 @@ export function Header() {
                         </HoverCard>
 
                         <div className="hidden md:block">
-                            <AccountMenu />
+                            <AccountMenu aria-label="Account menu" />
                         </div>
 
                         <MobileNav />

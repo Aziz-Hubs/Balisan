@@ -69,7 +69,7 @@ export function OrderDetail({ order }: { order: OrderDetailType }) {
                             <p className="text-sm">
                                 {order.shippingAddress.name}<br />
                                 {order.shippingAddress.line1}<br />
-                                {order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.zip}
+                                {order.shippingAddress.city}, {order.shippingAddress.state} {order.shippingAddress.postal_code}
                             </p>
                         </div>
                         <Separator />

@@ -106,11 +106,11 @@
 
   @keyframes spin-around {
     0% {
-      transform: translateZ(0) rotate(0);
+      transform: rotate(0deg);
     }
 
     100% {
-      transform: translateZ(0) rotate(360deg);
+      transform: rotate(360deg);
     }
   }
 
@@ -162,11 +162,24 @@
     }
   }
 
-  @keyframes border-beam {
+  @keyframes comet {
+    0% {
+      transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
+      opacity: 0;
+    }
+
+    50% {
+      transform: translate(-50%, -50%) rotate(45deg) scaleX(1);
+      opacity: 1;
+    }
+
     100% {
-      offset-distance: 100%;
+      transform: translate(-50%, -50%) rotate(45deg) scaleX(0);
+      opacity: 0;
     }
   }
+
+  --animate-comet: comet 2s linear infinite;
 }
 
 :root {

@@ -43,7 +43,7 @@ export function BulkOrderUpload() {
                             id: product.id,
                             name: product.name,
                             price: product.price,
-                            image: product.image,
+                            image: product.image || '/bottle.png',
                             variant: "Standard"
                         })
                     }

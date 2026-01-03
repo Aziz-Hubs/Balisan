@@ -11,6 +11,7 @@ import {
     ShieldCheck,
     ChevronRight,
     Store,
+    Layers,
 } from "lucide-react"
 
 import {
@@ -45,6 +46,11 @@ const navItems = [
                 title: "Products",
                 url: "/admin/products",
                 icon: Package,
+            },
+            {
+                title: "Categories",
+                url: "/admin/categories",
+                icon: Layers,
             },
             {
                 title: "Orders",

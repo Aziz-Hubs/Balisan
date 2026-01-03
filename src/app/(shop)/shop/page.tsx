@@ -2,13 +2,14 @@ import { FilterSidebar } from "@/components/features/filters/FilterSidebar"
 import { ShopContent } from "@/components/features/products/ShopContent"
 import { getProducts, getFacets } from "@/services"
 import { BreadcrumbNavigator } from "@/components/layouts/BreadcrumbNavigator"
-import { FilterURLSync } from "@/components/features/filters/FilterURLSync"
 import { Suspense } from "react"
 
 interface ShopPageProps {
     searchParams: Promise<{
         category?: string
         brand?: string | string[]
+        country?: string | string[]
+        region?: string | string[]
         minPrice?: string
         maxPrice?: string
         sort?: string
@@ -21,8 +22,11 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
         getProducts({
             category: params.category,
             brands: typeof params.brand === 'string' ? [params.brand] : params.brand,
+            countries: typeof params.country === 'string' ? [params.country] : params.country,
+            regions: typeof params.region === 'string' ? [params.region] : params.region,
             minPrice: params.minPrice ? parseInt(params.minPrice) : undefined,
             maxPrice: params.maxPrice ? parseInt(params.maxPrice) : undefined,
+            sort: params.sort,
         }),
         getFacets()
     ]);
@@ -45,9 +49,6 @@ export default async function ShopPage({ searchParams }: ShopPageProps) {
 
     return (
         <div className="container mx-auto py-8 md:py-12 px-4 md:px-6">
-            <Suspense fallback={null}>
-                <FilterURLSync />
-            </Suspense>
             <BreadcrumbNavigator items={breadcrumbItems} />
             <div className="flex flex-col gap-4 md:flex-row md:items-start md:gap-8">
                 {/* Sidebar - Desktop */}

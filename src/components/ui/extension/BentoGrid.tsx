@@ -5,6 +5,9 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import { BlurFade } from "@/components/ui/blur-fade";
+
+import { Category } from "@/types";
 
 type BentoItem = {
     title: string;
@@ -14,45 +17,23 @@ type BentoItem = {
     className?: string; // Grid col/row span classes
 };
 
-const items: BentoItem[] = [
-    {
-        title: "Premium Whiskey",
-        description: "Aged to perfection.",
-        href: "/shop?category=whiskey",
-        image: "https://www.thecocktaildb.com/images/ingredients/Whiskey.png",
-        className: "md:col-span-2 md:row-span-2",
-    },
-    {
-        title: "Fine Wine",
-        description: "Vineyards from around the world.",
-        href: "/shop?category=wine",
-        image: "https://www.thecocktaildb.com/images/ingredients/Wine.png",
-        className: "md:col-span-1 md:row-span-1",
-    },
-    {
-        title: "Craft Beer",
-        description: "Hops and barley.",
-        href: "/shop?category=beer",
-        image: "https://www.thecocktaildb.com/images/ingredients/Lager.png",
-        className: "md:col-span-1 md:row-span-1",
-    },
-    {
-        title: "Artisanal Gin",
-        description: "Botanical bliss.",
-        href: "/shop?category=gin",
-        image: "https://www.thecocktaildb.com/images/ingredients/Gin.png",
-        className: "md:col-span-1 md:row-span-1",
-    },
-    {
-        title: "Mezcal & Tequila",
-        description: "Spirit of Mexico.",
-        href: "/shop?category=mezcal",
-        image: "https://www.thecocktaildb.com/images/ingredients/Tequila.png",
-        className: "md:col-span-1 md:row-span-1",
-    },
-];
+export function BentoGrid({ categories = [] }: { categories?: Category[] }) {
+    // Transform categories to BentoItems
+    const items: BentoItem[] = categories.map((cat, i) => {
+        // Define some default grid spans based on index to keep it interesting
+        let className = "md:col-span-1 md:row-span-1";
+        if (i === 0) className = "md:col-span-2 md:row-span-2";
+        if (i === 5) className = "md:col-span-2 md:row-span-1";
 
-export function BentoGrid() {
+        return {
+            title: cat.name,
+            description: cat.description || "",
+            href: `/shop?category=${cat.slug}`,
+            image: cat.image_url || "/bottle.png",
+            className
+        };
+    });
+
     return (
         <section className="py-24 bg-background text-foreground">
             <div className="container mx-auto px-4 md:px-6">
@@ -66,9 +47,11 @@ export function BentoGrid() {
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-auto md:h-[600px]">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 auto-rows-[300px]">
                     {items.map((item, i) => (
-                        <BentoCard key={i} item={item} index={i} />
+                        <BlurFade key={i} delay={0.25 + i * 0.05} inView>
+                            <BentoCard item={item} index={i} />
+                        </BlurFade>
                     ))}
                 </div>
             </div>
@@ -78,15 +61,10 @@ export function BentoGrid() {
 
 function BentoCard({ item, index }: { item: BentoItem; index: number }) {
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+        <div
             className={cn(
-                "group relative overflow-hidden rounded-3xl bg-card border border-border",
+                "group relative h-full overflow-hidden rounded-3xl bg-card border border-border",
                 item.className,
-                // Fallback size for items without explicit span if needed, but grid handles it
                 "min-h-[250px]"
             )}
         >
@@ -117,6 +95,6 @@ function BentoCard({ item, index }: { item: BentoItem; index: number }) {
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 }

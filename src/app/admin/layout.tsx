@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import { AdminSidebar } from "@/components/admin/Sidebar";
 import { SidebarProvider } from "@/components/ui/sidebar";
-import { Toaster } from "@/components/ui/sonner";
+import { NotificationList } from "@/components/ui/extension/NotificationList";
 import "@/app/globals.css";
 
 const inter = Inter({
@@ -44,7 +44,7 @@ export default function AdminLayout({
                             </div>
                         </main>
                     </div>
-                    <Toaster position="top-center" />
+                    <NotificationList />
                 </SidebarProvider>
             </body>
         </html>

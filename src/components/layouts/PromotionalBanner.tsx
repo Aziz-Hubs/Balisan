@@ -75,13 +75,15 @@ export function PromotionalBanner({
 
     const handleDismiss = () => {
         if (currentMessage) {
+            // Reset index to 0 or prev safe index to prevent crash on re-render if count decreases
+            setCurrentIndex(0)
             dismissBanner(currentMessage.id)
         }
     }
 
     const bannerContent = (
         <div className="flex items-center justify-center gap-2 text-sm font-medium">
-            <span>{currentMessage.text}</span>
+            {currentMessage && <span>{currentMessage.text}</span>}
             {activeMessages.length > 1 && (
                 <div className="flex gap-1 ml-2">
                     {activeMessages.map((_, index) => (

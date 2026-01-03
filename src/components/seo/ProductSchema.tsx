@@ -21,7 +21,7 @@ export function ProductSchema({ product }: { product: Product }) {
         offers: {
             "@type": "Offer",
             price: product.price,
-            priceCurrency: "USD",
+            priceCurrency: "JOD",
             availability: product.inStock
                 ? "https://schema.org/InStock"
                 : "https://schema.org/OutOfStock",

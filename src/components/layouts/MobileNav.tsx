@@ -4,6 +4,7 @@ import Link from "next/link"
 import { Menu, User, ShoppingBag, LogIn, ChevronRight } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from "next/navigation"
+import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
 import { Sheet, SheetContent, SheetTrigger, SheetTitle, SheetDescription } from "@/components/ui/sheet"
@@ -22,14 +23,15 @@ import { SearchBar } from "@/components/features/search/SearchBar"
 import { AgeVerificationBadge } from "@/components/layouts/AgeVerificationBadge"
 import { Separator } from "@/components/ui/separator"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { LitUpButton } from "@/components/ui/extension/LitUpButton"
-import { RainbowButton } from "@/components/ui/extension/RainbowButton"
-import { Spotlight } from "@/components/ui/extension/Spotlight"
 import { Logo } from "@/components/ui/Logo"
+import ShimmerButton from "@/components/ui/extension/ShimmerButton"
+import { RainbowButton } from "@/components/ui/extension/RainbowButton"
 
 export function MobileNav() {
     const { isMobileMenuOpen, toggleMobileMenu, closeMobileMenu } = useUIStore()
     const { isAuthenticated, logout } = useAuthStore()
+    const { resolvedTheme } = useTheme()
+    const isDark = resolvedTheme === "dark"
     const [openItem, setOpenItem] = useState<string>("")
     const router = useRouter()
 
@@ -74,11 +76,11 @@ export function MobileNav() {
                 <div className="p-4 border-b">
                     <div className="flex items-center justify-between mb-4 pr-10">
                         <Link href="/" onClick={closeMobileMenu}>
-                            <Logo height={32} />
+                            <Logo height={32} rainbow />
                         </Link>
                         <AgeVerificationBadge />
                     </div>
-                    <SearchBar />
+                    <SearchBar mobile />
                 </div>
 
 
@@ -104,14 +106,21 @@ export function MobileNav() {
                                 {navigationCategories.map((category) => (
                                     <motion.div variants={itemVariants} key={category.title}>
                                         <AccordionItem value={category.title} className="border-border border-b-0">
-                                            <AccordionTrigger className="hover:no-underline py-3 px-2 hover:bg-accent rounded-md text-sm text-foreground/90">
-                                                {category.title}
-                                            </AccordionTrigger>
+                                            <div className="flex items-center gap-1">
+                                                <Link
+                                                    href={category.href}
+                                                    className="flex-1 py-3 px-2 text-sm font-medium hover:bg-accent rounded-md transition-colors text-foreground/90"
+                                                    onClick={closeMobileMenu}
+                                                >
+                                                    {category.title}
+                                                </Link>
+                                                <AccordionTrigger className="w-12 h-11 p-0 flex items-center justify-center hover:bg-accent rounded-md transition-colors border-none [&>svg]:h-4 [&>svg]:w-4" />
+                                            </div>
                                             <AccordionContent>
                                                 <div className="flex flex-col pl-4 gap-1 border-l-2 border-border ml-2 my-1">
                                                     <Button
                                                         variant="ghost"
-                                                        className="justify-start h-auto py-2 px-2 text-amber-500 font-medium hover:bg-transparent hover:text-amber-400"
+                                                        className="justify-start h-auto py-2.5 px-2 text-amber-500 font-bold hover:bg-amber-500/10 hover:text-amber-500"
                                                         onClick={() => handleLinkClick(category.href)}
                                                     >
                                                         Shop All {category.title}
@@ -119,20 +128,22 @@ export function MobileNav() {
                                                     {category.items.map((item) => (
                                                         <div key={item.title}>
                                                             {item.subcategories ? (
-                                                                <div className="flex flex-col">
-                                                                    <Button
-                                                                        variant="ghost"
-                                                                        className="justify-start h-auto py-2 px-2 font-medium text-foreground/80 hover:text-foreground"
-                                                                        onClick={() => handleLinkClick(item.href)}
-                                                                    >
-                                                                        {item.title}
-                                                                    </Button>
-                                                                    <div className="flex flex-col pl-4 border-l border-border ml-2">
+                                                                <div className="flex flex-col gap-0.5">
+                                                                    <div className="flex items-center group">
+                                                                        <Link
+                                                                            href={item.href}
+                                                                            className="flex-1 py-2 px-2 font-medium text-foreground/80 hover:text-foreground hover:bg-accent/50 rounded-md transition-all"
+                                                                            onClick={closeMobileMenu}
+                                                                        >
+                                                                            {item.title}
+                                                                        </Link>
+                                                                    </div>
+                                                                    <div className="flex flex-col pl-4 border-l border-border ml-2 my-0.5">
                                                                         {item.subcategories.map((sub) => (
                                                                             <Link
                                                                                 key={sub.title}
                                                                                 href={sub.href}
-                                                                                className="py-2 px-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                                                                                className="py-1.5 px-2 text-sm text-muted-foreground hover:text-amber-500 transition-colors rounded-md hover:bg-accent/30"
                                                                                 onClick={closeMobileMenu}
                                                                             >
                                                                                 {sub.title}
@@ -143,7 +154,7 @@ export function MobileNav() {
                                                             ) : (
                                                                 <Link
                                                                     href={item.href}
-                                                                    className="flex items-center py-2 px-2 text-sm text-foreground/80 hover:text-amber-500 transition-colors"
+                                                                    className="flex items-center py-2 px-2 text-sm text-foreground/80 hover:text-amber-500 hover:bg-accent/50 rounded-md transition-colors"
                                                                     onClick={closeMobileMenu}
                                                                 >
                                                                     {item.title}
@@ -151,6 +162,23 @@ export function MobileNav() {
                                                             )}
                                                         </div>
                                                     ))}
+                                                    {category.featuredBrands && category.featuredBrands.length > 0 && (
+                                                        <div className="mt-4 px-2">
+                                                            <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold mb-2 block">Featured Brands</span>
+                                                            <div className="flex flex-wrap gap-2">
+                                                                {category.featuredBrands.map(brand => (
+                                                                    <Link
+                                                                        key={brand.name}
+                                                                        href={brand.href}
+                                                                        className="text-xs px-2.5 py-1 rounded-full bg-muted border border-border/50 hover:bg-accent hover:text-amber-500 transition-colors"
+                                                                        onClick={closeMobileMenu}
+                                                                    >
+                                                                        {brand.name}
+                                                                    </Link>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </AccordionContent>
                                         </AccordionItem>
@@ -188,12 +216,21 @@ export function MobileNav() {
                     ) : (
                         <div className="flex flex-col gap-4">
                             <Link href="/login" className="w-full" onClick={closeMobileMenu}>
-                                <LitUpButton className="w-full h-12 text-sm font-medium">
+                                <ShimmerButton
+                                    background={isDark ? "#000000" : "#ffffff"}
+                                    shimmerColor="#F5A623"
+                                    shimmerSize="0.1em"
+                                    shimmerDuration="2s"
+                                    className={cn(
+                                        "w-full h-12 text-sm font-medium rounded-xl border-amber-500/20",
+                                        isDark ? "text-white" : "text-black"
+                                    )}
+                                >
                                     Login
-                                </LitUpButton>
+                                </ShimmerButton>
                             </Link>
                             <Link href="/signup" className="w-full" onClick={closeMobileMenu}>
-                                <RainbowButton className="w-full h-12 shadow-2xl text-sm font-medium">
+                                <RainbowButton className="w-full h-12 text-sm font-medium">
                                     Sign Up
                                 </RainbowButton>
                             </Link>

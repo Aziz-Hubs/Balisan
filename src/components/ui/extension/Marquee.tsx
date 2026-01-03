@@ -80,7 +80,7 @@ function MarqueeCard({ item }: { item: MarqueeItem }) {
                     src={item.image}
                     alt={item.name}
                     fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-110 opacity-90 group-hover:opacity-100"
+                    className="object-contain p-8 transition-transform duration-500 group-hover:scale-110 opacity-90 group-hover:opacity-100"
                 />
 
                 {/* Overlay Gradient */}

@@ -20,7 +20,7 @@ export default function RefundPage() {
                     <p>
                         At Balisan, we take pride in curating only the finest spirits for our discerning customers.
                         We understand that sometimes a purchase may not meet your expectations, and we&apos;re here to help.
-                        However, due to federal and state regulations governing the sale and return of alcoholic beverages,
+                        However, due to Jordanian regulations governing the sale and return of alcoholic beverages,
                         our return policy has specific conditions.
                     </p>
                 </div>
@@ -35,7 +35,7 @@ export default function RefundPage() {
                         <li>The seal is completely intact and unbroken</li>
                         <li>The product is in its original packaging</li>
                         <li>You provide proof of purchase (order confirmation email)</li>
-                        <li>The return is shipped using our provided prepaid label</li>
+                        <li>The return is coordinated with our support team</li>
                     </ul>
                 </div>
 
@@ -93,7 +93,7 @@ export default function RefundPage() {
                     <h2 className="text-2xl font-semibold mb-3">Age Verification</h2>
                     <p>
                         In accordance with our commitment to responsible drinking, all returns must be handled by
-                        an individual <strong>21 years of age or older</strong>. Valid government-issued ID is required
+                        an individual <strong>18 years of age or older</strong>. Valid government-issued ID is required
                         when arranging return pickup.
                     </p>
                 </div>
@@ -106,7 +106,7 @@ export default function RefundPage() {
                         <a href="mailto:support@balisan.com" className="text-primary hover:underline">
                             support@balisan.com
                         </a>{' '}
-                        or call us at <strong>+1 (555) 123-4567</strong>.
+                        or call us at <strong>+962 6 555 5555</strong>.
                     </p>
                 </div>
             </section>

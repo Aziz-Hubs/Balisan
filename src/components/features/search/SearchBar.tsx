@@ -1,9 +1,9 @@
 "use client"
 
 import * as React from "react"
-import { ShoppingCart, Search, Info, Phone, Package, ArrowUpRight, BookOpen, Utensils } from "lucide-react"
+import { ShoppingCart, Search, Info, Phone, Package, ArrowUpRight, BookOpen, Utensils, Home, ShoppingBag, User, Settings, Loader2 } from "lucide-react"
 import { useSearchStore } from "@/lib/stores/search"
-import { PRODUCTS } from "@/lib/mock-data"
+import { searchProducts } from "@/services"
 import { navigationCategories, staticNavLinks } from "@/config/navigation"
 import {
     CommandDialog,
@@ -16,9 +16,13 @@ import {
 import { Command as CommandPrimitive } from "cmdk"
 import { Button } from "@/components/ui/button"
 import { useRouter } from "next/navigation"
-import { cn } from "@/lib/utils"
+import { cn, formatPrice } from "@/lib/utils"
 import { Badge } from "@/components/ui/badge"
 import { SmartSearchTrigger } from "@/components/ui/extension/SmartSearchTrigger"
+import { ExpandableDock } from "@/components/ui/extension/ExpandableDock"
+import { useDebouncedValue } from "@/hooks/use-debounced-value"
+import type { Product } from "@/types"
+
 
 interface SearchBarProps {
     mobile?: boolean
@@ -35,6 +39,11 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
     const [desktopIsOpen, setDesktopIsOpen] = React.useState(false)
     const [isClosing, setIsClosing] = React.useState(false)
     const [showDropdown, setShowDropdown] = React.useState(false)
+    const [productResults, setProductResults] = React.useState<Product[]>([])
+    const [isSearching, setIsSearching] = React.useState(false)
+
+    // Debounce search query to avoid excessive API calls
+    const debouncedQuery = useDebouncedValue(query, 300)
 
     // Handle opening with animation
     const openDropdown = React.useCallback(() => {
@@ -58,35 +67,34 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
         const down = (e: KeyboardEvent) => {
             if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
                 e.preventDefault()
-                // If mobile, toggle global store. If desktop, focus input.
-                // However, we need to know if we are effectively on mobile.
-                // This component is rendered twice: once for desktop (hidden on mobile) and once for mobile (hidden on md).
-                // So checking `mobile` prop is sufficient.
-                if (mobile) {
-                    setIsOpen(!isOpen)
-                } else {
-                    inputRef.current?.focus()
-                    openDropdown()
-                }
+                setIsOpen(!isOpen)
             }
         }
         document.addEventListener("keydown", down)
         return () => document.removeEventListener("keydown", down)
-    }, [setIsOpen, mobile, isOpen, openDropdown])
+    }, [setIsOpen, isOpen])
 
-    const runCommand = React.useCallback((command: () => void) => {
-        // Close both to be safe
-        setIsOpen(false)
-        closeDropdown()
-        command()
-    }, [setIsOpen, closeDropdown])
+    // Fetch search results from API when debounced query changes
+    React.useEffect(() => {
+        if (debouncedQuery.length < 2) {
+            setProductResults([])
+            return
+        }
+        setIsSearching(true)
+        searchProducts(debouncedQuery)
+            .then(results => {
+                setProductResults(results)
+            })
+            .catch(() => {
+                setProductResults([])
+            })
+            .finally(() => {
+                setIsSearching(false)
+            })
+    }, [debouncedQuery])
 
-    // Filter products
-    const filteredProducts = PRODUCTS.filter(product =>
-        product.name.toLowerCase().includes(query.toLowerCase()) ||
-        product.brand.toLowerCase().includes(query.toLowerCase()) ||
-        product.category.toLowerCase().includes(query.toLowerCase())
-    ).slice(0, 5)
+    // Use API results instead of static filtering
+    const filteredProducts = productResults.slice(0, 5)
 
     // Filter pages
     const filteredPages = staticNavLinks.filter(page =>
@@ -100,8 +108,22 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
         item.title && item.title.toLowerCase().includes(query.toLowerCase())
     ).slice(0, 3)
 
+
+    const runCommand = React.useCallback((command: () => void) => {
+        // Close both to be safe
+        setIsOpen(false)
+        closeDropdown()
+        command()
+    }, [setIsOpen, closeDropdown])
+
     const searchResults = (
         <>
+            {isSearching && (
+                <div className="flex items-center justify-center py-6">
+                    <Loader2 className="h-5 w-5 animate-spin text-amber-500" />
+                    <span className="ml-2 text-sm text-muted-foreground">Searching...</span>
+                </div>
+            )}
             <CommandEmpty>No results found.</CommandEmpty>
 
             {query.length > 0 && (
@@ -112,8 +134,10 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
                                 <CommandItem
                                     key={product.id}
                                     onSelect={() => {
-                                        addRecentSearch(product.name)
-                                        runCommand(() => router.push(`/products/${product.slug}`))
+                                        if (product.slug) {
+                                            addRecentSearch(product.name)
+                                            runCommand(() => router.push(`/products/${product.slug}`))
+                                        }
                                     }}
                                     className="flex items-center gap-3 p-2 cursor-pointer"
                                 >
@@ -122,9 +146,13 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
                                     </div>
                                     <div className="flex flex-col flex-1 min-w-0">
                                         <span className="font-medium truncate">{product.name}</span>
-                                        <span className="text-xs text-muted-foreground truncate">{product.brand} • ${product.price}</span>
+                                        <span className="text-xs text-muted-foreground truncate">
+                                            {(product.brand as any)?.name || (product.brand as any) || 'Balisan'} • {formatPrice(product.price)}
+                                        </span>
                                     </div>
-                                    <Badge variant="secondary" className="text-[10px] h-5 hidden sm:flex">{product.category}</Badge>
+                                    <Badge variant="secondary" className="text-[10px] h-5 hidden sm:flex">
+                                        {(product.categories as any)?.name || (product as any).category || 'Premium'}
+                                    </Badge>
                                 </CommandItem>
                             ))}
                         </CommandGroup>
@@ -198,6 +226,14 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
         </>
     )
 
+    const dockItems = [
+        { id: "search", icon: Search, label: "Search", onClick: () => { setIsOpen(false); inputRef.current?.focus(); if (!mobile) openDropdown(); } },
+        { id: "home", icon: Home, label: "Home", onClick: () => runCommand(() => router.push("/")) },
+        { id: "shop", icon: Package, label: "Shop", onClick: () => runCommand(() => router.push("/shop")) },
+        { id: "cart", icon: ShoppingBag, label: "Cart", onClick: () => runCommand(() => router.push("/cart")) },
+        { id: "account", icon: User, label: "Account", onClick: () => runCommand(() => router.push("/account")) },
+    ]
+
     if (mobile) {
         return (
             <>
@@ -210,7 +246,7 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
                         <CommandPrimitive.Input
                             ref={inputRef}
                             className={cn(
-                                "flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
+                                "flex h-12 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50"
                             )}
                             placeholder="Search by brand, product, or category..."
                             value={query}
@@ -226,61 +262,26 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
     }
 
     return (
-        <CommandPrimitive
-            shouldFilter={false}
-            className={cn(
-                "relative w-full overflow-visible bg-transparent transition-all duration-300",
-                className,
-                desktopIsOpen ? "z-[60]" : "z-auto"
-            )}
-        >
-            <div
-                className={cn(
-                    "relative transition-all duration-300",
-                    desktopIsOpen
-                        ? "bg-background/98 backdrop-blur-2xl rounded-t-2xl border-x border-t border-amber-500/25 shadow-[0_-10px_40px_-15px_rgba(245,158,11,0.1)]"
-                        : "rounded-full"
-                )}
-            >
-                <div className={cn(
-                    "relative flex items-center group",
-                    !desktopIsOpen && "overflow-hidden rounded-full"
-                )}>
-                    {!desktopIsOpen && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/10 to-transparent group-hover:via-amber-500/20 group-hover:animate-shimmer z-0 pointer-events-none" />
-                    )}
+        <div className={cn("relative w-full", className)}>
+            <CommandPrimitive shouldFilter={false}>
+                <div className="relative flex items-center group overflow-hidden rounded-full transition-all duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-amber-500/10 to-transparent group-hover:via-amber-500/20 group-hover:animate-shimmer z-0 pointer-events-none" />
                     <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground/70 z-10" />
                     <CommandPrimitive.Input
-                        ref={inputRef}
                         value={query}
                         onValueChange={setQuery}
-                        onFocus={() => openDropdown()}
-                        onBlur={() => {
-                            setTimeout(() => closeDropdown(), 200)
-                        }}
-                        className={cn(
-                            "w-full h-12 bg-transparent pl-10 pr-12 py-3 text-sm outline-none transition-all placeholder:text-muted-foreground",
-                            desktopIsOpen
-                                ? "text-foreground"
-                                : "border border-border rounded-full hover:border-amber-500/30 focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50"
-                        )}
-                        placeholder={!desktopIsOpen ? "" : "Search rare whiskies, brands, or categories..."}
+                        // Removed onFocus to prevent popup on click for desktop as requested
+                        className="w-full h-12 bg-transparent pl-10 pr-12 py-3 text-sm outline-none border border-border rounded-full hover:border-amber-500/30 focus:border-amber-500/50 focus:ring-1 focus:ring-amber-500/50"
+                        placeholder=""
                     />
-
-                    {!query && !desktopIsOpen && (
+                    {!query && (
                         <div className="absolute inset-0 pointer-events-none z-10 flex items-center pl-10">
                             <SmartSearchTrigger
-                                placeholders={[
-                                    "Search rare whiskies...",
-                                    "Search craft gins...",
-                                    "Search 'Japanese Whisky'...",
-                                    "What are you looking for?"
-                                ]}
+                                placeholders={["Search rare whiskies...", "Search craft gins...", "Search 'Japanese Whisky'..."]}
                                 className="border-none bg-transparent shadow-none h-auto p-0 w-auto"
                             />
                         </div>
                     )}
-
                     <div className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-1 opacity-50 pointer-events-none z-10">
                         <kbd className="h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground flex">
                             <span className="text-xs">⌘</span>K
@@ -288,21 +289,30 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
                     </div>
                 </div>
 
-                {showDropdown && (
-                    <div className={cn(
-                        "absolute top-full left-[-1px] right-[-1px] bg-background/98 backdrop-blur-2xl border-x border-b border-amber-500/25 rounded-b-2xl shadow-[0_20px_40px_-15px_rgba(245,158,11,0.25)] overflow-hidden z-[60] duration-150",
-                        isClosing
-                            ? "animate-out fade-out slide-out-to-top-1"
-                            : "animate-in fade-in slide-in-from-top-1"
-                    )}>
-                        <div className="h-px bg-gradient-to-r from-transparent via-amber-500/15 to-transparent mx-4" />
-                        <CommandList className="max-h-[60vh] overflow-y-auto p-2">
+                <ExpandableDock
+                    items={dockItems}
+                    isOpen={isOpen}
+                    onClose={() => setIsOpen(false)}
+                    className="w-auto min-w-[300px]"
+                >
+                    <div className="space-y-4">
+                        <div className="flex items-center px-4 py-3 bg-muted/30 rounded-3xl border border-border/50 focus-within:border-amber-500/30 transition-colors">
+                            <Search className="mr-3 h-5 w-5 text-muted-foreground" />
+                            <CommandPrimitive.Input
+                                autoFocus
+                                value={query}
+                                onValueChange={setQuery}
+                                className="flex h-10 w-full bg-transparent text-lg outline-none placeholder:text-muted-foreground/50"
+                                placeholder="What are you looking for?"
+                            />
+                        </div>
+                        <CommandList className="max-h-[50vh] overflow-y-auto rounded-3xl border border-white/5 bg-zinc-950/50 backdrop-blur-xl p-2">
                             {searchResults}
                         </CommandList>
                     </div>
-                )}
-            </div>
-        </CommandPrimitive>
+                </ExpandableDock>
+            </CommandPrimitive>
+        </div>
     )
 }
 

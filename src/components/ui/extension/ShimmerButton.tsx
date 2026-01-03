@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 
 export interface ShimmerButtonProps
@@ -10,7 +10,6 @@ export interface ShimmerButtonProps
     borderRadius?: string;
     shimmerDuration?: string;
     background?: string;
-    playSpeed?: number;
     className?: string;
     children?: React.ReactNode;
 }
@@ -20,78 +19,68 @@ const ShimmerButton = React.forwardRef<HTMLButtonElement, ShimmerButtonProps>(
         {
             shimmerColor = "#ffffff",
             shimmerSize = "0.05em",
-            shimmerDuration = "3s",
+            shimmerDuration = "2s",
             borderRadius = "100px",
-            background = "#0c0a09",
-            playSpeed = 1,
+            background = "rgba(0, 0, 0, 1)",
             className,
             children,
             ...props
         },
         ref,
     ) => {
-
-        const containerRef = React.useRef<HTMLDivElement>(null);
-        const sparkRef = React.useRef<HTMLDivElement>(null);
-
-        React.useEffect(() => {
-            const animations = [
-                ...(containerRef.current?.getAnimations() || []),
-                ...(sparkRef.current?.getAnimations() || [])
-            ];
-
-            animations.forEach((anim) => {
-                anim.playbackRate = playSpeed;
-            });
-        }, [playSpeed]);
-
         return (
             <button
-                ref={ref}
                 style={
                     {
-                        "--spread": "90deg",
                         "--shimmer-color": shimmerColor,
                         "--radius": borderRadius,
                         "--speed": shimmerDuration,
                         "--cut": shimmerSize,
                         "--bg": background,
-                    } as React.CSSProperties
+                    } as CSSProperties
                 }
                 className={cn(
-                    "group relative z-0 flex cursor-pointer items-center justify-center overflow-hidden whitespace-nowrap border border-white/10 px-6 py-3 text-white [background:var(--bg)] [border-radius:var(--radius)] dark:text-black",
+                    "group relative z-0 flex cursor-pointer items-center justify-center overflow-hidden whitespace-nowrap border border-white/10 px-6 py-3 [background:var(--bg)] [border-radius:var(--radius)]",
                     "transform-gpu transition-transform duration-300 ease-in-out active:translate-y-[1px]",
                     className,
                 )}
+                ref={ref}
                 {...props}
             >
                 {/* container for shimmer */}
                 <div
                     className={cn(
-                        "-z-30Blur absolute inset-0 overflow-visible [container-type:size]",
+                        "absolute inset-0 overflow-hidden [container-type:size] pointer-events-none z-[-1]",
                     )}
                 >
                     {/* spark container */}
-                    <div
-                        ref={containerRef}
-                        className="absolute inset-0 h-[100cqh] animate-slide [aspect-ratio:1] [border-radius:0] [mask:none]"
-                    >
+                    <div className="absolute inset-0 h-full w-full [aspect-ratio:1] animate-[spin-around_var(--speed)_linear_infinite]">
                         {/* spark */}
-                        <div
-                            ref={sparkRef}
-                            className="absolute inset-[-100%] w-auto rotate-0 animate-spin-around [background:conic-gradient(from_calc(270deg-(var(--spread)*0.5)),transparent_0,var(--shimmer-color)_var(--spread),transparent_var(--spread))] [translate:0_0]"
-                        />
+                        <div className="absolute inset-[-100%] rotate-0 [background:conic-gradient(from_calc(270deg-(var(--spread,90deg)*0.5)),transparent_0,var(--shimmer-color)_var(--spread,90deg),transparent_var(--spread,90deg))]" />
                     </div>
                 </div>
+                {children}
+
+                {/* Highlight mask */}
+                <div
+                    className={cn(
+                        "inset-0 absolute size-full rounded-2xl px-4 py-1.5 text-sm font-medium shadow-[inset_0_-8px_10px_#ffffff1f]",
+                        // transition
+                        "transform-gpu transition-all duration-300 ease-in-out",
+                        // on hover
+                        "group-hover:shadow-[inset_0_-6px_10px_#ffffff3f]",
+                        // on click
+                        "group-active:shadow-[inset_0_-10px_10px_#ffffff3f]",
+                    )}
+                />
 
                 {/* backdrop */}
-                <div className="absolute [background:var(--bg)] [border-radius:var(--radius)] [inset:var(--cut)]" />
-
-                {/* Content */}
-                <div className="relative z-10 font-medium tracking-tight text-white dark:text-white">
-                    {children}
-                </div>
-
+                <div
+                    className={cn(
+                        "absolute inset-px z-[-1] rounded-2xl bg-inherit transition-all duration-300 ease-in-out",
+                        "group-hover:bg-inherit/80",
+                    )}
+                />
             </button>
         );
     },

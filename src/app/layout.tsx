@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Inter, Playfair_Display } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "@/components/ui/sonner";
+import Script from "next/script";
+import { NotificationList } from "@/components/ui/extension/NotificationList";
 import { Header } from "@/components/layouts/Header";
 import { Footer } from "@/components/layouts/Footer";
 import { PromotionalBanner } from "@/components/layouts/PromotionalBanner";
@@ -16,6 +17,7 @@ import { PageTransition } from "@/components/layouts/PageTransition";
 import { GlobalShortcuts } from "@/components/features/power-user/GlobalShortcuts";
 import { LinkPrefetcher } from "@/components/features/power-user/LinkPrefetcher";
 import { WorkspaceDock } from "@/components/features/power-user/WorkspaceDock";
+import { StrobingProgress } from "@/components/layouts/StrobingProgress";
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -37,7 +39,11 @@ export const metadata: Metadata = {
   description: "Discover exceptional craft spirits, fine wines, and artisanal beverages. Premium selection, expert curation, delivered to your door.",
   keywords: ["liquor store", "craft spirits", "wine delivery", "whiskey", "gin"],
   icons: {
-    icon: "/balisan.svg",
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     type: "website",
@@ -74,39 +80,35 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* GA4 Script */}
-        <script
-          async
+        <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_ID}`}
+          strategy="afterInteractive"
         />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
-                page_path: window.location.pathname,
-              });
-            `,
-          }}
-        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${process.env.NEXT_PUBLIC_GA_ID}', {
+              page_path: window.location.pathname,
+            });
+          `}
+        </Script>
         {/* Facebook Pixel Script */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', '${process.env.NEXT_PUBLIC_FB_PIXEL_ID}');
-              fbq('track', 'PageView');
-            `,
-          }}
-        />
+        <Script id="fb-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '${process.env.NEXT_PUBLIC_FB_PIXEL_ID}');
+            fbq('track', 'PageView');
+          `}
+        </Script>
       </head>
       <body className={`${inter.variable} ${playfair.variable} font-sans antialiased`}>
         <ThemeProvider
@@ -118,6 +120,9 @@ export default function RootLayout({
           <GlobalShortcuts />
           <LinkPrefetcher />
           <SkipNavLink />
+          <React.Suspense fallback={null}>
+            <StrobingProgress />
+          </React.Suspense>
           <div className="relative flex min-h-screen flex-col">
             <PromotionalBanner messages={promotionalMessages} />
             <Header />
@@ -133,7 +138,7 @@ export default function RootLayout({
           <WorkspaceDock />
           <DesktopSpotlight />
           <AgeGateModal />
-          <Toaster position="top-center" />
+          <NotificationList />
         </ThemeProvider>
       </body>
     </html>

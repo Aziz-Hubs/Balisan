@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { Metadata } from 'next';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -9,6 +8,8 @@ import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import { Mail, Phone, MapPin, Clock } from 'lucide-react';
 import { BreadcrumbNavigator } from '@/components/layouts/BreadcrumbNavigator';
+import { MagicCard } from '@/components/ui/extension/MagicCard';
+import { BeamInput } from '@/components/ui/extension/BeamInput';
 
 export default function ContactPage() {
     const [isLoading, setIsLoading] = useState(false);
@@ -24,111 +25,84 @@ export default function ContactPage() {
     };
 
     return (
-        <div className="container mx-auto px-4 py-12 md:py-20">
-            <div className="mx-auto max-w-5xl">
+        <div className="min-h-screen bg-neutral-50 dark:bg-[#0c0a09]">
+            <div className="container mx-auto px-4 py-12 md:py-20">
                 <BreadcrumbNavigator items={[{ label: 'Contact Us' }]} />
 
-                <div className="grid gap-12 lg:grid-cols-2">
-                    {/* Left Column - Info */}
+                <div className="grid gap-12 lg:grid-cols-2 mt-8">
+                    {/* Left Column - Info Cards */}
                     <div className="space-y-8">
                         <div className="space-y-4">
-                            <h1 className="text-4xl font-bold font-display tracking-tight">Contact Us</h1>
+                            <h1 className="text-5xl font-display font-bold tracking-tight">Get in Touch</h1>
                             <p className="text-xl text-muted-foreground">
-                                Questions about an order? Need a spirit recommendation?
-                                Our experts are ready to assist.
+                                Detailed inquiries, wholesale requests, or sommelier advice.
                             </p>
                         </div>
 
-                        <div className="space-y-6">
-                            <div className="flex items-start gap-4">
-                                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                                    <Mail className="h-5 w-5" />
-                                </div>
-                                <div>
-                                    <p className="font-semibold">Email</p>
-                                    <a href="mailto:support@balisan.com" className="text-muted-foreground hover:text-primary transition-colors">
-                                        support@balisan.com
-                                    </a>
-                                </div>
+                        <div className="grid sm:grid-cols-2 gap-4">
+                            <div className="h-40">
+                                <MagicCard className="p-6 flex flex-col items-center justify-center text-center gap-3 shadow-none bg-transparent">
+                                    <Mail className="h-8 w-8 text-amber-500" />
+                                    <h3 className="font-bold">Email Us</h3>
+                                    <p className="text-sm text-muted-foreground">support@balisan.com</p>
+                                </MagicCard>
                             </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                                    <Phone className="h-5 w-5" />
-                                </div>
-                                <div>
-                                    <p className="font-semibold">Phone</p>
-                                    <a href="tel:+15551234567" className="text-muted-foreground hover:text-primary transition-colors">
-                                        +1 (555) 123-4567
-                                    </a>
-                                </div>
+                            <div className="h-40">
+                                <MagicCard className="p-6 flex flex-col items-center justify-center text-center gap-3 shadow-none bg-transparent">
+                                    <Phone className="h-8 w-8 text-amber-500" />
+                                    <h3 className="font-bold">Call Us</h3>
+                                    <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
+                                </MagicCard>
                             </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                                    <MapPin className="h-5 w-5" />
-                                </div>
-                                <div>
-                                    <p className="font-semibold">Headquarters</p>
-                                    <p className="text-muted-foreground">
-                                        123 Artisan Way, Ste 500<br />
-                                        Nashville, TN 37201
-                                    </p>
-                                </div>
+                            <div className="h-40">
+                                <MagicCard className="p-6 flex flex-col items-center justify-center text-center gap-3 shadow-none bg-transparent">
+                                    <Clock className="h-8 w-8 text-amber-500" />
+                                    <h3 className="font-bold">Hours</h3>
+                                    <p className="text-sm text-muted-foreground">Mon-Fri: 9AM - 8PM EST</p>
+                                </MagicCard>
                             </div>
-
-                            <div className="flex items-start gap-4">
-                                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shrink-0">
-                                    <Clock className="h-5 w-5" />
-                                </div>
-                                <div>
-                                    <p className="font-semibold">Support Hours</p>
-                                    <p className="text-muted-foreground">
-                                        Monday - Friday: 9AM - 8PM EST<br />
-                                        Saturday: 10AM - 6PM EST<br />
-                                        Sunday: Closed
-                                    </p>
-                                </div>
+                            <div className="h-40">
+                                <MagicCard className="p-6 flex flex-col items-center justify-center text-center gap-3 shadow-none bg-transparent">
+                                    <MapPin className="h-8 w-8 text-amber-500" />
+                                    <h3 className="font-bold">Studio</h3>
+                                    <p className="text-sm text-muted-foreground">Nashville, TN 37201</p>
+                                </MagicCard>
                             </div>
                         </div>
                     </div>
 
                     {/* Right Column - Form */}
-                    <div className="p-8 rounded-2xl bg-muted/50 border">
-                        <h2 className="text-xl font-semibold mb-6">Send us a message</h2>
+                    <div className="p-8 rounded-3xl bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-white/5 shadow-2xl">
+                        <h2 className="text-2xl font-bold font-display mb-6">Concierge Support</h2>
                         <form onSubmit={handleSubmit} className="space-y-5">
                             <div className="grid gap-4 sm:grid-cols-2">
                                 <div className="space-y-2">
                                     <Label htmlFor="first-name">First Name</Label>
-                                    <Input id="first-name" required placeholder="John" />
+                                    <BeamInput id="first-name" required placeholder="Alexander" />
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="last-name">Last Name</Label>
-                                    <Input id="last-name" required placeholder="Doe" />
+                                    <BeamInput id="last-name" required placeholder="Hamilton" />
                                 </div>
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="email">Email</Label>
-                                <Input id="email" type="email" required placeholder="john@example.com" />
-                            </div>
-                            <div className="space-y-2">
-                                <Label htmlFor="phone">Phone (optional)</Label>
-                                <Input id="phone" type="tel" placeholder="+1 (555) 123-4567" />
+                                <BeamInput id="email" type="email" required placeholder="alex@example.com" />
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="subject">Subject</Label>
-                                <Input id="subject" required placeholder="Order Question" />
+                                <BeamInput id="subject" required placeholder="Private Collection Inquiry" />
                             </div>
                             <div className="space-y-2">
                                 <Label htmlFor="message">Message</Label>
                                 <Textarea
                                     id="message"
                                     required
-                                    placeholder="How can we help you today?"
-                                    className="min-h-[150px] resize-none"
+                                    placeholder="Tell us how we can elevate your experience..."
+                                    className="min-h-[150px] resize-none bg-muted/30 border-zinc-200 dark:border-white/10 focus:border-amber-500/50"
                                 />
                             </div>
-                            <Button type="submit" size="lg" className="w-full" disabled={isLoading}>
+                            <Button type="submit" size="lg" className="w-full h-12 text-lg" disabled={isLoading}>
                                 {isLoading ? 'Sending...' : 'Send Message'}
                             </Button>
                         </form>

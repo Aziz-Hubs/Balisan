@@ -23,6 +23,9 @@ const config: Config = {
                 fifth: "moveInCircle 20s ease infinite",
                 rainbow: "rainbow var(--speed, 2s) infinite linear",
                 shine: "shine var(--duration) infinite linear",
+                "shimmer-slide": "shimmer-slide var(--speed) linear infinite",
+                "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
+                tilt: "tilt 10s infinite linear",
             },
             keyframes: {
                 shine: {
@@ -33,6 +36,22 @@ const config: Config = {
                 rainbow: {
                     "0%": { "background-position": "0%" },
                     "100%": { "background-position": "200%" },
+                },
+                "shimmer-slide": {
+                    "0%": {
+                        transform: "translateX(-100%)",
+                    },
+                    "100%": {
+                        transform: "translateX(100cqw)",
+                    },
+                },
+                "spin-around": {
+                    "0%": {
+                        transform: "translateZ(0) rotate(0)",
+                    },
+                    "100%": {
+                        transform: "translateZ(0) rotate(360deg)",
+                    },
                 },
                 aurora: {
                     from: {
@@ -73,6 +92,17 @@ const config: Config = {
                     },
                     "100%": {
                         transform: "translateY(-50%)",
+                    },
+                },
+                tilt: {
+                    "0%, 50%, 100%": {
+                        transform: "rotate(0deg)",
+                    },
+                    "25%": {
+                        transform: "rotate(0.5deg)",
+                    },
+                    "75%": {
+                        transform: "rotate(-0.5deg)",
                     },
                 },
             },

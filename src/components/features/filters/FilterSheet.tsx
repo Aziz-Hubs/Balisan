@@ -5,21 +5,29 @@ import { FilterSidebar } from "./FilterSidebar"
 import { Button } from "@/components/ui/button"
 import { Filter, RotateCcw, Check } from "lucide-react"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { useFilterStore } from "@/lib/stores/filters"
+import { useRouter, usePathname } from "next/navigation"
 import * as React from "react"
 
 export function FilterSheet() {
-    const { resetFilters } = useFilterStore()
+    const router = useRouter()
+    const pathname = usePathname()
     const [open, setOpen] = React.useState(false)
 
     const handleApply = () => {
         setOpen(false)
     }
 
+    const handleReset = () => {
+        router.replace(pathname, { scroll: false })
+    }
+
     return (
         <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
-                <Button variant="outline" className="lg:hidden">
+                <Button
+                    variant="outline"
+                    className="lg:hidden h-10 px-4 rounded-xl border bg-white/50 dark:bg-zinc-900/50 backdrop-blur-md border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-zinc-100 font-medium transition-all hover:bg-white dark:hover:bg-zinc-800 hover:border-amber-500/50 hover:shadow-lg hover:shadow-amber-500/5 shadow-sm"
+                >
                     <Filter className="mr-2 h-4 w-4" /> Filters
                 </Button>
             </SheetTrigger>
@@ -36,7 +44,7 @@ export function FilterSheet() {
                     <Button
                         variant="outline"
                         className="flex-1"
-                        onClick={() => resetFilters()}
+                        onClick={handleReset}
                     >
                         <RotateCcw className="mr-2 h-4 w-4" />
                         Reset

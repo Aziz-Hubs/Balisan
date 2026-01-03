@@ -18,7 +18,7 @@ export default function TermsPage() {
                 <div>
                     <h2 className="text-2xl font-semibold mb-3">1. Age Requirement</h2>
                     <p>
-                        <strong>You must be at least 21 years of age to use this website and purchase products.</strong>{' '}
+                        <strong>You must be at least 18 years of age to use this website and purchase products.</strong>{' '}
                         By accessing or using Balisan, you represent and warrant that you are of legal drinking age
                         in your jurisdiction. We reserve the right to request proof of age at any time and to refuse
                         service to anyone who cannot verify their age.
@@ -37,7 +37,7 @@ export default function TermsPage() {
                 <div>
                     <h2 className="text-2xl font-semibold mb-3">3. Alcohol Sales & Delivery</h2>
                     <p>
-                        Alcoholic beverages may only be sold and delivered to persons who are at least 21 years old.
+                        Alcoholic beverages may only be sold and delivered to persons who are at least 18 years old.
                         A valid government-issued photo ID will be required at the time of delivery.
                         Our delivery personnel are trained to verify age and are authorized to refuse delivery
                         if proper identification cannot be provided.
@@ -46,7 +46,6 @@ export default function TermsPage() {
                         <li>You must be present to receive alcohol deliveries</li>
                         <li>We cannot leave packages unattended or with minors</li>
                         <li>Intoxicated individuals will be refused delivery</li>
-                        <li>Some states have restrictions on alcohol deliveries</li>
                     </ul>
                 </div>
 
@@ -71,7 +70,7 @@ export default function TermsPage() {
                 <div>
                     <h2 className="text-2xl font-semibold mb-3">6. Pricing & Payment</h2>
                     <p>
-                        All prices are in US Dollars and are subject to change without notice. We reserve the right
+                        All prices are in Jordanian Dinar (JOD) and are subject to change without notice. We reserve the right
                         to refuse or cancel orders if pricing errors occur. Payment must be made at the time of order.
                         We accept major credit cards and other payment methods as displayed at checkout.
                     </p>
@@ -99,17 +98,15 @@ export default function TermsPage() {
                     <h2 className="text-2xl font-semibold mb-3">9. Responsible Drinking</h2>
                     <p>
                         Balisan promotes responsible consumption of alcoholic beverages. Please drink responsibly.
-                        Never drink and drive. If you or someone you know has a drinking problem, please contact the
-                        Substance Abuse and Mental Health Services Administration (SAMHSA) at 1-800-662-4357.
+                        Never drink and drive.
                     </p>
                 </div>
 
                 <div>
                     <h2 className="text-2xl font-semibold mb-3">10. Governing Law</h2>
                     <p>
-                        These Terms shall be governed by and construed in accordance with the laws of the State of Tennessee,
-                        without regard to its conflict of law provisions. Any disputes shall be resolved in the courts
-                        located in Davidson County, Tennessee.
+                        These Terms shall be governed by and construed in accordance with the laws of the Hashemite Kingdom of Jordan.
+                        Any disputes shall be resolved in the courts located in Amman, Jordan.
                     </p>
                 </div>
 
@@ -129,8 +126,8 @@ export default function TermsPage() {
                     </p>
                     <address className="not-italic mt-3">
                         <strong>Balisan Legal Department</strong><br />
-                        123 Artisan Way, Ste 500<br />
-                        Nashville, TN 37201<br />
+                        Mecca Street, Al-Jabr Complex<br />
+                        Amman, Jordan<br />
                         <a href="mailto:legal@balisan.com" className="text-primary hover:underline">
                             legal@balisan.com
                         </a>

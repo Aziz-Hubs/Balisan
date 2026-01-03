@@ -7,17 +7,19 @@
 
 // Import product data
 import { WHISKEY_PRODUCTS } from './products'
-import { VODKA_PRODUCTS, RUM_PRODUCTS, GIN_PRODUCTS, TEQUILA_PRODUCTS } from './products-spirits'
+import { VODKA_PRODUCTS, RUM_PRODUCTS, GIN_PRODUCTS, TEQUILA_PRODUCTS, LIQUEUR_PRODUCTS_EXPANDED } from './products-spirits'
 import { WINE_PRODUCTS, BEER_PRODUCTS, LIQUEUR_PRODUCTS } from './products-beverages'
+import { EXPANSION_PRODUCTS } from './products-expansion'
 
 // Import other entity data
 import { USERS, getUserById, getUserDefaultAddress } from './users'
 import { ORDERS, getOrderById, getOrdersByUserId, getOrdersByStatus, ORDER_STATS } from './orders'
 import { REVIEWS, getReviewsByProductId, getReviewsByUserId, getAverageRating, REVIEW_STATS } from './reviews'
-import { BLOG_POSTS, getBlogPostBySlug, getBlogPostsByCategory, getBlogPostsByTag } from './blog-posts'
+import { BLOG_POSTS, getBlogPostBySlug, getBlogPostsByType, getFeaturedBlogPosts } from './blog-posts'
 import { RECIPES, getRecipeBySlug, getRecipesByDifficulty, getRecipesByTag, getRecipesWithProduct } from './recipes'
+import { CATEGORIES, getMockCategories } from './categories'
 
-import type { Product, User, Order, Review, BlogPost, Recipe } from '@/types'
+import type { Product, UserProfile, Order, Review, BlogPost, Recipe, Category } from '@/types'
 
 // ============================================
 // PRODUCTS
@@ -25,7 +27,7 @@ import type { Product, User, Order, Review, BlogPost, Recipe } from '@/types'
 
 /**
  * All products combined from all categories
- * Total: 75+ products
+ * Total: 95+ products
  */
 export const ALL_PRODUCTS: Product[] = [
     ...WHISKEY_PRODUCTS,
@@ -35,21 +37,23 @@ export const ALL_PRODUCTS: Product[] = [
     ...TEQUILA_PRODUCTS,
     ...WINE_PRODUCTS,
     ...BEER_PRODUCTS,
-    ...LIQUEUR_PRODUCTS
+    ...LIQUEUR_PRODUCTS,
+    ...LIQUEUR_PRODUCTS_EXPANDED,
+    ...EXPANSION_PRODUCTS
 ]
 
 /**
  * Products organized by category
  */
 export const PRODUCTS_BY_CATEGORY = {
-    whiskey: WHISKEY_PRODUCTS,
-    vodka: VODKA_PRODUCTS,
-    rum: RUM_PRODUCTS,
+    whiskey: [...WHISKEY_PRODUCTS, ...EXPANSION_PRODUCTS.filter(p => p.category === 'Whiskey')],
+    vodka: [...VODKA_PRODUCTS, ...EXPANSION_PRODUCTS.filter(p => p.category === 'Vodka')],
+    rum: [...RUM_PRODUCTS, ...EXPANSION_PRODUCTS.filter(p => p.category === 'Rum')],
     gin: GIN_PRODUCTS,
     tequila: TEQUILA_PRODUCTS,
     wine: WINE_PRODUCTS,
     beer: BEER_PRODUCTS,
-    liqueur: LIQUEUR_PRODUCTS
+    liqueur: [...LIQUEUR_PRODUCTS, ...LIQUEUR_PRODUCTS_EXPANDED, ...EXPANSION_PRODUCTS.filter(p => p.category === 'Liqueur')]
 }
 
 // ============================================
@@ -74,13 +78,19 @@ export { REVIEWS, getReviewsByProductId, getReviewsByUserId, getAverageRating, R
 // BLOG POSTS
 // ============================================
 
-export { BLOG_POSTS, getBlogPostBySlug, getBlogPostsByCategory, getBlogPostsByTag }
+export { BLOG_POSTS, getBlogPostBySlug, getBlogPostsByType, getFeaturedBlogPosts }
 
 // ============================================
 // RECIPES
 // ============================================
 
 export { RECIPES, getRecipeBySlug, getRecipesByDifficulty, getRecipesByTag, getRecipesWithProduct }
+
+// ============================================
+// CATEGORIES
+// ============================================
+
+export { CATEGORIES, getMockCategories }
 
 // ============================================
 // HELPER FUNCTIONS
@@ -104,32 +114,34 @@ export const getProductBySlug = (slug: string): Product | undefined => {
  * Get products by category
  */
 export const getProductsByCategory = (category: string): Product[] => {
-    return ALL_PRODUCTS.filter(product =>
-        product.category.toLowerCase() === category.toLowerCase()
-    )
+    return ALL_PRODUCTS.filter(product => {
+        const pCategory = (product as any).category || product.categories?.name;
+        return pCategory?.toLowerCase() === category.toLowerCase()
+    })
 }
 
 /**
  * Get products by brand
  */
 export const getProductsByBrand = (brand: string): Product[] => {
-    return ALL_PRODUCTS.filter(product =>
-        product.brand.toLowerCase().includes(brand.toLowerCase())
-    )
+    return ALL_PRODUCTS.filter(product => {
+        const pBrand = (product as any).brand?.name || (product as any).brand;
+        return pBrand?.toLowerCase().includes(brand.toLowerCase())
+    })
 }
 
 /**
  * Get products in stock
  */
 export const getInStockProducts = (): Product[] => {
-    return ALL_PRODUCTS.filter(product => product.inStock)
+    return ALL_PRODUCTS.filter(product => product.in_stock)
 }
 
 /**
  * Get products on sale (with discount)
  */
 export const getDiscountedProducts = (): Product[] => {
-    return ALL_PRODUCTS.filter(product => product.discountPrice)
+    return ALL_PRODUCTS.filter(product => product.discount_price)
 }
 
 /**
@@ -137,8 +149,8 @@ export const getDiscountedProducts = (): Product[] => {
  */
 export const getFeaturedProducts = (limit: number = 10): Product[] => {
     return ALL_PRODUCTS
-        .filter(p => p.rating >= 4.5 && p.reviewCount >= 50)
-        .sort((a, b) => b.reviewCount - a.reviewCount)
+        .filter(p => p.rating >= 4.5 && p.review_count >= 50)
+        .sort((a, b) => b.review_count - a.review_count)
         .slice(0, limit)
 }
 
@@ -150,8 +162,12 @@ export const getNewArrivals = (limit: number = 10): Product[] => {
     threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3)
 
     return ALL_PRODUCTS
-        .filter(p => new Date(p.createdAt) > threeMonthsAgo)
-        .sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+        .filter(p => p.created_at && new Date(p.created_at) > threeMonthsAgo)
+        .sort((a, b) => {
+            const dateB = b.created_at ? new Date(b.created_at).getTime() : 0;
+            const dateA = a.created_at ? new Date(a.created_at).getTime() : 0;
+            return dateB - dateA;
+        })
         .slice(0, limit)
 }
 
@@ -160,12 +176,13 @@ export const getNewArrivals = (limit: number = 10): Product[] => {
  */
 export const searchProducts = (query: string): Product[] => {
     const lowerQuery = query.toLowerCase()
-    return ALL_PRODUCTS.filter(product =>
-        product.name.toLowerCase().includes(lowerQuery) ||
-        product.description.toLowerCase().includes(lowerQuery) ||
-        product.brand.toLowerCase().includes(lowerQuery) ||
-        product.tags.some(tag => tag.toLowerCase().includes(lowerQuery))
-    )
+    return ALL_PRODUCTS.filter(product => {
+        const pBrand = (product as any).brand?.name || (product as any).brand || "";
+        return product.name.toLowerCase().includes(lowerQuery) ||
+            (product.description?.toLowerCase().includes(lowerQuery) ?? false) ||
+            pBrand.toString().toLowerCase().includes(lowerQuery) ||
+            (product.tags?.some((tag: string) => tag.toLowerCase().includes(lowerQuery)) ?? false)
+    })
 }
 
 // ============================================
@@ -189,16 +206,12 @@ export const MOCK_DATA_STATS = {
         discounted: getDiscountedProducts().length
     },
     users: {
-        total: USERS.length,
-        vip: USERS.filter(u => u.customerType === 'vip').length,
-        regular: USERS.filter(u => u.customerType === 'regular').length,
-        new: USERS.filter(u => u.customerType === 'new').length
+        total: USERS.length
     },
     orders: ORDER_STATS,
     reviews: REVIEW_STATS,
     blogPosts: {
-        total: BLOG_POSTS.length,
-        categories: [...new Set(BLOG_POSTS.map(p => p.category))].length
+        total: BLOG_POSTS.length
     },
     recipes: {
         total: RECIPES.length,
@@ -222,26 +235,26 @@ export const validateMockData = (): { valid: boolean; errors: string[] } => {
 
     // Validate order user references
     ORDERS.forEach(order => {
-        if (!getUserById(order.userId)) {
-            errors.push(`Order ${order.id} references non-existent user ${order.userId}`)
+        if (!getUserById(order.user_id)) {
+            errors.push(`Order ${order.id} references non-existent user ${order.user_id}`)
         }
     })
 
     // Validate review product references
     REVIEWS.forEach(review => {
-        if (!getProductById(review.productId)) {
-            errors.push(`Review ${review.id} references non-existent product ${review.productId}`)
+        if (!getProductById(review.product_id)) {
+            errors.push(`Review ${review.id} references non-existent product ${review.product_id}`)
         }
-        if (!getUserById(review.userId)) {
-            errors.push(`Review ${review.id} references non-existent user ${review.userId}`)
+        if (!getUserById(review.user_id)) {
+            errors.push(`Review ${review.id} references non-existent user ${review.user_id}`)
         }
     })
 
     // Validate recipe product references
     RECIPES.forEach(recipe => {
-        recipe.ingredients.forEach(ingredient => {
-            if (ingredient.productId && !getProductById(ingredient.productId)) {
-                errors.push(`Recipe ${recipe.id} references non-existent product ${ingredient.productId}`)
+        recipe.ingredients?.forEach((ingredient: any) => {
+            if (ingredient.product_id && !getProductById(ingredient.product_id)) {
+                errors.push(`Recipe ${recipe.id} references non-existent product ${ingredient.product_id}`)
             }
         })
     })

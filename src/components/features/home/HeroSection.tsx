@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ShimmerButton } from '@/components/ui/extension/shimmer-button';
+import ShimmerButton from '@/components/ui/extension/ShimmerButton';
 import { motion } from 'framer-motion';
 import { WavyBackground } from '@/components/ui/extension/wavy-background';
 

@@ -1,22 +1,17 @@
 "use client"
 
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence } from "framer-motion"
 import { usePathname } from "next/navigation"
+import { BlurFade } from "@/components/ui/blur-fade"
 
 export function PageTransition({ children }: { children: React.ReactNode }) {
     const pathname = usePathname()
 
     return (
         <AnimatePresence mode="wait">
-            <motion.div
-                key={pathname}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-            >
+            <BlurFade key={pathname} delay={0.1} inView>
                 {children}
-            </motion.div>
+            </BlurFade>
         </AnimatePresence>
     )
 }

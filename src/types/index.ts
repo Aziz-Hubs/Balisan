@@ -1,162 +1,126 @@
-// Product Types
-export interface Product {
+/**
+ * Centralized Type Definitions
+ * 
+ * Sourced primarily from Supabase generated types to ensure
+ * frontend-backend alignment.
+ */
+
+import { Database } from './database.types'
+
+// Helpers
+export type Tables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row']
+export type Enums<T extends keyof Database['public']['Enums']> = Database['public']['Enums'][T]
+
+// ============ DOMAIN TYPES ============
+// Catalog
+export type Brand = Tables<'brands'>
+export type Category = Tables<'categories'>
+export type Product = Partial<Database['public']['Tables']['products']['Row']> & {
     id: string
     name: string
     slug: string
-    brand: string
     price: number
-    discountPrice?: number
-    rating: number
-    image: string
-    images: string[] // Gallery images
-    inStock: boolean
-    stockQuantity: number
-    category: string
+    brand?: Brand | null | string
+    categories?: Category | null
+    image?: string
+    images?: string[]
+    tags?: string[]
+    is_award_winner?: boolean
+    is_new?: boolean
+    category?: string
     subcategory?: string
-    description: string
-    tastingNotes?: string
-    ingredients?: string
-    abv: number // Alcohol by volume percentage
-    volume: string // e.g., "750ml", "1L"
-    region: string // Country/region of origin
-    country: string
-    sku: string
-    tags: string[]
-    reviewCount: number
-    modelUrl?: string
-    flavorProfile?: {
-        woodiness: number // 0-100
-        smokiness: number // 0-100
-        sweetness: number // 0-100
-        complexity: number // 0-100
-        peatiness: number // 0-100
-    }
-    isAwardWinner?: boolean
-    isNew?: boolean
-    createdAt: string
+    rating: number
+    review_count: number
+    tasting_notes?: string | string[] | null
+    flavor_profile?: {
+        woodiness: number
+        smokiness: number
+        sweetness: number
+        complexity: number
+        peatiness: number
+    } | null
 }
 
-// User/Customer Types
-export interface User {
+// Identity
+export type UserProfile = Tables<'profiles'>
+export type User = UserProfile
+export type Address = Tables<'addresses'>
+export type UserRole = Enums<'user_role'>
+
+// Commerce
+export type OrderStatus = Enums<'order_status'>
+export type Order = Tables<'orders'> & {
+    items?: OrderItem[]
+}
+export type OrderItem = Tables<'order_items'>
+
+// Social
+export type Review = Partial<Tables<'reviews'>> & {
     id: string
-    email: string
-    name: string
-    phone: string
-    ageVerified: boolean
-    createdAt: string
-    addresses: Address[]
-    orderHistoryIds: string[]
-    preferences: {
-        favoriteCategories: string[]
-        newsletter: boolean
-    }
-    customerType: 'regular' | 'vip' | 'new'
+    user_id: string
+    product_id: string
+    rating: number
+    comment: string | null
+    title?: string | null
+    is_verified_purchase?: boolean
+    helpful_count?: number
+    user?: { full_name: string; avatar_url: string | null } // Joined profile
+}
+export type WishlistWithProduct = Tables<'wishlists'> & {
+    product: Product
 }
 
-export interface Address {
-    id: string
-    label: string
-    name: string
-    line1: string
-    line2?: string
-    city: string
-    state: string
-    zip: string
-    country: string
-    phone?: string
-    isDefault: boolean
-}
-
-// Order Types
-export interface OrderItem {
-    productId: string
-    productName: string
-    productImage: string
-    quantity: number
-    price: number
-    discountPrice?: number
-}
-
-export interface Order {
-    id: string
-    userId: string
-    items: OrderItem[]
-    subtotal: number
-    tax: number
-    shipping: number
-    total: number
-    status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled'
-    paymentMethod: string
-    shippingAddress: Address
-    trackingNumber?: string
-    createdAt: string
-    updatedAt: string
-}
-
-// Review Types
-export interface Review {
-    id: string
-    productId: string
-    userId: string
-    userName: string
-    rating: number // 1-5
-    title: string
-    comment: string
-    verifiedPurchase: boolean
-    helpfulCount: number
-    createdAt: string
-}
-
-// Blog Post Types
-export interface BlogPost {
+// Content
+export type ContentType = Enums<'content_type'>
+export type BlogPost = Partial<Tables<'content_posts'>> & {
     id: string
     title: string
     slug: string
-    author: {
-        name: string
-        avatar?: string
-    }
-    excerpt: string
-    content: string // Markdown content
-    category: string
-    tags: string[]
-    featuredImage: string
-    publishedAt: string
-    readTime: number // in minutes
+    content: string
+    excerpt?: string | null
+    image_url?: string | null
+    author?: { full_name: string; avatar_url: string | null }
 }
-
-// Recipe Types
-export interface RecipeIngredient {
+export type Recipe = Partial<Tables<'recipes'>> & {
+    id: string
+    title: string
+    slug: string
+    ingredients?: RecipeIngredient[]
+    author?: { full_name: string; avatar_url: string | null }
+}
+export type RecipeIngredient = Partial<Tables<'recipe_ingredients'>> & {
+    id: string
+    recipe_id: string
     name: string
     amount: string
-    productId?: string // Link to shoppable product
-    productName?: string
-    price?: number
-    image?: string
+    product?: Product | null
 }
 
-export interface Recipe {
-    id: string
-    title: string
-    slug: string
-    description: string
-    ingredients: RecipeIngredient[]
-    instructions: string[]
-    difficulty: 'easy' | 'medium' | 'hard'
-    prepTime: number // in minutes
-    servings: number
-    image: string
-    category: string
-    tags: string[]
-    glassware?: string
-    garnish?: string
-}
+// System
+export type AuditLog = Tables<'audit_logs'>
 
-// Filter State (existing)
+// ============ UTILITY TYPES ============
+
 export interface FilterState {
     category: string | null
+    subcategory?: string | null
     minPrice: number
     maxPrice: number
     brands: string[]
     sort: string
+    inStock?: boolean
+}
+
+// Generic API Response
+export interface ApiResponse<T> {
+    data: T | null
+    error: string | null
+}
+
+// Cart Types (Client Side mostly)
+export interface CartItem {
+    id: string
+    productId: string
+    quantity: number
+    product: Product
 }

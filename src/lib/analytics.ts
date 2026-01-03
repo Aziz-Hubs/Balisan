@@ -20,7 +20,7 @@ export function event(action: string, params: object) {
 
 export const trackAddToCart = (item: { productId: string; name: string; price: number }) => {
     event("add_to_cart", {
-        currency: "USD",
+        currency: "JOD",
         value: item.price,
         items: [{ item_id: item.productId, item_name: item.name }],
     });

@@ -46,9 +46,8 @@ export const LitUpButton = ({
             <span
                 ref={gradientRef}
                 className={cn(
-                    "absolute inset-[-1000%] animate-[spin_2s_linear_infinite] transition-[filter] duration-500",
-                    "bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]",
-                    "dark:bg-[conic-gradient(from_90deg_at_50%_50%,#F5A623_0%,#78350F_50%,#F5A623_100%)]",
+                    "absolute inset-[-1000%] animate-[spin_20s_linear_infinite] transition-[filter] duration-500",
+                    "bg-[conic-gradient(from_90deg_at_50%_50%,#F5A623_0%,#78350F_50%,#F5A623_100%)]",
                     isHovered && "brightness-150 saturate-125"
                 )}
             />

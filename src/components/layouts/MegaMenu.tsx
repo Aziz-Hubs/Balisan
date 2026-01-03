@@ -99,13 +99,18 @@ export function MegaMenu() {
                                                         // Dynamic Image Lookup
                                                         const getImage = () => {
                                                             const searchTerm = item.title.toLowerCase();
-                                                            const product = ALL_PRODUCTS.find(p =>
-                                                                (p.category.toLowerCase() === searchTerm ||
-                                                                    p.subcategory?.toLowerCase() === searchTerm ||
-                                                                    p.tags.includes(searchTerm)) &&
-                                                                !p.image.includes("bottle.png") &&
-                                                                !p.image.includes("placeholder.png")
-                                                            );
+                                                            const product = ALL_PRODUCTS.find(p => {
+                                                                const pCategory = (p as any).category || p.categories?.name;
+                                                                const pSubcategory = (p as any).subcategory || (p as any).sub_category;
+
+                                                                return (
+                                                                    (pCategory?.toLowerCase() === searchTerm ||
+                                                                        pSubcategory?.toLowerCase() === searchTerm ||
+                                                                        p.tags?.some((tag: string) => tag.toLowerCase() === searchTerm)) &&
+                                                                    !p.image?.includes("bottle.png") &&
+                                                                    !p.image?.includes("placeholder.png")
+                                                                );
+                                                            });
                                                             return product?.image || item.image || "/bottle.png";
                                                         };
 
@@ -156,15 +161,16 @@ export function MegaMenu() {
                                                                             )}
                                                                         </div>
                                                                         {item.subcategories && item.subcategories.length > 0 && (
-                                                                            <div className="mt-2 flex flex-wrap gap-x-2 gap-y-1">
+                                                                            <div className="mt-3 flex flex-col gap-1.5 border-l-2 border-border/40 pl-3">
                                                                                 {item.subcategories.map((sub) => (
                                                                                     <NavigationMenuLink key={sub.title} asChild>
                                                                                         <Link
                                                                                             href={sub.href}
-                                                                                            className="text-[10px] font-medium text-muted-foreground/70 hover:text-primary transition-colors cursor-pointer"
+                                                                                            className="group/link flex items-center text-[13px] text-muted-foreground hover:text-foreground transition-all duration-300 hover:translate-x-1"
                                                                                             onMouseEnter={() => prefetch(sub.href)}
                                                                                         >
-                                                                                            {sub.title}
+                                                                                            <span className="w-1 h-1 rounded-full bg-amber-500/0 group-hover/link:bg-amber-500 mr-2 transition-all duration-300 scale-0 group-hover/link:scale-100" />
+                                                                                            <span className="group-hover/link:font-medium transition-colors duration-200">{sub.title}</span>
                                                                                         </Link>
                                                                                     </NavigationMenuLink>
                                                                                 ))}
@@ -177,12 +183,32 @@ export function MegaMenu() {
                                                     })}
                                                 </div>
 
-                                                {/* Promotional Callout */}
-                                                <div className="mt-4 pt-4 border-t">
-                                                    <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                                                        <Tag className="h-3.5 w-3.5 text-primary" />
-                                                        <span>Free shipping on orders over $150</span>
+                                                {/* Promotional Callout & Featured Brands */}
+                                                {/* Promotional Callout & Featured Brands */}
+                                                <div className="mt-6">
+                                                    {/* Promo Line */}
+                                                    <div className="flex items-center gap-2 text-xs text-muted-foreground pb-3">
+                                                        <Tag className="h-3.5 w-3.5 text-amber-500" />
+                                                        <span>Free shipping on orders over <span className="text-foreground font-medium">100 JOD</span></span>
                                                     </div>
+
+                                                    {/* Featured Brands Row */}
+                                                    {category.featuredBrands && category.featuredBrands.length > 0 && (
+                                                        <div className="pt-3 border-t border-border/50 flex flex-col sm:flex-row sm:items-center gap-3">
+                                                            <span className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold shrink-0">Featured Brands:</span>
+                                                            <div className="flex flex-wrap gap-2">
+                                                                {category.featuredBrands.map(brand => (
+                                                                    <Link
+                                                                        key={brand.name}
+                                                                        href={brand.href}
+                                                                        className="text-[10px] font-medium px-2.5 py-1 rounded-md bg-muted/40 hover:bg-amber-500/10 hover:text-amber-600 border border-transparent hover:border-amber-500/20 transition-all whitespace-nowrap"
+                                                                    >
+                                                                        {brand.name}
+                                                                    </Link>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>

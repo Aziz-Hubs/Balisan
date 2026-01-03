@@ -21,7 +21,7 @@ export default function AboutPage() {
                         src="/bottle.png"
                         alt="Craft distillery setup showcasing premium spirit production"
                         fill
-                        className="object-cover"
+                        className="object-contain p-20 bg-muted/30"
                         priority
                     />
                 </div>

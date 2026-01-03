@@ -13,7 +13,8 @@ export {
     getNewArrivals,
     getProductsByCategory,
     searchProducts,
-    getFacets
+    getFacets,
+    getCategories
 } from './products'
 
 // Content Service (Recipes & Blog)

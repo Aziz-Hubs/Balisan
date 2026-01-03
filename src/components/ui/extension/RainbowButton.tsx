@@ -64,44 +64,34 @@ const RainbowButton = React.forwardRef<HTMLButtonElement, RainbowButtonProps>(
                 {/* Rainbow border gradient - spinning conic gradient */}
                 <span
                     className={cn(
-                        "absolute inset-0 rounded-full transition-opacity duration-300 pointer-events-none",
-                        isHovered ? "opacity-100" : "opacity-0"
+                        "absolute inset-0 rounded-full transition-opacity duration-500 pointer-events-none",
+                        isHovered ? "opacity-80" : "opacity-0"
                     )}
                     style={{
                         padding: "2px",
                         background: isHovered
-                            ? "conic-gradient(from 0deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000)"
+                            ? "conic-gradient(from 0deg, #F5A623, #D97706, #B45309, #F5A623, #D97706, #B45309, #F5A623)"
                             : "transparent",
                     }}
                 >
                     <span
                         className={cn(
-                            "absolute inset-0 rounded-full animate-[spin_3s_linear_infinite]",
+                            "absolute inset-0 rounded-full animate-[spin_4s_linear_infinite]",
                             !isHovered && "hidden"
                         )}
                         style={{
-                            background: "conic-gradient(from 0deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000)",
+                            background: "conic-gradient(from 0deg, #F5A623, #D97706, #B45309, #F5A623, #D97706, #B45309, #F5A623)",
                         }}
                     />
                     <span className="relative block h-full w-full rounded-full bg-[#0c0a09] z-10" />
                 </span>
 
-                {/* Rainbow flood overlay - slow flood from bottom up */}
-                <span
-                    className={cn(
-                        "absolute inset-0 rounded-full transition-all duration-700 ease-in-out pointer-events-none",
-                        "bg-[linear-gradient(to_top,#ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#7a00ff)]",
-                        "opacity-40",
-                        isActive ? "translate-y-0 scale-100" : "translate-y-full scale-105"
-                    )}
-                />
-
                 {/* Enhanced Hover glow effect */}
                 <span
                     className={cn(
-                        "absolute -inset-1 rounded-full opacity-0 blur-xl transition-all duration-500 pointer-events-none",
-                        "bg-[conic-gradient(from_0deg,#ff0000,#ff7300,#fffb00,#48ff00,#00ffd5,#002bff,#7a00ff,#ff00c8,#ff0000)]",
-                        isHovered ? "opacity-40 scale-110" : "opacity-0 scale-100"
+                        "absolute -inset-1 rounded-full opacity-0 blur-xl transition-all duration-700 pointer-events-none",
+                        "bg-[conic-gradient(from_0deg,#F5A623,#D97706,#B45309,#F5A623,#D97706,#B45309,#F5A623)]",
+                        isHovered ? "opacity-20 scale-110" : "opacity-0 scale-100"
                     )}
                 />
 

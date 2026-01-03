@@ -7,6 +7,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import { Label } from "@/components/ui/label"
 import { ArrowLeft, ArrowRight, Truck, Zap, ShoppingBag } from "lucide-react"
 import Link from "next/link"
+import { useCheckoutStore } from "@/lib/stores/checkout"
 
 const shippingMethods = [
     { id: "standard", label: "Standard Shipping", price: 0, time: "3-5 business days", icon: Truck },
@@ -16,7 +17,16 @@ const shippingMethods = [
 
 export default function ShippingPage() {
     const router = useRouter()
-    const [selectedMethod, setSelectedMethod] = React.useState("standard")
+    const { contactInfo, shippingAddress, shippingMethod, setShippingMethod } = useCheckoutStore()
+    const [selectedMethod, setSelectedMethod] = React.useState(shippingMethod.id)
+
+    const handleContinue = () => {
+        const method = shippingMethods.find(m => m.id === selectedMethod)
+        if (method) {
+            setShippingMethod({ id: method.id, price: method.price })
+            router.push("/checkout/payment")
+        }
+    }
 
     return (
         <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -24,14 +34,18 @@ export default function ShippingPage() {
                 <div className="flex justify-between items-center pb-4 border-b">
                     <div className="text-sm">
                         <span className="text-muted-foreground mr-4">Contact</span>
-                        <span className="font-medium text-foreground">email@example.com</span>
+                        <span className="font-medium text-foreground">{contactInfo.email || "email@example.com"}</span>
                     </div>
                     <Link href="/checkout/information" className="text-xs font-bold text-primary hover:underline uppercase tracking-wider">Change</Link>
                 </div>
                 <div className="flex justify-between items-center pt-2">
                     <div className="text-sm">
                         <span className="text-muted-foreground mr-4">Ship to</span>
-                        <span className="font-medium text-foreground">123 Luxury Ave, CA 90210...</span>
+                        <span className="font-medium text-foreground">
+                            {shippingAddress.address ?
+                                `${shippingAddress.address}, ${shippingAddress.city}, ${shippingAddress.zip}` :
+                                "123 Luxury Ave, CA 90210..."}
+                        </span>
                     </div>
                     <Link href="/checkout/information" className="text-xs font-bold text-primary hover:underline uppercase tracking-wider">Change</Link>
                 </div>
@@ -77,7 +91,7 @@ export default function ShippingPage() {
                         Back to Information
                     </Link>
                 </Button>
-                <Button size="lg" onClick={() => router.push("/checkout/payment")} className="h-12 px-8">
+                <Button size="lg" onClick={handleContinue} className="h-12 px-8">
                     Continue to Payment
                     <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>

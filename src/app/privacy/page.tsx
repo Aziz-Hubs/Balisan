@@ -34,8 +34,8 @@ export default function PrivacyPage() {
                 <div>
                     <h2 className="text-2xl font-semibold mb-3">2. Age Verification Data</h2>
                     <p>
-                        To comply with federal and state laws regarding the sale of alcoholic beverages,
-                        we verify that all customers are at least <strong>21 years of age</strong>.
+                        To comply with Jordanian laws regarding the sale of alcoholic beverages,
+                        we verify that all customers are at least <strong>18 years of age</strong>.
                         We may collect date of birth information and, in some cases, request a government-issued ID.
                         We do not permanently store sensitive identity document images once verification is complete.
                     </p>
@@ -60,7 +60,7 @@ export default function PrivacyPage() {
                         We do not sell your personal information. We may share your information with:
                     </p>
                     <ul className="list-disc pl-6 mt-3 space-y-2">
-                        <li>Shipping carriers to fulfill your orders (FedEx, UPS)</li>
+                        <li>Shipping carriers to fulfill your orders (Local couriers)</li>
                         <li>Payment processors to complete transactions</li>
                         <li>Analytics providers to improve our services</li>
                         <li>Law enforcement when required by law</li>
@@ -100,11 +100,7 @@ export default function PrivacyPage() {
                     <h2 className="text-2xl font-semibold mb-3">8. Responsible Drinking</h2>
                     <p>
                         Balisan is committed to promoting responsible enjoyment of alcoholic beverages.
-                        We strictly enforce age verification and do not market to individuals under the legal drinking age.
-                        If you or someone you know needs help with alcohol-related issues, please visit{' '}
-                        <a href="https://www.samhsa.gov" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                            SAMHSA.gov
-                        </a>.
+                        We strictly enforce age verification and do not market to individuals under the legal drinking age (18+).
                     </p>
                 </div>
 
@@ -115,8 +111,8 @@ export default function PrivacyPage() {
                     </p>
                     <address className="not-italic mt-3">
                         <strong>Balisan Privacy Team</strong><br />
-                        123 Artisan Way, Ste 500<br />
-                        Nashville, TN 37201<br />
+                        Mecca Street, Al-Jabr Complex<br />
+                        Amman, Jordan<br />
                         <a href="mailto:privacy@balisan.com" className="text-primary hover:underline">
                             privacy@balisan.com
                         </a>

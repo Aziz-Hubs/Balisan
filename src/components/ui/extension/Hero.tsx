@@ -64,18 +64,18 @@ export function Hero({ className }: HeroProps) {
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-                        <Link href="/shop">
+                        <Link href="/shop" className="w-full sm:w-auto">
                             <ShimmerButton
-                                className="h-14 px-8 shadow-xl"
+                                className="h-14 w-full px-8 shadow-xl"
                                 background={isLight ? "#18181b" : "#0c0a09"}
                                 shimmerColor={isLight ? "#ffffff" : undefined}
                             >
                                 <span className="flex items-center gap-2 text-base text-white">
-                                    Explore Collection
+                                    Explore Collections
                                 </span>
                             </ShimmerButton>
                         </Link>
-                        <Button asChild variant="outline" size="lg" className="h-14 px-8 rounded-full border-border hover:bg-muted font-medium tracking-wide text-base backdrop-blur-sm transition-all text-foreground">
+                        <Button asChild variant="outline" size="lg" className="h-14 w-full sm:w-auto px-8 rounded-full border-border hover:bg-muted font-medium tracking-wide text-base backdrop-blur-sm transition-all text-foreground">
                             <Link href="/about">
                                 Our Story
                             </Link>

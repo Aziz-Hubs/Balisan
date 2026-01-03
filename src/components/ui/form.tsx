@@ -12,6 +12,7 @@ import {
   type FieldPath,
   type FieldValues,
 } from "react-hook-form"
+import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion"
 
 import { cn } from "@/lib/utils"
 import { Label } from "@/components/ui/label"
@@ -135,7 +136,10 @@ function FormDescription({ className, ...props }: React.ComponentProps<"p">) {
   )
 }
 
-function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
+const FormMessage = React.forwardRef<
+  HTMLParagraphElement,
+  HTMLMotionProps<"p">
+>(({ className, ...props }, ref) => {
   const { error, formMessageId } = useFormField()
   const body = error ? String(error?.message ?? "") : props.children
 
@@ -144,16 +148,24 @@ function FormMessage({ className, ...props }: React.ComponentProps<"p">) {
   }
 
   return (
-    <p
-      data-slot="form-message"
-      id={formMessageId}
-      className={cn("text-destructive text-sm", className)}
-      {...props}
-    >
-      {body}
-    </p>
+    <AnimatePresence mode="wait">
+      <motion.p
+        ref={ref}
+        id={formMessageId}
+        initial={{ opacity: 0, y: -5 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -5 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        data-slot="form-message"
+        className={cn("text-destructive text-sm font-medium mt-1", className)}
+        {...props}
+      >
+        {body}
+      </motion.p>
+    </AnimatePresence>
   )
-}
+})
+FormMessage.displayName = "FormMessage"
 
 export {
   useFormField,

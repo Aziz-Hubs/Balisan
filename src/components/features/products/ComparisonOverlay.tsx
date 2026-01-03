@@ -102,7 +102,7 @@ export function ComparisonOverlay() {
                                 {/* Brand */}
                                 <div className="p-6 border-b text-center md:text-left h-[73px] flex items-center">
                                     <span className="md:hidden font-semibold mr-2 text-muted-foreground">Brand:</span>
-                                    {product.brand}
+                                    {typeof product.brand === 'string' ? product.brand : product.brand?.name}
                                 </div>
 
                                 {/* Price */}
@@ -135,13 +135,13 @@ export function ComparisonOverlay() {
                                 {/* Flavor Profile */}
                                 <div className="p-6 border-b text-center md:text-left flex flex-col gap-4">
                                     <span className="md:hidden font-semibold mb-2 text-muted-foreground">Flavor Profile:</span>
-                                    {product.flavorProfile ? (
+                                    {product.flavor_profile ? (
                                         <>
-                                            <FlavorBar label="Woodiness" value={product.flavorProfile.woodiness} />
-                                            <FlavorBar label="Smokiness" value={product.flavorProfile.smokiness} />
-                                            <FlavorBar label="Sweetness" value={product.flavorProfile.sweetness} />
-                                            <FlavorBar label="Complexity" value={product.flavorProfile.complexity} color="bg-zinc-500" />
-                                            <FlavorBar label="Peatiness" value={product.flavorProfile.peatiness} color="bg-emerald-600" />
+                                            <FlavorBar label="Woodiness" value={product.flavor_profile.woodiness || 0} />
+                                            <FlavorBar label="Smokiness" value={product.flavor_profile.smokiness || 0} />
+                                            <FlavorBar label="Sweetness" value={product.flavor_profile.sweetness || 0} />
+                                            <FlavorBar label="Complexity" value={product.flavor_profile.complexity || 0} color="bg-zinc-500" />
+                                            <FlavorBar label="Peatiness" value={product.flavor_profile.peatiness || 0} color="bg-emerald-600" />
                                         </>
                                     ) : (
                                         <span className="text-muted-foreground italic text-sm text-center w-full py-4">Profile data unavailable</span>

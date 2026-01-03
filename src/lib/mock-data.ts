@@ -7,16 +7,16 @@ export const PRODUCTS: Product[] = [
         slug: "balisan-signature-whisky",
         brand: "Balisan Signature",
         price: 89.99,
-        discountPrice: 79.99,
+        discount_price: 79.99,
         rating: 4.8,
         image: "/bottle.png",
         images: ["/bottle.png"],
-        inStock: true,
-        stockQuantity: 50,
+        in_stock: true,
+        stock_quantity: 50,
         category: "Whisky",
         subcategory: "Blend",
         description: "A premium blend with notes of honey and oak.",
-        tastingNotes: "Honey, Oak, Vanilla, Spice",
+        tasting_notes: "Honey, Oak, Vanilla, Spice",
         ingredients: "Malted Barley, Water, Yeast",
         abv: 40,
         volume: "750ml",
@@ -24,8 +24,8 @@ export const PRODUCTS: Product[] = [
         country: "Scotland",
         sku: "BAL-SIG-001",
         tags: ["Premium", "Signature", "Gift"],
-        reviewCount: 128,
-        createdAt: "2023-01-01T00:00:00Z"
+        review_count: 128,
+        created_at: "2023-01-01T00:00:00Z"
     },
     {
         id: "2",
@@ -36,12 +36,12 @@ export const PRODUCTS: Product[] = [
         rating: 4.5,
         image: "/bottle.png",
         images: ["/bottle.png"],
-        inStock: true,
-        stockQuantity: 24,
+        in_stock: true,
+        stock_quantity: 24,
         category: "Whisky",
         subcategory: "Single Malt",
         description: "Rich and smoky single malt.",
-        tastingNotes: "Heather Honey, Rich Fruit Cake, Winter Spices, Seville Oranges, Aromatic Smoky Peat",
+        tasting_notes: "Heather Honey, Rich Fruit Cake, Winter Spices, Seville Oranges, Aromatic Smoky Peat",
         ingredients: "Malted Barley, Water, Yeast",
         abv: 40,
         volume: "700ml",
@@ -49,8 +49,8 @@ export const PRODUCTS: Product[] = [
         country: "Scotland",
         sku: "HP-12-001",
         tags: ["Single Malt", "Smoky"],
-        reviewCount: 85,
-        createdAt: "2023-01-15T00:00:00Z"
+        review_count: 85,
+        created_at: "2023-01-15T00:00:00Z"
     },
     {
         id: "3",
@@ -61,12 +61,12 @@ export const PRODUCTS: Product[] = [
         rating: 5,
         image: "/bottle.png",
         images: ["/bottle.png"],
-        inStock: false,
-        stockQuantity: 0,
+        in_stock: false,
+        stock_quantity: 0,
         category: "Whisky",
         subcategory: "Single Malt",
         description: "Exquisite sherry seasoned oak casks.",
-        tastingNotes: "Dried fruits, ginger, vanilla, cinnamon",
+        tasting_notes: "Dried fruits, ginger, vanilla, cinnamon",
         ingredients: "Malted Barley, Water, Yeast",
         abv: 43,
         volume: "750ml",
@@ -74,8 +74,8 @@ export const PRODUCTS: Product[] = [
         country: "Scotland",
         sku: "MAC-18-001",
         tags: ["Luxury", "Single Malt", "Sherry Cask"],
-        reviewCount: 42,
-        createdAt: "2023-02-01T00:00:00Z"
+        review_count: 42,
+        created_at: "2023-02-01T00:00:00Z"
     },
     {
         id: "4",
@@ -86,12 +86,12 @@ export const PRODUCTS: Product[] = [
         rating: 4.2,
         image: "/bottle.png",
         images: ["/bottle.png"],
-        inStock: true,
-        stockQuantity: 100,
+        in_stock: true,
+        stock_quantity: 100,
         category: "Vodka",
         subcategory: "Premium",
         description: "Premium French vodka.",
-        tastingNotes: "Clean, fresh, with a smooth creamy texture",
+        tasting_notes: "Clean, fresh, with a smooth creamy texture",
         ingredients: "Wheat, Water",
         abv: 40,
         volume: "750ml",
@@ -99,8 +99,8 @@ export const PRODUCTS: Product[] = [
         country: "France",
         sku: "GG-VOD-001",
         tags: ["Premium", "French", "Smooth"],
-        reviewCount: 310,
-        createdAt: "2023-01-20T00:00:00Z"
+        review_count: 310,
+        created_at: "2023-01-20T00:00:00Z"
     },
     {
         id: "5",
@@ -111,12 +111,12 @@ export const PRODUCTS: Product[] = [
         rating: 4.6,
         image: "/bottle.png",
         images: ["/bottle.png"],
-        inStock: true,
-        stockQuantity: 60,
+        in_stock: true,
+        stock_quantity: 60,
         category: "Gin",
         subcategory: "Botanical",
         description: "Infused with rose and cucumber.",
-        tastingNotes: "Juniper, Rose, Cucumber, Citrus",
+        tasting_notes: "Juniper, Rose, Cucumber, Citrus",
         ingredients: "Grain Spirit, Botanicals",
         abv: 41.4,
         volume: "750ml",
@@ -124,8 +124,8 @@ export const PRODUCTS: Product[] = [
         country: "Scotland",
         sku: "HEN-GIN-001",
         tags: ["Botanical", "Refreshing"],
-        reviewCount: 215,
-        createdAt: "2023-03-01T00:00:00Z"
+        review_count: 215,
+        created_at: "2023-03-01T00:00:00Z"
     },
     {
         id: "6",
@@ -136,12 +136,12 @@ export const PRODUCTS: Product[] = [
         rating: 4.9,
         image: "/bottle.png",
         images: ["/bottle.png"],
-        inStock: true,
-        stockQuantity: 15,
+        in_stock: true,
+        stock_quantity: 15,
         category: "Tequila",
         subcategory: "Añejo",
         description: "Small batch añejo tequila.",
-        tastingNotes: "Warm oak, vanilla, roasted agave",
+        tasting_notes: "Warm oak, vanilla, roasted agave",
         ingredients: "Blue Weber Agave",
         abv: 38,
         volume: "750ml",
@@ -149,8 +149,8 @@ export const PRODUCTS: Product[] = [
         country: "Mexico",
         sku: "DJ-1942-001",
         tags: ["Luxury", "Añejo", "Celebration"],
-        reviewCount: 95,
-        createdAt: "2023-02-15T00:00:00Z"
+        review_count: 95,
+        created_at: "2023-02-15T00:00:00Z"
     }
 ]
 
@@ -162,8 +162,8 @@ export interface Address {
     line2?: string
     city: string
     state: string
-    zip: string
-    isDefault: boolean
+    postal_code: string
+    is_default: boolean
 }
 
 export const mockAddresses: Address[] = [
@@ -174,8 +174,8 @@ export const mockAddresses: Address[] = [
         line1: "123 Main St",
         city: "New York",
         state: "NY",
-        zip: "10001",
-        isDefault: true
+        postal_code: "10001",
+        is_default: true
     },
     {
         id: "addr_2",
@@ -185,8 +185,8 @@ export const mockAddresses: Address[] = [
         line2: "Suite 200",
         city: "New York",
         state: "NY",
-        zip: "10010",
-        isDefault: false
+        postal_code: "10010",
+        is_default: false
     }
 ]
 

@@ -9,6 +9,8 @@ import { mockAddresses } from "@/lib/mock-data"
 import { useState } from "react"
 import type { Address } from "@/lib/mock-data"
 import { Checkbox } from "@/components/ui/checkbox"
+import { HoldToConfirm } from "@/components/ui/hold-toconfirm"
+import { Folder, FolderContent } from "@/components/ui/folder"
 
 export function AddressManager() {
     const [addresses, setAddresses] = useState<Address[]>(mockAddresses)
@@ -17,13 +19,11 @@ export function AddressManager() {
     // Simple form state
     const [newAddress, setNewAddress] = useState<Partial<Address>>({
         label: 'Home',
-        isDefault: false
+        is_default: false
     })
 
     const handleDelete = (id: string) => {
-        if (confirm('Are you sure you want to delete this address?')) {
-            setAddresses(addresses.filter(a => a.id !== id))
-        }
+        setAddresses(addresses.filter(a => a.id !== id))
     }
 
     const handleSave = (e: React.FormEvent) => {
@@ -35,12 +35,12 @@ export function AddressManager() {
             line1: newAddress.line1 || '',
             city: newAddress.city || '',
             state: newAddress.state || '',
-            zip: newAddress.zip || '',
-            isDefault: newAddress.isDefault || false
+            postal_code: newAddress.postal_code || '',
+            is_default: newAddress.is_default || false
         }
         setAddresses([...addresses, address])
         setIsAdding(false)
-        setNewAddress({ label: 'Home', isDefault: false })
+        setNewAddress({ label: 'Home', is_default: false })
     }
 
     if (isAdding) {
@@ -88,10 +88,10 @@ export function AddressManager() {
                         </div>
                         <div className="grid grid-cols-2 gap-4">
                             <div className="grid gap-2">
-                                <label className="text-sm font-medium">Zip Code</label>
+                                <label className="text-sm font-medium">postal_code</label>
                                 <Input required
-                                    value={newAddress.zip}
-                                    onChange={e => setNewAddress({ ...newAddress, zip: e.target.value })}
+                                    value={newAddress.postal_code}
+                                    onChange={e => setNewAddress({ ...newAddress, postal_code: e.target.value })}
                                 />
                             </div>
                             <div className="grid gap-2">
@@ -105,8 +105,8 @@ export function AddressManager() {
                         <div className="flex items-center space-x-2">
                             <Checkbox
                                 id="default"
-                                checked={newAddress.isDefault}
-                                onCheckedChange={(c) => setNewAddress({ ...newAddress, isDefault: !!c })}
+                                checked={newAddress.is_default}
+                                onCheckedChange={(c) => setNewAddress({ ...newAddress, is_default: !!c })}
                             />
                             <label htmlFor="default" className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
                                 Set as default address
@@ -139,20 +139,22 @@ export function AddressManager() {
                             <div className="flex items-center justify-between">
                                 <CardTitle className="text-base font-medium flex items-center gap-2">
                                     {addr.label}
-                                    {addr.isDefault && <Badge variant="secondary" className="text-xs">Default</Badge>}
+                                    {addr.is_default && <Badge variant="secondary" className="text-xs">Default</Badge>}
                                 </CardTitle>
                                 <div className="flex items-center gap-2">
                                     <Button variant="ghost" size="icon" className="h-8 w-8 text-muted-foreground">
                                         <Pencil className="h-4 w-4" />
                                     </Button>
-                                    <Button
+                                    <HoldToConfirm
                                         variant="ghost"
                                         size="icon"
                                         className="h-8 w-8 text-muted-foreground hover:text-destructive"
-                                        onClick={() => handleDelete(addr.id)}
+                                        onConfirm={() => handleDelete(addr.id)}
+                                        duration={1500}
+                                        fillClassName="bg-destructive/20"
                                     >
                                         <Trash2 className="h-4 w-4" />
-                                    </Button>
+                                    </HoldToConfirm>
                                 </div>
                             </div>
                         </CardHeader>
@@ -160,10 +162,38 @@ export function AddressManager() {
                             <p className="font-medium text-foreground">{addr.name}</p>
                             <p>{addr.line1}</p>
                             {addr.line2 && <p>{addr.line2}</p>}
-                            <p>{addr.city}, {addr.state} {addr.zip}</p>
+                            <p>{addr.city}, {addr.state} {addr.postal_code}</p>
                         </CardContent>
                     </Card>
                 ))}
+            </div>
+
+            {/* Import/Export Zone */}
+            <div className="pt-8 border-t border-border">
+                <h3 className="text-sm font-medium mb-6">Backup & Sync</h3>
+                <div className="flex flex-wrap gap-8 justify-center md:justify-start">
+                    <Folder color="#f59e0b" tabColor="#d97706" size="xs">
+                        <FolderContent className="bg-zinc-900 border-zinc-800">
+                            <div className="flex flex-col items-center gap-2">
+                                <span className="text-xs font-bold text-white uppercase italic tracking-tighter">Export Addresses</span>
+                                <Button size="sm" variant="outline" className="h-7 text-[10px] uppercase font-bold tracking-widest bg-zinc-800 border-zinc-700 hover:bg-balisan-amber hover:text-black">
+                                    Download .JSON
+                                </Button>
+                            </div>
+                        </FolderContent>
+                    </Folder>
+
+                    <Folder color="#3b82f6" tabColor="#2563eb" size="xs">
+                        <FolderContent className="bg-zinc-900 border-zinc-800">
+                            <div className="flex flex-col items-center gap-2">
+                                <span className="text-xs font-bold text-white uppercase italic tracking-tighter">Sync Cloud</span>
+                                <Button size="sm" variant="outline" className="h-7 text-[10px] uppercase font-bold tracking-widest bg-zinc-800 border-zinc-700 hover:bg-balisan-amber hover:text-black">
+                                    Push to Account
+                                </Button>
+                            </div>
+                        </FolderContent>
+                    </Folder>
+                </div>
             </div>
         </div>
     )

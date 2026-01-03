@@ -56,44 +56,64 @@ export default function OrdersPage() {
             <Separator />
 
             <div className="space-y-4">
-                {orders.map((order) => {
-                    const config = statusConfig[order.status] || statusConfig.Processing
-                    const StatusIcon = config.icon
+                {orders.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center py-24 text-center border border-dashed border-zinc-200 dark:border-white/5 rounded-3xl bg-zinc-50/50 dark:bg-white/5 backdrop-blur-sm">
+                        <div className="bg-amber-500/10 p-6 rounded-full mb-6">
+                            <Package className="w-12 h-12 text-amber-500" />
+                        </div>
+                        <h3 className="text-xl font-serif font-bold text-zinc-900 dark:text-white mb-2">
+                            No orders yet
+                        </h3>
+                        <p className="text-muted-foreground max-w-xs mx-auto mb-8">
+                            Looks like you haven't placed any orders yet. Start building your collection today.
+                        </p>
+                        <a
+                            href="/shop"
+                            className="inline-flex items-center justify-center h-12 px-8 rounded-full bg-zinc-900 dark:bg-white text-white dark:text-black font-medium transition-all hover:scale-105 active:scale-95 shadow-xl"
+                        >
+                            Start Shopping
+                        </a>
+                    </div>
+                ) : (
+                    orders.map((order) => {
+                        const config = statusConfig[order.status] || statusConfig.Processing
+                        const StatusIcon = config.icon
 
-                    return (
-                        <Card key={order.id}>
-                            <CardHeader className="pb-3">
-                                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                                    <div>
-                                        <CardTitle className="text-base">{order.id}</CardTitle>
-                                        <CardDescription>Placed on {order.date}</CardDescription>
-                                    </div>
-                                    <Badge variant="outline" className={config.className}>
-                                        <StatusIcon className="w-3 h-3 mr-1" />
-                                        {order.status}
-                                    </Badge>
-                                </div>
-                            </CardHeader>
-                            <CardContent>
-                                <div className="space-y-2">
-                                    {order.items.map((item, i) => (
-                                        <div key={i} className="flex justify-between text-sm">
-                                            <span className="text-muted-foreground">
-                                                {item.quantity}x {item.name}
-                                            </span>
-                                            <span>${item.price.toFixed(2)}</span>
+                        return (
+                            <Card key={order.id}>
+                                <CardHeader className="pb-3">
+                                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                                        <div>
+                                            <CardTitle className="text-base">{order.id}</CardTitle>
+                                            <CardDescription>Placed on {order.date}</CardDescription>
                                         </div>
-                                    ))}
-                                    <Separator className="my-2" />
-                                    <div className="flex justify-between font-medium">
-                                        <span>Total</span>
-                                        <span className="text-amber-600">${order.total.toFixed(2)}</span>
+                                        <Badge variant="outline" className={config.className}>
+                                            <StatusIcon className="w-3 h-3 mr-1" />
+                                            {order.status}
+                                        </Badge>
                                     </div>
-                                </div>
-                            </CardContent>
-                        </Card>
-                    )
-                })}
+                                </CardHeader>
+                                <CardContent>
+                                    <div className="space-y-2">
+                                        {order.items.map((item, i) => (
+                                            <div key={i} className="flex justify-between text-sm">
+                                                <span className="text-muted-foreground">
+                                                    {item.quantity}x {item.name}
+                                                </span>
+                                                <span>${item.price.toFixed(2)}</span>
+                                            </div>
+                                        ))}
+                                        <Separator className="my-2" />
+                                        <div className="flex justify-between font-medium">
+                                            <span>Total</span>
+                                            <span className="text-amber-600">${order.total.toFixed(2)}</span>
+                                        </div>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        )
+                    })
+                )}
             </div>
         </div>
     )

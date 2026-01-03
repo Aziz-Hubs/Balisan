@@ -1,5 +1,6 @@
 import { ReactNode } from 'react';
 import { BreadcrumbNavigator } from './BreadcrumbNavigator';
+import { Container } from '@/components/ui/Container';
 
 interface ContentLayoutProps {
     children: ReactNode;
@@ -17,14 +18,14 @@ export function ContentLayout({
     breadcrumbs = [],
 }: ContentLayoutProps) {
     return (
-        <div className="container mx-auto px-4 py-12 md:py-20">
+        <Container className="py-12 md:py-20">
             <div className="mx-auto max-w-4xl">
                 {breadcrumbs.length > 0 && (
                     <BreadcrumbNavigator items={breadcrumbs} />
                 )}
 
-                <header className="mb-10">
-                    <h1 className="text-4xl font-bold font-display tracking-tight mb-4">
+                <header className="mb-12">
+                    <h1 className="text-4xl md:text-5xl font-bold font-display tracking-tight mb-4">
                         {title}
                     </h1>
                     {subtitle && (
@@ -43,6 +44,6 @@ export function ContentLayout({
                     {children}
                 </div>
             </div>
-        </div>
+        </Container>
     );
 }

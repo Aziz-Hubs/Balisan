@@ -10,6 +10,7 @@ interface CartProgressProps {
 }
 
 export function CartProgress({ subtotal, threshold }: CartProgressProps) {
+    if (!threshold || threshold <= 0) return null
     const progress = Math.min((subtotal / threshold) * 100, 100)
     const remaining = Math.max(threshold - subtotal, 0)
 

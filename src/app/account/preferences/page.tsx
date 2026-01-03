@@ -2,7 +2,7 @@
 import { Switch } from "@/components/ui/switch"
 import { Separator } from "@/components/ui/separator"
 import { GlassCard } from "@/components/ui/extension/glass-card"
-import { ShimmerButton } from "@/components/ui/extension/shimmer-button"
+import ShimmerButton from "@/components/ui/extension/ShimmerButton"
 
 export default function PreferencesPage() {
     return (

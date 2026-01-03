@@ -75,7 +75,7 @@ export async function getBlogPosts(options?: {
     const supabase = await createClient()
 
     let query = supabase
-        .from('journal_posts')
+        .from('journal_posts' as any)
         .select('*')
         .not('published_at', 'is', null) // Only published posts
 
@@ -104,7 +104,7 @@ export async function getBlogPosts(options?: {
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
     const supabase = await createClient()
     const { data, error } = await supabase
-        .from('journal_posts')
+        .from('journal_posts' as any)
         .select('*')
         .eq('slug', slug)
         .single()
@@ -123,22 +123,22 @@ function mapDatabaseRecipe(row: any): Recipe {
         description: row.description,
         instructions: row.instructions,
         difficulty: row.difficulty,
-        prepTime: row.prep_time_minutes,
+        prep_time: row.prep_time,
         servings: row.servings,
-        image: row.image,
+        image_url: row.image_url,
         category: row.category,
         tags: row.tags,
-        glassware: row.glassware, // if added to schema
-        garnish: row.garnish, // if added to schema
+        glassware: row.glassware,
+        garnish: row.garnish,
         ingredients: (row.recipe_ingredients || []).map((ing: any) => ({
             name: ing.name,
             amount: ing.amount,
-            productId: ing.product_id,
-            productName: ing.products?.name,
+            product_id: ing.product_id,
+            product_name: ing.products?.name,
             price: ing.products?.price,
-            image: ing.products?.image
+            image_url: ing.products?.images?.[0]
         }))
-    }
+    } as Recipe
 }
 
 function mapDatabaseBlogPost(row: any): BlogPost {
@@ -150,14 +150,13 @@ function mapDatabaseBlogPost(row: any): BlogPost {
         content: row.content,
         category: row.category,
         tags: row.tags,
-        featuredImage: row.image,
-        publishedAt: row.published_at,
-        readTime: row.read_time || 5, // fallback
+        image_url: row.image_url,
+        published_at: row.published_at,
         author: {
-            name: 'Balisan Staff', // placeholder or join profiles
-            avatar: ''
+            full_name: 'Balisan Staff',
+            avatar_url: null
         }
-    }
+    } as BlogPost
 }
 
 // ============ JOURNAL (alias for blog) ============

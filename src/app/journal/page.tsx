@@ -1,23 +1,23 @@
 import { getBlogPosts } from '@/services';
 import { MagazineGrid } from '@/components/features/content/MagazineGrid';
+import { ContentLayout } from '@/components/layouts/ContentLayout';
 
 export default async function JournalPage() {
     const posts = await getBlogPosts();
 
     return (
-        <div className="container mx-auto px-4 py-16 md:py-24">
-            <div className="space-y-4 mb-12">
-                <h1 className="text-4xl font-bold tracking-tight">The Journal</h1>
-                <p className="text-xl text-muted-foreground">
-                    Stories, cocktail culture, and behind-the-scenes at Balisan.
-                </p>
-            </div>
-
+        <ContentLayout
+            title="The Journal"
+            subtitle="Stories, cocktail culture, and behind-the-scenes at Balisan."
+            breadcrumbs={[{ label: 'Journal' }]}
+        >
             <MagazineGrid posts={posts as any} />
 
             {posts.length === 0 && (
-                <p className="text-center py-20 text-muted-foreground">No posts found.</p>
+                <div className="flex flex-col items-center justify-center py-24 text-center">
+                    <p className="text-zinc-500 text-lg">Our editors are crafting new stories. Stay tuned.</p>
+                </div>
             )}
-        </div>
+        </ContentLayout>
     );
 }

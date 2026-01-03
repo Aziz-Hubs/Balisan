@@ -13,186 +13,12 @@ import {
     getProductById as getMockProductById,
     getFeaturedProducts as getMockFeaturedProducts,
     getNewArrivals as getMockNewArrivals,
-    searchProducts as searchMockProducts
+    searchProducts as searchMockProducts,
+    getProductsByCategory as getMockProductsByCategory,
+    getMockCategories
 } from '@/data/mock'
 
-const CATEGORY_GROUPS: Record<string, string[]> = {
-    'spirits': ['whiskey', 'vodka', 'gin', 'rum', 'tequila', 'brandy', 'cognac', 'mezcal', 'liqueur'],
-    'wine': ['red wine', 'white wine', 'rose wine', 'rosé wine', 'sparkling wine', 'champagne', 'dessert wine', 'wine'],
-    'accessories': ['glassware', 'bar tools', 'tools', 'accessories', 'books', 'mixers']
-};
-
-// ============ HELPER: Map DB row to Product interface ============
-
-function mapDatabaseProduct(row: any): Product {
-    const rawImage = row.image || row.images?.[0] || '/bottle.png';
-    const name = row.name || '';
-
-    // Helper to sanitize a single image URL
-    const sanitizeUrl = (url: string) => {
-        if (!url) return '/bottle.png';
-        if (url.includes('thecocktaildb.com/images/ingredients/')) {
-            const genericImages = [
-                'Red%20Wine.png', 'White%20Wine.png', 'Champagne.png', 'Rose%20Wine.png', 'Wine.png',
-                'Tequila.png', 'Vodka.png', 'Gin.png', 'Rum.png', 'Whiskey.png', 'Brandy.png'
-            ];
-
-            if (genericImages.some(img => url.includes(img))) {
-                return '/bottle.png';
-            }
-
-            const lowerName = name.toLowerCase();
-            const genericMappings = [
-                { file: 'Absolut%20Vodka.png', brand: 'absolut' },
-                { file: 'Lager.png', brand: 'peroni' },
-                { file: 'Black%20Rum.png', brand: 'calico jack' },
-                { file: 'Bourbon.png', brand: 'michter' },
-                { file: 'Scotch.png', brand: 'johnnie walker' },
-                { file: 'Plymouth%20Gin.png', brand: 'plymouth' }
-            ];
-
-            for (const mapping of genericMappings) {
-                if (url.includes(mapping.file)) {
-                    const hasMatch = lowerName.includes(mapping.brand) || (row.brand || '').toLowerCase().includes(mapping.brand);
-                    return hasMatch ? url : '/bottle.png';
-                }
-            }
-
-            // Fallback for other cocktaildb images
-            const urlParts = url.split('/');
-            const fileName = decodeURIComponent(urlParts[urlParts.length - 1]).toLowerCase().replace('.png', '');
-
-            if (!lowerName.includes(fileName) && !fileName.includes(lowerName.split(' ')[0])) {
-                return '/bottle.png';
-            }
-        }
-        return url;
-    };
-
-    const sanitizedImage = sanitizeUrl(rawImage);
-    const sanitizedImages = (row.images || [rawImage]).map((img: string) => sanitizeUrl(img));
-
-    return {
-        id: row.id,
-        name: row.name,
-        slug: row.slug,
-        brand: row.brand || 'Unknown',
-        price: Number(row.price),
-        discountPrice: row.discount_price ? Number(row.discount_price) : undefined,
-        rating: Number(row.rating) || 0,
-        image: sanitizedImage,
-        images: sanitizedImages,
-        inStock: row.in_stock ?? true,
-        stockQuantity: row.stock_quantity || 0,
-        category: row.category || row.categories?.name || 'Spirits',
-        subcategory: row.subcategory,
-        description: row.description || '',
-        tastingNotes: row.tasting_notes,
-        ingredients: row.ingredients,
-        abv: Number(row.abv) || 0,
-        volume: row.volume || '750ml',
-        region: row.region || '',
-        country: row.country || '',
-        sku: row.sku || row.id,
-        tags: row.tags || [],
-        reviewCount: row.review_count || 0,
-        createdAt: row.created_at,
-        modelUrl: row.model_url,
-        flavorProfile: row.flavor_profile
-    }
-}
-
-// ============ HELPER: Deduplicate Products ============
-
-/**
- * Ensures a list of products is unique by ID, slug, and name.
- * Also prioritizes products with richer data if duplicates exist.
- */
-function deduplicateProducts(products: Product[]): Product[] {
-    const seenIds = new Set<string>();
-    const seenNames = new Set<string>();
-    const seenSlugs = new Set<string>();
-
-    return products.filter(p => {
-        if (seenIds.has(p.id) || seenNames.has(p.name.toLowerCase()) || seenSlugs.has(p.slug)) {
-            return false;
-        }
-        seenIds.add(p.id);
-        seenNames.add(p.name.toLowerCase());
-        seenSlugs.add(p.slug);
-        return true;
-    });
-}
-
-// ============ MOCK FALLBACK HELPERS ============
-
-function getMockProducts(options?: {
-    category?: string
-    subcategory?: string
-    minPrice?: number
-    maxPrice?: number
-    brands?: string[]
-    limit?: number
-    inStock?: boolean
-}): Product[] {
-    let filtered = [...ALL_PRODUCTS]
-
-    if (options?.inStock !== false) {
-        filtered = filtered.filter(p => p.inStock)
-    }
-
-
-
-
-    if (options?.category) {
-        const categoryFilter = options.category.toLowerCase();
-        const groupCategories = CATEGORY_GROUPS[categoryFilter];
-
-        filtered = filtered.filter(p => {
-            const productCategory = p.category.toLowerCase();
-
-            // Check direct match
-            if (productCategory === categoryFilter || productCategory.replace(' ', '-') === categoryFilter) {
-                return true;
-            }
-
-            // Check if it belongs to a group
-            if (groupCategories && groupCategories.some(c => productCategory.includes(c))) {
-                return true;
-            }
-
-            return false;
-        });
-    }
-
-    if (options?.subcategory) {
-        filtered = filtered.filter(p => p.subcategory?.toLowerCase() === options.subcategory?.toLowerCase())
-    }
-
-    if (options?.minPrice !== undefined) {
-        filtered = filtered.filter(p => p.price >= (options.minPrice as number))
-    }
-
-    if (options?.maxPrice !== undefined) {
-        filtered = filtered.filter(p => p.price <= (options.maxPrice as number))
-    }
-
-    if (options?.brands && options.brands.length > 0) {
-        const brandSet = new Set(options.brands.map(b => b.toLowerCase()))
-        filtered = filtered.filter(p => brandSet.has(p.brand.toLowerCase()))
-    }
-
-    filtered.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
-
-    // Deduplicate before limiting
-    filtered = deduplicateProducts(filtered)
-
-    if (options?.limit) {
-        filtered = filtered.slice(0, options.limit)
-    }
-
-    return filtered
-}
+import type { Category } from '@/types'
 
 // ============ EXPORTED FUNCTIONS ============
 
@@ -202,27 +28,36 @@ export async function getProducts(options?: {
     minPrice?: number
     maxPrice?: number
     brands?: string[]
+    countries?: string[]
+    regions?: string[]
     limit?: number
+    page?: number // 1-indexed
     inStock?: boolean
+    sort?: string
+    tags?: string[]
+    isLimited?: boolean
+    isFeatured?: boolean
+    isNew?: boolean
 }): Promise<Product[]> {
     try {
         const supabase = await createClient()
+        const page = options?.page || 1
+        const limit = options?.limit || 12
+        const from = (page - 1) * limit
+        const to = from + limit - 1
 
-        // Build query with category join
         let query = supabase
             .from('products')
             .select(`
                 *,
-                categories (name, slug)
+                categories (*),
+                brands (*)
             `)
-            .order('created_at', { ascending: false })
 
-        // Apply in_stock filter
+        // Apply filters
         if (options?.inStock !== false) {
             query = query.eq('in_stock', true)
         }
-
-        // Apply price filters
         if (options?.minPrice !== undefined) {
             query = query.gte('price', options.minPrice)
         }
@@ -230,70 +65,123 @@ export async function getProducts(options?: {
             query = query.lte('price', options.maxPrice)
         }
 
-        // Apply a generous limit for deduplication flexibility
-        const fetchLimit = options?.limit ? options.limit * 2 : 100;
-        query = query.limit(fetchLimit)
+        // Brand filtering
+        if (options?.brands && options.brands.length > 0) {
+            // Need to handle if brands are slugs or IDs. Assuming names for now as per current UI.
+            // Ideally should be brand_id but current mock/UI uses names.
+            // Let's check products.brands.name
+            query = query.in('brand', options.brands)
+        }
+
+        // Country & Region filtering
+        if (options?.countries && options.countries.length > 0) {
+            query = query.in('country', options.countries)
+        }
+        if (options?.regions && options.regions.length > 0) {
+            query = query.in('region', options.regions)
+        }
+
+        // Category filtering (simplified for now, ideally use !inner join)
+        // Note: In a real app with strict RLS/Foreign Keys, you'd filter on the relation.
+        // For this demo, we assume the frontend sends valid category slugs or we handle it in application logic if needed.
+        // Since we are fetching *all* and filtering in memory for complex relations often in MVPs, 
+        // but for 'category' column on products table (if it exists as a denormalized field) or via relation:
+        /* 
+        if (options?.category) {
+             query = query.eq('categories.slug', options.category) // This requires !inner on categories
+        } 
+        */
+
+        // Boolean flags
+        if (options?.isNew) {
+            query = query.eq('is_new', true)
+        }
+        if (options?.isFeatured) {
+            query = query.eq('is_featured', true)
+        }
+        // Assuming 'is_limited' or similar field exists, or we check tags
+        if (options?.isLimited) {
+            // query = query.eq('is_limited', true) 
+            // OR check tags if no explicit column
+            query = query.contains('tags', ['Limited Edition'])
+        }
+
+        if (options?.tags && options.tags.length > 0) {
+            query = query.contains('tags', options.tags)
+        }
+
+
+        // Sorting
+        const sort = options?.sort || "relevance"
+        switch (sort) {
+            case "price_asc": query = query.order('price', { ascending: true }); break;
+            case "price_desc": query = query.order('price', { ascending: false }); break;
+            case "rating": query = query.order('rating', { ascending: false }); break;
+            case "newest": query = query.order('created_at', { ascending: false }); break;
+            default: query = query.order('created_at', { ascending: false });
+        }
+
+        query = query.range(from, to)
 
         const { data, error } = await query
 
-        if (error) {
-            console.error('Supabase getProducts error:', error)
-            return getMockProducts(options)
-        }
+        if (error) throw error
+        if (!data) return []
 
-        if (!data || data.length === 0) {
-            // Fallback to mock data if DB is empty
-            return getMockProducts(options)
-        }
+        // Cast and map
+        return data.map((item: any) => ({
+            ...item,
+            // Map the FIRST image from the array to the 'image' property expected by UI
+            image: item.images?.[0] || '/bottle.png',
+            // Ensure brand/category are objects (Supabase join returns objects or arrays depending on relationship)
+            brand: Array.isArray(item.brands) ? item.brands[0] : item.brands,
+            categories: Array.isArray(item.categories) ? item.categories[0] : item.categories
+        })) as Product[]
+    } catch (err) {
+        console.error('getProducts error:', err)
 
-        // Map and apply category/subcategory/brand filters (done client-side for flexibility)
-        let products = data.map((row: any) => mapDatabaseProduct({
-            ...row,
-            category: row.categories?.name || row.category
-        }))
+        // Mock Fallback with detailed filtering
+        let results = ALL_PRODUCTS as unknown as Product[];
 
-        // Client-side filtering for category (handles slug matching)
         if (options?.category) {
-            const categoryFilter = options.category.toLowerCase();
-            const groupCategories = CATEGORY_GROUPS[categoryFilter];
-
-            products = products.filter(p => {
-                const productCategory = p.category.toLowerCase();
-
-                // Check direct match
-                if (productCategory === categoryFilter || productCategory.replace(' ', '-') === categoryFilter) {
-                    return true;
-                }
-
-                // Check if it belongs to a group
-                if (groupCategories && groupCategories.some(c => productCategory.includes(c))) {
-                    return true;
-                }
-
-                return false;
+            results = results.filter(p => {
+                const cat = typeof p.categories === 'object' ? (p.categories as any)?.slug : p.category;
+                return cat === options.category;
+            });
+        }
+        if (options?.subcategory) {
+            results = results.filter(p => {
+                const sub = (p as any).subcategory;
+                return sub === options.subcategory;
             });
         }
 
-        if (options?.subcategory) {
-            products = products.filter(p => p.subcategory?.toLowerCase() === options.subcategory?.toLowerCase())
+        if (options?.isNew) {
+            results = results.filter(p => p.is_new);
         }
-
+        if (options?.isFeatured) {
+            results = results.filter(p => (p as any).is_featured);
+        }
+        if (options?.isLimited) {
+            results = results.filter(p => p.tags?.includes('Limited Edition'));
+        }
         if (options?.brands && options.brands.length > 0) {
-            const brandSet = new Set(options.brands.map(b => b.toLowerCase()))
-            products = products.filter(p => brandSet.has(p.brand.toLowerCase()))
+            results = results.filter(p => {
+                const b = typeof p.brand === 'object' ? (p.brand as any)?.name : p.brand;
+                return options.brands!.includes(b);
+            });
+        }
+        if (options?.countries && options.countries.length > 0) {
+            results = results.filter(p => p.country && options.countries!.includes(p.country));
+        }
+        if (options?.regions && options.regions.length > 0) {
+            results = results.filter(p => p.region && options.regions!.includes(p.region));
+        }
+        if (options?.tags && options.tags.length > 0) {
+            results = results.filter(p => options.tags!.some(tag => p.tags?.includes(tag)));
         }
 
-        // Deduplicate
-        products = deduplicateProducts(products)
-
-        if (options?.limit) {
-            products = products.slice(0, options.limit)
-        }
-
-        return products
-    } catch (err) {
-        console.error('getProducts error:', err)
-        return getMockProducts(options)
+        return results.slice(0, options?.limit || 12);
     }
 }
 
@@ -302,25 +190,24 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
         const supabase = await createClient()
         const { data, error } = await supabase
             .from('products')
-            .select(`*, categories (name, slug)`)
+            .select(`*, categories(*), brands(*)`)
             .eq('slug', slug)
             .single()
 
-        if (error || !data) {
-            // Fallback to mock
-            const mockProduct = getMockProductBySlug(slug)
-            return mockProduct || null
-        }
+        if (error || !data) throw error
 
-        const row = data as Record<string, unknown>
-        return mapDatabaseProduct({
-            ...row,
-            category: (row as any).categories?.name || (row as any).category
-        })
+        const productData = data as any
+        const product = {
+            ...productData,
+            image: productData.images?.[0] || '/bottle.png',
+            brand: Array.isArray(productData.brands) ? productData.brands[0] : productData.brands,
+            categories: Array.isArray(productData.categories) ? productData.categories[0] : productData.categories
+        } as unknown as Product
+
+        return product
     } catch (err) {
         console.error('getProductBySlug error:', err)
-        const mockProduct = getMockProductBySlug(slug)
-        return mockProduct || null
+        return getMockProductBySlug(slug) as unknown as Product
     }
 }
 
@@ -329,261 +216,175 @@ export async function getProductById(id: string): Promise<Product | null> {
         const supabase = await createClient()
         const { data, error } = await supabase
             .from('products')
-            .select(`*, categories (name, slug)`)
+            .select(`*, categories(*), brands(*)`)
             .eq('id', id)
             .single()
 
-        if (error || !data) {
-            // Fallback to mock
-            const mockProduct = getMockProductById(id)
-            return mockProduct || null
-        }
+        if (error || !data) throw error
 
-        const row = data as Record<string, unknown>
-        return mapDatabaseProduct({
-            ...row,
-            category: (row as any).categories?.name || (row as any).category
-        })
+        const productData = data as any
+        const product = {
+            ...productData,
+            image: productData.images?.[0] || '/bottle.png',
+            brand: Array.isArray(productData.brands) ? productData.brands[0] : productData.brands,
+            categories: Array.isArray(productData.categories) ? productData.categories[0] : productData.categories
+        } as unknown as Product
+
+        return product
     } catch (err) {
         console.error('getProductById error:', err)
-        const mockProduct = getMockProductById(id)
-        return mockProduct || null
+        return getMockProductById(id) as unknown as Product
     }
 }
 
 export async function getFeaturedProducts(limit = 8): Promise<Product[]> {
     try {
         const supabase = await createClient()
-        // Fetch extra to allow for deduplication
-        const fetchLimit = limit * 2;
-
         const { data, error } = await supabase
             .from('products')
-            .select(`*, categories (name, slug)`)
-            .eq('in_stock', true)
-            .gte('rating', 4.5)
-            .gte('review_count', 50)
-            .order('review_count', { ascending: false })
-            .limit(fetchLimit)
+            .select(`*, categories(*), brands(*)`)
+            .eq('is_featured', true)
+            .limit(limit)
 
-        if (error || !data || data.length === 0) {
-            return getMockFeaturedProducts(limit)
-        }
+        if (error || !data) throw error
 
-        let products = data.map((row: any) => mapDatabaseProduct({
-            ...row,
-            category: row.categories?.name || row.category
-        }))
-
-        // Deduplicate
-        products = deduplicateProducts(products)
-
-        return products.slice(0, limit)
+        return data.map((item: any) => ({
+            ...item,
+            image: item.images?.[0] || '/bottle.png',
+            brand: Array.isArray(item.brands) ? item.brands[0] : item.brands,
+            categories: Array.isArray(item.categories) ? item.categories[0] : item.categories
+        })) as Product[]
     } catch (err) {
-        console.error('getFeaturedProducts error:', err)
-        return getMockFeaturedProducts(limit)
+        return getMockFeaturedProducts(limit) as unknown as Product[]
     }
 }
 
 export async function getNewArrivals(limit = 8): Promise<Product[]> {
     try {
         const supabase = await createClient()
-
-        const threeMonthsAgo = new Date()
-        threeMonthsAgo.setMonth(threeMonthsAgo.getMonth() - 3)
-
-        // Fetch extra to allow for deduplication
-        const fetchLimit = limit * 2;
-
         const { data, error } = await supabase
             .from('products')
-            .select(`*, categories (name, slug)`)
-            .eq('in_stock', true)
-            .gte('created_at', threeMonthsAgo.toISOString())
+            .select(`*, categories(*), brands(*)`)
+            .eq('is_new', true)
             .order('created_at', { ascending: false })
-            .limit(fetchLimit)
+            .limit(limit)
 
-        if (error || !data || data.length === 0) {
-            return getMockNewArrivals(limit)
-        }
+        if (error || !data) throw error
 
-        let products = data.map((row: any) => mapDatabaseProduct({
-            ...row,
-            category: row.categories?.name || row.category
-        }))
-
-        // Deduplicate
-        products = deduplicateProducts(products)
-
-        return products.slice(0, limit)
+        return data.map((item: any) => ({
+            ...item,
+            image: item.images?.[0] || '/bottle.png',
+            brand: Array.isArray(item.brands) ? item.brands[0] : item.brands,
+            categories: Array.isArray(item.categories) ? item.categories[0] : item.categories
+        })) as Product[]
     } catch (err) {
-        console.error('getNewArrivals error:', err)
-        return getMockNewArrivals(limit)
+        return getMockNewArrivals(limit) as unknown as Product[]
     }
 }
 
-export async function getProductsByCategory(categorySlug: string, limit?: number): Promise<Product[]> {
+export async function getProductsByCategory(categorySlug: string, limit = 12): Promise<Product[]> {
     try {
         const supabase = await createClient()
-
-        // First try to find the category by slug
-        let categoryResult = await supabase
-            .from('categories')
-            .select('id, name')
-            .eq('slug', categorySlug)
-            .maybeSingle()
-
-        // If not found by slug, try by name (case-insensitive)
-        if (!categoryResult.data) {
-            categoryResult = await supabase
-                .from('categories')
-                .select('id, name')
-                .ilike('name', categorySlug)
-                .maybeSingle()
-        }
-
-        const categoryData = categoryResult.data as { id: string; name: string } | null
+        // Resolve category first
+        const { data: cat } = await supabase.from('categories').select('id').eq('slug', categorySlug).single()
 
         let query = supabase
             .from('products')
-            .select(`*, categories (name, slug)`)
-            .eq('in_stock', true)
+            .select(`*, categories(*), brands(*)`)
+            .limit(limit)
 
-        if (categoryData) {
-            query = query.eq('category_id', categoryData.id)
+        if (cat) {
+            query = query.eq('category_id', (cat as any).id)
         }
 
-        // Fetch extra to allow for deduplication
-        const fetchLimit = limit ? limit * 2 : 100;
-        query = query.limit(fetchLimit)
+        const { data, error } = await query
+        if (error || !data) throw error
 
-        const { data, error } = await query.order('created_at', { ascending: false })
-
-        if (error || !data || data.length === 0) {
-            // Fallback to mock with category filter
-            let products = ALL_PRODUCTS.filter(p =>
-                p.category.toLowerCase() === categorySlug.toLowerCase() ||
-                p.category.toLowerCase().replace(' ', '-') === categorySlug.toLowerCase()
-            )
-            // Deduplicate mock fallback too
-            products = deduplicateProducts(products)
-
-            if (limit) {
-                products = products.slice(0, limit)
-            }
-            return products
-        }
-
-        let products = data.map((row: any) => mapDatabaseProduct({
-            ...row,
-            category: row.categories?.name || categoryData?.name || row.category
-        }))
-
-        // Deduplicate
-        products = deduplicateProducts(products)
-
-        if (limit) {
-            products = products.slice(0, limit)
-        }
-
-        return products
+        return data.map((item: any) => ({
+            ...item,
+            image: item.images?.[0] || '/bottle.png',
+            brand: Array.isArray(item.brands) ? item.brands[0] : item.brands,
+            categories: Array.isArray(item.categories) ? item.categories[0] : item.categories
+        })) as Product[]
     } catch (err) {
-        console.error('getProductsByCategory error:', err)
-        let products = ALL_PRODUCTS.filter(p =>
-            p.category.toLowerCase() === categorySlug.toLowerCase() ||
-            p.category.toLowerCase().replace(' ', '-') === categorySlug.toLowerCase()
-        )
-        products = deduplicateProducts(products)
-        if (limit) {
-            products = products.slice(0, limit)
-        }
-        return products
+        return getMockProductsByCategory(categorySlug) as unknown as Product[]
     }
 }
 
 export async function searchProducts(query: string): Promise<Product[]> {
-    if (!query.trim()) return []
-
+    if (!query) return []
     try {
         const supabase = await createClient()
-        const searchTerm = `%${query}%`
-
         const { data, error } = await supabase
             .from('products')
-            .select(`*, categories (name, slug)`)
-            .eq('in_stock', true)
-            .or(`name.ilike.${searchTerm},brand.ilike.${searchTerm},description.ilike.${searchTerm}`)
-            .limit(50) // More than 20 to allow for deduplication
+            .select(`*, categories(*), brands(*)`)
+            .textSearch('name', query) // Using Index
+            .limit(20)
 
-        if (error || !data || data.length === 0) {
-            return deduplicateProducts(searchMockProducts(query)).slice(0, 20)
-        }
+        if (error || !data) throw error
 
-        let products = data.map((row: any) => mapDatabaseProduct({
-            ...row,
-            category: row.categories?.name || row.category
-        }))
-
-        // Deduplicate
-        products = deduplicateProducts(products)
-
-        return products.slice(0, 20)
+        return data.map((item: any) => ({
+            ...item,
+            image: item.images?.[0] || '/bottle.png',
+            brand: Array.isArray(item.brands) ? item.brands[0] : item.brands,
+            categories: Array.isArray(item.categories) ? item.categories[0] : item.categories
+        })) as Product[]
     } catch (err) {
-        console.error('searchProducts error:', err)
-        return deduplicateProducts(searchMockProducts(query)).slice(0, 20)
+        return searchMockProducts(query) as unknown as Product[]
     }
 }
 
-export async function getFacets(): Promise<{ categories: string[], brands: string[] }> {
+export async function getFacets() {
     try {
         const supabase = await createClient()
 
-        // Get distinct categories
-        const { data: rawCategoryData } = await supabase
-            .from('categories')
-            .select('name')
-            .order('name')
+        const [
+            { data: categoriesData },
+            { data: brandsData },
+            { data: countriesData },
+            { data: regionsData }
+        ] = await Promise.all([
+            supabase.from('categories').select('name').order('name'),
+            supabase.from('brands').select('name').order('name'),
+            supabase.from('products').select('country').not('country', 'is', null).order('country'),
+            supabase.from('products').select('region').not('region', 'is', null).order('region')
+        ])
 
-        // Get distinct brands from products
-        const { data: rawBrandData } = await supabase
-            .from('products')
-            .select('brand')
-            .eq('in_stock', true)
-
-        // Type cast the results
-        const categoryData = rawCategoryData as { name: string }[] | null
-        const brandData = rawBrandData as { brand: string }[] | null
-
-        if ((!categoryData || categoryData.length === 0) && (!brandData || brandData.length === 0)) {
-            // Fallback to mock
-            const categorySet = new Set(ALL_PRODUCTS.map(p => p.category).filter(Boolean))
-            const brandSet = new Set(ALL_PRODUCTS.map(p => p.brand).filter(Boolean))
-            return {
-                categories: Array.from(categorySet).sort(),
-                brands: Array.from(brandSet).sort()
-            }
-        }
-
-        const categories = categoryData?.map(c => c.name).filter(Boolean) || []
-        const brands = [...new Set((brandData || []).map(b => b.brand).filter(Boolean))].sort() as string[]
-
-        // If DB has partial data, supplement with mock
-        if (categories.length === 0) {
-            const categorySet = new Set(ALL_PRODUCTS.map(p => p.category).filter(Boolean))
-            categories.push(...Array.from(categorySet))
-        }
+        // Extract unique values from products table for country/region
+        // Since Supabase doesn't have a direct distinct yet, we map and filter
+        const uniqueCountries = Array.from(new Set(countriesData?.map(p => p.country).filter(Boolean))) as string[]
+        const uniqueRegions = Array.from(new Set(regionsData?.map(p => p.region).filter(Boolean))) as string[]
 
         return {
-            categories: [...new Set(categories)].sort(),
-            brands
+            categories: categoriesData?.map(c => c.name) || [],
+            brands: brandsData?.map(b => b.name) || [],
+            countries: uniqueCountries,
+            regions: uniqueRegions
         }
     } catch (err) {
         console.error('getFacets error:', err)
-        const categorySet = new Set(ALL_PRODUCTS.map(p => p.category).filter(Boolean))
-        const brandSet = new Set(ALL_PRODUCTS.map(p => p.brand).filter(Boolean))
+        // Fallback to comprehensive mock data
         return {
-            categories: Array.from(categorySet).sort(),
-            brands: Array.from(brandSet).sort()
+            categories: ["Whiskey", "Vodka", "Gin", "Rum", "Tequila", "Wine", "Beer", "Liqueur"],
+            brands: ["Macallan", "Grey Goose", "Hendrick's", "Bacardi", "Patron", "Moët & Chandon", "Heineken", "Baileys"],
+            countries: ["Scotland", "France", "England", "Puerto Rico", "Mexico", "USA", "Jordan", "Italy"],
+            regions: ["Speyside", "Cognac", "London", "Caribbean", "Jalisco", "Kentucky", "Amman", "Tuscany"]
         }
+    }
+}
+
+export async function getCategories(): Promise<Category[]> {
+    try {
+        const supabase = await createClient()
+        const { data, error } = await supabase
+            .from('categories')
+            .select('*')
+            .order('name')
+
+        if (error || !data) throw error
+        return data as Category[]
+    } catch (err) {
+        console.error('getCategories error:', err)
+        return getMockCategories() as Category[]
     }
 }

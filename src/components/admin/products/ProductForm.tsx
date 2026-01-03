@@ -148,7 +148,7 @@ export function ProductForm({ initialData }: ProductFormProps) {
                                 name="price"
                                 render={({ field }) => (
                                     <FormItem>
-                                        <FormLabel>Price ($)</FormLabel>
+                                        <FormLabel>Price (JOD)</FormLabel>
                                         <FormControl>
                                             <Input
                                                 type="number"

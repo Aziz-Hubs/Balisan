@@ -39,10 +39,10 @@ CREATE TABLE addresses (
     line1 TEXT NOT NULL,
     line2 TEXT,
     city TEXT NOT NULL,
-    state TEXT NOT NULL,
-    zip TEXT NOT NULL,
-    country TEXT NOT NULL,
-    phone TEXT,
+    governorate TEXT NOT NULL, -- Jordan specific (e.g., Amman, Irbid)
+    postal_code TEXT, -- Optional in Jordan
+    country TEXT DEFAULT 'Jordan' NOT NULL,
+    phone TEXT, -- Critical for delivery
     is_default BOOLEAN DEFAULT FALSE,
     created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
     updated_at TIMESTAMPTZ DEFAULT NOW() NOT NULL

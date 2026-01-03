@@ -23,6 +23,7 @@ export interface MegaMenuCategory {
     description: string
     image?: string
     featured?: string[] // Product IDs
+    featuredBrands?: { name: string; href: string; logo?: string }[]
     items: CategoryItem[]
 }
 
@@ -36,77 +37,79 @@ export const navigationCategories: MegaMenuCategory[] = [
             {
                 title: "Spirits",
                 href: "/shop/spirits",
-                description: "Artisanal Gins, Premium Vodkas, and Master-distilled Tequilas.",
-                image: "/bottle.png",
+                description: "From Single Malts to artisanal Gins.",
                 subcategories: [
-                    { title: "Whiskey", href: "/shop/whiskey" },
-                    { title: "Gin", href: "/shop/gin" },
-                    { title: "Tequila", href: "/shop/tequila" },
-                    { title: "Vodka", href: "/shop/vodka" },
+                    { title: "Whisky & Whiskey", href: "/shop/whisky" },
+                    { title: "Tequila & Mezcal", href: "/shop/tequila" },
+                    { title: "Cognac & Brandy", href: "/shop/cognac" },
+                    { title: "Gin & Vodka", href: "/shop/gin" },
                 ]
             },
             {
-                title: "Wine & Bubbles",
+                title: "Wine & Champagne",
                 href: "/shop/wine",
-                description: "Exquisite selections from the world's most storied vineyards.",
-                image: "/bottle.png",
+                description: "Vintage Champagne and Fine Wines.",
                 subcategories: [
+                    { title: "Champagne", href: "/shop/wine/sparkling" },
                     { title: "Red Wine", href: "/shop/wine/red" },
                     { title: "White Wine", href: "/shop/wine/white" },
-                    { title: "Champagne", href: "/shop/wine/sparkling" },
+                    { title: "Rosé", href: "/shop/wine/rose" },
                 ]
             },
             {
                 title: "Accessories",
                 href: "/shop/accessories",
-                description: "Premium glassware and tools for the ultimate experience.",
-                image: "/bottle.png",
+                description: "Glassware and Bar Tools.",
                 subcategories: [
                     { title: "Glassware", href: "/shop/accessories/glassware" },
                     { title: "Bar Tools", href: "/shop/accessories/tools" },
+                    { title: "Books", href: "/shop/accessories/books" },
                 ]
             }
+        ],
+        featuredBrands: [
+            { name: "Macallan", href: "/shop/brand/macallan" },
+            { name: "Dom Pérignon", href: "/shop/brand/dom-perignon" },
+            { name: "Clase Azul", href: "/shop/brand/clase-azul" },
+            { name: "Penfolds", href: "/shop/brand/penfolds" },
         ]
     },
     {
         title: "Collections",
         href: "/collections",
-        description: "Curated selections for every occasion and taste.",
+        description: "Curated selections for every occasion and lifestyle.",
         image: "/bottle.png",
         items: [
             {
-                title: "Featured",
-                href: "/collections/featured",
-                description: "The latest and greatest from our shelves.",
-                image: "/bottle.png",
-                badge: "new",
+                title: "The Cellar",
+                href: "/collections/the-cellar",
+                description: "Investment-grade and rare allocations.",
+                badge: "limited",
                 subcategories: [
-                    { title: "New Arrivals", href: "/collections/new-arrivals" },
-                    { title: "Best Sellers", href: "/collections/best-sellers" },
-                    { title: "Limited Editions", href: "/collections/limited" },
+                    { title: "Rare Finds", href: "/collections/rare" },
+                    { title: "Dead Distilleries", href: "/collections/rare/lost" },
+                    { title: "Private Casks", href: "/collections/rare/casks" },
+                ]
+            },
+            {
+                title: "Gifting",
+                href: "/collections/gifts",
+                description: "Exceptional gifts for every occasion.",
+                badge: "best-seller",
+                subcategories: [
+                    { title: "Corporate", href: "/collections/corporate" },
+                    { title: "For Collectors", href: "/collections/gifts/luxury" },
+                    { title: "Sets & Bundles", href: "/collections/gifts/sets" },
                 ]
             },
             {
                 title: "Occasions",
                 href: "/collections/occasions",
-                description: "Perfect picks for moments that matter.",
-                image: "/bottle.png",
+                description: "Perfect pairings for moments that matter.",
                 subcategories: [
-                    { title: "Gifts", href: "/collections/gifts" },
-                    { title: "Corporate Gifting", href: "/collections/corporate" },
-                    { title: "Dinner Party", href: "/collections/party" },
-                ]
-            },
-            {
-                title: "Curated",
-                href: "/collections/curated",
-                description: "Hand-picked selections by our sommeliers.",
-                image: "/bottle.png",
-                badge: "best-seller",
-                subcategories: [
-                    { title: "Staff Picks", href: "/collections/staff-picks" },
-                    { title: "Rare Finds", href: "/collections/rare" },
-                    { title: "Under $100", href: "/collections/value" },
+                    { title: "Dinner Party", href: "/collections/party/dinner" },
+                    { title: "Aperitivo", href: "/collections/party/aperitivo" },
+                    { title: "Celebrations", href: "/collections/party/celebration" },
                 ]
             }
         ]
@@ -119,9 +122,8 @@ export const navigationCategories: MegaMenuCategory[] = [
         items: [
             {
                 title: "Services",
-                href: "/bg-services",
+                href: "/concierge",
                 description: "Bespoke services for the discerning collector.",
-                image: "/bottle.png",
                 subcategories: [
                     { title: "Private Client", href: "/services/private-client" },
                     { title: "Sourcing", href: "/services/sourcing" },
@@ -129,25 +131,33 @@ export const navigationCategories: MegaMenuCategory[] = [
                 ]
             },
             {
-                title: "Education",
-                href: "/education",
-                description: "Deepen your knowledge of fine spirits.",
-                image: "/bottle.png",
+                title: "The Brand",
+                href: "/about",
+                description: "The soul of Balisan.",
                 subcategories: [
-                    { title: "Masterclasses", href: "/education/masterclasses" },
-                    { title: "Tasting Guides", href: "/education/guides" },
-                    { title: "Distillery Spotlights", href: "/education/distilleries" },
+                    { title: "Our Story", href: "/about" },
+                    { title: "The Journey", href: "/story" },
+                    { title: "The Journal", href: "/journal" },
                 ]
             },
             {
                 title: "Support",
                 href: "/contact",
                 description: "We are here to help.",
-                image: "/bottle.png",
                 subcategories: [
+                    { title: "Delivery & Tracking", href: "/delivery" },
+                    { title: "Shipping Policy", href: "/shipping" },
                     { title: "Contact Us", href: "/contact" },
-                    { title: "FAQ", href: "/faq" },
-                    { title: "Shipping & Returns", href: "/shipping" },
+                ]
+            },
+            {
+                title: "Education",
+                href: "/education",
+                description: "Deepen your knowledge of fine spirits.",
+                subcategories: [
+                    { title: "Cocktail Recipes", href: "/recipes" },
+                    { title: "Masterclasses", href: "/education/masterclasses" },
+                    { title: "Tasting Guides", href: "/education/guides" },
                 ]
             }
         ]
@@ -156,12 +166,9 @@ export const navigationCategories: MegaMenuCategory[] = [
 
 export const staticNavLinks = [
     { title: "The Journal", href: "/journal" },
-    { title: "Cocktail Recipes", href: "/recipes" },
-    { title: "Our Story", href: "/about" },
-    { title: "Contact Us", href: "/contact" },
 ]
 
 export const promotionalMessages = [
-    { id: "msg1", text: "Free shipping on orders over $150", link: "/shipping" },
+    { id: "msg1", text: "Free shipping on orders over 100 JOD", link: "/shipping" },
     { id: "msg2", text: "Join our masterclass: The Art of Whisky - Sign Up Now", link: "/events" },
 ]

@@ -4,7 +4,10 @@ import Link from "next/link"
 import { toast } from "sonner"
 import { LogOut, User, Settings, Package } from "lucide-react"
 import { useAuthStore } from "@/lib/stores/auth"
+import { cn } from "@/lib/utils"
 import { Button } from "@/components/ui/button"
+import ShimmerButton from "@/components/ui/extension/ShimmerButton"
+import { RainbowButton } from "@/components/ui/extension/RainbowButton"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import {
     DropdownMenu,
@@ -14,10 +17,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Spotlight } from "@/components/ui/extension/Spotlight"
-import { MovingBorderButton } from "@/components/ui/extension/MovingBorder"
-import { LitUpButton } from "@/components/ui/extension/LitUpButton"
-import { RainbowButton } from "@/components/ui/extension/RainbowButton"
+
 
 import { useTheme } from "next-themes"
 
@@ -28,16 +28,36 @@ export function AccountMenu() {
 
     if (!isAuthenticated) {
         return (
-            <div className="hidden md:flex items-center gap-3">
-                <Link href="/login" className="block">
-                    <LitUpButton className="h-10 w-28 text-sm font-medium">
+            <div className="hidden md:flex gap-2">
+                {/* Login Button - Orange in light mode, White in dark mode */}
+                <Link href="/login">
+                    <ShimmerButton
+                        background={isDark ? "#FFFFFF" : "#F97316"}
+                        shimmerColor={isDark ? "#F5A623" : "#FBBF24"}
+                        shimmerSize="0.1em"
+                        shimmerDuration="2s"
+                        className={cn(
+                            "h-9 px-4 text-sm font-medium rounded-md",
+                            isDark ? "text-stone-900" : "text-white"
+                        )}
+                    >
                         Login
-                    </LitUpButton>
+                    </ShimmerButton>
                 </Link>
-                <Link href="/signup" className="block">
-                    <RainbowButton className="h-10 w-36 shadow-2xl">
+                {/* Sign Up Button - Dark in light mode, Orange in dark mode */}
+                <Link href="/signup">
+                    <ShimmerButton
+                        background={isDark ? "#F59E0B" : "#1C1917"}
+                        shimmerColor={isDark ? "#FDE68A" : "#F5A623"}
+                        shimmerSize="0.1em"
+                        shimmerDuration="2s"
+                        className={cn(
+                            "h-9 px-4 text-sm font-medium rounded-md",
+                            isDark ? "text-stone-900" : "text-white"
+                        )}
+                    >
                         Sign Up
-                    </RainbowButton>
+                    </ShimmerButton>
                 </Link>
             </div>
         )
