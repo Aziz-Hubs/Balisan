@@ -33,9 +33,9 @@ export function AccountMenu() {
                 <Link href="/login">
                     <ShimmerButton
                         background={isDark ? "#FFFFFF" : "#F97316"}
-                        shimmerColor={isDark ? "#F5A623" : "#FBBF24"}
+                        shimmerColor="transparent"
                         shimmerSize="0.1em"
-                        shimmerDuration="2s"
+                        shimmerDuration="0s"
                         className={cn(
                             "h-9 px-4 text-sm font-medium rounded-md",
                             isDark ? "text-stone-900" : "text-white"
@@ -50,7 +50,7 @@ export function AccountMenu() {
                         background={isDark ? "#F59E0B" : "#1C1917"}
                         shimmerColor={isDark ? "#FDE68A" : "#F5A623"}
                         shimmerSize="0.1em"
-                        shimmerDuration="2s"
+                        shimmerDuration="3s"
                         className={cn(
                             "h-9 px-4 text-sm font-medium rounded-md",
                             isDark ? "text-stone-900" : "text-white"

@@ -14,6 +14,7 @@ interface NavigationStore {
     // Promotional banner dismissal
     dismissedBanners: string[]
     dismissBanner: (bannerId: string) => void
+    dismissBanners: (bannerIds: string[]) => void
 
     // Prefetch tracking for hover behavior
     prefetchedRoutes: Set<string>
@@ -37,6 +38,10 @@ export const useNavigationStore = create<NavigationStore>()(
             dismissBanner: (bannerId) =>
                 set((state) => ({
                     dismissedBanners: [...state.dismissedBanners, bannerId],
+                })),
+            dismissBanners: (bannerIds) =>
+                set((state) => ({
+                    dismissedBanners: [...state.dismissedBanners, ...bannerIds],
                 })),
 
             // Prefetch tracking

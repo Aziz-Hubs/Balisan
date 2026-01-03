@@ -3,7 +3,7 @@
 import * as React from "react"
 import { ShoppingCart, Search, Info, Phone, Package, ArrowUpRight, BookOpen, Utensils, Home, ShoppingBag, User, Settings, Loader2 } from "lucide-react"
 import { useSearchStore } from "@/lib/stores/search"
-import { searchProducts } from "@/services"
+import { searchProductsAction } from "@/actions/search"
 import { navigationCategories, staticNavLinks } from "@/config/navigation"
 import {
     CommandDialog,
@@ -81,7 +81,7 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
             return
         }
         setIsSearching(true)
-        searchProducts(debouncedQuery)
+        searchProductsAction(debouncedQuery)
             .then(results => {
                 setProductResults(results)
             })
@@ -142,7 +142,15 @@ export function SearchBar({ mobile, className, trigger }: SearchBarProps) {
                                     className="flex items-center gap-3 p-2 cursor-pointer"
                                 >
                                     <div className="relative h-10 w-10 overflow-hidden rounded bg-muted/50 border border-border">
-                                        <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
+                                        <img
+                                            src={product.image}
+                                            alt={product.name}
+                                            className="h-full w-full object-cover"
+                                            onError={(e) => {
+                                                e.currentTarget.src = "/bottle.png"
+                                                e.currentTarget.onerror = null
+                                            }}
+                                        />
                                     </div>
                                     <div className="flex flex-col flex-1 min-w-0">
                                         <span className="font-medium truncate">{product.name}</span>

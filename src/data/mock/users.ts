@@ -19,6 +19,42 @@ export type MockUser = UserProfile & {
 
 // Mock Users/Customers
 export const USERS: MockUser[] = [
+    {
+        id: "mock-admin",
+        email: "admin@balisan.com",
+        full_name: "Balisan Admin",
+        phone: "+962 700000001",
+        is_age_verified: true,
+        created_at: randomPastDate(12),
+        updated_at: randomPastDate(1),
+        avatar_url: "https://i.pravatar.cc/150?img=12",
+        role: "admin",
+        addresses: []
+    },
+    {
+        id: "mock-user",
+        email: "user@balisan.com",
+        full_name: "Balisan User",
+        phone: "+962 700000002",
+        is_age_verified: true,
+        created_at: randomPastDate(12),
+        updated_at: randomPastDate(1),
+        avatar_url: "https://i.pravatar.cc/150?img=13",
+        role: "customer",
+        addresses: []
+    },
+    {
+        id: "mock-guest",
+        email: "guest@balisan.com",
+        full_name: "Balisan Guest",
+        phone: "+962 700000003",
+        is_age_verified: true,
+        created_at: randomPastDate(12),
+        updated_at: randomPastDate(1),
+        avatar_url: "https://i.pravatar.cc/150?img=14",
+        role: "customer",
+        addresses: []
+    },
     // VIP Customers
     {
         id: "user-001",

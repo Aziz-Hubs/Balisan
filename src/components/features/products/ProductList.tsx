@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useId, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
 import { useOutsideClick } from "@/hooks/use-outside-click";
 import Image from "next/image";
@@ -16,11 +17,25 @@ interface ProductListProps {
     products: Product[];
 }
 
+
+function SafeImage({ src, alt, ...props }: React.ComponentProps<typeof Image>) {
+    const [error, setError] = useState(false)
+    return (
+        <Image
+            {...props}
+            src={error ? "/bottle.png" : (src || "/bottle.png")}
+            alt={alt}
+            onError={() => setError(true)}
+        />
+    )
+}
+
 export function ProductList({ products }: ProductListProps) {
     const [active, setActive] = useState<(typeof products)[number] | boolean | null>(null);
     const ref = useRef<HTMLDivElement>(null);
     const id = useId();
     const addItem = useCartStore((state) => state.addItem);
+    const router = useRouter();
 
     useEffect(() => {
         function onKeyDown(event: KeyboardEvent) {
@@ -90,11 +105,11 @@ export function ProductList({ products }: ProductListProps) {
                         >
                             <motion.div layoutId={`image-${active.name}-${id}`}>
                                 <div className="relative h-64 w-full bg-zinc-100 dark:bg-zinc-800/50 flex items-center justify-center p-6">
-                                    <Image
+                                    <SafeImage
                                         priority
                                         width={200}
                                         height={200}
-                                        src={active.image || "/bottle.png"}
+                                        src={active.image || '/placeholder.png'}
                                         alt={active.name}
                                         className="h-full w-auto object-contain"
                                     />
@@ -173,50 +188,51 @@ export function ProductList({ products }: ProductListProps) {
                     <motion.div
                         layoutId={`card-${product.name}-${id}`}
                         key={product.id}
-                        onClick={() => setActive(product)}
-                        className="p-4 flex flex-col md:flex-row justify-between items-center hover:bg-amber-50/50 dark:hover:bg-amber-900/10 rounded-2xl cursor-pointer transition-all duration-300 border border-transparent hover:border-amber-500/20 group/row mb-3 shadow-sm hover:shadow-md"
+                        onClick={() => router.push(`/products/${product.slug}`)}
+                        className="py-2 px-3 md:p-4 flex flex-row justify-between items-center bg-white dark:bg-zinc-900/50 hover:bg-amber-50/50 dark:hover:bg-amber-900/10 rounded-2xl cursor-pointer transition-all duration-300 border border-zinc-100 dark:border-white/5 hover:border-amber-500/20 group/row mb-3 shadow-sm hover:shadow-md min-h-[100px] md:min-h-0 md:h-auto"
                     >
-                        <div className="flex gap-4 flex-col md:flex-row items-center w-full">
-                            <motion.div layoutId={`image-${product.name}-${id}`}>
-                                <div className="h-16 w-16 relative bg-zinc-100 dark:bg-zinc-800/50 rounded-lg p-2 flex items-center justify-center">
-                                    <Image
-                                        width={100}
-                                        height={100}
-                                        src={product.image || "/bottle.png"}
+                        <div className="flex gap-3 flex-row items-center w-full overflow-hidden">
+                            <motion.div layoutId={`image-${product.name}-${id}`} className="shrink-0 my-1">
+                                <div className="h-[72px] w-[72px] md:h-16 md:w-16 relative bg-zinc-50 dark:bg-zinc-800/50 rounded-xl p-2 flex items-center justify-center border border-zinc-100 dark:border-white/5">
+                                    <SafeImage
+                                        width={120}
+                                        height={120}
+                                        src={product.image || '/placeholder.png'}
                                         alt={product.name}
-                                        className="h-full w-auto object-contain"
+                                        className="h-full w-auto object-contain mix-blend-multiply dark:mix-blend-normal"
                                     />
                                 </div>
                             </motion.div>
-                            <div className="flex flex-col items-center md:items-start text-center md:text-left">
+                            <div className="flex flex-col items-start text-left min-w-0 flex-1 pr-2">
                                 <motion.h3
                                     layoutId={`title-${product.name}-${id}`}
-                                    className="font-medium text-neutral-800 dark:text-neutral-200 text-base font-serif"
+                                    className="font-bold text-neutral-800 dark:text-neutral-200 text-sm md:text-base font-serif truncate w-full"
                                 >
                                     {product.name}
                                 </motion.h3>
                                 <motion.p
                                     layoutId={`description-${product.name}-${id}`}
-                                    className="text-neutral-600 dark:text-neutral-400 text-xs uppercase tracking-wide"
+                                    className="text-neutral-500 dark:text-neutral-400 text-[10px] md:text-xs uppercase tracking-wider truncate w-full mt-0.5"
                                 >
                                     {(product.brand as any)?.name || product.brand}
                                 </motion.p>
                             </div>
                         </div>
-                        <div className="flex items-center gap-4 mt-2 md:mt-0 w-full md:w-auto justify-between md:justify-end">
-                            <div className="flex flex-col items-end md:mr-4">
+
+                        <div className="flex items-center gap-4 shrink-0">
+                            <div className="flex flex-col items-end">
                                 {product.discount_price ? (
                                     <>
-                                        <span className="text-sm font-bold text-emerald-600">{formatPrice(product.discount_price)}</span>
-                                        <span className="text-xs text-zinc-400 line-through">{formatPrice(product.price)}</span>
+                                        <span className="text-sm md:text-sm font-bold text-emerald-600">{formatPrice(product.discount_price)}</span>
+                                        <span className="text-[10px] text-zinc-400 line-through hidden md:block">{formatPrice(product.price)}</span>
                                     </>
                                 ) : (
-                                    <span className="text-sm font-bold text-zinc-900 dark:text-white">{formatPrice(product.price)}</span>
+                                    <span className="text-sm md:text-sm font-bold text-zinc-900 dark:text-white">{formatPrice(product.price)}</span>
                                 )}
                             </div>
                             <motion.button
                                 layoutId={`button-${product.name}-${id}`}
-                                className="px-5 py-2 text-xs uppercase tracking-widest rounded-full font-bold bg-zinc-100 dark:bg-zinc-800 group-hover/row:bg-amber-500 group-hover/row:text-black text-zinc-500 dark:text-zinc-400 transition-all duration-300"
+                                className="hidden md:block px-5 py-2 text-xs uppercase tracking-widest rounded-full font-bold bg-zinc-100 dark:bg-zinc-800 group-hover/row:bg-amber-500 group-hover/row:text-black text-zinc-500 dark:text-zinc-400 transition-all duration-300"
                             >
                                 Details
                             </motion.button>

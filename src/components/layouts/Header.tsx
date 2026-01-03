@@ -58,8 +58,8 @@ export function Header() {
                     {/* Left: Logo & Reduced Mega Menu */}
                     <div className="flex items-center gap-8 shrink-0">
                         <Link href="/" className="flex items-center gap-2 group z-10" aria-label="Balisan Home">
-                            <Logo height={isScrolled ? 56 : 72} rainbow className="md:block hidden transition-all duration-300 scale-[1.6] origin-left md:mr-8" />
-                            <Logo height={44} rainbow className="md:hidden block scale-110 origin-left" />
+                            <Logo height={isScrolled ? 56 : 72} className="md:block hidden transition-all duration-300 scale-[1.6] origin-left md:mr-8" />
+                            <Logo height={48} className="md:hidden block" />
                         </Link>
 
                         <div className="hidden lg:block pt-1">
@@ -148,7 +148,7 @@ export function Header() {
                                 </Button>
                             </HoverCardTrigger>
                             <HoverCardContent
-                                className="w-80 p-4 border-amber-500/20 shadow-2xl bg-background/95 backdrop-blur-xl hidden md:block"
+                                className="w-80 p-4 border-amber-500/20 shadow-2xl bg-background/95 backdrop-blur-xl hidden md:block rounded-xl"
                                 align="end"
                                 sideOffset={10}
                             >

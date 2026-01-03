@@ -80,7 +80,6 @@ const BRANDS = [
     { name: 'Belvedere', slug: 'belvedere' },
     { name: 'Don Julio', slug: 'don-julio' },
     { name: 'Cloudy Bay', slug: 'cloudy-bay' },
-    { name: 'Château d\'Esclans', slug: 'chateau-desclans' },
     { name: 'Suntory', slug: 'suntory' }
 ];
 
@@ -252,18 +251,6 @@ const PRODUCTS_DATA = [
         is_featured: false,
         is_new: true,
         flavor_profile: { notes: ['Lime', 'Grapefruit', 'Passionfruit'] }
-    },
-    {
-        name: 'Whispering Angel Rosé',
-        slug: 'whispering-angel',
-        brand: 'Château d\'Esclans',
-        category: 'Red Wine', // Using Red Wine as proxy for Rose if not exists, but I should add Rose.
-        price: 40.00,
-        description: 'The benchmark for Provence Rosé. Fresh, crisp, and elegant.',
-        images: ['/images/placeholder-bottle-15.png'],
-        is_featured: false,
-        is_new: false,
-        flavor_profile: { notes: ['Strawberry', 'Citrus', 'Mineral'] }
     },
     {
         name: 'Hibiki Japanese Harmony',

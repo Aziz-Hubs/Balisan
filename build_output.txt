@@ -1,0 +1,172 @@
+﻿
+> balisan-web@0.1.0 build
+> next build
+
+Γû▓ Next.js 16.1.1 (Turbopack)
+- Environments: .env.local
+
+node.exe : ΓÜá The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+At C:\Program Files\nodejs\npm.ps1:29 char:3
++   & $NODE_EXE $NPM_CLI_JS $args
++   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (ΓÜá The "middle...leware-to-proxy:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+  Creating an optimized production build ...
+Γ£ô Compiled successfully in 71s
+  Running TypeScript ...
+  Collecting page data using 5 workers ...
+getRecipes error: Error: Mock mode enabled
+    at f (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__dd4d1bee._.js:1:475)
+    at Object.j [as generateStaticParams] (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:5560)
+getBlogPosts error: Error: Mock mode enabled
+    at h (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__468be86d._.js:13:199)
+    at Object.n [as generateStaticParams] (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__468be86d._.js:15:8872)
+  Generating static pages using 5 workers (0/69) ...
+getCategories error: Error: Mock mode enabled
+    at m (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:5:5428)
+    at q (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__b97440f2._.js:21:1339)
+    at stringify (<anonymous>)
+getBlogPosts error: Error: Mock mode enabled
+    at h (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:18:199)
+    at f (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__66975229._.js:13:5037)
+    at stringify (<anonymous>)
+getRecipe error: Error: Mock mode enabled
+    at g (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:12:388)
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:2665)
+getRecipe error: Error: Mock mode enabled
+    at g (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:12:388)
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:2665)
+getRecipe error: Error: Mock mode enabled
+    at g (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:12:388)
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:2665)
+  Generating static pages using 5 workers (17/69) 
+  Generating static pages using 5 workers (34/69) 
+getBlogPost error: Error: Mock mode enabled
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:18:763)
+    at m (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__468be86d._.js:15:7261)
+getBlogPost error: Error: Mock mode enabled
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:18:763)
+    at m (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__468be86d._.js:15:7261)
+  Generating static pages using 5 workers (51/69) 
+getRecipe error: Error: Mock mode enabled
+    at g (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:12:388)
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:2665)
+getRecipe error: Error: Mock mode enabled
+    at g (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:12:388)
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:2665)
+getRecipe error: Error: Mock mode enabled
+    at g (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:12:388)
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:2665)
+getRecipe error: Error: Mock mode enabled
+    at g (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:12:388)
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:2665)
+getRecipe error: Error: Mock mode enabled
+    at g (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:12:388)
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:2665)
+getRecipe error: Error: Mock mode enabled
+    at g (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:12:388)
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:2665)
+getRecipe error: Error: Mock mode enabled
+    at g (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:12:388)
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:2665)
+getRecipe error: Error: Mock mode enabled
+    at g (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:12:388)
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:2665)
+getRecipe error: Error: Mock mode enabled
+    at g (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:12:388)
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__f17ddff3._.js:15:2665)
+getRecipes error: Error: Mock mode enabled
+    at f (C:\khmara\balisan-web\.next\server\chunks\ssr\_30948db1._.js:6:768)
+    at f (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__b2ed63ab._.js:15:5846)
+    at stringify (<anonymous>)
+getBlogPost error: Error: Mock mode enabled
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\_92f300e3._.js:18:763)
+    at m (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__468be86d._.js:15:7261)
+getBlogPost error: Error: Mock mode enabled
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\_92f300e3._.js:18:763)
+    at m (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__468be86d._.js:15:7261)
+getBlogPost error: Error: Mock mode enabled
+    at i (C:\khmara\balisan-web\.next\server\chunks\ssr\_92f300e3._.js:18:763)
+    at m (C:\khmara\balisan-web\.next\server\chunks\ssr\[root-of-the-server]__468be86d._.js:15:7261)
+Γ£ô Generating static pages using 5 workers (69/69) in 37.0s
+  Finalizing page optimization ...
+
+Route (app)
+Γöî ╞Æ /
+Γö£ Γùï /_not-found
+Γö£ Γùï /about
+Γö£ Γùï /account
+Γö£ Γùï /account/addresses
+Γö£ Γùï /account/collection
+Γö£ Γùï /account/orders
+Γö£ Γùï /account/payment-methods
+Γö£ Γùï /account/preferences
+Γö£ Γùï /account/settings
+Γö£ Γùï /admin
+Γö£ Γùï /admin/categories
+Γö£ ╞Æ /admin/categories/[id]
+Γö£ Γùï /admin/categories/new
+Γö£ Γùï /admin/compliance
+Γö£ Γùï /admin/customers
+Γö£ Γùï /admin/dashboard
+Γö£ Γùï /admin/inventory
+Γö£ Γùï /admin/orders
+Γö£ Γùï /admin/products
+Γö£ ╞Æ /admin/products/[id]
+Γö£ Γùï /admin/products/new
+Γö£ ╞Æ /api/admin/categories
+Γö£ ╞Æ /api/admin/categories/[id]
+Γö£ ╞Æ /api/admin/dashboard/metrics
+Γö£ ╞Æ /api/admin/products
+Γö£ ╞Æ /api/admin/products/[id]
+Γö£ ╞Æ /api/facets
+Γö£ Γùï /careers
+Γö£ Γùï /cart
+Γö£ Γùï /checkout
+Γö£ Γùï /checkout/confirmation
+Γö£ Γùï /checkout/information
+Γö£ Γùï /checkout/payment
+Γö£ Γùï /checkout/shipping
+Γö£ ╞Æ /collections/[...slug]
+Γö£ Γùï /concierge
+Γö£ Γùï /contact
+Γö£ Γùï /delivery
+Γö£ Γùï /education
+Γö£ ╞Æ /education/[...slug]
+Γö£ Γùï /events
+Γö£ Γùï /faq
+Γö£ Γùï /forgot-password
+Γö£ Γùï /journal
+Γö£ ΓùÅ /journal/[slug]
+Γöé Γö£ /journal/ultimate-guide-whiskey-tasting
+Γöé Γö£ /journal/classic-cocktails-home-bartender
+Γöé Γö£ /journal/wine-pairing-guide
+Γöé Γöö [+2 more paths]
+Γö£ Γùï /login
+Γö£ Γùï /privacy
+Γö£ ╞Æ /products/[slug]
+Γö£ Γùï /recipes
+Γö£ ΓùÅ /recipes/[slug]
+Γöé Γö£ /recipes/classic-old-fashioned
+Γöé Γö£ /recipes/perfect-margarita
+Γöé Γö£ /recipes/negroni
+Γöé Γöö [+9 more paths]
+Γö£ Γùï /refund
+Γö£ ╞Æ /search
+Γö£ ╞Æ /services/[...slug]
+Γö£ Γùï /shipping
+Γö£ ╞Æ /shop
+Γö£ ╞Æ /shop/[...slug]
+Γö£ Γùï /signup
+Γö£ Γùï /sitemap.xml
+Γö£ Γùï /story
+Γöö Γùï /terms
+
+
+╞Æ Proxy (Middleware)
+
+Γùï  (Static)   prerendered as static content
+ΓùÅ  (SSG)      prerendered as static HTML (uses generateStaticParams)
+╞Æ  (Dynamic)  server-rendered on demand
+

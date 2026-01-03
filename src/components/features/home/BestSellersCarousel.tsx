@@ -24,7 +24,7 @@ export function BestSellersCarousel({ products, userName }: BestSellersCarouselP
         : 'Best Sellers';
 
     return (
-        <section className="py-24 bg-background overflow-visible">
+        <section className="py-24 overflow-visible">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
                     <div>

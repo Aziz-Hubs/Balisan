@@ -20,6 +20,21 @@ interface MiniMarqueeProps {
     className?: string
 }
 
+
+import { useState } from "react"
+
+function SafeImage({ src, alt, ...props }: React.ComponentProps<typeof Image>) {
+    const [error, setError] = useState(false)
+    return (
+        <Image
+            {...props}
+            src={error ? "/bottle.png" : (src || "/bottle.png")}
+            alt={alt}
+            onError={() => setError(true)}
+        />
+    )
+}
+
 export function MiniMarquee({ items, speed = 25, className }: MiniMarqueeProps) {
     const duplicatedItems = [...items, ...items]
 
@@ -44,7 +59,7 @@ export function MiniMarquee({ items, speed = 25, className }: MiniMarqueeProps) 
                         className="group flex items-center gap-3 bg-zinc-800/30 hover:bg-zinc-800/60 p-2 pr-4 rounded-xl border border-white/5 transition-colors w-[180px] flex-shrink-0"
                     >
                         <div className="h-10 w-10 relative bg-zinc-900 rounded-lg overflow-hidden flex-shrink-0 border border-white/5">
-                            <Image
+                            <SafeImage
                                 src={item.image}
                                 alt={item.name}
                                 fill

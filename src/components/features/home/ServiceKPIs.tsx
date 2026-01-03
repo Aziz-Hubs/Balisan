@@ -37,9 +37,7 @@ const kpis = [
 
 export function ServiceKPIs() {
     return (
-        <section className="py-24 bg-background relative overflow-hidden">
-            {/* Background Amber Glow */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none" />
+        <section className="pt-20 pb-16 relative">
 
             <div className="container mx-auto px-4 md:px-6 relative z-10">
                 <div className="text-center mb-16">
@@ -55,9 +53,9 @@ export function ServiceKPIs() {
                     {kpis.map((kpi, index) => (
                         <Spotlight
                             key={index}
-                            className="p-6 md:p-8 bg-card border-zinc-200 dark:border-white/5 flex flex-col md:items-center items-start text-left md:text-center transition-all duration-300 shadow-sm"
+                            className="p-6 md:p-8 bg-card border-zinc-200 dark:border-white/5 flex flex-col items-center text-center transition-all duration-300 shadow-sm"
                         >
-                            <div className="mb-6 relative self-center md:self-auto">
+                            <div className="mb-6 relative">
                                 <div className="absolute inset-0 bg-amber-500/20 blur-xl rounded-full scale-150 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                                 <motion.div
                                     animate={{
@@ -74,7 +72,7 @@ export function ServiceKPIs() {
                                 </motion.div>
                             </div>
 
-                            <div className="flex flex-col md:items-center items-start gap-2 mb-4 w-full">
+                            <div className="flex flex-col items-center gap-2 mb-4 w-full">
                                 <div className="flex items-baseline gap-1">
                                     {kpi.statOverride ? (
                                         <span className="text-4xl md:text-5xl font-bold text-amber-500 tabular-nums tracking-tighter">

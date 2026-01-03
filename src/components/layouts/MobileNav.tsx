@@ -76,7 +76,7 @@ export function MobileNav() {
                 <div className="p-4 border-b">
                     <div className="flex items-center justify-between mb-4 pr-10">
                         <Link href="/" onClick={closeMobileMenu}>
-                            <Logo height={32} rainbow />
+                            <Logo height={32} />
                         </Link>
                         <AgeVerificationBadge />
                     </div>
@@ -214,13 +214,13 @@ export function MobileNav() {
                             </Button>
                         </div>
                     ) : (
-                        <div className="flex flex-col gap-4">
+                        <div className="flex flex-col gap-3">
                             <Link href="/login" className="w-full" onClick={closeMobileMenu}>
                                 <ShimmerButton
                                     background={isDark ? "#000000" : "#ffffff"}
-                                    shimmerColor="#F5A623"
+                                    shimmerColor="transparent"
                                     shimmerSize="0.1em"
-                                    shimmerDuration="2s"
+                                    shimmerDuration="0s"
                                     className={cn(
                                         "w-full h-12 text-sm font-medium rounded-xl border-amber-500/20",
                                         isDark ? "text-white" : "text-black"
@@ -230,9 +230,18 @@ export function MobileNav() {
                                 </ShimmerButton>
                             </Link>
                             <Link href="/signup" className="w-full" onClick={closeMobileMenu}>
-                                <RainbowButton className="w-full h-12 text-sm font-medium">
+                                <ShimmerButton
+                                    background={isDark ? "#F59E0B" : "#1C1917"}
+                                    shimmerColor={isDark ? "#FDE68A" : "#F5A623"}
+                                    shimmerSize="0.1em"
+                                    shimmerDuration="3s"
+                                    className={cn(
+                                        "w-full h-12 text-sm font-bold rounded-xl",
+                                        isDark ? "text-stone-900" : "text-white"
+                                    )}
+                                >
                                     Sign Up
-                                </RainbowButton>
+                                </ShimmerButton>
                             </Link>
                         </div>
                     )}

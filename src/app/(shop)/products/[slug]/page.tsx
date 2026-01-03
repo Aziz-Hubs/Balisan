@@ -5,7 +5,7 @@ import { Rating } from "@/components/ui/rating"
 import { AddToCartButton } from "@/components/features/cart/AddToCartButton"
 import { RelatedProductsCarousel } from "@/components/features/products/RelatedProductsCarousel"
 import { formatPrice, cn } from "@/lib/utils"
-import { Award, Zap, Thermometer, Heart } from "lucide-react"
+import { Award, Zap, Thermometer, Heart, Wine, MapPin, Calendar, Droplets } from "lucide-react"
 import { Badge } from "@/components/ui/badge"
 import { ProductReviews } from "@/components/features/products/ProductReviews"
 import { ProductFAQ } from "@/components/features/products/ProductFAQ"
@@ -14,6 +14,7 @@ import { AdminEditButton } from "@/components/features/products/AdminEditButton"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { HoverBorderGradient } from "@/components/ui/extension/HoverBorderGradient"
 import { DecoratedText } from "@/components/ui/extension/DecoratedText"
+import { ProductHeroClient } from "@/components/features/products/ProductHeroClient"
 
 interface ProductPageProps {
     params: Promise<{
@@ -234,7 +235,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                         </div>
                     )}
 
-                    <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                    <div className="flex flex-col gap-4 pt-2">
                         <AddToCartButton
                             product={product}
                             size="lg"
@@ -244,6 +245,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                         </AddToCartButton>
                         <HoverBorderGradient
                             as="button"
+                            containerClassName="w-full md:w-[240px]"
                             className="w-full h-14 px-8 flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground border-zinc-200 dark:border-white/10"
                         >
                             <Heart className="h-4 w-4 mr-2" />
@@ -253,15 +255,56 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
 
                     <div className="border-t pt-8 mt-8">
-                        <h3 className="font-semibold mb-4">Product Details</h3>
-                        <dl className="grid gap-4 sm:grid-cols-2 text-sm">
-                            <div>
-                                <dt className="font-medium text-muted-foreground">Brand</dt>
-                                <dd className="font-medium">{brandName}</dd>
+                        <h3 className="font-semibold mb-6 flex items-center gap-2">
+                            <Wine className="h-5 w-5 text-amber-600" />
+                            Product Details
+                        </h3>
+                        <dl className="grid gap-6 grid-cols-2 md:grid-cols-3 text-sm">
+                            <div className="space-y-1">
+                                <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Brand</dt>
+                                <dd className="font-semibold">{brandName || "—"}</dd>
                             </div>
-                            <div>
-                                <dt className="font-medium text-muted-foreground">Category</dt>
-                                <dd className="font-medium">{categoryName}</dd>
+                            <div className="space-y-1">
+                                <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Category</dt>
+                                <dd className="font-semibold">{categoryName || "—"}</dd>
+                            </div>
+                            <div className="space-y-1">
+                                <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-1">
+                                    <Droplets className="h-3 w-3" /> Volume
+                                </dt>
+                                <dd className="font-semibold">{product.volume ? `${product.volume}ml` : "750ml"}</dd>
+                            </div>
+                            <div className="space-y-1">
+                                <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider">ABV</dt>
+                                <dd className="font-semibold">{product.abv ? `${product.abv}%` : "—"}</dd>
+                            </div>
+                            <div className="space-y-1">
+                                <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-1">
+                                    <MapPin className="h-3 w-3" /> Country
+                                </dt>
+                                <dd className="font-semibold">{product.country || "—"}</dd>
+                            </div>
+                            <div className="space-y-1">
+                                <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Region</dt>
+                                <dd className="font-semibold">{(product as any).region || "—"}</dd>
+                            </div>
+                            {(product as any).age_statement && (
+                                <div className="space-y-1">
+                                    <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider flex items-center gap-1">
+                                        <Calendar className="h-3 w-3" /> Age Statement
+                                    </dt>
+                                    <dd className="font-semibold">{(product as any).age_statement}</dd>
+                                </div>
+                            )}
+                            {(product as any).cask_type && (
+                                <div className="space-y-1">
+                                    <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider">Cask Type</dt>
+                                    <dd className="font-semibold">{(product as any).cask_type}</dd>
+                                </div>
+                            )}
+                            <div className="space-y-1">
+                                <dt className="text-xs font-medium text-muted-foreground uppercase tracking-wider">SKU</dt>
+                                <dd className="font-mono text-xs text-muted-foreground">{product.sku || product.id?.slice(0, 8).toUpperCase()}</dd>
                             </div>
                         </dl>
                     </div>
@@ -296,35 +339,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
             {relatedProducts.length > 0 && (
                 <RelatedProductsCarousel products={relatedProducts} />
             )}
-            {/* Mobile Sticky Add to Cart Bar */}
-            <div className="fixed bottom-0 left-0 right-0 z-50 p-4 pb-[calc(1rem+env(safe-area-inset-bottom))] bg-background/95 backdrop-blur-xl border-t border-border/50 md:hidden animate-in slide-in-from-bottom-full duration-500 shadow-[0_-8px_30px_-12px_rgba(0,0,0,0.25)]">
-                <div className="flex items-center justify-between gap-4 max-w-md mx-auto">
-                    <div className="flex flex-col min-w-0 flex-1">
-                        <span className="text-[10px] text-muted-foreground uppercase tracking-wider line-clamp-1">{brandName}</span>
-                        <div className="flex items-baseline gap-2">
-                            {product.discount_price && product.discount_price < product.price ? (
-                                <>
-                                    <span className="text-lg font-bold text-emerald-600 dark:text-emerald-400">
-                                        {formatPrice(product.discount_price)}
-                                    </span>
-                                    <span className="text-xs text-muted-foreground line-through decoration-red-500/50">
-                                        {formatPrice(product.price)}
-                                    </span>
-                                </>
-                            ) : (
-                                <span className="text-lg font-bold">
-                                    {formatPrice(product.price)}
-                                </span>
-                            )}
-                        </div>
-                    </div>
-                    <AddToCartButton
-                        product={product}
-                        size="default"
-                        className="bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-white font-semibold shadow-lg shadow-amber-500/25 w-[140px] rounded-full flex-shrink-0"
-                    />
-                </div>
-            </div>
+            {/* Smart Mobile Sticky Footer */}
+            <ProductHeroClient product={product} />
         </div>
     )
 }

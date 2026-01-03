@@ -1,5 +1,6 @@
 "use client"
 
+import * as React from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { GlareCard } from "@/components/ui/glare-card"
@@ -19,6 +20,7 @@ interface ArrivalsGlareCardProps {
 export function ArrivalsGlareCard({ product, className, priority = false }: ArrivalsGlareCardProps) {
     const { items, addItem, updateQuantity, removeItem } = useCartStore()
     const cartItem = items.find(i => i.id === product.id)
+    const [imageError, setImageError] = React.useState(false)
 
     const handleAddToCart = (e: React.MouseEvent) => {
         e.preventDefault()
@@ -63,9 +65,10 @@ export function ArrivalsGlareCard({ product, className, priority = false }: Arri
                 {/* Image */}
                 <div className="relative flex-1 w-full min-h-[160px] my-4 transition-transform duration-500 hover:scale-110">
                     <Image
-                        src={product.image || '/bottle.png'}
+                        src={imageError ? '/bottle.png' : (product.image || '/bottle.png')}
                         alt={product.name}
                         fill
+                        onError={() => setImageError(true)}
                         className={cn(
                             "object-contain drop-shadow-2xl",
                             !product.in_stock && "grayscale opacity-50"

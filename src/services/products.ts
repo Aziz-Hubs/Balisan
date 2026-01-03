@@ -6,6 +6,7 @@
  */
 
 import { createClient } from '@/lib/supabase/server'
+import { config } from '@/lib/config'
 import type { Product } from '@/types'
 import {
     ALL_PRODUCTS,
@@ -40,6 +41,7 @@ export async function getProducts(options?: {
     isNew?: boolean
 }): Promise<Product[]> {
     try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
         const supabase = await createClient()
         const page = options?.page || 1
         const limit = options?.limit || 12
@@ -187,6 +189,7 @@ export async function getProducts(options?: {
 
 export async function getProductBySlug(slug: string): Promise<Product | null> {
     try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
         const supabase = await createClient()
         const { data, error } = await supabase
             .from('products')
@@ -213,6 +216,7 @@ export async function getProductBySlug(slug: string): Promise<Product | null> {
 
 export async function getProductById(id: string): Promise<Product | null> {
     try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
         const supabase = await createClient()
         const { data, error } = await supabase
             .from('products')
@@ -239,6 +243,7 @@ export async function getProductById(id: string): Promise<Product | null> {
 
 export async function getFeaturedProducts(limit = 8): Promise<Product[]> {
     try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
         const supabase = await createClient()
         const { data, error } = await supabase
             .from('products')
@@ -261,6 +266,7 @@ export async function getFeaturedProducts(limit = 8): Promise<Product[]> {
 
 export async function getNewArrivals(limit = 8): Promise<Product[]> {
     try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
         const supabase = await createClient()
         const { data, error } = await supabase
             .from('products')
@@ -284,6 +290,7 @@ export async function getNewArrivals(limit = 8): Promise<Product[]> {
 
 export async function getProductsByCategory(categorySlug: string, limit = 12): Promise<Product[]> {
     try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
         const supabase = await createClient()
         // Resolve category first
         const { data: cat } = await supabase.from('categories').select('id').eq('slug', categorySlug).single()
@@ -314,6 +321,7 @@ export async function getProductsByCategory(categorySlug: string, limit = 12): P
 export async function searchProducts(query: string): Promise<Product[]> {
     if (!query) return []
     try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
         const supabase = await createClient()
         const { data, error } = await supabase
             .from('products')
@@ -336,6 +344,7 @@ export async function searchProducts(query: string): Promise<Product[]> {
 
 export async function getFacets() {
     try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
         const supabase = await createClient()
 
         const [
@@ -375,6 +384,7 @@ export async function getFacets() {
 
 export async function getCategories(): Promise<Category[]> {
     try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
         const supabase = await createClient()
         const { data, error } = await supabase
             .from('categories')

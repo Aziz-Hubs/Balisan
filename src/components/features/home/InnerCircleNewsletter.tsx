@@ -7,6 +7,7 @@ import Link from 'next/link';
 import ShimmerButton from '@/components/ui/extension/ShimmerButton';
 import { Input } from '@/components/ui/input';
 import { toast } from 'sonner';
+import confetti from 'canvas-confetti';
 
 export function InnerCircleNewsletter() {
     const [email, setEmail] = useState('');
@@ -15,6 +16,37 @@ export function InnerCircleNewsletter() {
     const handleSubscribe = async (e: React.FormEvent) => {
         e.preventDefault();
         if (!email) return;
+
+        // Basic email validation
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            toast.error('Please enter a valid email address');
+            return;
+        }
+
+        // Trigger confetti animation
+        const form = e.currentTarget as HTMLFormElement;
+        const button = form.querySelector('button[type="submit"]');
+
+        if (button) {
+            const rect = button.getBoundingClientRect();
+            const x = (rect.left + rect.width / 2) / window.innerWidth;
+            const y = (rect.top + rect.height / 2) / window.innerHeight;
+
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { x, y },
+                colors: ['#f59e0b', '#d97706', '#b45309', '#fbbf24']
+            });
+        } else {
+            // Fallback if button not found
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#f59e0b', '#d97706', '#b45309', '#fbbf24']
+            });
+        }
 
         setIsLoading(true);
         // Simulate API call
@@ -26,9 +58,7 @@ export function InnerCircleNewsletter() {
     };
 
     return (
-        <section className="py-24 md:py-32 relative overflow-hidden bg-background flex flex-col items-center justify-center text-center">
-            {/* Background Gradients */}
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-600/20 blur-[120px] rounded-full pointer-events-none" />
+        <section className="pt-16 pb-24 md:pb-32 relative flex flex-col items-center justify-center text-center">
 
             <div className="relative z-10 container mx-auto px-4">
                 <motion.div
@@ -51,13 +81,13 @@ export function InnerCircleNewsletter() {
                             placeholder="Enter your email address"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            className="bg-muted/50 border-input text-foreground h-12 focus-visible:ring-amber-500/50 flex-grow"
+                            className="bg-muted/50 border-input text-foreground h-12 focus-visible:ring-amber-500/50 flex-grow rounded-full px-6"
                             required
                         />
                         <ShimmerButton
                             type="submit"
                             disabled={isLoading}
-                            className="h-12 px-8 shadow-2xl"
+                            className="h-12 px-8 shadow-2xl hover:scale-105 hover:shadow-[0_0_40px_-10px_rgba(245,158,11,0.6)] transition-all"
                         >
                             <span className="text-sm font-medium text-white">
                                 {isLoading ? 'Joining...' : 'Stay in the Loop'}

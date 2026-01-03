@@ -94,6 +94,10 @@ export function ComparisonOverlay() {
                                             src={product.image}
                                             alt={product.name}
                                             className="h-full w-full object-contain transition-transform duration-500 group-hover/image:scale-110"
+                                            onError={(e) => {
+                                                e.currentTarget.src = "/bottle.png"
+                                                e.currentTarget.onerror = null
+                                            }}
                                         />
                                     </div>
                                     <h3 className="font-bold text-lg line-clamp-2">{product.name}</h3>

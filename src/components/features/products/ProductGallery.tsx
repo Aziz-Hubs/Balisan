@@ -16,16 +16,34 @@ interface ProductGalleryProps {
 export function ProductGallery({ images, modelUrl }: ProductGalleryProps) {
     const [viewMode, setViewMode] = React.useState<'gallery' | '3d'>('gallery');
     const [mainImage, setMainImage] = React.useState(images[0])
+    const [mainImageError, setMainImageError] = React.useState(false)
 
     // Mock model URL for demonstration if not provided
     const demoModelUrl = modelUrl || "https://modelviewer.dev/shared-assets/models/Astronaut.glb";
+
+    React.useEffect(() => {
+        setMainImageError(false);
+    }, [mainImage]);
 
     React.useEffect(() => {
         let lightbox: PhotoSwipeLightbox | null = new PhotoSwipeLightbox({
             gallery: '#product-gallery',
             children: 'a',
             pswpModule: () => import('photoswipe'),
+            bgOpacity: 1,
+            showHideAnimationType: 'fade',
+            showAnimationDuration: 200,
+            hideAnimationDuration: 200,
         });
+
+        // Set the background color immediately when PhotoSwipe opens
+        lightbox.on('beforeOpen', () => {
+            const pswp = lightbox?.pswp;
+            if (pswp?.element) {
+                pswp.element.style.setProperty('--pswp-bg', 'rgba(0, 0, 0, 0.95)');
+            }
+        });
+
         lightbox.init();
 
         return () => {
@@ -44,14 +62,15 @@ export function ProductGallery({ images, modelUrl }: ProductGalleryProps) {
                     <Lens className="w-full h-full cursor-crosshair" zoomFactor={2} lensSize={200}>
                         <div className="relative w-full h-full">
                             <Image
-                                src={mainImage}
+                                src={mainImageError ? "/bottle.png" : mainImage}
                                 alt="Product image"
                                 fill
                                 className="object-contain p-4"
                                 priority
+                                onError={() => setMainImageError(true)}
                             />
                             <a
-                                href={mainImage}
+                                href={mainImageError ? "/bottle.png" : mainImage}
                                 data-pswp-width="1200"
                                 data-pswp-height="1200"
                                 target="_blank"

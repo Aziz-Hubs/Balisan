@@ -108,13 +108,17 @@ export function RelatedProductsCarousel({ products, title = "Related Products" }
                 {/* Scrollable Area */}
                 <div
                     ref={scrollContainerRef}
-                    className="flex gap-4 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory pb-4 -mx-4 px-4"
-                    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                    className="flex gap-4 overflow-x-auto scroll-smooth snap-x snap-mandatory pb-4 -mx-4 px-4 touch-pan-x"
+                    style={{
+                        scrollbarWidth: "none",
+                        msOverflowStyle: "none",
+                        WebkitOverflowScrolling: "touch"
+                    }}
                 >
                     {products.map((product) => (
                         <div
                             key={product.id}
-                            className="flex-shrink-0 w-[280px] md:w-[300px] snap-start"
+                            className="flex-shrink-0 w-[200px] sm:w-[240px] md:w-[280px] lg:w-[300px] snap-start"
                         >
                             <ProductCard product={product} />
                         </div>

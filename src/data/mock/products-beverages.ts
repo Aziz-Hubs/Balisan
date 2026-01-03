@@ -1,42 +1,6 @@
-import { Product } from "@/types"
 import { generateSKU, randomPastDate } from "./products"
 
-export const WINE_PRODUCTS: any[] = [
-    {
-        id: "wine-001",
-        name: "Château Margaux 2015",
-        slug: "chateau-margaux-2015",
-        brand: "Château Margaux",
-        price: 899.99,
-        rating: 4.9,
-        image: "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&q=80",
-        images: [
-            "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&q=80"
-        ],
-        in_stock: true,
-        stock_quantity: 5,
-        category: "Wine",
-        subcategory: "Red",
-        description: "A legendary First Growth Bordeaux. 2015 was an exceptional vintage producing wines of incredible depth and longevity.",
-        tasting_notes: "Blackcurrant, plum, cedar, and tobacco. exquisite balance and silky tannins.",
-        abv: 13.5,
-        volume: "750ml",
-        region: "Bordeaux",
-        country: "France",
-        sku: generateSKU("Wine", 1),
-        tags: ["bordeaux", "premium", "collectible", "award-winner"],
-        is_award_winner: true,
-        review_count: 12,
-        flavor_profile: {
-            woodiness: 70,
-            smokiness: 10,
-            sweetness: 20,
-            complexity: 90,
-            peatiness: 0
-        },
-        created_at: randomPastDate(24)
-    }
-]
+export const WINE_PRODUCTS: any[] = []
 
 export const BEER_PRODUCTS: any[] = [
     {

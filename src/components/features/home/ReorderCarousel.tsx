@@ -23,7 +23,7 @@ export function ReorderCarousel({ items }: ReorderCarouselProps) {
     if (items.length === 0) return null;
 
     return (
-        <section className="py-24 bg-zinc-950/30 border-y border-zinc-900/50 overflow-visible">
+        <section className="py-24 overflow-visible">
             <div className="container mx-auto px-4 md:px-6">
                 <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
                     <div>

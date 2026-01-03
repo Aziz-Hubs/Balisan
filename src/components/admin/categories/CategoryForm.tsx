@@ -24,9 +24,9 @@ import { Textarea } from "@/components/ui/textarea"
 const categorySchema = z.object({
     name: z.string().min(2, "Name must be at least 2 characters"),
     slug: z.string().min(2, "Slug must be at least 2 characters"),
-    description: z.string().optional(),
-    image_url: z.string().url("Must be a valid URL").or(z.literal("")),
-    level: z.coerce.number().default(0),
+    description: z.string().optional().nullable(),
+    image_url: z.string().url("Must be a valid URL").or(z.literal("")).nullable(),
+    level: z.number(),
     parent_id: z.string().nullable().optional(),
 })
 
@@ -43,7 +43,14 @@ export function CategoryForm({ initialData, categories = [] }: CategoryFormProps
 
     const form = useForm<CategoryFormValues>({
         resolver: zodResolver(categorySchema),
-        defaultValues: initialData || {
+        defaultValues: initialData ? {
+            name: initialData.name,
+            slug: initialData.slug,
+            description: initialData.description,
+            image_url: initialData.image_url,
+            level: initialData.level,
+            parent_id: initialData.parent_id,
+        } : {
             name: "",
             slug: "",
             description: "",
@@ -141,6 +148,7 @@ export function CategoryForm({ initialData, categories = [] }: CategoryFormProps
                                     placeholder="Describe this category..."
                                     className="bg-zinc-900 border-zinc-800 text-white resize-none"
                                     {...field}
+                                    value={field.value || ""}
                                 />
                             </FormControl>
                             <FormMessage />
@@ -160,6 +168,7 @@ export function CategoryForm({ initialData, categories = [] }: CategoryFormProps
                                     placeholder="https://images.unsplash.com/..."
                                     className="bg-zinc-900 border-zinc-800 text-white"
                                     {...field}
+                                    value={field.value || ""}
                                 />
                             </FormControl>
                             <FormDescription>

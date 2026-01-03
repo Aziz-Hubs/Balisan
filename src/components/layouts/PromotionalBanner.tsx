@@ -27,7 +27,7 @@ export function PromotionalBanner({
     autoRotate = true,
     rotationInterval = 5000,
 }: PromotionalBannerProps) {
-    const { dismissedBanners, dismissBanner } = useNavigationStore()
+    const { dismissedBanners, dismissBanners } = useNavigationStore()
     const [currentIndex, setCurrentIndex] = useState(0)
     const [prefersReducedMotion, setPrefersReducedMotion] = useState(false)
     const [mounted, setMounted] = useState(false)
@@ -74,10 +74,11 @@ export function PromotionalBanner({
     const currentMessage = activeMessages[currentIndex]
 
     const handleDismiss = () => {
-        if (currentMessage) {
-            // Reset index to 0 or prev safe index to prevent crash on re-render if count decreases
+        if (activeMessages.length > 0) {
+            // Reset index to 0
             setCurrentIndex(0)
-            dismissBanner(currentMessage.id)
+            // Dismiss all currently active messages
+            dismissBanners(activeMessages.map(msg => msg.id))
         }
     }
 
@@ -108,7 +109,7 @@ export function PromotionalBanner({
     )
 
     return (
-        <div className="relative z-[60] bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white py-2 px-4 border-b border-zinc-200 dark:border-zinc-800">
+        <div className="relative z-40 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white py-2 px-4 border-b border-zinc-200 dark:border-zinc-800">
             <div className="container mx-auto">
                 <div className="flex items-center justify-between gap-4">
                     <div className="flex-1" />

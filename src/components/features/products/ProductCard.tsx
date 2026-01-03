@@ -47,6 +47,15 @@ export function ProductCard({ product, className }: ProductCardProps) {
     const [showPreview, setShowPreview] = useState(false)
     const [imageError, setImageError] = useState(false)
 
+    const handleCardClick = (e: React.MouseEvent) => {
+        // Only navigate on mobile, and only if clicking on the card itself (not buttons)
+        if (typeof window !== 'undefined' && window.innerWidth < 768) {
+            if (product.slug) {
+                router.push(`/products/${product.slug}`)
+            }
+        }
+    }
+
     const handleImageClick = (e: React.MouseEvent) => {
         e.preventDefault()
         e.stopPropagation()
@@ -104,25 +113,27 @@ export function ProductCard({ product, className }: ProductCardProps) {
     }
 
     return (
-        <CardContainer className={cn("inter-var h-full", className)} containerClassName="w-full h-full py-0">
+        <CardContainer className={cn("inter-var h-full", className)} containerClassName="w-full h-full py-0 [perspective:none] md:[perspective:1000px]">
             <CometCard
-                containerClassName="w-full h-full flex flex-col"
+                containerClassName="w-full h-full flex flex-col rounded-[1.25rem] md:rounded-[2rem]"
 
                 className="group/card relative flex flex-col flex-1 w-full"
             >
-                <div className="relative flex flex-col flex-1 w-full overflow-hidden rounded-[1.5rem] md:rounded-[2rem] transition-all duration-500 bg-white dark:bg-zinc-900/40 border border-black/5 dark:border-white/5">
-                    {/* Visual Background Glow */}
+                <div
+                    className="relative flex flex-col flex-1 w-full overflow-hidden rounded-[1.25rem] md:rounded-[2rem] transition-all duration-500 bg-white dark:bg-zinc-900/40 border border-black/5 dark:border-white/5 cursor-pointer md:cursor-default"
+                    onClick={handleCardClick}
+                >
                     {/* Visual Background Glow */}
                     <div className="absolute inset-0 z-0 bg-gradient-to-br from-amber-500/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
 
                     {/* Image Section */}
                     <div
-                        className="relative aspect-[3/4] overflow-hidden m-2 rounded-[1.5rem] bg-zinc-100 dark:bg-zinc-800/20 cursor-pointer group/image"
+                        className="relative aspect-square overflow-hidden m-1.5 md:m-2 rounded-[1.25rem] md:rounded-[2rem] bg-zinc-100 dark:bg-zinc-800/20 cursor-pointer group/image z-10"
                         onClick={handleImageClick}
                     >
                         <CardItem
                             translateZ={60}
-                            className="h-full w-full"
+                            className="h-full w-full pointer-events-none"
                         >
                             <Image
                                 src={imageError ? "/bottle.png" : (product.image || "/bottle.png")}
@@ -138,7 +149,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
                         </CardItem>
 
                         {/* Badges & Overlays */}
-                        <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
+                        <div className="absolute top-3 left-3 md:top-4 md:left-4 z-20 flex flex-col gap-2">
                             <CardItem translateZ={80}>
                                 <button
                                     onClick={(e) => {
@@ -147,53 +158,73 @@ export function ProductCard({ product, className }: ProductCardProps) {
                                         isCompared ? removeFromCompare(product.id) : addToCompare(product)
                                     }}
                                     className={cn(
-                                        "p-2 rounded-full backdrop-blur-md border transition-all duration-300",
+                                        "p-1.5 md:p-2 rounded-full backdrop-blur-md border transition-all duration-300",
                                         isCompared
                                             ? "bg-amber-500 text-white border-amber-400"
                                             : "bg-white/80 border-black/5 text-zinc-600 hover:bg-white hover:text-black dark:bg-[#0c0a09]/20 dark:border-white/10 dark:text-white/70 dark:hover:bg-[#0c0a09]/40"
                                     )}
                                     title="Compare Product"
                                 >
-                                    {isCompared ? <Check className="h-4 w-4" /> : <div className="flex items-center gap-1 px-1"><Scale className="h-3 w-3" /><span className="text-[10px] font-bold">VS</span></div>}
+                                    {isCompared ? <Check className="h-3.5 w-3.5 md:h-4 md:w-4" /> : <div className="flex items-center gap-1 px-1"><Scale className="h-3 w-3" /><span className="hidden md:inline text-[10px] font-bold">VS</span></div>}
                                 </button>
                             </CardItem>
                             <CardItem translateZ={80}>
                                 <button
                                     onClick={handleToggleCollection}
                                     className={cn(
-                                        "p-2 rounded-full backdrop-blur-md border transition-all duration-300",
+                                        "p-1.5 md:p-2 rounded-full backdrop-blur-md border transition-all duration-300",
                                         isInCollection
                                             ? "bg-rose-500 text-white border-rose-400"
                                             : "bg-white/80 border-black/5 text-zinc-600 hover:bg-white hover:text-rose-500 dark:bg-[#0c0a09]/20 dark:border-white/10 dark:text-white/70 dark:hover:bg-[#0c0a09]/40 dark:hover:text-rose-400"
                                     )}
                                     title={isInCollection ? "Remove from Collection" : "Add to Collection"}
                                 >
-                                    <Heart className={cn("h-4 w-4", isInCollection && "fill-current")} />
+                                    <Heart className={cn("h-3.5 w-3.5 md:h-4 md:w-4", isInCollection && "fill-current")} />
                                 </button>
                             </CardItem>
                         </div>
 
-                        {/* Top Right Badges */}
-                        <div className="absolute top-4 right-4 z-20 flex flex-col items-end gap-2">
-                            {!product.in_stock && (
-                                <CardItem translateZ={80}>
-                                    <div className="bg-white/90 dark:bg-black/90 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 px-3 py-1 rounded-sm rotate-3 shadow-lg">
-                                        <span className="text-xs font-bold text-red-500 uppercase tracking-widest line-through decoration-red-500/50">Sold Out</span>
+                        {/* Mobile Price Overlay */}
+                        <div className="absolute bottom-2 left-2 z-20 md:hidden">
+                            <div className="bg-white/90 dark:bg-black/80 backdrop-blur-md border border-zinc-200 dark:border-white/10 px-2 py-1 rounded-lg shadow-sm">
+                                {product.discount_price ? (
+                                    <div className="flex flex-col leading-none">
+                                        <span className="text-[9px] text-zinc-400 line-through decoration-red-500/50 mb-0.5">{formatPrice(product.price)}</span>
+                                        <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400 tracking-tight">
+                                            {formatPrice(product.discount_price)}
+                                        </span>
                                     </div>
+                                ) : (
+                                    <span className="text-sm font-bold text-zinc-900 dark:text-white tracking-tight">
+                                        {formatPrice(product.price)}
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+
+
+                        {/* Top Right Badges */}
+                        <div className="absolute top-3 right-3 md:top-4 md:right-4 z-20 flex flex-col items-end gap-1.5 md:gap-2">
+                            {/* Reduced badge sizes for mobile */}
+                            {product.discount_price && product.discount_price < product.price && (
+                                <CardItem translateZ={80}>
+                                    <Badge className="bg-emerald-500/80 text-white backdrop-blur-md border-none uppercase text-[8px] md:text-[10px] tracking-widest px-2 py-0.5 md:px-3 md:py-1">
+                                        -{Math.round(((product.price - product.discount_price) / product.price) * 100)}%
+                                    </Badge>
                                 </CardItem>
                             )}
 
-                            {product.discount_price && product.discount_price < product.price && (
+                            {!product.in_stock && (
                                 <CardItem translateZ={80}>
-                                    <Badge className="bg-emerald-500/80 text-white backdrop-blur-md border-none uppercase text-[10px] tracking-widest px-3 py-1">
-                                        -{Math.round(((product.price - product.discount_price) / product.price) * 100)}% OFF
-                                    </Badge>
+                                    <div className="bg-white/90 dark:bg-black/90 backdrop-blur-md border border-zinc-200 dark:border-zinc-800 px-2 py-0.5 md:px-3 md:py-1 rounded-sm rotate-3 shadow-lg">
+                                        <span className="text-[9px] md:text-xs font-bold text-red-500 uppercase tracking-widest line-through decoration-red-500/50">Sold Out</span>
+                                    </div>
                                 </CardItem>
                             )}
 
                             {(product.is_award_winner || product.tags?.includes('award-winner')) && (
                                 <CardItem translateZ={80}>
-                                    <Badge className="bg-amber-500/80 text-black backdrop-blur-md border-none uppercase text-[10px] tracking-widest px-3 py-1">
+                                    <Badge className="bg-amber-500/80 text-black backdrop-blur-md border-none uppercase text-[8px] md:text-[10px] tracking-widest px-2 py-0.5 md:px-3 md:py-1">
                                         Award Winner
                                     </Badge>
                                 </CardItem>
@@ -201,7 +232,7 @@ export function ProductCard({ product, className }: ProductCardProps) {
 
                             {(product.is_new || (product.created_at && (new Date().getTime() - new Date(product.created_at).getTime() < 30 * 24 * 60 * 60 * 1000))) && (
                                 <CardItem translateZ={80}>
-                                    <Badge className="bg-blue-500/80 text-white backdrop-blur-md border-none uppercase text-[10px] tracking-widest px-3 py-1">
+                                    <Badge className="bg-blue-500/80 text-white backdrop-blur-md border-none uppercase text-[8px] md:text-[10px] tracking-widest px-2 py-0.5 md:px-3 md:py-1">
                                         New
                                     </Badge>
                                 </CardItem>
@@ -209,21 +240,21 @@ export function ProductCard({ product, className }: ProductCardProps) {
                         </div>
 
                         {/* Mobile Quick Add (Visible on touch or small screens) */}
-                        <div className="absolute bottom-4 right-4 z-20 md:hidden">
+                        <div className="absolute bottom-2 right-2 z-20 md:hidden">
                             {cartItem ? (
-                                <div className="flex items-center gap-1 bg-amber-500 text-black shadow-xl rounded-full p-1 border border-amber-400/50">
+                                <div className="flex items-center gap-1 bg-amber-500 text-black shadow-xl rounded-full p-0.5 border border-amber-400/50">
                                     <button
                                         onClick={(e) => handleUpdateQty(e, -1)}
-                                        className="h-8 w-8 flex items-center justify-center rounded-full bg-black/10 active:bg-black/20"
+                                        className="h-7 w-7 flex items-center justify-center rounded-full bg-black/10 active:bg-black/20"
                                     >
-                                        <Minus className="h-4 w-4" />
+                                        <Minus className="h-3 w-3" />
                                     </button>
-                                    <span className="w-6 text-center text-sm font-bold">{cartItem.quantity}</span>
+                                    <span className="w-4 text-center text-xs font-bold">{cartItem.quantity}</span>
                                     <button
                                         onClick={(e) => handleUpdateQty(e, 1)}
-                                        className="h-8 w-8 flex items-center justify-center rounded-full bg-black/10 active:bg-black/20"
+                                        className="h-7 w-7 flex items-center justify-center rounded-full bg-black/10 active:bg-black/20"
                                     >
-                                        <Plus className="h-4 w-4" />
+                                        <Plus className="h-3 w-3" />
                                     </button>
                                 </div>
                             ) : (
@@ -231,95 +262,96 @@ export function ProductCard({ product, className }: ProductCardProps) {
                                     onClick={handleAddToCart}
                                     disabled={!product.in_stock}
                                     aria-label="Add to cart"
-                                    className="p-3 rounded-full bg-amber-500 text-black shadow-xl border border-amber-400/50 active:scale-95 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="p-2.5 rounded-full bg-amber-500 text-black shadow-xl border border-amber-400/50 active:scale-95 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
                                 >
-                                    <Plus className="h-5 w-5" />
+                                    <Plus className="h-4 w-4" />
                                 </button>
                             )}
                         </div>
                     </div>
 
                     {/* Content Section */}
-                    <div className="flex flex-col flex-grow p-3 md:p-6 pt-1 md:pt-2 space-y-2 md:space-y-3 relative z-10">
+                    <div className="flex flex-col p-2.5 md:p-6 pt-1.5 md:pt-2 space-y-0.5 md:space-y-3 relative z-10 h-[72px] md:h-auto md:flex-grow">
                         <div className="flex items-center justify-between">
-                            <CardItem translateZ={30} className="hidden md:flex items-center gap-2">
-                                <span className="text-[10px] font-bold text-amber-500/80 uppercase tracking-[0.2em]">
+                            <CardItem translateZ={30} className="flex items-center gap-2">
+                                <span className="text-[9px] md:text-[10px] font-bold text-amber-500/80 uppercase tracking-wider md:tracking-[0.2em] truncate max-w-[80px] md:max-w-none">
                                     {(product.brand as any)?.name || product.brand}
                                 </span>
-                                <TechSpecsTooltip
-                                    specs={{
-                                        abv: product.abv ? `${product.abv}%` : "0%",
-                                        region: product.region || "N/A",
-                                        aging: product.tags?.find((t: string) => t.includes('Year')) || "N/A",
-                                        cask: "Oak"
-                                    }}
-                                    product={product}
-                                >
-                                    <HelpCircle className="h-3 w-3 text-zinc-600 hover:text-amber-500 transition-colors cursor-help" />
-                                </TechSpecsTooltip>
-                            </CardItem>
-                            <CardItem translateZ={30} className="md:hidden opacity-0 h-0 w-0 pointer-events-none">
-                                <span />
+                                <div className="hidden md:block">
+                                    <TechSpecsTooltip
+                                        specs={{
+                                            abv: product.abv ? `${product.abv}%` : "0%",
+                                            region: product.region || "N/A",
+                                            aging: product.tags?.find((t: string) => t.includes('Year')) || "N/A",
+                                            cask: "Oak"
+                                        }}
+                                        product={product}
+                                    >
+                                        <HelpCircle className="h-3 w-3 text-zinc-600 hover:text-amber-500 transition-colors cursor-help" />
+                                    </TechSpecsTooltip>
+                                </div>
                             </CardItem>
                             <CardItem translateZ={30}>
-                                <Rating rating={product.rating} className="scale-[0.6] md:scale-75 origin-right" />
+                                <Rating rating={product.rating} className="scale-50 md:scale-75 origin-right" />
                             </CardItem>
                         </div>
 
-                        <CardItem translateZ={40} className="flex-1 flex flex-col justify-start min-h-[3.5rem] md:min-h-[4.5rem] mt-1">
+                        <CardItem translateZ={40} className="flex-1 flex flex-col justify-start min-h-0 md:min-h-[4.5rem] mt-0">
                             {product.slug ? (
                                 <Link
                                     href={`/products/${product.slug}`}
-                                    className="block font-serif text-base md:text-xl font-medium leading-tight text-zinc-900 dark:text-white hover:text-amber-500 dark:hover:text-amber-500 transition-colors line-clamp-2"
+                                    className="block font-serif text-[13px] md:text-xl font-medium leading-tight text-zinc-900 dark:text-white hover:text-amber-500 dark:hover:text-amber-500 transition-colors line-clamp-2"
                                 >
                                     {product.name}
                                 </Link>
                             ) : (
-                                <span className="block font-serif text-base md:text-xl font-medium leading-tight text-zinc-900 dark:text-white line-clamp-2">
+                                <span className="block font-serif text-[13px] md:text-xl font-medium leading-tight text-zinc-900 dark:text-white line-clamp-2">
                                     {product.name}
                                 </span >
                             )}
                         </CardItem>
 
-                        <div className="flex items-end justify-between pt-2">
-                            <CardItem translateZ={50} className="flex flex-col">
+                        {/* Desktop Price & Add to Cart Section - Stacked Layout */}
+                        <div className="hidden md:flex flex-col gap-2 pt-2">
+                            {/* Desktop Price Display */}
+                            <CardItem translateZ={50} className="flex items-baseline justify-between">
                                 {product.discount_price ? (
-                                    <>
-                                        <span className="text-[9px] md:text-[10px] text-zinc-500 dark:text-zinc-500 uppercase tracking-widest mb-0.5 line-through decoration-red-500/40">{formatPrice(product.price)}</span>
-                                        <span className="text-lg md:text-2xl font-bold text-emerald-600 dark:text-emerald-400 tracking-tight">
+                                    <div className="flex items-baseline gap-2">
+                                        <span className="text-xl font-bold text-emerald-600 dark:text-emerald-400 tracking-tight">
                                             {formatPrice(product.discount_price)}
                                         </span>
-                                    </>
+                                        <span className="text-xs text-zinc-400 line-through decoration-red-500/40">{formatPrice(product.price)}</span>
+                                    </div>
                                 ) : (
-                                    <>
-                                        <span className="text-[9px] md:text-[10px] text-zinc-500 dark:text-zinc-500 uppercase tracking-widest mb-0.5">Price</span>
-                                        <span className="text-lg md:text-2xl font-bold text-zinc-900 dark:text-white tracking-tight">
+                                    <div className="flex items-baseline gap-2">
+                                        <span className="text-xs text-zinc-500 dark:text-zinc-500 uppercase tracking-widest">Price</span>
+                                        <span className="text-xl font-bold text-zinc-900 dark:text-white tracking-tight">
                                             {formatPrice(product.price)}
                                         </span>
-                                    </>
+                                    </div>
                                 )}
                             </CardItem>
 
-                            {/* Desktop Add to Cart - Shimmering & Animated or Counter */}
-                            <CardItem translateZ={70} className="hidden md:block">
+                            {/* Desktop Add to Cart - Full Width */}
+                            <CardItem translateZ={70} className="w-full">
                                 {!product.in_stock ? (
-                                    <div className="h-10 px-4 flex items-center justify-center bg-zinc-100 dark:bg-white/5 rounded-xl border border-zinc-200 dark:border-white/5 opacity-50 cursor-not-allowed">
-                                        <span className="text-xs uppercase tracking-widest text-zinc-500">Stock</span>
+                                    <div className="h-10 w-full flex items-center justify-center bg-zinc-100 dark:bg-white/5 rounded-xl border border-zinc-200 dark:border-white/5 opacity-50 cursor-not-allowed">
+                                        <span className="text-xs uppercase tracking-widest text-zinc-500">Out of Stock</span>
                                     </div>
                                 ) : cartItem ? (
-                                    <div className="h-10 px-1 bg-amber-500 rounded-xl flex items-center shadow-lg shadow-amber-500/20">
+                                    <div className="h-10 w-full px-1 bg-amber-500 rounded-xl flex items-center justify-center shadow-lg shadow-amber-500/20">
                                         <button
                                             onClick={(e) => handleUpdateQty(e, -1)}
-                                            className="h-full px-3 hover:bg-black/10 rounded-l-xl transition-colors"
+                                            className="h-full px-4 hover:bg-black/10 rounded-l-xl transition-colors"
                                         >
                                             <Minus className="h-3.5 w-3.5 text-black" />
                                         </button>
-                                        <div className="px-2 font-bold text-black min-w-[20px] text-center text-sm tabular-nums">
+                                        <div className="px-3 font-bold text-black min-w-[24px] text-center text-sm tabular-nums">
                                             {cartItem.quantity}
                                         </div>
                                         <button
                                             onClick={(e) => handleUpdateQty(e, 1)}
-                                            className="h-full px-3 hover:bg-black/10 rounded-r-xl transition-colors"
+                                            className="h-full px-4 hover:bg-black/10 rounded-r-xl transition-colors"
                                         >
                                             <Plus className="h-3.5 w-3.5 text-black" />
                                         </button>
@@ -328,14 +360,14 @@ export function ProductCard({ product, className }: ProductCardProps) {
                                     <ShimmerButton
                                         onClick={handleAddToCart}
                                         aria-label="Add to cart"
-                                        className="h-10 px-4 text-xs uppercase tracking-widest rounded-xl"
+                                        className="h-10 w-full text-xs uppercase tracking-widest rounded-xl"
                                         background="#f59e0b"
                                         shimmerColor="#ffffff"
                                         shimmerDuration="2s"
                                     >
-                                        <div className="flex items-center gap-2">
+                                        <div className="flex items-center justify-center gap-2">
                                             <Plus className="h-3.5 w-3.5" />
-                                            <span>Add</span>
+                                            <span>Add to Cart</span>
                                         </div>
                                     </ShimmerButton>
                                 )}

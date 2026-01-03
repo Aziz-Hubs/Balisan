@@ -28,7 +28,15 @@ export function ComparisonBar() {
                         {compareItems.map((product) => (
                             <div key={product.id} className="relative group">
                                 <div className="h-12 w-12 rounded-lg border-2 border-background bg-muted overflow-hidden">
-                                    <img src={product.image} alt={product.name} className="h-full w-full object-cover" />
+                                    <img
+                                        src={product.image}
+                                        alt={product.name}
+                                        className="h-full w-full object-cover"
+                                        onError={(e) => {
+                                            e.currentTarget.src = "/bottle.png"
+                                            e.currentTarget.onerror = null
+                                        }}
+                                    />
                                 </div>
                                 <button
                                     onClick={() => removeFromCompare(product.id)}

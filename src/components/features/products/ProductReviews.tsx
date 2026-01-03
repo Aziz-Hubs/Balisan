@@ -7,6 +7,7 @@ import { Progress } from "@/components/ui/progress"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { Product } from "@/types"
+import { WriteReviewDialog } from "./WriteReviewDialog"
 
 interface ProductReviewsProps {
     product: Product
@@ -63,14 +64,14 @@ export function ProductReviews({ product }: ProductReviewsProps) {
         },
     }
 
-    const itemVariants = {
+    const itemVariants: import("framer-motion").Variants = {
         hidden: { opacity: 0, y: 20 },
         visible: {
             opacity: 1,
             y: 0,
             transition: {
                 duration: 0.4,
-                ease: "easeOut",
+                ease: "easeOut" as const,
             },
         },
     }
@@ -82,10 +83,12 @@ export function ProductReviews({ product }: ProductReviewsProps) {
                     <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Customer Reviews</h2>
                     <p className="text-muted-foreground text-sm">What our customers are saying</p>
                 </div>
-                <Button variant="outline" className="gap-2 w-fit">
-                    <Star className="h-4 w-4" />
-                    Write a Review
-                </Button>
+                <WriteReviewDialog product={product}>
+                    <Button variant="outline" className="gap-2 w-fit">
+                        <Star className="h-4 w-4" />
+                        Write a Review
+                    </Button>
+                </WriteReviewDialog>
             </div>
 
             <div className="grid gap-8 lg:grid-cols-12">

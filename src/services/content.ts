@@ -5,7 +5,16 @@
  */
 
 import { createClient } from '@/lib/supabase/server'
+import { config } from '@/lib/config'
 import type { Recipe, BlogPost } from '@/types'
+import {
+    RECIPES,
+    getRecipeBySlug as getMockRecipeBySlug,
+    getRecipesByTag as getMockRecipesByTag,
+    BLOG_POSTS,
+    getBlogPostBySlug as getMockBlogPostBySlug,
+    getBlogPostsByType as getMockBlogPostsByType
+} from '@/data/mock'
 
 // ============ RECIPES ============
 
@@ -14,55 +23,62 @@ export async function getRecipes(options?: {
     tag?: string
     productId?: string
 }): Promise<Recipe[]> {
-    const supabase = await createClient()
+    try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
+        const supabase = await createClient()
 
-    let query = supabase
-        .from('recipes')
-        .select(`
-            *,
-            recipe_ingredients (
+        let query = supabase
+            .from('recipes')
+            .select(`
                 *,
-                products (*)
-            )
-        `)
+                recipe_ingredients (
+                    *,
+                    products (*)
+                )
+            `)
 
-    if (options?.tag) {
-        query = query.contains('tags', [options.tag])
+        if (options?.tag) {
+            query = query.contains('tags', [options.tag])
+        }
+
+        if (options?.limit) {
+            query = query.limit(options.limit)
+        }
+
+        const { data, error } = await query.order('created_at', { ascending: false })
+
+        if (error || !data) throw error
+
+        return (data as any[]).map(mapDatabaseRecipe)
+    } catch (err) {
+        console.error('getRecipes error:', err)
+        if (options?.tag) return getMockRecipesByTag(options.tag).slice(0, options.limit || 12) as unknown as Recipe[]
+        return RECIPES.slice(0, options?.limit || 12) as unknown as Recipe[]
     }
-
-    // Filtering by productId in ingredients is complex in Supabase simple query
-    // If needed, we fetch all and filter or use a specialized query
-
-    if (options?.limit) {
-        query = query.limit(options.limit)
-    }
-
-    const { data, error } = await query.order('created_at', { ascending: false })
-
-    if (error || !data) {
-        console.error('Error fetching recipes:', error)
-        return []
-    }
-
-    return (data as any[]).map(mapDatabaseRecipe)
 }
 
 export async function getRecipe(slug: string): Promise<Recipe | null> {
-    const supabase = await createClient()
-    const { data, error } = await supabase
-        .from('recipes')
-        .select(`
-            *,
-            recipe_ingredients (
+    try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
+        const supabase = await createClient()
+        const { data, error } = await supabase
+            .from('recipes')
+            .select(`
                 *,
-                products (*)
-            )
-        `)
-        .eq('slug', slug)
-        .single()
+                recipe_ingredients (
+                    *,
+                    products (*)
+                )
+            `)
+            .eq('slug', slug)
+            .single()
 
-    if (error || !data) return null
-    return mapDatabaseRecipe(data)
+        if (error || !data) throw error
+        return mapDatabaseRecipe(data)
+    } catch (err) {
+        console.error('getRecipe error:', err)
+        return getMockRecipeBySlug(slug) as unknown as Recipe
+    }
 }
 
 // ============ BLOG POSTS / JOURNAL ============
@@ -72,45 +88,55 @@ export async function getBlogPosts(options?: {
     category?: string
     tag?: string
 }): Promise<BlogPost[]> {
-    const supabase = await createClient()
+    try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
+        const supabase = await createClient()
 
-    let query = supabase
-        .from('journal_posts' as any)
-        .select('*')
-        .not('published_at', 'is', null) // Only published posts
+        let query = supabase
+            .from('journal_posts' as any)
+            .select('*')
+            .not('published_at', 'is', null) // Only published posts
 
-    if (options?.category) {
-        query = query.eq('category', options.category)
+        if (options?.category) {
+            query = query.eq('category', options.category)
+        }
+
+        if (options?.tag) {
+            query = query.contains('tags', [options.tag])
+        }
+
+        if (options?.limit) {
+            query = query.limit(options.limit)
+        }
+
+        const { data, error } = await query.order('published_at', { ascending: false })
+
+        if (error || !data) throw error
+
+        return (data as any[]).map(mapDatabaseBlogPost)
+    } catch (err) {
+        console.error('getBlogPosts error:', err)
+        if (options?.category) return getMockBlogPostsByType(options.category).slice(0, options?.limit || 12) as unknown as BlogPost[]
+        return BLOG_POSTS.slice(0, options?.limit || 12) as unknown as BlogPost[]
     }
-
-    if (options?.tag) {
-        query = query.contains('tags', [options.tag])
-    }
-
-    if (options?.limit) {
-        query = query.limit(options.limit)
-    }
-
-    const { data, error } = await query.order('published_at', { ascending: false })
-
-    if (error || !data) {
-        console.error('Error fetching blog posts:', error)
-        return []
-    }
-
-    return (data as any[]).map(mapDatabaseBlogPost)
 }
 
 export async function getBlogPost(slug: string): Promise<BlogPost | null> {
-    const supabase = await createClient()
-    const { data, error } = await supabase
-        .from('journal_posts' as any)
-        .select('*')
-        .eq('slug', slug)
-        .single()
+    try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
+        const supabase = await createClient()
+        const { data, error } = await supabase
+            .from('journal_posts' as any)
+            .select('*')
+            .eq('slug', slug)
+            .single()
 
-    if (error || !data) return null
-    return mapDatabaseBlogPost(data)
+        if (error || !data) throw error
+        return mapDatabaseBlogPost(data)
+    } catch (err) {
+        console.error('getBlogPost error:', err)
+        return getMockBlogPostBySlug(slug) as unknown as BlogPost
+    }
 }
 
 // ============ MAPPING FUNCTIONS ============

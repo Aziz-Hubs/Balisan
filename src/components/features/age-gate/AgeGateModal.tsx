@@ -69,7 +69,12 @@ export function AgeGateModal() {
 
     return (
         <Dialog open={isOpen} onOpenChange={() => { }}>
-            <DialogContent className="sm:max-w-md" onInteractOutside={(e) => e.preventDefault()} onEscapeKeyDown={(e) => e.preventDefault()}>
+            <DialogContent
+                className="sm:max-w-md rounded-2xl"
+                onInteractOutside={(e) => e.preventDefault()}
+                onEscapeKeyDown={(e) => e.preventDefault()}
+                showClose={false}
+            >
                 <DialogHeader>
                     <DialogTitle className="text-center font-display text-2xl">Welcome to Balisan</DialogTitle>
                     <DialogDescription className="text-center">

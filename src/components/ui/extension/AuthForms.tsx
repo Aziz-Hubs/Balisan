@@ -183,19 +183,26 @@ export function PremiumLoginForm() {
 
     async function handleLoginSuccess(user: any) {
         setShimmerState('success');
-        // Fetch user profile
-        const { data: profileData } = await supabase
-            .from('profiles')
-            .select('role')
-            .eq('id', user.id)
-            .single();
 
-        const isAdmin = (profileData as any)?.role === 'admin';
+        let isAdmin = false;
+
+        if (process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true') {
+            isAdmin = user.email === 'admin@balisan.com';
+        } else {
+            // Fetch user profile from Supabase
+            const { data: profileData } = await supabase
+                .from('profiles')
+                .select('role')
+                .eq('id', user.id)
+                .single();
+
+            isAdmin = (profileData as any)?.role === 'admin';
+        }
 
         login({
-            id: user.id,
+            id: user.id || "mock-id",
             email: user.email || user.phone || "User",
-            name: user.user_metadata?.full_name || "User",
+            name: user.user_metadata?.full_name || (user.email === 'admin@balisan.com' ? "Balisan Admin" : "Balisan User"),
             isAdmin,
         });
 

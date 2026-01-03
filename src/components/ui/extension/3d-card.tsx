@@ -24,9 +24,19 @@ export const CardContainer = ({
 }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const [isMouseEntered, setIsMouseEntered] = useState(false);
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
 
     const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!containerRef.current) return;
+        if (!containerRef.current || isMobile) return;
         const { left, top, width, height } =
             containerRef.current.getBoundingClientRect();
         const x = (e.clientX - left - width / 2) / 25;
@@ -35,12 +45,13 @@ export const CardContainer = ({
     };
 
     const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (isMobile) return;
         setIsMouseEntered(true);
         if (!containerRef.current) return;
     };
 
     const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (!containerRef.current) return;
+        if (!containerRef.current || isMobile) return;
         setIsMouseEntered(false);
         containerRef.current.style.transform = `rotateY(0deg) rotateX(0deg)`;
     };
@@ -49,11 +60,11 @@ export const CardContainer = ({
         <MouseEnterContext.Provider value={[isMouseEntered, setIsMouseEntered]}>
             <div
                 className={cn(
-                    "py-20 flex items-center justify-center relative z-0 hover:z-10 transition-[z-index] duration-0",
+                    "flex items-center justify-center relative z-0 hover:z-10 transition-[z-index] duration-0",
                     containerClassName
                 )}
                 style={{
-                    perspective: "1000px",
+                    perspective: isMobile ? "none" : "1000px",
                 }}
             >
                 <div
@@ -62,11 +73,11 @@ export const CardContainer = ({
                     onMouseMove={handleMouseMove}
                     onMouseLeave={handleMouseLeave}
                     className={cn(
-                        "flex items-center justify-center relative transition-all duration-200 ease-linear",
+                        "flex items-center justify-center relative transition-all duration-200 ease-linear w-full h-full",
                         className
                     )}
                     style={{
-                        transformStyle: "preserve-3d",
+                        transformStyle: isMobile ? "flat" : "preserve-3d",
                     }}
                 >
                     {children}
@@ -120,19 +131,25 @@ export const CardItem = ({
 }) => {
     const ref = useRef<HTMLDivElement>(null);
     const [isMouseEntered] = useMouseEnter();
+    const [isMobile, setIsMobile] = useState(false);
 
-    const handleAnimations = () => {
-        if (!ref.current) return;
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    useEffect(() => {
+        if (!ref.current || isMobile) return;
         if (isMouseEntered) {
             ref.current.style.transform = `translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg)`;
         } else {
             ref.current.style.transform = `translateX(0px) translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg) rotateZ(0deg)`;
         }
-    };
-
-    useEffect(() => {
-        handleAnimations();
-    }, [isMouseEntered]);
+    }, [isMouseEntered, isMobile]);
 
     return (
         <Tag

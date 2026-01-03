@@ -9,7 +9,7 @@
  */
 
 import { createServerClient, type CookieOptions } from '@supabase/ssr'
-import { cookies } from 'next/headers'
+// import { cookies } from 'next/headers' // Moved inside functions to prevent client-side bundling errors
 import type { Database } from '@/types/database.types'
 
 /**
@@ -29,7 +29,7 @@ import type { Database } from '@/types/database.types'
 export async function createClient() {
     let cookieStore
     try {
-        cookieStore = await cookies()
+        cookieStore = await require('next/headers').cookies()
     } catch (e) {
         // Fallback for static generation / build time
         return createServerClient<Database>(
@@ -76,7 +76,7 @@ export async function createClient() {
 export async function createAdminClient() {
     let cookieStore
     try {
-        cookieStore = await cookies()
+        cookieStore = await require('next/headers').cookies()
     } catch (e) {
         // Fallback for build time
         return createServerClient<Database>(

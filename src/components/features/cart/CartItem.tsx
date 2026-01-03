@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import { motion } from "framer-motion"
 import { Plus, Minus, Trash2 } from "lucide-react"
 import { formatPrice } from "@/lib/utils"
@@ -14,6 +15,8 @@ interface CartItemProps {
 }
 
 export function CartItem({ item, updateQuantity, removeItem, index }: CartItemProps) {
+    const [imageError, setImageError] = useState(false)
+
     return (
         <motion.div
             initial={{ opacity: 0, x: 20 }}
@@ -23,9 +26,10 @@ export function CartItem({ item, updateQuantity, removeItem, index }: CartItemPr
         >
             <div className="relative h-20 w-20 flex-shrink-0 overflow-hidden rounded-lg bg-zinc-800/50 border border-white/10 group-hover:border-amber-500/30 transition-colors">
                 <Image
-                    src={item.image}
+                    src={imageError ? "/bottle.png" : item.image}
                     alt={item.name}
                     fill
+                    onError={() => setImageError(true)}
                     className="h-full w-full object-contain p-2 transition-transform duration-500 group-hover:scale-110"
                 />
             </div>

@@ -4,14 +4,15 @@ import { getAdminSession } from '@/lib/permissions';
 
 export async function GET(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
+        const { id } = await params;
         const supabase = await createClient();
         const { data, error } = await supabase
             .from('categories')
             .select('*')
-            .eq('id', params.id)
+            .eq('id', id)
             .single();
 
         if (error) throw error;
@@ -31,9 +32,10 @@ export async function GET(
 
 export async function PATCH(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
+        const { id } = await params;
         const session = await getAdminSession();
         if (!session) {
             return NextResponse.json(
@@ -48,7 +50,7 @@ export async function PATCH(
         const { data, error } = await supabase
             .from('categories')
             .update(body)
-            .eq('id', params.id)
+            .eq('id', id)
             .select()
             .single();
 
@@ -69,9 +71,10 @@ export async function PATCH(
 
 export async function DELETE(
     request: NextRequest,
-    { params }: { params: { id: string } }
+    { params }: { params: Promise<{ id: string }> }
 ) {
     try {
+        const { id } = await params;
         const session = await getAdminSession();
         if (!session) {
             return NextResponse.json(
@@ -84,7 +87,7 @@ export async function DELETE(
         const { error } = await supabase
             .from('categories')
             .delete()
-            .eq('id', params.id);
+            .eq('id', id);
 
         if (error) throw error;
 

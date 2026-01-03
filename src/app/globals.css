@@ -309,3 +309,13 @@
     @apply bg-background text-foreground font-sans;
   }
 }
+
+/* PhotoSwipe Lightbox Overrides - Prevent grey background flash */
+.pswp {
+  --pswp-bg: rgba(0, 0, 0, 0.95) !important;
+}
+
+.pswp__bg {
+  background: rgba(0, 0, 0, 0.95) !important;
+  opacity: 1 !important;
+}

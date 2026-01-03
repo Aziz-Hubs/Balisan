@@ -4,12 +4,13 @@ import { CategoryForm } from "@/components/admin/categories/CategoryForm";
 import { getMockCategories } from "@/data/mock";
 
 interface CategoryPageProps {
-    params: {
+    params: Promise<{
         id: string;
-    };
+    }>;
 }
 
 export default async function CategoryPage({ params }: CategoryPageProps) {
+    const { id } = await params;
     let category = null;
 
     try {
@@ -17,14 +18,14 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         const { data, error } = await supabase
             .from("categories")
             .select("*")
-            .eq("id", params.id)
+            .eq("id", id)
             .single();
 
         if (error || !data) throw error;
         category = data;
     } catch (err) {
         console.error("Fetch category error, falling back to mock:", err);
-        category = getMockCategories().find((c) => c.id === params.id) || null;
+        category = getMockCategories().find((c) => c.id === id) || null;
     }
 
     if (!category) {

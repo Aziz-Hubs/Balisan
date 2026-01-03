@@ -1,5 +1,6 @@
 import { createClient } from "@/lib/supabase/client"
 import { AuthError } from "@supabase/supabase-js"
+import { config } from "@/lib/config"
 
 const supabase = createClient()
 
@@ -36,13 +37,27 @@ export async function verifyPhoneOtp(phone: string, token: string) {
 
 export async function signInWithEmail(email: string, password: string) {
     try {
+        if (config.useMockData) {
+            const mockUsers = ["admin@balisan.com", "user@balisan.com", "guest@balisan.com"]
+            if (mockUsers.includes(email) && password === "12345678") {
+                // Set a mock cookie for the server-side services to pick up
+                document.cookie = `balisan_mock_user=${email}; path=/; max-age=3600; SameSite=Lax`
+                if (email === "admin@balisan.com") {
+                    document.cookie = `user_role=SUPER_ADMIN; path=/; max-age=3600; SameSite=Lax`
+                } else {
+                    document.cookie = `user_role=customer; path=/; max-age=3600; SameSite=Lax`
+                }
+                return { data: { user: { email } }, error: null }
+            }
+            throw new Error("Invalid mock credentials")
+        }
         const { data, error } = await supabase.auth.signInWithPassword({
             email,
             password,
         })
         if (error) throw error
         return { data, error: null }
-    } catch (error) {
+    } catch (error: any) {
         console.error("Auth Error:", error)
         return { data: null, error: error as AuthError }
     }

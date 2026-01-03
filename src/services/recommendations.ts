@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
+import { config } from '@/lib/config';
 import { getFeaturedProducts } from './products'; // Fallback for best sellers
 import type { Product } from '@/types';
 
@@ -17,33 +18,35 @@ export async function getUserOrderHistory(userId: string): Promise<{
     count: number;
     items: RecommendedItem[];
 }> {
-    const supabase = await createClient();
+    try {
+        if (config.useMockData) throw new Error('Mock mode enabled')
+        const supabase = await createClient();
 
-    // 1. Get total order count
-    const { count, error: countError } = await supabase
-        .from('orders')
-        .select('*', { count: 'exact', head: true })
-        .eq('user_id', userId);
+        // 1. Get total order count
+        const { count, error: countError } = await supabase
+            .from('orders')
+            .select('*', { count: 'exact', head: true })
+            .eq('user_id', userId);
 
-    if (countError) {
-        console.error('Error fetching order count:', countError);
-        return { count: 0, items: [] };
-    }
+        if (countError) {
+            console.error('Error fetching order count:', countError);
+            return { count: 0, items: [] };
+        }
 
-    if (!count || count === 0) {
-        return { count: 0, items: [] };
-    }
+        if (!count || count === 0) {
+            return { count: 0, items: [] };
+        }
 
-    // 2. Get unique items from past orders
-    // We want the most recent items.
-    // Since we don't have a direct "items purchased by user" table (normalized),
-    // we query order_items via orders.
-    // Note: This query is a bit complex in standard Supabase JS client without Views/RPC if scaling,
-    // but for now we'll do: Fetch last 5 orders -> Extract items -> Dedup.
+        // 2. Get unique items from past orders
+        // We want the most recent items.
+        // Since we don't have a direct "items purchased by user" table (normalized),
+        // we query order_items via orders.
+        // Note: This query is a bit complex in standard Supabase JS client without Views/RPC if scaling,
+        // but for now we'll do: Fetch last 5 orders -> Extract items -> Dedup.
 
-    const { data: orders, error: ordersError } = await supabase
-        .from('orders')
-        .select(`
+        const { data: orders, error: ordersError } = await supabase
+            .from('orders')
+            .select(`
             id,
             created_at,
             items:order_items (
@@ -52,63 +55,67 @@ export async function getUserOrderHistory(userId: string): Promise<{
                 price
             )
         `)
-        .eq('user_id', userId)
-        .order('created_at', { ascending: false })
-        .limit(5);
+            .eq('user_id', userId)
+            .order('created_at', { ascending: false })
+            .limit(5);
 
-    if (ordersError || !orders) {
-        console.error('Error fetching orders:', ordersError);
-        return { count: count || 0, items: [] };
-    }
-
-    // Flatten and dedup items
-    const productIds = new Set<string>();
-    const recentProductIds: string[] = [];
-
-    orders.forEach(order => {
-        // @ts-ignore - Supabase types might be inferred differently depending on generation
-        if (order.items) {
-            // @ts-ignore
-            order.items.forEach((item: any) => {
-                if (!productIds.has(item.product_id)) {
-                    productIds.add(item.product_id);
-                    recentProductIds.push(item.product_id);
-                }
-            });
+        if (ordersError || !orders) {
+            console.error('Error fetching orders:', ordersError);
+            return { count: count || 0, items: [] };
         }
-    });
 
-    if (recentProductIds.length === 0) {
-        return { count: count || 0, items: [] };
+        // Flatten and dedup items
+        const productIds = new Set<string>();
+        const recentProductIds: string[] = [];
+
+        orders.forEach(order => {
+            // @ts-ignore - Supabase types might be inferred differently depending on generation
+            if (order.items) {
+                // @ts-ignore
+                order.items.forEach((item: any) => {
+                    if (!productIds.has(item.product_id)) {
+                        productIds.add(item.product_id);
+                        recentProductIds.push(item.product_id);
+                    }
+                });
+            }
+        });
+
+        if (recentProductIds.length === 0) {
+            return { count: count || 0, items: [] };
+        }
+
+        // 3. Fetch product details for these IDs to get image, slug, brand, etc.
+        const { data: products, error: productsError } = await supabase
+            .from('products')
+            .select('id, name, slug, brand, image, price, in_stock')
+            .in('id', recentProductIds)
+            .eq('in_stock', true); // Only recommend in-stock items
+
+        if (productsError || !products) {
+            // Fallback or empty if error
+            console.error('Error fetching product details:', productsError);
+            return { count: count || 0, items: [] };
+        }
+
+        // Map back to RecommendedItem
+        const items: RecommendedItem[] = (products as any[]).map(p => ({
+            id: p.id,
+            name: p.name,
+            slug: p.slug,
+            brand: p.brand || 'Balisan',
+            image: p.image,
+            price: p.price,
+        }));
+
+        return {
+            count: count || 0,
+            items
+        };
+    } catch (err) {
+        console.error('getUserOrderHistory error:', err)
+        return { count: 0, items: [] };
     }
-
-    // 3. Fetch product details for these IDs to get image, slug, brand, etc.
-    const { data: products, error: productsError } = await supabase
-        .from('products')
-        .select('id, name, slug, brand, image, price, in_stock')
-        .in('id', recentProductIds)
-        .eq('in_stock', true); // Only recommend in-stock items
-
-    if (productsError || !products) {
-        // Fallback or empty if error
-        console.error('Error fetching product details:', productsError);
-        return { count: count || 0, items: [] };
-    }
-
-    // Map back to RecommendedItem
-    const items: RecommendedItem[] = (products as any[]).map(p => ({
-        id: p.id,
-        name: p.name,
-        slug: p.slug,
-        brand: p.brand || 'Balisan',
-        image: p.image,
-        price: p.price,
-    }));
-
-    return {
-        count: count || 0,
-        items
-    };
 }
 
 export async function getBestSellers(limit = 8): Promise<Product[]> {
